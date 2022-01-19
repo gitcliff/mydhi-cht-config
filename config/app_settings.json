@@ -40,8 +40,8 @@
   },
   "district_admins_access_unallocated_messages": false,
   "public_access": false,
-  "default_country_code": "254",
-  "gateway_number": "+254741095736",
+  "default_country_code": "256",
+  "gateway_number": "+256780735585",
   "anc_forms": {
     "registration": "R",
     "registrationLmp": "P",
@@ -309,6 +309,44 @@
         {
           "translation_key": "messages.cw.report_accepted",
           "event_type": "report_accepted",
+          "recipient": "reporting_unit"
+        }
+      ]
+    },
+    {
+      "form": "Z",
+      "events": [
+        {
+          "name": "on_create",
+          "trigger": "add_patient",
+          "params": "{ \"parent_id\": \"place_id\" }",
+          "bool_expr": ""
+        }
+      ],
+      "validations": {
+        "join_responses": true,
+        "list": [
+          {
+            "property": "place_id",
+            "rule": "regex('^[0-9]{5,13}$')",
+            "translation_key": "messages.n.validation.place_id"
+          },
+          {
+            "property": "gender",
+            "rule": "iEquals('m') || iEquals('f')",
+            "translation_key": "messages.n.validation.gender"
+          },
+          {
+            "property": "age",
+            "rule": "between(5,130)",
+            "translation_key": "messages.n.validation.age"
+          }
+        ]
+      },
+      "messages": [
+        {
+          "event": "report_accepted",
+          "translation_key": "messages.n.report_accepted",
           "recipient": "reporting_unit"
         }
       ]
@@ -3904,7 +3942,8 @@
     "update_sent_forms": false,
     "generate_patient_id_on_people": true,
     "death_reporting": true,
-    "resolve_pending": false
+    "resolve_pending": false,
+    "generate_shortcode_on_contacts": true
   },
   "death_reporting": {
     "mark_deceased_forms": [
@@ -5365,6 +5404,96 @@
       },
       "public_form": false,
       "use_sentinel": true
+    },
+    "Z": {
+      "meta": {
+        "code": "Z",
+        "label": {
+          "en": "New Person Registration"
+        }
+      },
+      "fields": {
+        "place_id": {
+          "labels": {
+            "tiny": {
+              "en": "place_id"
+            },
+            "description": {
+              "en": "Household ID"
+            },
+            "short": {
+              "en": "HH ID"
+            }
+          },
+          "position": 0,
+          "type": "string",
+          "length": [
+            1,
+            13
+          ],
+          "required": true
+        },
+        "gender": {
+          "labels": {
+            "tiny": {
+              "en": "gender"
+            },
+            "description": {
+              "en": "Gender"
+            },
+            "short": {
+              "en": "Gender"
+            }
+          },
+          "position": 1,
+          "type": "string",
+          "length": [
+            1,
+            6
+          ],
+          "required": true
+        },
+        "age": {
+          "labels": {
+            "tiny": {
+              "en": "age"
+            },
+            "description": {
+              "en": "Age"
+            },
+            "short": {
+              "en": "Age"
+            }
+          },
+          "position": 2,
+          "type": "integer",
+          "length": [
+            1,
+            2
+          ],
+          "required": true
+        },
+        "patient_name": {
+          "labels": {
+            "tiny": {
+              "en": "patient_name"
+            },
+            "description": {
+              "en": "Patient name"
+            },
+            "short": {
+              "en": "Patient name"
+            }
+          },
+          "position": 3,
+          "type": "string",
+          "length": [
+            3,
+            30
+          ],
+          "required": true
+        }
+      }
     },
     "PENTA3": {
       "meta": {
