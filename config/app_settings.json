@@ -36,7 +36,7 @@
   "reported_date_format": "ddd, MMM Do, YYYY [at] h:mm A",
   "forms_only_mode": false,
   "default_responses": {
-    "start_date": "1970-01-01"
+    "start_date": "2018-01-01"
   },
   "district_admins_access_unallocated_messages": false,
   "public_access": false,
@@ -3935,10 +3935,10 @@
     "update_clinics": true,
     "accept_patient_reports": true,
     "conditional_alerts": true,
-    "update_sent_by": false,
+    "update_sent_by": true,
     "registration": true,
     "update_scheduled_reports": false,
-    "multi_report_alerts": false,
+    "multi_report_alerts": true,
     "update_sent_forms": false,
     "generate_patient_id_on_people": true,
     "death_reporting": true,
