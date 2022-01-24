@@ -1,0 +1,9 @@
+{
+  "title": "Assessment",
+  "icon": "icon-followup-general@2x.png",
+  "context": {
+        "person": true,
+        "place": false,
+        "expression": "contact.sex === 'female' || contact.sex === 'male'"
+    }
+}
