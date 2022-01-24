@@ -36,6 +36,9 @@ const {
   immunizationForms,
 } = require('./contact-summary-extras');
 
+const thisContact = contact;
+const thisLineage = lineage;
+
 
 /* eslint-disable no-global-assign */
 var context = {
@@ -57,6 +60,11 @@ var fields = [
   { appliesToType:'person',  label:'contact.parent', value:lineage, filter: 'lineage' },
   { appliesToType:'!person', label:'Notes', value:contact.notes, width:12 },
   { appliesToType:'!person', appliesIf:function() { return contact.parent && lineage[0]; }, label:'contact.parent', value:lineage, filter:'lineage' },
+  { appliesToType: 'person', label: 'patient.id', value: thisContact.patient_id, width: 4 },
+  { appliesToType: 'person', label: 'contact.age', value: thisContact.date_of_birth, width: 4, filter: 'age' },
+  { appliesToType: 'person', label: 'contact.sex', value: thisContact.sex, translate: true, width: 4 },
+  { appliesToType: 'person', label: 'person.field.phone', value: thisContact.phone, width: 4 },
+  { appliesToType: 'person', label: 'contact.parent', value: thisLineage, filter: 'lineage' },
 ];
 
 var cards = [
