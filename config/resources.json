@@ -23,5 +23,6 @@
    "medic-health-center": "medic-health-center.svg",
    "medic-district-hospital": "medic-district-hospital.svg",
    "medic-person": "icon-people-person-general.svg",
-   "icon-death-general": "icon-death-general.png"
+   "icon-death-general": "icon-death-general.png",
+   "assess":"icon-followup-general@2x.png"
 }

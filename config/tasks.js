@@ -17,6 +17,19 @@ const {
 
 module.exports = [
   {
+    name: 'assessment-after-registration',
+    title: 'First Assessment',
+    icon: 'assess',
+    appliesTo: 'contacts',
+    appliesToType: ['person'],
+    actions: [{ form: 'assessment' }],
+    events: [{
+      start: 2,
+      days: 2,
+      end: 0,
+    }],
+  },
+  {
     name: 'pregnancy_danger_sign',
     icon: 'mother-child',
     title: 'task.pregnancy_danger_sign.title',

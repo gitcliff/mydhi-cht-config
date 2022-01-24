@@ -21,6 +21,18 @@ const {
 } = require('./nools-extras');
 
 module.exports = [
+  {
+    id: 'assessments-all-time',
+    type: 'count',
+    icon: 'assess',
+    goal: -1,
+    translation_key: 'targets.assessments.title',
+    subtitle_translation_key: 'targets.all_time.subtitle',
+
+    appliesTo: 'reports',
+    appliesToType: ['assessment'],
+    date: 'now'
+  },
   // Pregnancy related widgets
   // TODO could this target be person-based instead of report based?
   {
