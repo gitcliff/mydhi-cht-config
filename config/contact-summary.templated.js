@@ -38,6 +38,7 @@ const {
 
 const thisContact = contact;
 const thisLineage = lineage;
+const allReports = reports;
 
 
 /* eslint-disable no-global-assign */
@@ -68,6 +69,31 @@ var fields = [
 ];
 
 var cards = [
+  {
+    label: 'contact.profile.assessment_history',
+    appliesToType: 'report',
+    appliesIf: (report) => {
+      const assessmentForm =  getMostRecentReport(allReports,['assessment']);
+      return assessmentForm.reported_date >= report.reported_date;
+    },
+    fields: [
+      {
+        label: 'contact.profile.most_recent_assessment.date',
+        value: (report) => { 
+          return report.reported_date;
+        },
+        filter: 'simpleDate',
+        width: 6
+      },
+      {
+        label: 'contact.profile.cough',
+        value: (report) => {
+          return report.fields.cough;
+        },
+        width: 6,
+      },
+    ]
+  },
   {
     label: 'contact.profile.pregnancy',
     appliesToType: 'report',
