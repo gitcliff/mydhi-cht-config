@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Ad-hoc communication</h:title>
+    <model>
+      <instance>
+        <communication id="communication" prefix="J1!communication!" delimiter="#" version="1">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <task_id/>
+          </inputs>
+          <contact>
+            <_id/>
+            <notes/>
+            <mode/>
+          </contact>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </communication>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/communication/inputs" relevant="./source='user'"/>
+      <bind nodeset="/communication/inputs/source" type="string"/>
+      <bind nodeset="/communication/inputs/source_id" type="string"/>
+      <bind nodeset="/communication/inputs/task_id" type="string"/>
+      <bind nodeset="/communication/contact/_id" type="db:person"/>
+      <bind nodeset="/communication/contact/notes" type="string"/>
+      <bind nodeset="/communication/contact/mode" type="select1"/>
+      <bind nodeset="/communication/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/communication/inputs">
+      <label></label>
+    </group>
+    <group appearance="field-list" ref="/communication/contact">
+      <label>Ad-hoc communication</label>
+      <input appearance="db-object" ref="/communication/contact/_id">
+        <label>Contact ID</label>
+        <hint>select a contact person from the list</hint>
+      </input>
+      <input appearance="multiline" ref="/communication/contact/notes">
+        <label>Notes</label>
+      </input>
+      <select1 appearance="horizontal" ref="/communication/contact/mode">
+        <label>Contact method</label>
+        <item>
+          <label>Phone</label>
+          <value>phone</value>
+        </item>
+        <item>
+          <label>Text</label>
+          <value>text</value>
+        </item>
+        <item>
+          <label>Inperson</label>
+          <value>person</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

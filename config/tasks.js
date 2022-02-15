@@ -253,6 +253,21 @@ module.exports = [
     },
   },
 
+  {
+    name: 'communication',
+    title: 'Ad-hoc communication',
+    icon: 'icon-healthcare',
+    appliesTo: 'contacts',
+    appliesToType: ['person'],
+    appliesIf: c => !c.contact.date_of_death && !c.contact.muted,
+    actions: [{ form: 'communication' }],
+    events: [{
+      start: 3,
+      days: 3,
+      end: 3,
+    }],
+  },
+
   // PNC TASK 3: Assign a missing visit schedule to last SMS of each group
   // Associate tasks to the last message of each group. Be mindful of overflow when peaking ahead!
   {
