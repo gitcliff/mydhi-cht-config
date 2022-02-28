@@ -67,7 +67,7 @@
         <label>What do you know about HIV ?</label>
       </input>
       <select1 appearance="horizontal" ref="/treatment/treatment_inputs/suicide">
-        <label>Have you ever had thoughts of huting yourself or commiting suicide?</label>
+        <label>Have you ever had thoughts of hurting yourself or commiting suicide?</label>
         <item>
           <label>Yes</label>
           <value>yes</value>
@@ -78,7 +78,7 @@
         </item>
       </select1>
       <select1 appearance="horizontal" ref="/treatment/treatment_inputs/suicide_2">
-        <label>Have you ever had thoughts of huting yourself or some else?</label>
+        <label>Have you ever had thoughts of hurting yourself or some else?</label>
         <item>
           <label>Yes</label>
           <value>yes</value>
