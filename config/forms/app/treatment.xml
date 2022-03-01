@@ -33,7 +33,7 @@
     </group>
     <group appearance="field-list" ref="/treatment/treatment_inputs">
       <label>Mental Health Assessment</label>
-      <select1 appearance="horizontal" ref="/treatment/treatment_inputs/bothered">
+      <select1 ref="/treatment/treatment_inputs/bothered">
         <label>I was bothered by things that usually don't bother me</label>
         <item>
           <label>Rarely</label>
@@ -52,7 +52,7 @@
           <value>everyday</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/treatment/treatment_inputs/treated">
+      <select1 ref="/treatment/treatment_inputs/treated">
         <label>Are you currently bing treated for any mental health condition?</label>
         <item>
           <label>Yes</label>
@@ -66,7 +66,7 @@
       <input appearance="multiline" ref="/treatment/treatment_inputs/hiv">
         <label>What do you know about HIV ?</label>
       </input>
-      <select1 appearance="horizontal" ref="/treatment/treatment_inputs/suicide">
+      <select1 ref="/treatment/treatment_inputs/suicide">
         <label>Have you ever had thoughts of hurting yourself or commiting suicide?</label>
         <item>
           <label>Yes</label>
@@ -77,7 +77,7 @@
           <value>no</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/treatment/treatment_inputs/suicide_2">
+      <select1 ref="/treatment/treatment_inputs/suicide_2">
         <label>Have you ever had thoughts of hurting yourself or some else?</label>
         <item>
           <label>Yes</label>

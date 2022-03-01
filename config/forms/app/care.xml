@@ -41,7 +41,7 @@
     </group>
     <group appearance="field-list" ref="/care/care">
       <label>Questionaire</label>
-      <select1 appearance="horizontal" ref="/care/care/medical">
+      <select1 ref="/care/care/medical">
         <label>Medical care</label>
         <item>
           <label>CD4&gt;500</label>
@@ -60,7 +60,7 @@
           <value>fifty</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/knowledge_disease">
+      <select1 ref="/care/care/knowledge_disease">
         <label>Knowledge of disease</label>
         <item>
           <label>Good</label>
@@ -79,7 +79,7 @@
           <value>none</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/adherence">
+      <select1 ref="/care/care/adherence">
         <label>Adherence</label>
         <item>
           <label>Always</label>
@@ -98,7 +98,7 @@
           <value>never</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/mental_health">
+      <select1 ref="/care/care/mental_health">
         <label>Mental health / substance abuse</label>
         <item>
           <label>No history</label>
@@ -117,7 +117,7 @@
           <value>serious</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/transportation">
+      <select1 ref="/care/care/transportation">
         <label>Transportation</label>
         <item>
           <label>Consistent</label>
@@ -136,7 +136,7 @@
           <value>tr</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/support_system">
+      <select1 ref="/care/care/support_system">
         <label>Support system</label>
         <item>
           <label>Reliable</label>
@@ -151,7 +151,7 @@
           <value>su</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/communication_skills">
+      <select1 ref="/care/care/communication_skills">
         <label>Communication skills</label>
         <item>
           <label>Good</label>
@@ -170,7 +170,7 @@
           <value>xx</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/employment">
+      <select1 ref="/care/care/employment">
         <label>Employment</label>
         <item>
           <label>Employed</label>
@@ -189,7 +189,7 @@
           <value>unable</value>
         </item>
       </select1>
-      <select1 appearance="horizontal" ref="/care/care/living_situation">
+      <select1 ref="/care/care/living_situation">
         <label>Living situation</label>
         <item>
           <label>Self-managed</label>

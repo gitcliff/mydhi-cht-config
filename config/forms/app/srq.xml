@@ -7,8 +7,8 @@
         <srq id="srq" prefix="J1!srq!" delimiter="#" version="1">
           <srq/>
           <treatment_inputs>
-            <first_name>Text</first_name>
-            <last_name>Text</last_name>
+            <first_name/>
+            <last_name/>
             <telephone/>
             <docket>0</docket>
           </treatment_inputs>
