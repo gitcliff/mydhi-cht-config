@@ -71,164 +71,359 @@
     },
     "gateway": {
       "name": "usertype.gateway"
+    },
+    "intervation_admin": {
+      "name": "usertype.intervation-administrator"
+    },
+    "it_role": {
+      "name": "usertype.it"
+    },
+    "auditor": {
+      "name": "usertype.auditor-access"
+    },
+    "clinical_admin": {
+      "name": "usertype.clinical-administrator",
+      "offline": false
+    },
+    "health_care_worker": {
+      "name": "usertype.hcw",
+      "offline": true
+    },
+    "treatment_support_officer": {
+      "name": "usertype.treatment-support-officer",
+      "offline": true
+    },
+    "case_manager": {
+      "name": "usertype.case-manager",
+      "offline": true
     }
   },
   "permissions": {
     "can_export_messages": [
       "national_admin",
       "district_admin",
-      "analytics"
+      "analytics",
+      "intervation_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+       "case_manager",
+      "clinical_admin"
     ],
     "can_export_forms": [
       "national_admin",
       "district_admin",
+      "intervation_admin",
+      "clinical_admin",
       "analytics"
     ],
     "can_export_contacts": [
       "national_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_export_feedback": [
-      "national_admin"
+      "national_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "intervation_admin"
     ],
     "can_view_analytics": [
       "national_admin",
       "district_admin",
+      "clinical_admin",
+      "intervation_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "analytics"
     ],
     "can_view_data_records": [
       "national_admin",
+      "intervation_admin",
       "district_admin",
+      "clinical_admin",
       "analytics",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "gateway"
     ],
     "can_view_unallocated_data_records": [
       "national_admin",
+      "intervation_admin",
       "district_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "gateway"
     ],
     "can_view_users": [
-      "national_admin"
+      "national_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "intervation_admin"
     ],
     "can_edit": [
       "national_admin",
+      "intervation_admin",
       "district_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "gateway"
     ],
     "can_log_out_on_android": [
       "district_admin",
+      "clinical_admin",
+      "intervation_admin",
       "national_admin"
     ],
     "can_update_messages": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
       "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "gateway"
     ],
     "can_update_users": [
-      "national_admin"
+      "national_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "intervation_admin"
     ],
     "can_export_dhis": [
-      "national_admin"
+      "national_admin",
+      "clinical_admin",
+      "intervation_admin"
     ],
     "can_update_people": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_update_places": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_create_records": [
       "national_admin",
+      "intervation_admin",
       "district_admin",
+      "clinical_admin",
       "data_entry",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "gateway"
     ],
     "can_access_gateway_api": [
       "gateway"
     ],
     "can_create_users": [
-      "national_admin"
+      "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "it_role"
     ],
     "can_create_people": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_create_places": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_view_tasks": [
-      "district_admin"
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager"
     ],
     "can_view_tasks_tab": [
-      "district_admin"
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager"
     ],
     "can_configure": [
-      "national_admin"
+      "national_admin",
+      "clinical_admin",
+      "intervation_admin"
     ],
     "can_view_messages": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_messages_tab": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_reports": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_reports_tab": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_analytics_tab": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_contacts": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_view_contacts_tab": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_edit_profile": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_delete_reports": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_bulk_delete_reports": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
       "district_admin"
     ],
     "can_update_reports": [
       "national_admin",
+      "intervation_admin",
+      "clinical_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
       "district_admin"
     ],
     "can_delete_contacts": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_delete_messages": [
       "national_admin",
-      "district_admin"
+      "intervation_admin",
+      "district_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_delete_users": [
-      "national_admin"
+      "national_admin",
+      "intervation_admin",
+      "clinical_admin"
     ],
     "can_view_outgoing_messages": [
-      "national_admin"
+      "national_admin",
+      "intervation_admin",
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager",
+      "clinical_admin"
     ],
     "can_export_all": [
-      "national_admin"
+      "national_admin",
+      "intervation_admin",
+      "clinical_admin"
     ],
-    "can_view_uhc_stats": []
+    "can_view_uhc_stats": [],
+    "can_aggregate_targets": [
+      "health_care_worker",
+      "treatment_support_officer",
+      "case_manager"
+    ]
   },
   "setup_complete": true,
   "outgoing_phone_replace": {
