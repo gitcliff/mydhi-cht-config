@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Level of care Assessment</h:title>
+    <model>
+      <instance>
+        <care id="care" prefix="J1!care!" delimiter="#" version="1">
+          <inputs/>
+          <care>
+            <medical/>
+            <knowledge_disease/>
+            <adherence/>
+            <mental_health/>
+            <transportation/>
+            <support_system/>
+            <communication_skills/>
+            <employment/>
+            <living_situation/>
+          </care>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </care>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/care/care/medical" type="select1"/>
+      <bind nodeset="/care/care/knowledge_disease" type="select1"/>
+      <bind nodeset="/care/care/adherence" type="select1"/>
+      <bind nodeset="/care/care/mental_health" type="select1"/>
+      <bind nodeset="/care/care/transportation" type="select1"/>
+      <bind nodeset="/care/care/support_system" type="select1"/>
+      <bind nodeset="/care/care/communication_skills" type="select1"/>
+      <bind nodeset="/care/care/employment" type="select1"/>
+      <bind nodeset="/care/care/living_situation" type="select1"/>
+      <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/care/inputs">
+      <label>Level of Care Assessment</label>
+    </group>
+    <group appearance="field-list" ref="/care/care">
+      <label>Questionaire</label>
+      <select1 ref="/care/care/medical">
+        <label>Medical care</label>
+        <item>
+          <label>CD4&gt;500</label>
+          <value>zero</value>
+        </item>
+        <item>
+          <label>CD4 200-499</label>
+          <value>two</value>
+        </item>
+        <item>
+          <label>CD4 50-199</label>
+          <value>five</value>
+        </item>
+        <item>
+          <label>CD4&lt;50</label>
+          <value>fifty</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/knowledge_disease">
+        <label>Knowledge of disease</label>
+        <item>
+          <label>Good</label>
+          <value>good</value>
+        </item>
+        <item>
+          <label>Somewhat</label>
+          <value>some_what</value>
+        </item>
+        <item>
+          <label>Little</label>
+          <value>little</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/adherence">
+        <label>Adherence</label>
+        <item>
+          <label>Always</label>
+          <value>always</value>
+        </item>
+        <item>
+          <label>Usually</label>
+          <value>usually</value>
+        </item>
+        <item>
+          <label>Rarely</label>
+          <value>rarely</value>
+        </item>
+        <item>
+          <label>Never</label>
+          <value>never</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/mental_health">
+        <label>Mental health / substance abuse</label>
+        <item>
+          <label>No history</label>
+          <value>no_history</value>
+        </item>
+        <item>
+          <label>Has access</label>
+          <value>has_access</value>
+        </item>
+        <item>
+          <label>Failed treatment</label>
+          <value>failed_treatment</value>
+        </item>
+        <item>
+          <label>Serious</label>
+          <value>serious</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/transportation">
+        <label>Transportation</label>
+        <item>
+          <label>Consistent</label>
+          <value>consistent</value>
+        </item>
+        <item>
+          <label>Questionable</label>
+          <value>questionable</value>
+        </item>
+        <item>
+          <label>Irregular</label>
+          <value>irregular</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>tr</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/support_system">
+        <label>Support system</label>
+        <item>
+          <label>Reliable</label>
+          <value>reliable</value>
+        </item>
+        <item>
+          <label>Crisis only</label>
+          <value>only</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>su</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/communication_skills">
+        <label>Communication skills</label>
+        <item>
+          <label>Good</label>
+          <value>co</value>
+        </item>
+        <item>
+          <label>Temporary</label>
+          <value>temporary</value>
+        </item>
+        <item>
+          <label>Limitted</label>
+          <value>limitted</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>xx</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/employment">
+        <label>Employment</label>
+        <item>
+          <label>Employed</label>
+          <value>employed</value>
+        </item>
+        <item>
+          <label>Ltd Probs</label>
+          <value>ltd_probs</value>
+        </item>
+        <item>
+          <label>Unemployed</label>
+          <value>unemployed</value>
+        </item>
+        <item>
+          <label>Unable</label>
+          <value>unable</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/living_situation">
+        <label>Living situation</label>
+        <item>
+          <label>Self-managed</label>
+          <value>self_managed</value>
+        </item>
+        <item>
+          <label>Adequate</label>
+          <value>adequate</value>
+        </item>
+        <item>
+          <label>Unsafe</label>
+          <value>unsafe</value>
+        </item>
+        <item>
+          <label>Homeless</label>
+          <value>homless</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>
