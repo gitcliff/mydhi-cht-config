@@ -1,0 +1,442 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>SRQ FORM</h:title>
+    <model>
+      <instance>
+        <srq id="srq" prefix="J1!srq!" delimiter="#" version="1">
+          <srq/>
+          <treatment_inputs>
+            <first_name/>
+            <last_name/>
+            <telephone/>
+            <docket>0</docket>
+          </treatment_inputs>
+          <cd4>
+            <month/>
+            <day>0</day>
+            <year/>
+            <results/>
+          </cd4>
+          <vl>
+            <month/>
+            <day>0</day>
+            <year/>
+            <results/>
+          </vl>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </srq>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/srq/treatment_inputs/first_name" type="string" required="true()"/>
+      <bind nodeset="/srq/treatment_inputs/last_name" type="string" required="true()"/>
+      <bind nodeset="/srq/treatment_inputs/telephone" type="tel" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
+      <bind nodeset="/srq/treatment_inputs/docket" type="int"/>
+      <bind nodeset="/srq/cd4/month" type="select1"/>
+      <bind nodeset="/srq/cd4/day" type="select1"/>
+      <bind nodeset="/srq/cd4/year" type="date"/>
+      <bind nodeset="/srq/cd4/results" type="string"/>
+      <bind nodeset="/srq/vl/month" type="select1"/>
+      <bind nodeset="/srq/vl/day" type="select1"/>
+      <bind nodeset="/srq/vl/year" type="date"/>
+      <bind nodeset="/srq/vl/results" type="string"/>
+      <bind nodeset="/srq/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/srq/srq">
+      <label>SRQ FORM</label>
+    </group>
+    <group appearance="field-list" ref="/srq/treatment_inputs">
+      <label>Adherence Questionarie</label>
+      <input ref="/srq/treatment_inputs/first_name">
+        <label>First name</label>
+      </input>
+      <input ref="/srq/treatment_inputs/last_name">
+        <label>Last name</label>
+      </input>
+      <input ref="/srq/treatment_inputs/telephone">
+        <label>Telephone number</label>
+      </input>
+      <input ref="/srq/treatment_inputs/docket">
+        <label>Docket number</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/srq/cd4">
+      <label>Most recent CD4 test data</label>
+      <select1 appearance="minimal" ref="/srq/cd4/month">
+        <label>Month</label>
+        <item>
+          <label>January</label>
+          <value>january</value>
+        </item>
+        <item>
+          <label>February</label>
+          <value>February</value>
+        </item>
+        <item>
+          <label>March</label>
+          <value>March</value>
+        </item>
+        <item>
+          <label>April</label>
+          <value>April</value>
+        </item>
+        <item>
+          <label>May</label>
+          <value>May</value>
+        </item>
+        <item>
+          <label>June</label>
+          <value>June</value>
+        </item>
+        <item>
+          <label>July</label>
+          <value>July</value>
+        </item>
+        <item>
+          <label>August</label>
+          <value>August</value>
+        </item>
+        <item>
+          <label>September</label>
+          <value>September</value>
+        </item>
+        <item>
+          <label>October</label>
+          <value>October</value>
+        </item>
+        <item>
+          <label>November</label>
+          <value>November</value>
+        </item>
+        <item>
+          <label>December</label>
+          <value>December</value>
+        </item>
+      </select1>
+      <select1 appearance="minimal" ref="/srq/cd4/day">
+        <label>Day</label>
+        <item>
+          <label>1</label>
+          <value>1</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>5</label>
+          <value>5</value>
+        </item>
+        <item>
+          <label>6</label>
+          <value>6</value>
+        </item>
+        <item>
+          <label>7</label>
+          <value>7</value>
+        </item>
+        <item>
+          <label>8</label>
+          <value>8</value>
+        </item>
+        <item>
+          <label>9</label>
+          <value>9</value>
+        </item>
+        <item>
+          <label>10</label>
+          <value>10</value>
+        </item>
+        <item>
+          <label>11</label>
+          <value>11</value>
+        </item>
+        <item>
+          <label>12</label>
+          <value>12</value>
+        </item>
+        <item>
+          <label>13</label>
+          <value>13</value>
+        </item>
+        <item>
+          <label>14</label>
+          <value>14</value>
+        </item>
+        <item>
+          <label>15</label>
+          <value>15</value>
+        </item>
+        <item>
+          <label>16</label>
+          <value>16</value>
+        </item>
+        <item>
+          <label>17</label>
+          <value>17</value>
+        </item>
+        <item>
+          <label>18</label>
+          <value>18</value>
+        </item>
+        <item>
+          <label>19</label>
+          <value>19</value>
+        </item>
+        <item>
+          <label>20</label>
+          <value>20</value>
+        </item>
+        <item>
+          <label>21</label>
+          <value>21</value>
+        </item>
+        <item>
+          <label>22</label>
+          <value>22</value>
+        </item>
+        <item>
+          <label>23</label>
+          <value>23</value>
+        </item>
+        <item>
+          <label>24</label>
+          <value>24</value>
+        </item>
+        <item>
+          <label>25</label>
+          <value>25</value>
+        </item>
+        <item>
+          <label>26</label>
+          <value>26</value>
+        </item>
+        <item>
+          <label>27</label>
+          <value>27</value>
+        </item>
+        <item>
+          <label>28</label>
+          <value>28</value>
+        </item>
+        <item>
+          <label>29</label>
+          <value>29</value>
+        </item>
+        <item>
+          <label>30</label>
+          <value>30</value>
+        </item>
+        <item>
+          <label>31</label>
+          <value>31</value>
+        </item>
+      </select1>
+      <input appearance="Year" ref="/srq/cd4/year">
+        <label>Year</label>
+      </input>
+      <input ref="/srq/cd4/results">
+        <label>Results</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/srq/vl">
+      <label>Most recent VL test data</label>
+      <select1 appearance="minimal" ref="/srq/vl/month">
+        <label>Month</label>
+        <item>
+          <label>January</label>
+          <value>january</value>
+        </item>
+        <item>
+          <label>February</label>
+          <value>February</value>
+        </item>
+        <item>
+          <label>March</label>
+          <value>March</value>
+        </item>
+        <item>
+          <label>April</label>
+          <value>April</value>
+        </item>
+        <item>
+          <label>May</label>
+          <value>May</value>
+        </item>
+        <item>
+          <label>June</label>
+          <value>June</value>
+        </item>
+        <item>
+          <label>July</label>
+          <value>July</value>
+        </item>
+        <item>
+          <label>August</label>
+          <value>August</value>
+        </item>
+        <item>
+          <label>September</label>
+          <value>September</value>
+        </item>
+        <item>
+          <label>October</label>
+          <value>October</value>
+        </item>
+        <item>
+          <label>November</label>
+          <value>November</value>
+        </item>
+        <item>
+          <label>December</label>
+          <value>December</value>
+        </item>
+      </select1>
+      <select1 appearance="minimal" ref="/srq/vl/day">
+        <label>Day</label>
+        <item>
+          <label>1</label>
+          <value>1</value>
+        </item>
+        <item>
+          <label>2</label>
+          <value>2</value>
+        </item>
+        <item>
+          <label>3</label>
+          <value>3</value>
+        </item>
+        <item>
+          <label>4</label>
+          <value>4</value>
+        </item>
+        <item>
+          <label>5</label>
+          <value>5</value>
+        </item>
+        <item>
+          <label>6</label>
+          <value>6</value>
+        </item>
+        <item>
+          <label>7</label>
+          <value>7</value>
+        </item>
+        <item>
+          <label>8</label>
+          <value>8</value>
+        </item>
+        <item>
+          <label>9</label>
+          <value>9</value>
+        </item>
+        <item>
+          <label>10</label>
+          <value>10</value>
+        </item>
+        <item>
+          <label>11</label>
+          <value>11</value>
+        </item>
+        <item>
+          <label>12</label>
+          <value>12</value>
+        </item>
+        <item>
+          <label>13</label>
+          <value>13</value>
+        </item>
+        <item>
+          <label>14</label>
+          <value>14</value>
+        </item>
+        <item>
+          <label>15</label>
+          <value>15</value>
+        </item>
+        <item>
+          <label>16</label>
+          <value>16</value>
+        </item>
+        <item>
+          <label>17</label>
+          <value>17</value>
+        </item>
+        <item>
+          <label>18</label>
+          <value>18</value>
+        </item>
+        <item>
+          <label>19</label>
+          <value>19</value>
+        </item>
+        <item>
+          <label>20</label>
+          <value>20</value>
+        </item>
+        <item>
+          <label>21</label>
+          <value>21</value>
+        </item>
+        <item>
+          <label>22</label>
+          <value>22</value>
+        </item>
+        <item>
+          <label>23</label>
+          <value>23</value>
+        </item>
+        <item>
+          <label>24</label>
+          <value>24</value>
+        </item>
+        <item>
+          <label>25</label>
+          <value>25</value>
+        </item>
+        <item>
+          <label>26</label>
+          <value>26</value>
+        </item>
+        <item>
+          <label>27</label>
+          <value>27</value>
+        </item>
+        <item>
+          <label>28</label>
+          <value>28</value>
+        </item>
+        <item>
+          <label>29</label>
+          <value>29</value>
+        </item>
+        <item>
+          <label>30</label>
+          <value>30</value>
+        </item>
+        <item>
+          <label>31</label>
+          <value>31</value>
+        </item>
+      </select1>
+      <input appearance="Year" ref="/srq/vl/year">
+        <label>Year</label>
+      </input>
+      <input ref="/srq/vl/results">
+        <label>Results</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
