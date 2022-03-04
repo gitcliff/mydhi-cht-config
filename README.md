@@ -24,4 +24,4 @@ More details on this [here](https://docs.communityhealthtoolkit.org/apps/tutoria
 After following the steps above, you now have a running CHT instance on which to deploy the application.To deploy and load jamaica mHealth clinical app forms on the running CHT instance clone [mydhi-cht-config app](https://github.com/I-TECH-UW/mydhi-cht-config) run `cht --url=https://<username>:<password>@localhost --accept-self-signed-certs convert-app-forms upload-app-forms -- <app-form-name>` if a valid TLS certiifate was not used and `cht --url=https://<username>:<password>@<domain-name> convert-app-forms upload-app-forms -- <app-form-name>`
 if valid TLS certiifate was used eg `cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- <app-form-name>`.
 
-## Note:Be sure to replace the values <username> and <password> with the actual username and password of your test instance.
+`Note:Be sure to replace the values `<username>` and `<password>` with the actual username and password of your test instance.`
