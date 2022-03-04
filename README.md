@@ -16,7 +16,7 @@ Install the Core Framework by checking out to the cloned [cht-core respository](
 Install cht-conf as guided [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/#2-install-cht-conf)
 
 Optional: Install Valid TLS Certificate.
-To install a valid certificate, open a terminal in the cht-core directory. Ensure the medic-os container is running and make this call: ./scripts/add-local-ip-certs-to-docker.sh
+To install a valid certificate, open a terminal in the cht-core directory. Ensure the medic-os container is running and make this call: `./scripts/add-local-ip-certs-to-docker.sh`
 More details on this [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/#5-optional-install-valid-tls-certificate)
 
 More information about CHT Local Environment Setup [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/)
