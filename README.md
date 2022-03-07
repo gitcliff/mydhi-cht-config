@@ -42,6 +42,41 @@ if valid TLS certiifate was used eg
 ```
 cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- <app-form-name>
 ```
+**The current clinical app forms include:**
+- Level of care Assessment form with an `app-form-name` of `care`  forexample 
+ ```
+ cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms --  care
+ ```
+- Treatment Readiness Assessment form with an `app-form-name` of `treatment`  forexample
+ ```
+ cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- treatment
+ ```
+- SRQ form with an `app-form-name` of `srq`  forexample
+ ```
+ cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- srq
+ ```
+
 `Note 1:Be sure to replace the value "app-form-name" with the name of the clinical form you are uploading in CHT forexample "care" for Level of care Assessment form, "treatment" for Treatment Readiness Assessment form and "srq" for SRQ form`
 
 `Note 2:Also be sure to replace the values "username" and "password" with the actual username and password of your test instance.`
+
+## Loading user roles and permissions 
+Each user is assigned one of the defined roles which can be defined using the App Management app, which is represented by the roles object of the `app-settings.json` file
+
+Permissions are defined by the permissions object in the `app_settings.json` or `base_settings.json` file. Permissions can also be configured using the App Management app and permission is defined as an array of user role identifiers that have the permission granted.
+
+- When new roles titles are added in the app via the app_settings.json file with their respective tranlations in the the properties files use the format messages-{language-code}.properties run
+
+ ``` 
+  $cht --url=https://<username>:<password>@domain upload-custom-translation
+ ```
+after navigating in the config folder. 
+
+- Then run 
+
+ ``` 
+  $cht --url=https://<username>:<password>@domain upload-app-settings
+ ```
+  to up-load the new roles and permission in your `app_settings.json` file
+
+  You can read more about the roles and permissions in CHT [here](https://docs.communityhealthtoolkit.org/apps/reference/app-settings/user-roles/) and [here](https://docs.communityhealthtoolkit.org/apps/reference/app-settings/user-permissions/) respectively 
