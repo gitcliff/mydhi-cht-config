@@ -43,7 +43,7 @@
  if(selected( /care/care/communication , 'co'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'xx'), 4, 0) + 
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
  if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)"/>
-      <bind nodeset="/care/care/score_note" type="string"/>
+      <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
       <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
