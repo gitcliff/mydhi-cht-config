@@ -8,14 +8,16 @@
           <inputs/>
           <care>
             <medical/>
-            <knowledge_disease/>
+            <knowledge/>
             <adherence/>
-            <mental_health/>
+            <mental/>
             <transportation/>
-            <support_system/>
-            <communication_skills/>
+            <support/>
+            <communication/>
             <employment/>
-            <living_situation/>
+            <living/>
+            <score/>
+            <score_note/>
           </care>
           <meta tag="hidden">
             <instanceID/>
@@ -24,14 +26,24 @@
       </instance>
       <instance id="contact-summary"/>
       <bind nodeset="/care/care/medical" type="select1"/>
-      <bind nodeset="/care/care/knowledge_disease" type="select1"/>
+      <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
-      <bind nodeset="/care/care/mental_health" type="select1"/>
+      <bind nodeset="/care/care/mental" type="select1"/>
       <bind nodeset="/care/care/transportation" type="select1"/>
-      <bind nodeset="/care/care/support_system" type="select1"/>
-      <bind nodeset="/care/care/communication_skills" type="select1"/>
+      <bind nodeset="/care/care/support" type="select1"/>
+      <bind nodeset="/care/care/communication" type="select1"/>
       <bind nodeset="/care/care/employment" type="select1"/>
-      <bind nodeset="/care/care/living_situation" type="select1"/>
+      <bind nodeset="/care/care/living" type="select1"/>
+      <bind nodeset="/care/care/score" type="string" calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
+ if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 3, 0) + if(selected( /care/care/knowledge , 'none'), 4, 0) + 
+ if(selected( /care/care/adherence , 'always'), 1, 0) + if(selected( /care/care/adherence , 'usually'), 2, 0) + if(selected( /care/care/adherence , 'rarely'), 3, 0) + if(selected( /care/care/adherence , 'never'), 4, 0) + 
+ if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 3, 0) + if(selected( /care/care/mental , 'serious'), 4, 0) + 
+ if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'tr'), 4, 0) + 
+ if(selected( /care/care/support , 'reliable'), 1, 0) + if(selected( /care/care/support , 'only'), 2, 0) + if(selected( /care/care/support , 'su'), 3, 0) + 
+ if(selected( /care/care/communication , 'co'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'xx'), 4, 0) + 
+ if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
+ if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)"/>
+      <bind nodeset="/care/care/score_note" type="string"/>
       <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -60,7 +72,7 @@
           <value>fifty</value>
         </item>
       </select1>
-      <select1 ref="/care/care/knowledge_disease">
+      <select1 ref="/care/care/knowledge">
         <label>Knowledge of disease</label>
         <item>
           <label>Good</label>
@@ -98,7 +110,7 @@
           <value>never</value>
         </item>
       </select1>
-      <select1 ref="/care/care/mental_health">
+      <select1 ref="/care/care/mental">
         <label>Mental health / substance abuse</label>
         <item>
           <label>No history</label>
@@ -136,7 +148,7 @@
           <value>tr</value>
         </item>
       </select1>
-      <select1 ref="/care/care/support_system">
+      <select1 ref="/care/care/support">
         <label>Support system</label>
         <item>
           <label>Reliable</label>
@@ -151,7 +163,7 @@
           <value>su</value>
         </item>
       </select1>
-      <select1 ref="/care/care/communication_skills">
+      <select1 ref="/care/care/communication">
         <label>Communication skills</label>
         <item>
           <label>Good</label>
@@ -189,7 +201,7 @@
           <value>unable</value>
         </item>
       </select1>
-      <select1 ref="/care/care/living_situation">
+      <select1 ref="/care/care/living">
         <label>Living situation</label>
         <item>
           <label>Self-managed</label>
@@ -208,6 +220,9 @@
           <value>homless</value>
         </item>
       </select1>
+      <input ref="/care/care/score_note">
+        <label>Score is: <output value=" /care/care/score "/></label>
+      </input>
     </group>
   </h:body>
 </h:html>
