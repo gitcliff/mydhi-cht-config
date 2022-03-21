@@ -15,45 +15,33 @@ This is a repository for the Jamaica mHealth CHT application project. To learn m
 
 - Install cht-conf as guided [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/#2-install-cht-conf)
 
-- **Optional**: Install Valid TLS Certificate.
-To install a valid certificate, open a terminal in the cht-core directory. Ensure the medic-os container is running and make this call: 
-```
-$./scripts/add-local-ip-certs-to-docker.sh
-```
 
 More details on this [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/#5-optional-install-valid-tls-certificate)
 
 More information about CHT Local Environment Setup [here](https://docs.communityhealthtoolkit.org/apps/tutorials/local-setup/)
+
+Read about how to use a valid TSL/SSL certiifcate for the server [here](https://www.wpbeginner.com/beginners-guide/how-to-get-a-free-ssl-certificate-for-your-wordpress-website/) 
 
 ## Loading the jamaica mHealth clinical app forms in CHT
 
 After following the steps above, you now have a running CHT instance on which to deploy the application.To deploy and load jamaica mHealth clinical app forms on the running CHT instance clone [mydhi-cht-config app](https://github.com/I-TECH-UW/mydhi-cht-config),navigate to the config folder and run 
 
 ```
-$ cht --url=https://<username>:<password>@localhost --accept-self-signed-certs convert-app-forms upload-app-forms -- <app-form-name>
-```
-if a valid TLS certiifate was not used..
-
-Use 
-```
 $ cht --url=https://<username>:<password>@<domain-name> convert-app-forms upload-app-forms -- <app-form-name>
 ```
-if valid TLS certiifate was used eg 
-```
-cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- <app-form-name>
-```
+
 **The current clinical app forms include:**
 - Level of care Assessment form with an `app-form-name` of `care`  forexample 
  ```
- cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms --  care
+ cht --url=https://<username>:<password>@<domain-name> convert-app-forms upload-app-forms --  care
  ```
 - Treatment Readiness Assessment form with an `app-form-name` of `treatment`  forexample
  ```
- cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- treatment
+ cht --url=https://<username>:<password>@<domain-name> convert-app-forms upload-app-forms -- treatment
  ```
 - SRQ form with an `app-form-name` of `srq`  forexample
  ```
- cht --url=https://<username>:<password>@192-168-5-70.my.local-ip.co convert-app-forms upload-app-forms -- srq
+ cht --url=https://<username>:<password>@<domain-name> convert-app-forms upload-app-forms -- srq
  ```
 
 `Note 1:Be sure to replace the value "app-form-name" with the name of the clinical form you are uploading in CHT forexample "care" for Level of care Assessment form, "treatment" for Treatment Readiness Assessment form and "srq" for SRQ form`
@@ -68,14 +56,14 @@ Permissions are defined by the permissions object in the `app_settings.json` or 
 - When new roles titles are added in the app via the app_settings.json file with their respective tranlations in the the properties files use the format messages-{language-code}.properties run
 
  ``` 
-  $cht --url=https://<username>:<password>@domain upload-custom-translation
+  $cht --url=https://<username>:<password>@<domain-name> upload-custom-translation
  ```
 after navigating in the config folder. 
 
 - Then run 
 
  ``` 
-  $cht --url=https://<username>:<password>@domain upload-app-settings
+  $cht --url=https://<username>:<password>@<domain-name> upload-app-settings
  ```
   to up-load the new roles and permission in your `app_settings.json` file
 
