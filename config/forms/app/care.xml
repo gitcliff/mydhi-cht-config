@@ -5,7 +5,31 @@
     <model>
       <instance>
         <care id="care" prefix="J1!care!" delimiter="#" version="1">
-          <inputs/>
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
           <care>
             <medical/>
             <knowledge/>
@@ -17,7 +41,9 @@
             <employment/>
             <living/>
             <score/>
+            <category/>
             <score_note/>
+            <category_note/>
           </care>
           <meta tag="hidden">
             <instanceID/>
@@ -25,6 +51,16 @@
         </care>
       </instance>
       <instance id="contact-summary"/>
+      <bind nodeset="/care/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/care/inputs/source" type="string"/>
+      <bind nodeset="/care/inputs/source_id" type="string"/>
+      <bind nodeset="/care/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/care/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/care/inputs/contact/name" type="string"/>
+      <bind nodeset="/care/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/care/inputs/contact/sex" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/care/care/medical" type="select1"/>
       <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
@@ -43,13 +79,45 @@
  if(selected( /care/care/communication , 'co'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'xx'), 4, 0) + 
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
  if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)"/>
+      <bind nodeset="/care/care/category" type="string" calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))"/>
       <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/category_note" readonly="true()" type="string"/>
       <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/care/inputs">
       <label>Level of Care Assessment</label>
+      <group ref="/care/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/care/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/care/inputs/contact/parent">
+          <label></label>
+          <group ref="/care/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
     </group>
     <group appearance="field-list" ref="/care/care">
       <label>Questionaire</label>
@@ -222,6 +290,9 @@
       </select1>
       <input ref="/care/care/score_note">
         <label>Score is: <output value=" /care/care/score "/></label>
+      </input>
+      <input ref="/care/care/category_note">
+        <label>Risk Category is:<output value=" /care/care/category "/></label>
       </input>
     </group>
   </h:body>
