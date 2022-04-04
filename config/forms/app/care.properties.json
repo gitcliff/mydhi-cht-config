@@ -1,0 +1,9 @@
+{
+    "title": "Level of care assessment form",
+    "icon": "immunization",
+    "context": {
+          "person": true,
+          "place": false,
+          "expression": "contact.type === 'person'"
+      }
+  }
