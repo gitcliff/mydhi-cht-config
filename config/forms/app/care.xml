@@ -30,6 +30,8 @@
               </parent>
             </contact>
           </inputs>
+          <patient_id/>
+          <patient_name/>
           <care>
             <medical/>
             <knowledge/>
@@ -61,6 +63,8 @@
       <bind nodeset="/care/inputs/contact/sex" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/care/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/care/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/care/care/medical" type="select1"/>
       <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
