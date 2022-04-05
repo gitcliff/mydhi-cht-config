@@ -56,7 +56,7 @@
       <bind nodeset="/care/inputs" relevant="./source = 'user'"/>
       <bind nodeset="/care/inputs/source" type="string"/>
       <bind nodeset="/care/inputs/source_id" type="string"/>
-      <bind nodeset="/care/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/care/inputs/contact/_id" type="db:person" required="true()"/>
       <bind nodeset="/care/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/care/inputs/contact/name" type="string"/>
       <bind nodeset="/care/inputs/contact/date_of_birth" type="string"/>

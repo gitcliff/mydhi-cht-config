@@ -61,6 +61,23 @@ var fields = [
 
 var cards = [
   {
+    label: 'task.risk.status',
+    appliesToType: 'report',
+    appliesIf: function(r){
+      return r.form === 'care' && contact.type === 'person';
+    },
+    fields: [
+      {
+        label: 'task.risk.category',
+        value: function(r) {
+          var risk = r.fields.care.category;
+          return risk;
+        },
+        width: 6
+      },
+    ] 
+  },
+  {
     label: 'contact.profile.pregnancy',
     appliesToType: 'report',
     appliesIf: isActivePregnancy,
