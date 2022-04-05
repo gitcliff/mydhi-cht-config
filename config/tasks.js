@@ -17,6 +17,27 @@ const {
 
 module.exports = [
   {
+    name: 'care-assessment-task',
+    title: 'Level of care assessment task',
+    icon: 'immunization',
+    appliesTo: 'contacts',
+    appliesToType: ['person'],
+    appliesIf: c =>  c.contact.role ==='patient' && !c.contact.date_of_death && !c.contact.muted,
+    actions: [{ form: 'care', }],
+    events: [{
+      start: 0,
+      days: 0,
+      end: 5,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is care received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'care',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+ 
+  {
     name: 'pregnancy_danger_sign',
     icon: 'mother-child',
     title: 'task.pregnancy_danger_sign.title',
