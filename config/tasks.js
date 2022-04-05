@@ -29,6 +29,10 @@ module.exports = [
       days: 0,
       end: 5,
     }],
+    priority: {
+      level: 'high',
+      label: 'task.warning.high_risk',
+    },
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is care received in time window
       return isFormFromArraySubmittedInWindow(c.reports, 'care',
