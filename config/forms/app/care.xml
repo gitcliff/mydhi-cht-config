@@ -42,6 +42,11 @@
             <communication/>
             <employment/>
             <living/>
+            <financial/>
+            <legal/>
+            <practical/>
+            <activities/>
+            <dental/>
             <score/>
             <category/>
             <score_note/>
@@ -74,11 +79,23 @@
       <bind nodeset="/care/care/communication" type="select1"/>
       <bind nodeset="/care/care/employment" type="select1"/>
       <bind nodeset="/care/care/living" type="select1"/>
+      <bind nodeset="/care/care/financial" type="select1"/>
+      <bind nodeset="/care/care/legal" type="select1"/>
+      <bind nodeset="/care/care/practical" type="select1"/>
+      <bind nodeset="/care/care/activities" type="select1"/>
+      <bind nodeset="/care/care/dental" type="select1"/>
       <bind nodeset="/care/care/score" type="string" calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
  if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 3, 0) + if(selected( /care/care/knowledge , 'none'), 4, 0) + 
  if(selected( /care/care/adherence , 'always'), 1, 0) + if(selected( /care/care/adherence , 'usually'), 2, 0) + if(selected( /care/care/adherence , 'rarely'), 3, 0) + if(selected( /care/care/adherence , 'never'), 4, 0) + 
  if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 3, 0) + if(selected( /care/care/mental , 'serious'), 4, 0) + 
  if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'tr'), 4, 0) + 
+ 
+ if(selected( /care/care/financial , 'financial_stable'), 1, 0) + if(selected( /care/care/financial , 'financial_adequate'), 2, 0) + if(selected( /care/care/financial , 'financial_inadequate'), 3, 0) + if(selected( /care/care/financial , 'financial_none'), 4, 0) + 
+ if(selected( /care/care/legal , 'none'), 1, 0) + if(selected( /care/care/legal , 'needs_help'), 2, 0) + if(selected( /care/care/legal , 'some_asst'), 3, 0) + if(selected( /care/care/legal , 'full_asst'), 4, 0) + 
+ if(selected( /care/care/practical , 'practical_inadequate'), 1, 0) + if(selected( /care/care/practical , 'practical_some_asst'), 2, 0) + if(selected( /care/care/practical , 'practical_limitted'), 3, 0) + if(selected( /care/care/practical , 'practical_unable'), 4, 0) + 
+ if(selected( /care/care/activities , 'activities_regular'), 1, 0) + if(selected( /care/care/activities , 'activities_needs'), 2, 0) + if(selected( /care/care/activities , 'activities_resists'), 3, 0) + if(selected( /care/care/activities , 'activities_isolated'), 4, 0) + 
+ if(selected( /care/care/dental , 'dental_none'), 1, 0) + if(selected( /care/care/dental , 'dental_minor'), 2, 0) + if(selected( /care/care/dental , 'dental_moderate'), 3, 0) + if(selected( /care/care/dental , 'dental_major'), 4, 0) + 
+ 
  if(selected( /care/care/support , 'reliable'), 1, 0) + if(selected( /care/care/support , 'only'), 2, 0) + if(selected( /care/care/support , 'su'), 3, 0) + 
  if(selected( /care/care/communication , 'co'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'xx'), 4, 0) + 
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
@@ -290,6 +307,101 @@
         <item>
           <label>Homeless</label>
           <value>homless</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/financial">
+        <label>Financial Resources</label>
+        <item>
+          <label>Stable</label>
+          <value>financial_stable</value>
+        </item>
+        <item>
+          <label>Adequate</label>
+          <value>financial_adequate</value>
+        </item>
+        <item>
+          <label>Inadequate</label>
+          <value>financial_inadequate</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>financial_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/legal">
+        <label>Legal Affiars</label>
+        <item>
+          <label>None</label>
+          <value>none</value>
+        </item>
+        <item>
+          <label>Needs Help</label>
+          <value>needs_help</value>
+        </item>
+        <item>
+          <label>Some Asst</label>
+          <value>some_asst</value>
+        </item>
+        <item>
+          <label>Full Asst</label>
+          <value>full_asst</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/practical">
+        <label>Practical Assistance</label>
+        <item>
+          <label>Inadequate</label>
+          <value>practical_inadequate</value>
+        </item>
+        <item>
+          <label>Some Asst</label>
+          <value>practical_some_asst</value>
+        </item>
+        <item>
+          <label>Limitted</label>
+          <value>practical_limitted</value>
+        </item>
+        <item>
+          <label>Unable</label>
+          <value>practical_unable</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/activities">
+        <label>Self-Sustaining Activities</label>
+        <item>
+          <label>Regular</label>
+          <value>activities_regular</value>
+        </item>
+        <item>
+          <label>Needs</label>
+          <value>activities_needs</value>
+        </item>
+        <item>
+          <label>Resists</label>
+          <value>activities_resists</value>
+        </item>
+        <item>
+          <label>Isolated</label>
+          <value>activities_isolated</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/dental">
+        <label>Dental</label>
+        <item>
+          <label>None</label>
+          <value>dental_none</value>
+        </item>
+        <item>
+          <label>Minor</label>
+          <value>dental_minor</value>
+        </item>
+        <item>
+          <label>Moderate</label>
+          <value>dental_moderate</value>
+        </item>
+        <item>
+          <label>Major</label>
+          <value>dental_major</value>
         </item>
       </select1>
       <input ref="/care/care/score_note">
