@@ -1,0 +1,9 @@
+{
+    "title": "Apache Superset",
+    "icon": "super",
+    "context": {
+          "person": true,
+          "place": false,
+          "expression": "contact.type === 'person'"
+      }
+  }
