@@ -2,8 +2,8 @@
     "title": "Health Care Library",
     "icon": "hiv",
     "context": {
-          "person": true,
-          "place": false,
-          "expression": "contact.type === 'person'"
+          "person": false,
+          "place": true,
+          "expression": "contact.type === 'district_hospital' || contact.type === 'health_centre' || contact.type === 'clinic'"
       }
   }

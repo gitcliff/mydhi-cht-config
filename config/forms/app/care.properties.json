@@ -1,6 +1,6 @@
 {
     "title": "Level of care assessment form",
-    "icon": "immunization",
+    "icon": "assessment",
     "context": {
           "person": true,
           "place": false,
