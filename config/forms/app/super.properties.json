@@ -1,9 +1,10 @@
 {
-    "title": "Health Care Library",
-    "icon": "hiv",
+    "title": "Apache Superset",
+    "icon": "super",
     "context": {
           "person": false,
           "place": true,
           "expression": "contact.type === 'district_hospital' || contact.type === 'health_centre' || contact.type === 'clinic'"
+
       }
   }
