@@ -24,10 +24,10 @@
     <group appearance="field-list" ref="/super/library">
       <label></label>
       <input ref="/super/library/str">
-        <label>Click the button below to go to superset</label>
+        <label>Click the button below to view the dashboards</label>
       </input>
       <input ref="/super/library/suoer">
-        <label>[&lt;span style='background-color: #648af7; color:white; padding: 1em; text-decoration: none;border-radius: 8px; '&gt;Superset&lt;/span&gt;](https://superset.openelis-global.org/superset/welcome/)</label>
+        <label>[&lt;span style='background-color: #648af7; color:white; padding: 1em; text-decoration: none;border-radius: 8px; '&gt;Dashboard&lt;/span&gt;](https://superset.openelis-global.org/superset/welcome/)</label>
       </input>
     </group>
   </h:body>
