@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Enrollment Form</h:title>
+    <model>
+      <instance>
+        <enroll id="enroll" prefix="J1!enroll!" delimiter="#" version="2022-06-22_23-32">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <enroll>
+            <name/>
+            <aka/>
+            <docket/>
+            <telephone/>
+            <type/>
+            <cell/>
+            <birth/>
+            <digital/>
+            <at/>
+            <genda/>
+            <stat/>
+            <not/>
+          </enroll>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </enroll>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/enroll/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/enroll/inputs/source" type="string"/>
+      <bind nodeset="/enroll/inputs/source_id" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/enroll/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/name" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/sex" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/enroll/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/enroll/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/enroll/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/enroll/enroll/name" type="string" required="true()"/>
+      <bind nodeset="/enroll/enroll/aka" type="string"/>
+      <bind nodeset="/enroll/enroll/docket" type="int"/>
+      <bind nodeset="/enroll/enroll/telephone" type="tel" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
+      <bind nodeset="/enroll/enroll/type" type="select1"/>
+      <bind nodeset="/enroll/enroll/cell" type="select1"/>
+      <bind nodeset="/enroll/enroll/birth" type="date"/>
+      <bind nodeset="/enroll/enroll/digital" type="int"/>
+      <bind nodeset="/enroll/enroll/at" type="select1"/>
+      <bind nodeset="/enroll/enroll/genda" type="select1"/>
+      <bind nodeset="/enroll/enroll/stat" type="select1"/>
+      <bind nodeset="/enroll/enroll/not" readonly="true()" type="string"/>
+      <bind nodeset="/enroll/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/enroll/inputs">
+      <label>Enrollment Form v1</label>
+      <group ref="/enroll/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/enroll/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/enroll/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/enroll/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/enroll/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/enroll/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/enroll/inputs/contact/parent">
+          <label></label>
+          <group ref="/enroll/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/enroll/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/enroll/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/enroll/enroll">
+      <label></label>
+      <input ref="/enroll/enroll/name">
+        <label>Name</label>
+      </input>
+      <input ref="/enroll/enroll/aka">
+        <label>Also Known As:</label>
+      </input>
+      <input ref="/enroll/enroll/docket">
+        <label>Docket Number</label>
+      </input>
+      <input ref="/enroll/enroll/telephone">
+        <label>Cell number</label>
+      </input>
+      <select1 ref="/enroll/enroll/type">
+        <label>Type of phone</label>
+        <item>
+          <label>Banger Phone</label>
+          <value>banger</value>
+        </item>
+        <item>
+          <label>SmartPhone</label>
+          <value>smart</value>
+        </item>
+      </select1>
+      <select1 ref="/enroll/enroll/cell">
+        <label>Is it okay to leave a message on your cell phone?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/enroll/enroll/birth">
+        <label>Date of Birth</label>
+      </input>
+      <input ref="/enroll/enroll/digital">
+        <label>Age in years at today's Enrollment in the digital device:</label>
+      </input>
+      <select1 ref="/enroll/enroll/at">
+        <label>Sex at birth</label>
+        <item>
+          <label>Male</label>
+          <value>male</value>
+        </item>
+        <item>
+          <label>Female</label>
+          <value>female</value>
+        </item>
+        <item>
+          <label>Intersex</label>
+          <value>inter</value>
+        </item>
+      </select1>
+      <select1 ref="/enroll/enroll/genda">
+        <label>Gender Identity</label>
+        <item>
+          <label>Male</label>
+          <value>gender_male</value>
+        </item>
+        <item>
+          <label>Female</label>
+          <value>gender_female</value>
+        </item>
+      </select1>
+      <select1 ref="/enroll/enroll/stat">
+        <label>Marital Status</label>
+        <item>
+          <label>Single</label>
+          <value>single</value>
+        </item>
+        <item>
+          <label>Married</label>
+          <value>married</value>
+        </item>
+        <item>
+          <label>Separated</label>
+          <value>separated</value>
+        </item>
+        <item>
+          <label>Divorced</label>
+          <value>divorced</value>
+        </item>
+        <item>
+          <label>Widowed</label>
+          <value>widowed</value>
+        </item>
+        <item>
+          <label>Common-Law</label>
+          <value>common</value>
+        </item>
+      </select1>
+      <input ref="/enroll/enroll/not">
+        <label>We'd like you to choose a secret word that will become a passcode. We will ask you to text us this word before we can call you to chat with you. What word would you like to select?</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>
