@@ -17,6 +17,28 @@ const {
 
 module.exports = [
   {
+    name: 'viral-load-test-task',
+    title: 'Viral Load Test is due',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['appointment'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.lab_test === 'load';
+    },
+    actions: [{ form: 'viral', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is lab received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'viral',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
     name: 'cd4-test-task',
     title: 'CD4 Test is due',
     icon: 'assessment',
@@ -25,7 +47,7 @@ module.exports = [
     appliesIf: function(c, r){
       return r.fields.appoint.lab_test === 'count';
     },
-    actions: [{ form: 'lab', }],
+    actions: [{ form: 'count', }],
     events: [{
       start: 1,
       days: 1,
@@ -33,7 +55,7 @@ module.exports = [
     }],
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is lab received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'lab',
+      return isFormFromArraySubmittedInWindow(c.reports, 'count',
                  Utils.addDate(dueDate, -event.start).getTime(),
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
