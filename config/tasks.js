@@ -17,7 +17,30 @@ const {
 
 module.exports = [
   {
-    name: 'lad-test-task',
+    name: 'cd4-test-task',
+    title: 'CD4 Test is due',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['appointment'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.lab_test === 'count';
+    },
+    actions: [{ form: 'lab', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is lab received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'lab',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+
+  },
+  {
+    name: 'lab-test-task',
     title: 'Lab Test Result task',
     icon: 'assessment',
     appliesTo: 'reports',
