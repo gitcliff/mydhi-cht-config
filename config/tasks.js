@@ -17,6 +17,28 @@ const {
 
 module.exports = [
   {
+    name: 'schedule-cd4-task2',
+    title: 'Schedule CD4 Task',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['lab'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.this === 'snooze2';
+    },
+    actions: [{ form: 'count', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is cd4 lab appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'count',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
     name: 'check-lab-result-task2',
     title: 'New Appointment',
     icon: 'assessment',
