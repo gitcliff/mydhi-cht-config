@@ -17,6 +17,28 @@ const {
 
 module.exports = [
   {
+    name: 'check-lab-result-task2',
+    title: 'New Appointment',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['lab'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.this === 'snooze1';
+    },
+    actions: [{ form: 'appointment', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
     name: 'check-lab-result-task',
     title: 'Check for Lab Result',
     icon: 'assessment',
