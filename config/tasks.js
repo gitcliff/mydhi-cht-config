@@ -18,7 +18,7 @@ const {
 module.exports = [
   {
     name: 'schedule-cd4-task2',
-    title: 'Scedule CD4 Task',
+    title: 'Schedule CD4 Task',
     icon: 'assessment',
     appliesTo: 'reports',
     appliesToType: ['lab'],
