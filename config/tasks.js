@@ -60,28 +60,28 @@ module.exports = [
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
   },
-  {
-    name: 'check-lab-result-task',
-    title: 'Check for Lab Result',
-    icon: 'assessment',
-    appliesTo: 'reports',
-    appliesToType: ['lab'],
-    appliesIf: function(c, r){
-      return r.fields.appoint.result === 'no' || r.fields.appoint.result === 'un';
-    },
-    actions: [{ form: 'check', }],
-    events: [{
-      start: 1,
-      days: 1,
-      end: 1,
-    }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is lab received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'check',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
-    },
-  },
+  // {
+  //   name: 'check-lab-result-task',
+  //   title: 'Check for Lab Result',
+  //   icon: 'assessment',
+  //   appliesTo: 'reports',
+  //   appliesToType: ['lab'],
+  //   appliesIf: function(c, r){
+  //     return r.fields.appoint.result === 'no' || r.fields.appoint.result === 'un';
+  //   },
+  //   actions: [{ form: 'check', }],
+  //   events: [{
+  //     start: 1,
+  //     days: 1,
+  //     end: 1,
+  //   }],
+  //   resolvedIf: function(c, r, event, dueDate) {
+  //     // Resolved if there is lab received in time window
+  //     return isFormFromArraySubmittedInWindow(c.reports, 'check',
+  //                Utils.addDate(dueDate, -event.start).getTime(),
+  //                Utils.addDate(dueDate,  event.end+1).getTime());
+  //   },
+  // },
   {
     name: 'viral-load-test-task',
     title: 'Viral Load Test is due',
