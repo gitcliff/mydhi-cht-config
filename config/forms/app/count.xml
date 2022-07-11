@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
   <h:head>
-    <h:title>CD4 count lab test is due</h:title>
+    <h:title>Schedule CD4 Lab Appointment</h:title>
     <model>
       <instance>
-        <count id="count" prefix="J1!count!" delimiter="#" version="2022-06-29_23-41">
+        <count id="count" prefix="J1!count!" delimiter="#" version="2022-07-11_14-21">
           <inputs>
             <meta>
               <location>
@@ -35,6 +35,7 @@
           <appoint>
             <count/>
             <date/>
+            <duee/>
           </appoint>
           <meta tag="hidden">
             <instanceID/>
@@ -56,6 +57,7 @@
       <bind nodeset="/count/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/count/appoint/count" type="select1"/>
       <bind nodeset="/count/appoint/date" type="date" readonly="true()" calculate="today()"/>
+      <bind nodeset="/count/appoint/duee" type="select1"/>
       <bind nodeset="/count/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -98,17 +100,28 @@
       <select1 ref="/count/appoint/count">
         <label>CD4 count result:</label>
         <item>
-          <label>Unsuppressed (CD4 count is below 350 cells/mm3)</label>
-          <value>unsuppressed</value>
+          <label>Unstable (CD4 count is below 350 cells/mm3)</label>
+          <value>unstable</value>
         </item>
         <item>
-          <label>Suppressed (CD4 count is 350 or above 350 cells/mm3)</label>
-          <value>suppressed</value>
+          <label>Stable (CD4 count is 350 or above 350 cells/mm3)</label>
+          <value>stable</value>
         </item>
       </select1>
       <input ref="/count/appoint/date">
         <label>Date of CD4 Task</label>
       </input>
+      <select1 ref="/count/appoint/duee">
+        <label>This patient is due for a CD4 count.</label>
+        <item>
+          <label>Okay, I will, schedule an appointment for a lab visit</label>
+          <value>due1</value>
+        </item>
+        <item>
+          <label>Snooze task for 2 days</label>
+          <value>due2</value>
+        </item>
+      </select1>
     </group>
   </h:body>
 </h:html>
