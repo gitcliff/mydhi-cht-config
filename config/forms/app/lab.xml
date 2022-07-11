@@ -4,7 +4,7 @@
     <h:title>Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-06-29_22-36">
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-11_09-27">
           <inputs>
             <meta>
               <location>
@@ -38,6 +38,7 @@
             <appoint/>
             <result/>
             <count/>
+            <this/>
             <load/>
           </appoint>
           <meta tag="hidden">
@@ -63,7 +64,8 @@
       <bind nodeset="/lab/appoint/appoint" type="date"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
       <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
-      <bind nodeset="/lab/appoint/load" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
+      <bind nodeset="/lab/appoint/this" type="select1" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'"/>
+      <bind nodeset="/lab/appoint/load" type="select1" relevant=" /lab/appoint/result  = 'yes' and  /lab/appoint/test  = 'viral'"/>
       <bind nodeset="/lab/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -142,12 +144,32 @@
       <select1 ref="/lab/appoint/count">
         <label>CD4 count result:</label>
         <item>
-          <label>Unsuppressed (CD4 count is below 350 cells/mm3)</label>
-          <value>unsuppressed</value>
+          <label>Stable or Suppressed (CD4 count is 350 or above 350 cells/mm3)</label>
+          <value>stable</value>
         </item>
         <item>
-          <label>Suppressed (CD4 count is 350 or above 350 cells/mm3)</label>
-          <value>suppressed</value>
+          <label>Unstable or Unsuppressed 
+(CD4 count is below 350 cells/mm3)</label>
+          <value>unstable</value>
+        </item>
+        <item>
+          <label>Inconclusive (Lab test did not work, so patient will need to have a new lab test appointment)</label>
+          <value>inconclusive</value>
+        </item>
+        <item>
+          <label>Unknown / no result (Lab test did not give a result. Close this Task and set up new lab test appointment for patient)</label>
+          <value>unknown</value>
+        </item>
+      </select1>
+      <select1 ref="/lab/appoint/this">
+        <label>This patient should be scheduled for a CD4 Lab count based on their result and date of last lab appointment.</label>
+        <item>
+          <label>Okay,I will schedule an appointment for a lab visit</label>
+          <value>snooze1</value>
+        </item>
+        <item>
+          <label>Remind me to schedule an appointment in 2 days</label>
+          <value>snooze2</value>
         </item>
       </select1>
       <select1 ref="/lab/appoint/load">
