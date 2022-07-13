@@ -1,8 +1,8 @@
 {
-    "title": "Check for Lab Result",
+    "title": "Patient Needs a Lab Test",
     "icon": "assessment",
     "context": {
-          "person": false,
+          "person": true,
           "place": false,
           "expression": "contact.type === 'person'"
       }

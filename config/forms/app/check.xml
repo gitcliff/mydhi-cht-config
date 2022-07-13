@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
   <h:head>
-    <h:title>Check for Lab Result</h:title>
+    <h:title>Patient Needs a Lab Test</h:title>
     <model>
       <instance>
-        <check id="check" prefix="J1!check!" delimiter="#" version="2022-06-30_11-38">
+        <check id="check" prefix="J1!check!" delimiter="#" version="2022-07-13_17-36">
           <inputs>
             <meta>
               <location>
@@ -35,8 +35,10 @@
           <check>
             <note/>
             <test/>
-            <test_other/>
             <result/>
+            <load/>
+            <should/>
+            <load2/>
           </check>
           <meta tag="hidden">
             <instanceID/>
@@ -56,16 +58,18 @@
       <bind nodeset="/check/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/check/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/check/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/check/check/note" readonly="true()" type="string"/>
-      <bind nodeset="/check/check/test" type="select1"/>
-      <bind nodeset="/check/check/test_other" type="string" relevant="selected(../test, 'other')"/>
+      <bind nodeset="/check/check/note" type="select1"/>
+      <bind nodeset="/check/check/test" type="date" calculate="today()"/>
       <bind nodeset="/check/check/result" type="select1"/>
+      <bind nodeset="/check/check/load" type="select1"/>
+      <bind nodeset="/check/check/should" type="select1"/>
+      <bind nodeset="/check/check/load2" type="select1"/>
       <bind nodeset="/check/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/check/inputs">
-      <label>Viral Load test is due</label>
+      <label>Patient Needs a Lab Test</label>
       <group ref="/check/inputs/contact">
         <label></label>
         <input appearance="db-object" ref="/check/inputs/contact/_id">
@@ -99,44 +103,67 @@
     </group>
     <group appearance="field-list" ref="/check/check">
       <label></label>
-      <input ref="/check/check/note">
-        <label>This patient should have a lab result for the following Lab….</label>
-      </input>
-      <select1 ref="/check/check/test">
+      <select1 ref="/check/check/note">
         <label>Lab test:</label>
-        <item>
-          <label>CD4 count</label>
-          <value>count</value>
-        </item>
         <item>
           <label>Viral Load</label>
           <value>load</value>
         </item>
-        <item>
-          <label>Other</label>
-          <value>other</value>
-        </item>
       </select1>
-      <input ref="/check/check/test_other">
-        <label>Specify other.</label>
+      <input ref="/check/check/test">
+        <label>Date of Appointment</label>
       </input>
       <select1 ref="/check/check/result">
         <label>Is the result of the lab test available?</label>
         <item>
           <label>Yes</label>
+          <value>result1</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>result2</value>
+        </item>
+        <item>
+          <label>Unknown  (Lab test did not give a result after 14 days. Close this Task and set up new lab test appointment for patient to get a new lab draw)</label>
+          <value>result3</value>
+        </item>
+      </select1>
+      <select1 ref="/check/check/load">
+        <label>Viral Load result:</label>
+        <item>
+          <label>Stable or Suppressed (viral load is below 1,000 copies/ml)</label>
+          <value>count1</value>
+        </item>
+        <item>
+          <label>Unstable or Unsuppressed 
+(viral load is above 1,000 copies/ml)</label>
+          <value>count2</value>
+        </item>
+        <item>
+          <label>Inconclusive (Viral Load Lab test did not work or had an error, so patient will need to repeat this lab test)</label>
+          <value>count3</value>
+        </item>
+      </select1>
+      <select1 ref="/check/check/should">
+        <label>This patient should be scheduled for a CD4 Lab count based on their result and date of last lab appointment.</label>
+        <item>
+          <label>Okay, I will schedule an appointment for a lab visit</label>
+          <value>this1</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List Remind me to schedule an appointment in 2 days</label>
+          <value>this2</value>
+        </item>
+      </select1>
+      <select1 ref="/check/check/load2">
+        <label>Viral Load:</label>
+        <item>
+          <label>Unstable - Unsuppressed Viral Load (viral load is above 1,000 copies/ml)</label>
           <value>yes</value>
         </item>
         <item>
-          <label>No, snooze this task for 2 days</label>
+          <label>Stable - Suppressed Viral Load (viral load is below 1,000 copies/ml)</label>
           <value>no</value>
-        </item>
-        <item>
-          <label>Unknown if patient got this blood draw, snooze this task for 2 days</label>
-          <value>draw</value>
-        </item>
-        <item>
-          <label>Ignore this task</label>
-          <value>ignore</value>
         </item>
       </select1>
     </group>
