@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
   <h:head>
-    <h:title>Lab Test Result</h:title>
+    <h:title>CD4 Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-11_09-27">
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-13_10-47">
           <inputs>
             <meta>
               <location>
@@ -34,7 +34,6 @@
           <patient_name/>
           <appoint>
             <test/>
-            <test_other/>
             <appoint/>
             <result/>
             <count/>
@@ -60,7 +59,6 @@
       <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/lab/appoint/test" type="select1"/>
-      <bind nodeset="/lab/appoint/test_other" type="string" relevant="selected(../test, 'other')"/>
       <bind nodeset="/lab/appoint/appoint" type="date"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
       <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
@@ -111,18 +109,7 @@
           <label>CD4 count</label>
           <value>cd</value>
         </item>
-        <item>
-          <label>Viral Load</label>
-          <value>viral</value>
-        </item>
-        <item>
-          <label>Other</label>
-          <value>other</value>
-        </item>
       </select1>
-      <input ref="/lab/appoint/test_other">
-        <label>Specify other.</label>
-      </input>
       <input ref="/lab/appoint/appoint">
         <label>Date of Appointment</label>
       </input>
@@ -137,7 +124,7 @@
           <value>no</value>
         </item>
         <item>
-          <label>Unknown</label>
+          <label>Unknown (Lab test did not give a result after 14 days. Close this Task and set up new lab test appointment for patient to get a new lab draw)</label>
           <value>un</value>
         </item>
       </select1>
@@ -153,22 +140,18 @@
           <value>unstable</value>
         </item>
         <item>
-          <label>Inconclusive (Lab test did not work, so patient will need to have a new lab test appointment)</label>
+          <label>Inconclusive</label>
           <value>inconclusive</value>
-        </item>
-        <item>
-          <label>Unknown / no result (Lab test did not give a result. Close this Task and set up new lab test appointment for patient)</label>
-          <value>unknown</value>
         </item>
       </select1>
       <select1 ref="/lab/appoint/this">
         <label>This patient should be scheduled for a CD4 Lab count based on their result and date of last lab appointment.</label>
         <item>
-          <label>Okay,I will schedule an appointment for a lab visit</label>
+          <label>Okay, I will schedule a CD4 Lab Appointment</label>
           <value>snooze1</value>
         </item>
         <item>
-          <label>Remind me to schedule an appointment in 2 days</label>
+          <label>Keep this reminder in my Task List</label>
           <value>snooze2</value>
         </item>
       </select1>
