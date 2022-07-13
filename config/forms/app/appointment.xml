@@ -4,7 +4,7 @@
     <h:title>Appointment Form</h:title>
     <model>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-06-29_11-21">
+        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-07-13_10-15">
           <inputs>
             <meta>
               <location>
@@ -35,10 +35,10 @@
           <appoint>
             <enter/>
             <type_appoint/>
+            <notes/>
             <lab_test/>
             <lab_test_other/>
             <date_appoint/>
-            <date_reminder/>
           </appoint>
           <meta tag="hidden">
             <instanceID/>
@@ -60,10 +60,10 @@
       <bind nodeset="/appointment/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/appointment/appoint/enter" type="date" calculate="today()" readonly="true()"/>
       <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
+      <bind nodeset="/appointment/appoint/notes" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" type="select1" relevant=" /appointment/appoint/type_appoint  = 'lab_test'"/>
       <bind nodeset="/appointment/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
       <bind nodeset="/appointment/appoint/date_appoint" type="date"/>
-      <bind nodeset="/appointment/appoint/date_reminder" type="date"/>
       <bind nodeset="/appointment/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -107,7 +107,7 @@
         <label>Date Entered</label>
       </input>
       <select1 ref="/appointment/appoint/type_appoint">
-        <label>Type</label>
+        <label>Appointment Type</label>
         <item>
           <label>Clinical Appointment</label>
           <value>clinical</value>
@@ -133,6 +133,9 @@
           <value>external</value>
         </item>
       </select1>
+      <input ref="/appointment/appoint/notes">
+        <label>Any notes about this Appointment?</label>
+      </input>
       <select1 ref="/appointment/appoint/lab_test">
         <label>Lab test:</label>
         <item>
@@ -153,9 +156,6 @@
       </input>
       <input ref="/appointment/appoint/date_appoint">
         <label>Date of Appointment</label>
-      </input>
-      <input ref="/appointment/appoint/date_reminder">
-        <label>Is there a specific date where you would like to be reminded of this appointment?</label>
       </input>
     </group>
   </h:body>
