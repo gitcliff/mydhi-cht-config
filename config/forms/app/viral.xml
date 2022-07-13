@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
   <h:head>
-    <h:title>Viral Load test is due</h:title>
+    <h:title>Appointment Follow-up</h:title>
     <model>
       <instance>
-        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-06-30_10-31">
+        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-13_19-08">
           <inputs>
             <meta>
               <location>
@@ -33,8 +33,11 @@
           <patient_id/>
           <patient_name/>
           <appoint>
-            <date/>
+            <type1/>
             <due/>
+            <date1/>
+            <date2/>
+            <has/>
           </appoint>
           <meta tag="hidden">
             <instanceID/>
@@ -54,14 +57,17 @@
       <bind nodeset="/viral/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/viral/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/viral/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/viral/appoint/date" type="date"/>
-      <bind nodeset="/viral/appoint/due" type="select1"/>
+      <bind nodeset="/viral/appoint/type1" type="select1"/>
+      <bind nodeset="/viral/appoint/due" type="string"/>
+      <bind nodeset="/viral/appoint/date1" type="date"/>
+      <bind nodeset="/viral/appoint/date2" type="date" calculate="today()"/>
+      <bind nodeset="/viral/appoint/has" type="select1"/>
       <bind nodeset="/viral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/viral/inputs">
-      <label>Viral Load test is due</label>
+      <label>Appointment Follow-up</label>
       <group ref="/viral/inputs/contact">
         <label></label>
         <input appearance="db-object" ref="/viral/inputs/contact/_id">
@@ -95,18 +101,39 @@
     </group>
     <group appearance="field-list" ref="/viral/appoint">
       <label></label>
-      <input ref="/viral/appoint/date">
-        <label>Date Viral Load Task</label>
-      </input>
-      <select1 ref="/viral/appoint/due">
-        <label>This patient is due for a Viral Load count at their next visit.</label>
+      <select1 ref="/viral/appoint/type1">
+        <label>Appointment Type</label>
         <item>
-          <label>Noted, delete this task</label>
+          <label>Clinical Appointment</label>
+          <value>clinical</value>
+        </item>
+        <item>
+          <label>Social Worker Appointment</label>
+          <value>social</value>
+        </item>
+        <item>
+          <label>Case Manager Appointment</label>
+          <value>case</value>
+        </item>
+      </select1>
+      <input ref="/viral/appoint/due">
+        <label>Any notes about this Appointment?</label>
+      </input>
+      <input ref="/viral/appoint/date1">
+        <label>Date of Appointment:</label>
+      </input>
+      <input ref="/viral/appoint/date2">
+        <label>Today's Date</label>
+      </input>
+      <select1 ref="/viral/appoint/has">
+        <label>Patient has upcoming appointment</label>
+        <item>
+          <label>Noted, I will follow-up with patient or care team as needed</label>
           <value>noted</value>
         </item>
         <item>
-          <label>Snooze task for 2 days</label>
-          <value>snooze</value>
+          <label>Keep this reminder in my Task List</label>
+          <value>keep</value>
         </item>
       </select1>
     </group>
