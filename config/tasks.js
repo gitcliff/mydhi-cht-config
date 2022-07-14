@@ -122,8 +122,31 @@ module.exports = [
       end: 1,
     }],
     resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is lab received in time window
+      // Resolved if there is viral received in time window
       return isFormFromArraySubmittedInWindow(c.reports, 'viral',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+
+  },
+  {
+    name: 'referral-follow-up-task',
+    title: 'Referral Follow-up Task',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['appointment'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.type_appoint === 'internal' || r.fields.appoint.type_appoint === 'external';
+    },
+    actions: [{ form: 'referral', }],
+    events: [{
+      start: 2,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is referral received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'referral',
                  Utils.addDate(dueDate, -event.start).getTime(),
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
