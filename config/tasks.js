@@ -39,13 +39,13 @@ module.exports = [
     },
   },
   {
-    name: 'check-lab-result-task2',
+    name: 'check-lab-result-task',
     title: 'New Appointment',
     icon: 'assessment',
     appliesTo: 'reports',
     appliesToType: ['lab'],
     appliesIf: function(c, r){
-      return r.fields.appoint.this === 'snooze1';
+      return r.fields.appoint.this === 'snooze1' || r.fields.appoint.result === 'un';
     },
     actions: [{ form: 'appointment', }],
     events: [{
@@ -57,7 +57,7 @@ module.exports = [
       // Resolved if there is appointment received in time window
       return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
                  Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
+                 Utils.addDate(dueDate,  event.end+1).getTime());              
     },
   },
   
@@ -98,12 +98,12 @@ module.exports = [
       days: 1,
       end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is lab received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'lab',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
-    },
+    
+    resolvedIf: function(c){
+        return c.reports.some(function(r){
+          return r.form === 'lab' && r.fields.appoint.result === 'yes' || r.form === 'lab' && r.fields.appoint.result === 'un';
+      });
+    }
 
   },
   {
