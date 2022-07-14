@@ -106,29 +106,29 @@ module.exports = [
     },
 
   },
-  // {
-  //   name: 'lab-test-task',
-  //   title: 'Lab Test Result task',
-  //   icon: 'assessment',
-  //   appliesTo: 'reports',
-  //   appliesToType: ['appointment'],
-  //   appliesIf: function(c, r){
-  //     return r.fields.appoint.type_appoint === 'lab_test';
-  //   },
-  //   actions: [{ form: 'lab', }],
-  //   events: [{
-  //     start: 1,
-  //     days: 1,
-  //     end: 1,
-  //   }],
-  //   resolvedIf: function(c, r, event, dueDate) {
-  //     // Resolved if there is lab received in time window
-  //     return isFormFromArraySubmittedInWindow(c.reports, 'lab',
-  //                Utils.addDate(dueDate, -event.start).getTime(),
-  //                Utils.addDate(dueDate,  event.end+1).getTime());
-  //   },
+  {
+    name: 'appointment-follow-up-task',
+    title: 'Appointment Follow-up Task',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['appointment'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.type_appoint === 'clinical' || r.fields.appoint.type_appoint === 'social' || r.fields.appoint.type_appoint === 'case';
+    },
+    actions: [{ form: 'viral', }],
+    events: [{
+      start: 2,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is lab received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'viral',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
 
-  // },
+  },
   {
     name: 'care-assessment-task',
     title: 'Level of care assessment task',
