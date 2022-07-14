@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
   <h:head>
-    <h:title>Appointment Form</h:title>
+    <h:title>Schedule Appointment</h:title>
     <model>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-07-13_10-15">
+        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-07-14_15-01">
           <inputs>
             <meta>
               <location>
@@ -69,7 +69,7 @@
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/appointment/inputs">
-      <label>Appointment Form</label>
+      <label>Schedule Appointment</label>
       <group ref="/appointment/inputs/contact">
         <label></label>
         <input appearance="db-object" ref="/appointment/inputs/contact/_id">
