@@ -76,12 +76,13 @@ module.exports = [
       days: 1,
       end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is lab received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'load',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
-    },
+    resolvedIf: function(c){
+      return c.reports.some(function(r){
+        return r.form === 'load' && r.fields.load.result3 === 'okay' && r.form === 'load' && r.fields.load.result === 'yes' 
+        || r.form === 'load' && r.fields.load.result === 'un';
+        
+    });
+  }
   },
   {
     name: 'cd4-lab-test-task',
@@ -101,7 +102,8 @@ module.exports = [
     
     resolvedIf: function(c){
         return c.reports.some(function(r){
-          return r.form === 'lab' && r.fields.appoint.result === 'yes' || r.form === 'lab' && r.fields.appoint.result === 'un';
+          return r.form === 'lab' && r.fields.appoint.result === 'yes' || r.form === 'lab' && r.fields.appoint.result === 'un' ||
+          r.form === 'lab' && r.fields.appoint.this === 'snooze1';
       });
     }
 
