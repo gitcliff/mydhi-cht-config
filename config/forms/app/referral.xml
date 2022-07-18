@@ -4,7 +4,7 @@
     <h:title>Referral Follow-up</h:title>
     <model>
       <instance>
-        <referral id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-13_15-10">
+        <referral id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-18_16-46">
           <inputs>
             <meta>
               <location>
@@ -67,7 +67,7 @@
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/referral/inputs">
-      <label>Viral Load test is due</label>
+      <label></label>
       <group ref="/referral/inputs/contact">
         <label></label>
         <input appearance="db-object" ref="/referral/inputs/contact/_id">
@@ -104,12 +104,12 @@
       <select1 ref="/referral/reminder/type">
         <label>Appointment Type</label>
         <item>
-          <label>Noted, I will follow-up with patient or care team as needed</label>
-          <value>comp</value>
+          <label>Internal Referral</label>
+          <value>type1</value>
         </item>
         <item>
-          <label>Keep this reminder in my Task List</label>
-          <value>snooze</value>
+          <label>External Referral</label>
+          <value>type2</value>
         </item>
       </select1>
       <input ref="/referral/reminder/note1">
