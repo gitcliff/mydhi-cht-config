@@ -38,29 +38,7 @@ module.exports = [
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
   },
-  {
-    name: 'check-lab-result-task',
-    title: 'New Appointment',
-    icon: 'assessment',
-    appliesTo: 'reports',
-    appliesToType: ['lab'],
-    appliesIf: function(c, r){
-      return r.fields.appoint.this === 'snooze1' || r.fields.appoint.result === 'un';
-    },
-    actions: [{ form: 'appointment', }],
-    events: [{
-      start: 1,
-      days: 1,
-      end: 1,
-    }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is appointment received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());              
-    },
-  },
-  
+
   {
     name: 'viral-load-test-task',
     title: 'Viral Load Lab Test Result Task',
@@ -154,30 +132,125 @@ module.exports = [
     },
 
   },
+
   {
-    name: 'care-assessment-task',
-    title: 'Level of care assessment task',
-    icon: 'immunization',
-    appliesTo: 'contacts',
-    appliesToType: ['person'],
-    appliesIf: c =>  c.contact.role ==='patient' && !c.contact.date_of_death && !c.contact.muted,
-    actions: [{ form: 'care', }],
-    events: [{
-      start: 0,
-      days: 0,
-      end: 5,
-    }],
-    priority: {
-      level: 'high',
-      label: 'task.warning.high_risk',
+    name: 'new-appointment-task-cd4a',
+    title: 'New Appointment CD4',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['lab'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.this === 'snooze1';
     },
+    actions: [{ form: 'appointment', }],
+    events: [{
+      start: 4,
+      days: 1,
+      end: 10,
+    }],
     resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is care received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'care',
+      // Resolved if there is appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
                  Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
+                 Utils.addDate(dueDate,  event.end+1).getTime());              
     },
   },
+
+  {
+    name: 'new-appointment-task-cd4b',
+    title: 'New Appointment CD4',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['lab'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.result === 'un';
+    },
+    actions: [{ form: 'appointment', }],
+    events: [{
+      start: 4,
+      days: 1,
+      end: 10,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());              
+    },
+  },
+
+  {
+    name: 'new-appointment-task-viral1',
+    title: 'New Appointment Viral Load',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['load'],
+    appliesIf: function(c, r){
+      return r.fields.load.result === 'un';
+    },
+    actions: [{ form: 'appointment', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());              
+    },
+  },
+
+  {
+    name: 'new-appointment-task-viral2',
+    title: 'New Appointment Viral Load',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['load'],
+    appliesIf: function(c, r){
+      return r.fields.load.result3 === 'okay';
+    },
+    actions: [{ form: 'appointment', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());              
+    },
+  },
+
+
+
+  // {
+  //   name: 'care-assessment-task',
+  //   title: 'Level of care assessment task',
+  //   icon: 'immunization',
+  //   appliesTo: 'contacts',
+  //   appliesToType: ['person'],
+  //   appliesIf: c =>  c.contact.role ==='patient' && !c.contact.date_of_death && !c.contact.muted,
+  //   actions: [{ form: 'care', }],
+  //   events: [{
+  //     start: 0,
+  //     days: 0,
+  //     end: 5,
+  //   }],
+  //   priority: {
+  //     level: 'high',
+  //     label: 'task.warning.high_risk',
+  //   },
+  //   resolvedIf: function(c, r, event, dueDate) {
+  //     // Resolved if there is care received in time window
+  //     return isFormFromArraySubmittedInWindow(c.reports, 'care',
+  //                Utils.addDate(dueDate, -event.start).getTime(),
+  //                Utils.addDate(dueDate,  event.end+1).getTime());
+  //   },
+  // },
  
   {
     name: 'pregnancy_danger_sign',
