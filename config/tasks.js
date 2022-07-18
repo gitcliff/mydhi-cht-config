@@ -38,77 +38,7 @@ module.exports = [
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
   },
-  
- 
-  // {
-  //   name: 'new-appointment-task-cd4d',
-  //   title: 'New Appointment CD4',
-  //   icon: 'assessment',
-  //   appliesTo: 'reports',
-  //   appliesToType: ['lab'],
-  //   appliesIf: function(c, r){
-  //     return r.form === 'lab' && r.fields.appoint.result === 'un';
-  //   },
-  //   actions: [{ form: 'appointment', }],
-  //   events: [{
-  //     start: 1,
-  //     days: 1,
-  //     end: 1,
-  //   }],
-  //   resolvedIf: function(c, r, event, dueDate) {
-  //     // Resolved if there is appointment received in time window
-  //     return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-  //                Utils.addDate(dueDate, -event.start).getTime(),
-  //                Utils.addDate(dueDate,  event.end+1).getTime());              
-  //   },
-  // },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // {
-  //   name: 'new-appointment-task-vral-load',
-  //   title: 'New Appointment Viral-load',
-  //   icon: 'assessment',
-  //   appliesTo: 'reports',
-  //   appliesToType: ['load'],
-  //   appliesIf: function(c, r){
-  //     return r.form === 'load' && r.fields.load.result === 'un' ||
-  //     r.form === 'load' && r.fields.load.result3 === 'okay';
-  //   },
-  //   actions: [{ form: 'appointment', }],
-  //   events: [{
-  //     start: 1,
-  //     days: 1,
-  //     end: 1,
-  //   }],
-  //   resolvedIf: function(c, r, event, dueDate) {
-  //     // Resolved if there is appointment received in time window
-  //     return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-  //                Utils.addDate(dueDate, -event.start).getTime(),
-  //                Utils.addDate(dueDate,  event.end+1).getTime());              
-  //   },
-  // },
-  
   {
     name: 'viral-load-test-task',
     title: 'Viral Load Lab Test Result Task',
