@@ -101,12 +101,11 @@ module.exports = [
       days: 1,
       end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is viral received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'viral',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
-    },
+    resolvedIf: function(c){
+      return c.reports.some(function(r){
+        return r.form === 'viral' && r.fields.appoint.has === 'noted';
+    });
+    }
 
   },
   {
@@ -124,12 +123,11 @@ module.exports = [
       days: 1,
       end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is referral received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'referral',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
-    },
+    resolvedIf: function(c){
+      return c.reports.some(function(r){
+        return r.form === 'referral' && r.fields.reminder.patient === 'comp';
+    });
+    }
 
   },
 
