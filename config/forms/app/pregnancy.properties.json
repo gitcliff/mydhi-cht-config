@@ -15,7 +15,7 @@
   ],
   "icon": "pregnancy-1",
 	"context": {
-		"person": true,
+		"person": false,
 		"place": false,
 		"expression": "!contact || (contact.type === 'person' && (!contact.sex || contact.sex === 'female') && (!contact.date_of_birth || (ageInYears(contact) >= 10 && ageInYears(contact) < 65)))"
 	}

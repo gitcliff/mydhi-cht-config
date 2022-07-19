@@ -2,7 +2,7 @@
     "title": "Viral Load test is due",
     "icon": "assessment",
     "context": {
-          "person": true,
+          "person": false,
           "place": false,
           "expression": "contact.type === 'person'"
       }

@@ -50,32 +50,53 @@
           <text id="/data/inputs/user/name:label">
             <value>Name of the logged in user</value>
           </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
+          <text id="/data/person/aka:label">
+            <value>Also Known As:</value>
+          </text>
+          <text id="/data/person/at/female:label">
+            <value>Female</value>
+          </text>
+          <text id="/data/person/at/inter:label">
+            <value>Intersex</value>
+          </text>
+          <text id="/data/person/at/male:label">
+            <value>Male</value>
+          </text>
+          <text id="/data/person/at:label">
+            <value>Sex at birth</value>
+          </text>
+          <text id="/data/person/birth:jr:constraintMsg">
             <value>Date of birth cannot be in the future</value>
           </text>
-          <text id="/data/person/date_of_birth:label">
+          <text id="/data/person/birth:label">
             <value>Date of Birth</value>
           </text>
-          <text id="/data/person/external_id:label">
-            <value>External ID</value>
+          <text id="/data/person/cell/no:label">
+            <value>No</value>
+          </text>
+          <text id="/data/person/cell/yes:label">
+            <value>Yes</value>
+          </text>
+          <text id="/data/person/cell:label">
+            <value>Is it okay to leave a message on your cell phone?</value>
+          </text>
+          <text id="/data/person/digital:label">
+            <value>Age in years at today's Enrollment in the digital device:</value>
+          </text>
+          <text id="/data/person/docket:label">
+            <value>Docket Number</value>
+          </text>
+          <text id="/data/person/genda/female:label">
+            <value>Female</value>
+          </text>
+          <text id="/data/person/genda/male:label">
+            <value>Male</value>
+          </text>
+          <text id="/data/person/genda:label">
+            <value>Gender Identity</value>
           </text>
           <text id="/data/person/name:label">
-            <value>Names</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>Notes</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
-            <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>Phone Number</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>Alternate Phone Number</value>
+            <value>Name</value>
           </text>
           <text id="/data/person/role/chw:label">
             <value>CHW</value>
@@ -98,575 +119,237 @@
           <text id="/data/person/role:label">
             <value>Role</value>
           </text>
-          <text id="/data/person/role_other:label">
-            <value>Specify other</value>
+          <text id="/data/person/stat/common:label">
+            <value>Common-Law</value>
           </text>
-          <text id="/data/person/sex/female:label">
-            <value>Female</value>
+          <text id="/data/person/stat/divorced:label">
+            <value>Divorced</value>
           </text>
-          <text id="/data/person/sex/male:label">
-            <value>Male</value>
+          <text id="/data/person/stat/married:label">
+            <value>Married</value>
           </text>
-          <text id="/data/person/sex:label">
-            <value>Sex</value>
+          <text id="/data/person/stat/separated:label">
+            <value>Separated</value>
+          </text>
+          <text id="/data/person/stat/single:label">
+            <value>Single</value>
+          </text>
+          <text id="/data/person/stat/widowed:label">
+            <value>Widowed</value>
+          </text>
+          <text id="/data/person/stat:label">
+            <value>Marital Status</value>
+          </text>
+          <text id="/data/person/telephone:jr:constraintMsg">
+            <value>-</value>
+          </text>
+          <text id="/data/person/telephone:label">
+            <value>Cell number</value>
+          </text>
+          <text id="/data/person/type1/banger:label">
+            <value>Banger Phone</value>
+          </text>
+          <text id="/data/person/type1/smart:label">
+            <value>SmartPhone</value>
+          </text>
+          <text id="/data/person/type1:label">
+            <value>Type of phone</value>
           </text>
           <text id="/data/person:label">
             <value>Edit Person</value>
           </text>
         </translation>
-        <translation lang="fr">
-          <text id="/data/init/change_parent/false:label">
-            <value>Non</value>
-          </text>
-          <text id="/data/init/change_parent/true:label">
-            <value>Oui</value>
-          </text>
-          <text id="/data/init/change_parent:label">
-            <value>Voulez-vous déplacer cette personne vers une autre place ?</value>
-          </text>
-          <text id="/data/init/edited_place_type/clinic:label">
-            <value>Zone</value>
-          </text>
-          <text id="/data/init/edited_place_type/district_hospital:label">
-            <value>District</value>
-          </text>
-          <text id="/data/init/edited_place_type/health_center:label">
-            <value>Centre de santé</value>
-          </text>
-          <text id="/data/init/edited_place_type:label">
-            <value>Rechercher par type de place</value>
-          </text>
-          <text id="/data/init/id_clinic:label">
-            <value>Choisissez la zone</value>
-          </text>
-          <text id="/data/init/id_district_hospital:label">
-            <value>Choisissez le district</value>
-          </text>
-          <text id="/data/init/id_health_center:label">
-            <value>Choisissez le centre de santé</value>
-          </text>
-          <text id="/data/init/note_place:label">
-            <value><output value=" /data/init/person_name "/>&amp;nbsp;appartient à **<output value=" /data/init/person_place_name "/>**</value>
-          </text>
-          <text id="/data/init/person_parent:label">
-            <value>Place actuelle</value>
-          </text>
-          <text id="/data/inputs/user/contact_id:label">
-            <value>Identifiant de l'utilisateur</value>
-          </text>
-          <text id="/data/inputs/user/facility_id:label">
-            <value>Identifiant du centre</value>
-          </text>
-          <text id="/data/inputs/user/name:label">
-            <value>Nom</value>
-          </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
-            <value>La date de naissance ne peut pas être dans le futur</value>
-          </text>
-          <text id="/data/person/date_of_birth:label">
-            <value>Date de naissance</value>
-          </text>
-          <text id="/data/person/external_id:label">
-            <value>Identifiant externe</value>
-          </text>
-          <text id="/data/person/name:label">
-            <value>Nom</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>Notes</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
-            <value>Veuillez entrer un numéro local valide ou utiliser le format international standard, qui comprend un signe plus (+) et le code du pays. Par exemple: +254712345678</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>Téléphone</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>Veuillez entrer un numéro local valide ou utiliser le format international standard, qui comprend un signe plus (+) et le code du pays. Par exemple: +254712345678</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>Téléphone alternatif</value>
-          </text>
-          <text id="/data/person/role/chw:label">
-            <value>ASC</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>Superviseur ASC</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>Personnel médical</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>Infirmier</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>Autre</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>Patient</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>Rôle</value>
-          </text>
-          <text id="/data/person/role_other:label">
-            <value>Autre rôle</value>
-          </text>
-          <text id="/data/person/sex/female:label">
-            <value>Femme</value>
-          </text>
-          <text id="/data/person/sex/male:label">
-            <value>Homme</value>
-          </text>
-          <text id="/data/person/sex:label">
-            <value>Sexe</value>
-          </text>
-          <text id="/data/person:label">
-            <value>Modifier personne</value>
-          </text>
-        </translation>
-        <translation lang="hi">
-          <text id="/data/init/change_parent/false:label">
-            <value>नहीं</value>
-          </text>
-          <text id="/data/init/change_parent/true:label">
-            <value>हाँ</value>
-          </text>
-          <text id="/data/init/change_parent:label">
-            <value>क्या आप इस व्यक्ति को दूसरे स्थान पर ले जाना चाहेंगे?</value>
-          </text>
-          <text id="/data/init/edited_place_type/clinic:label">
-            <value>क्षेत्र</value>
-          </text>
-          <text id="/data/init/edited_place_type/district_hospital:label">
-            <value>ज़िला</value>
-          </text>
-          <text id="/data/init/edited_place_type/health_center:label">
-            <value>स्वास्थ्य केंद्र</value>
-          </text>
-          <text id="/data/init/edited_place_type:label">
-            <value>जगह की खोज</value>
-          </text>
-          <text id="/data/init/id_clinic:label">
-            <value>अस्पताल चुनें</value>
-          </text>
-          <text id="/data/init/id_district_hospital:label">
-            <value>जिला अस्पताल चुनें</value>
-          </text>
-          <text id="/data/init/id_health_center:label">
-            <value>स्वास्थ्य केंद्र चुनें</value>
-          </text>
-          <text id="/data/init/note_place:label">
-            <value><output value=" /data/init/person_name "/>&amp;nbsp;अब **<output value=" /data/init/person_place_name "/>** में है</value>
-          </text>
-          <text id="/data/init/person_parent:label">
-            <value>-</value>
-          </text>
-          <text id="/data/inputs/user/contact_id:label">
-            <value>Contact ID of the logged in user</value>
-          </text>
-          <text id="/data/inputs/user/facility_id:label">
-            <value>लॉग इन यूज़र के स्थान का ID</value>
-          </text>
-          <text id="/data/inputs/user/name:label">
-            <value>लॉग इन यूज़र का नाम</value>
-          </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
-            <value>जन्म की तारीख भविष्य में नहीं हो सकती</value>
-          </text>
-          <text id="/data/person/date_of_birth:label">
-            <value>जन्म की तारीख</value>
-          </text>
-          <text id="/data/person/external_id:label">
-            <value>बाहरी ID</value>
-          </text>
-          <text id="/data/person/name:label">
-            <value>नाम</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>नोट्स</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
-            <value>कृपया एक सही स्थानीय नंबर दर्ज करें, या मानक अंतरराष्ट्रीय प्रारूप का उपयोग करें, जिसमें एक प्लस साइन (+) और देश कोड शामिल है। उदाहरण के लिए: +914712345678</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>फोन नंबर</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>कृपया एक सही स्थानीय नंबर दर्ज करें, या मानक अंतरराष्ट्रीय प्रारूप का उपयोग करें, जिसमें एक प्लस साइन (+) और देश कोड शामिल है। उदाहरण के लिए: +914712345678</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>अन्य फोन नंबर</value>
-          </text>
-          <text id="/data/person/role/chw:label">
-            <value>सामुदायिक स्वास्थ्य कर्मी</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>सामुदायिक स्वास्थ्य कर्मी के मैनेजर</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>स्वास्थ्य केंद्र के मैनजर</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>नर्स</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>अन्य</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>मरीज़</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>भूमिका</value>
-          </text>
-          <text id="/data/person/role_other:label">
-            <value>अन्य का उल्‍लेख करें</value>
-          </text>
-          <text id="/data/person/sex/female:label">
-            <value>स्त्री</value>
-          </text>
-          <text id="/data/person/sex/male:label">
-            <value>पुरूष</value>
-          </text>
-          <text id="/data/person/sex:label">
-            <value>लिंग</value>
-          </text>
-          <text id="/data/person:label">
-            <value>व्यक्ति बदलें</value>
-          </text>
-        </translation>
         <translation lang="id">
           <text id="/data/init/change_parent/false:label">
-            <value>Tidak</value>
+            <value>-</value>
           </text>
           <text id="/data/init/change_parent/true:label">
-            <value>Iya</value>
+            <value>-</value>
           </text>
           <text id="/data/init/change_parent:label">
-            <value>Apakah Anda ingin memindahkan mereka ke tempat lain?</value>
+            <value>-</value>
           </text>
           <text id="/data/init/edited_place_type/clinic:label">
-            <value>Daerah</value>
+            <value>-</value>
           </text>
           <text id="/data/init/edited_place_type/district_hospital:label">
-            <value>Kabupaten</value>
+            <value>-</value>
           </text>
           <text id="/data/init/edited_place_type/health_center:label">
-            <value>Fasilitas Kesehatan</value>
+            <value>-</value>
           </text>
           <text id="/data/init/edited_place_type:label">
-            <value>Cari tempat oleh</value>
+            <value>-</value>
           </text>
           <text id="/data/init/id_clinic:label">
-            <value>Pilih Klinik</value>
+            <value>-</value>
           </text>
           <text id="/data/init/id_district_hospital:label">
-            <value>Pilih Rumah Sakit kabupaten</value>
+            <value>-</value>
           </text>
           <text id="/data/init/id_health_center:label">
-            <value>Pilih Fasilitas Kesehatan</value>
+            <value>-</value>
+          </text>
+          <text id="/data/init/name:label">
+            <value>-</value>
           </text>
           <text id="/data/init/note_place:label">
-            <value><output value=" /data/init/person_name "/>&amp;nbsp;milik **<output value=" /data/init/person_place_name "/>**</value>
+            <value>-</value>
           </text>
           <text id="/data/init/person_parent:label">
             <value>-</value>
           </text>
-          <text id="/data/inputs/user/contact_id:label">
-            <value>Contact ID of the logged in user</value>
-          </text>
-          <text id="/data/inputs/user/facility_id:label">
-            <value>ID Tempat dari login user</value>
-          </text>
-          <text id="/data/inputs/user/name:label">
-            <value>Nama dari login user</value>
-          </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
+          <text id="/data/init/type:label">
             <value>-</value>
           </text>
-          <text id="/data/person/date_of_birth:label">
-            <value>Tanggal Lahir</value>
-          </text>
-          <text id="/data/person/external_id:label">
-            <value>Eksternal ID</value>
-          </text>
-          <text id="/data/person/name:label">
-            <value>Nama</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>Catatan</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>Nomor Telepon</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>Nomor Telepon Alternatif</value>
-          </text>
-          <text id="/data/person/role/chw:label">
-            <value>Kader</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>Kader Pengawas</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>Manajer Fasilitas</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>Perawat</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>Lain</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>Pasien</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>Peran</value>
-          </text>
-          <text id="/data/person/role_other:label">
-            <value>Tentukan lainnya</value>
-          </text>
-          <text id="/data/person/sex/female:label">
-            <value>Wanita</value>
-          </text>
-          <text id="/data/person/sex/male:label">
-            <value>Pria</value>
-          </text>
-          <text id="/data/person/sex:label">
-            <value>Jenis kelamin</value>
-          </text>
-          <text id="/data/person:label">
-            <value>Mengedit Orang</value>
-          </text>
-        </translation>
-        <translation lang="ne">
-          <text id="/data/init/change_parent/false:label">
-            <value>होइन</value>
-          </text>
-          <text id="/data/init/change_parent/true:label">
-            <value>हो</value>
-          </text>
-          <text id="/data/init/change_parent:label">
-            <value>के तपाई यस व्यक्तिलाई कुनै अन्य स्थानमा लैजान चाहनुहुन्छ?</value>
-          </text>
-          <text id="/data/init/edited_place_type/clinic:label">
-            <value>क्षेत्र</value>
-          </text>
-          <text id="/data/init/edited_place_type/district_hospital:label">
-            <value>जिल्ला</value>
-          </text>
-          <text id="/data/init/edited_place_type/health_center:label">
-            <value>स्वास्थ्य केन्द्र</value>
-          </text>
-          <text id="/data/init/edited_place_type:label">
-            <value>स्थान को खोजी</value>
-          </text>
-          <text id="/data/init/id_clinic:label">
-            <value>क्लिनिक रोज्नुहोस्</value>
-          </text>
-          <text id="/data/init/id_district_hospital:label">
-            <value>जिल्ला अस्पताल रोज्नुहोस्</value>
-          </text>
-          <text id="/data/init/id_health_center:label">
-            <value>स्वास्थ्य संस्था रोज्नुहोस्</value>
-          </text>
-          <text id="/data/init/note_place:label">
-            <value><output value=" /data/init/person_name "/>&amp;nbsp; हाल यो **<output value=" /data/init/person_place_name "/>**सँग छ</value>
-          </text>
-          <text id="/data/init/person_parent:label">
+          <text id="/data/init:label">
             <value>-</value>
           </text>
           <text id="/data/inputs/user/contact_id:label">
-            <value>लग इन गरेको प्रयोगकर्ताको सम्पर्क ID</value>
+            <value>-</value>
           </text>
           <text id="/data/inputs/user/facility_id:label">
-            <value>लग इन गरेको प्रयोगकर्ताको स्थानको ID</value>
+            <value>-</value>
           </text>
           <text id="/data/inputs/user/name:label">
-            <value>लग इन गरेको प्रयोगकर्ताको नाम</value>
-          </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
             <value>-</value>
           </text>
-          <text id="/data/person/date_of_birth:label">
-            <value>जन्म मिती</value>
+          <text id="/data/inputs/user:label">
+            <value>-</value>
           </text>
-          <text id="/data/person/external_id:label">
-            <value>बहिरी ID</value>
+          <text id="/data/inputs:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/_id:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/aka:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/at/female:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/at/inter:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/at/male:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/at:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/birth:jr:constraintMsg">
+            <value>-</value>
+          </text>
+          <text id="/data/person/birth:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/cell/no:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/cell/yes:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/cell:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/digital:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/docket:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/genda/female:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/genda/male:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/genda:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/meta/created_by:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/meta/created_by_person_uuid:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/meta/created_by_place_uuid:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/meta:label">
+            <value>-</value>
           </text>
           <text id="/data/person/name:label">
-            <value>नाम</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>टिप्पणी</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
             <value>-</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>फोन नम्बर</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>अन्य फोन नम्बर</value>
           </text>
           <text id="/data/person/role/chw:label">
-            <value>महिला स्वास्थ्य स्वयम् सेविका</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role/chw_supervisor:label">
-            <value>महिला स्वास्थ्य स्वयम् सेविकाको सुपरभाइजर</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role/manager:label">
-            <value>स्वास्थ्य संस्था प्रमुख</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role/nurse:label">
-            <value>नर्स</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role/other:label">
-            <value>अन्य</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role/patient:label">
-            <value>बिरामी</value>
+            <value>-</value>
           </text>
           <text id="/data/person/role:label">
-            <value>भूमिका</value>
+            <value>-</value>
           </text>
-          <text id="/data/person/role_other:label">
-            <value>अन्य उल्लेख गर्नुहोस्</value>
+          <text id="/data/person/stat/common:label">
+            <value>-</value>
           </text>
-          <text id="/data/person/sex/female:label">
-            <value>महिला</value>
+          <text id="/data/person/stat/divorced:label">
+            <value>-</value>
           </text>
-          <text id="/data/person/sex/male:label">
-            <value>पुरुष</value>
+          <text id="/data/person/stat/married:label">
+            <value>-</value>
           </text>
-          <text id="/data/person/sex:label">
-            <value>लिंग</value>
+          <text id="/data/person/stat/separated:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/stat/single:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/stat/widowed:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/stat:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/telephone:jr:constraintMsg">
+            <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
+          </text>
+          <text id="/data/person/telephone:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/type1/banger:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/type1/smart:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/type1:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/type:label">
+            <value>-</value>
           </text>
           <text id="/data/person:label">
-            <value>ब्यक्ति सम्पादन</value>
-          </text>
-        </translation>
-        <translation lang="sw">
-          <text id="/data/init/change_parent/false:label">
-            <value>Siyo</value>
-          </text>
-          <text id="/data/init/change_parent/true:label">
-            <value>Ndiyo</value>
-          </text>
-          <text id="/data/init/change_parent:label">
-            <value>Ungependa kuwahamisha mahali pengine?</value>
-          </text>
-          <text id="/data/init/edited_place_type/clinic:label">
-            <value>Eneo</value>
-          </text>
-          <text id="/data/init/edited_place_type/district_hospital:label">
-            <value>Wilaya</value>
-          </text>
-          <text id="/data/init/edited_place_type/health_center:label">
-            <value>kituo cha afya</value>
-          </text>
-          <text id="/data/init/edited_place_type:label">
-            <value>Tafuta mahali kwa</value>
-          </text>
-          <text id="/data/init/id_clinic:label">
-            <value>Chagua kliniki</value>
-          </text>
-          <text id="/data/init/id_district_hospital:label">
-            <value>Chagua hospitali ya wilaya</value>
-          </text>
-          <text id="/data/init/id_health_center:label">
-            <value>Chagua kituo cha afya</value>
-          </text>
-          <text id="/data/init/note_place:label">
-            <value><output value=" /data/init/person_name "/>&amp;nbsp;Ni wa **<output value=" /data/init/person_place_name "/>**</value>
-          </text>
-          <text id="/data/init/person_parent:label">
             <value>-</value>
-          </text>
-          <text id="/data/inputs/user/contact_id:label">
-            <value>Mawasiliano ya mtumizi</value>
-          </text>
-          <text id="/data/inputs/user/facility_id:label">
-            <value>Mahali ya kitambulisho ya Mtumizi</value>
-          </text>
-          <text id="/data/inputs/user/name:label">
-            <value>Jina la mtumizi</value>
-          </text>
-          <text id="/data/person/date_of_birth:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/date_of_birth:label">
-            <value>SIku ya Kuzaliwa</value>
-          </text>
-          <text id="/data/person/external_id:label">
-            <value>Kitambulisho ya nje</value>
-          </text>
-          <text id="/data/person/name:label">
-            <value>Jina</value>
-          </text>
-          <text id="/data/person/notes:label">
-            <value>Maelezo</value>
-          </text>
-          <text id="/data/person/phone:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/phone:label">
-            <value>Namba ya simu</value>
-          </text>
-          <text id="/data/person/phone_alternate:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/phone_alternate:label">
-            <value>Namba nyingine ya simu</value>
-          </text>
-          <text id="/data/person/role/chw:label">
-            <value>Mhudumu wa afya</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>Mkuu wa wahudumu wa afya</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>Mkubwa wa Kituo</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>muuguzi</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>Ingine</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>Mgonjwa</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>Kazi</value>
-          </text>
-          <text id="/data/person/role_other:label">
-            <value>Fafanua nyingine</value>
-          </text>
-          <text id="/data/person/sex/female:label">
-            <value>mwanamke</value>
-          </text>
-          <text id="/data/person/sex/male:label">
-            <value>mwaamume</value>
-          </text>
-          <text id="/data/person/sex:label">
-            <value>Jinsia</value>
-          </text>
-          <text id="/data/person:label">
-            <value>Badilisha maelezo ya mtu</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2019-01-22_12-31">
+        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-07-19_04-01">
           <inputs>
             <meta>
               <location>
@@ -687,14 +370,17 @@
             <_id/>
             <type>person</type>
             <name/>
-            <date_of_birth/>
-            <phone/>
-            <phone_alternate/>
-            <sex/>
+            <aka/>
+            <docket/>
+            <telephone/>
+            <type1/>
+            <cell/>
             <role/>
-            <role_other/>
-            <external_id/>
-            <notes/>
+            <birth/>
+            <digital/>
+            <at/>
+            <genda/>
+            <stat/>
             <meta tag="hidden">
               <created_by/>
               <created_by_person_uuid/>
@@ -728,7 +414,7 @@
       <bind nodeset="/data/inputs/user/name" type="string"/>
       <bind nodeset="/data/init/person_name" type="string" calculate="../../person/name"/>
       <bind nodeset="/data/init/person_place_name" type="string" calculate="../name"/>
-      <bind nodeset="/data/init/person_parent" type="string" readonly="true()" calculate=" /data/person/parent "/>
+      <bind nodeset="/data/init/person_parent" type="string" calculate=" /data/person/parent " readonly="true()"/>
       <bind nodeset="/data/init/type" type="string"/>
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/note_place" readonly="true()" type="string"/>
@@ -741,14 +427,17 @@
       <bind nodeset="/data/person/_id" type="string" readonly="true()"/>
       <bind nodeset="/data/person/type" type="string" readonly="true()"/>
       <bind nodeset="/data/person/name" type="string" required="true()"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
-      <bind nodeset="/data/person/phone" type="tel" jr:constraintMsg="jr:itext('/data/person/phone:jr:constraintMsg')" constraint="true()"/>
-      <bind nodeset="/data/person/phone_alternate" type="tel" jr:constraintMsg="jr:itext('/data/person/phone_alternate:jr:constraintMsg')" constraint="true()"/>
-      <bind nodeset="/data/person/sex" type="select1"/>
+      <bind nodeset="/data/person/aka" type="string"/>
+      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')" constraint="true()"/>
+      <bind nodeset="/data/person/type1" type="select1"/>
+      <bind nodeset="/data/person/cell" type="select1"/>
       <bind nodeset="/data/person/role" type="select1"/>
-      <bind nodeset="/data/person/role_other" type="string" required="true()" relevant="selected(  /data/person/role ,'other')"/>
-      <bind nodeset="/data/person/external_id" type="string"/>
-      <bind nodeset="/data/person/notes" type="string"/>
+      <bind nodeset="/data/person/birth" type="date" jr:constraintMsg="jr:itext('/data/person/birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
+      <bind nodeset="/data/person/digital" type="int"/>
+      <bind nodeset="/data/person/at" type="select1"/>
+      <bind nodeset="/data/person/genda" type="select1"/>
+      <bind nodeset="/data/person/stat" type="select1"/>
       <bind nodeset="/data/person/meta/created_by" type="string" readonly="true()"/>
       <bind nodeset="/data/person/meta/created_by_person_uuid" type="string" readonly="true()"/>
       <bind nodeset="/data/person/meta/created_by_place_uuid" type="string" readonly="true()"/>
@@ -822,24 +511,35 @@
       <input ref="/data/person/name">
         <label ref="jr:itext('/data/person/name:label')"/>
       </input>
-      <input ref="/data/person/date_of_birth">
-        <label ref="jr:itext('/data/person/date_of_birth:label')"/>
+      <input ref="/data/person/aka">
+        <label ref="jr:itext('/data/person/aka:label')"/>
       </input>
-      <input ref="/data/person/phone">
-        <label ref="jr:itext('/data/person/phone:label')"/>
+      <input ref="/data/person/docket">
+        <label ref="jr:itext('/data/person/docket:label')"/>
       </input>
-      <input ref="/data/person/phone_alternate">
-        <label ref="jr:itext('/data/person/phone_alternate:label')"/>
+      <input ref="/data/person/telephone">
+        <label ref="jr:itext('/data/person/telephone:label')"/>
       </input>
-      <select1 appearance="horizontal" ref="/data/person/sex">
-        <label ref="jr:itext('/data/person/sex:label')"/>
+      <select1 ref="/data/person/type1">
+        <label ref="jr:itext('/data/person/type1:label')"/>
         <item>
-          <label ref="jr:itext('/data/person/sex/female:label')"/>
-          <value>female</value>
+          <label ref="jr:itext('/data/person/type1/banger:label')"/>
+          <value>banger</value>
         </item>
         <item>
-          <label ref="jr:itext('/data/person/sex/male:label')"/>
-          <value>male</value>
+          <label ref="jr:itext('/data/person/type1/smart:label')"/>
+          <value>smart</value>
+        </item>
+      </select1>
+      <select1 ref="/data/person/cell">
+        <label ref="jr:itext('/data/person/cell:label')"/>
+        <item>
+          <label ref="jr:itext('/data/person/cell/yes:label')"/>
+          <value>yes</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/cell/no:label')"/>
+          <value>no</value>
         </item>
       </select1>
       <select1 ref="/data/person/role">
@@ -869,15 +569,65 @@
           <value>other</value>
         </item>
       </select1>
-      <input ref="/data/person/role_other">
-        <label ref="jr:itext('/data/person/role_other:label')"/>
+      <input ref="/data/person/birth">
+        <label ref="jr:itext('/data/person/birth:label')"/>
       </input>
-      <input ref="/data/person/external_id">
-        <label ref="jr:itext('/data/person/external_id:label')"/>
+      <input ref="/data/person/digital">
+        <label ref="jr:itext('/data/person/digital:label')"/>
       </input>
-      <input appearance="multiline" ref="/data/person/notes">
-        <label ref="jr:itext('/data/person/notes:label')"/>
-      </input>
+      <select1 ref="/data/person/at">
+        <label ref="jr:itext('/data/person/at:label')"/>
+        <item>
+          <label ref="jr:itext('/data/person/at/male:label')"/>
+          <value>male</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/at/female:label')"/>
+          <value>female</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/at/inter:label')"/>
+          <value>inter</value>
+        </item>
+      </select1>
+      <select1 ref="/data/person/genda">
+        <label ref="jr:itext('/data/person/genda:label')"/>
+        <item>
+          <label ref="jr:itext('/data/person/genda/female:label')"/>
+          <value>female</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/genda/male:label')"/>
+          <value>male</value>
+        </item>
+      </select1>
+      <select1 ref="/data/person/stat">
+        <label ref="jr:itext('/data/person/stat:label')"/>
+        <item>
+          <label ref="jr:itext('/data/person/stat/single:label')"/>
+          <value>single</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/stat/married:label')"/>
+          <value>married</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/stat/separated:label')"/>
+          <value>separated</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/stat/divorced:label')"/>
+          <value>divorced</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/stat/widowed:label')"/>
+          <value>widowed</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/person/stat/common:label')"/>
+          <value>common</value>
+        </item>
+      </select1>
       <group appearance="hidden" ref="/data/person/meta"/>
     </group>
   </h:body>

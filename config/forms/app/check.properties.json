@@ -2,7 +2,7 @@
     "title": "Check for Lab Result",
     "icon": "assessment",
     "context": {
-          "person": true,
+          "person": false,
           "place": false,
           "expression": "contact.type === 'person'"
       }

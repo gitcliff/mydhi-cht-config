@@ -1,7 +1,7 @@
 {
 	"icon": "on",
 	"context": {
-		"person": true,
+		"person": false,
 		"place": false,
 		"expression": "!contact || (contact.type === 'person')"
 	}
