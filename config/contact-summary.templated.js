@@ -51,11 +51,9 @@ var context = {
 
 var fields = [
   { appliesToType:'person',  label:'patient_id', value:contact.patient_id, width: 4 },
-  { appliesToType:'person',  label:'contact.age', value:contact.date_of_birth, width: 4, filter: 'age' },
-  { appliesToType:'person',  label:'Phone Number', value:contact.phone, width: 4, filter: 'phone' },
-  { appliesToType:'person',  label:'Notes', value:contact.notes, width: 12 },
+  { appliesToType:'person',  label:'contact.age', value:contact.birth, width: 4, filter: 'age' },
+  { appliesToType:'person',  label:'Cell number', value:contact.telephone, width: 4, filter: 'phone' },
   { appliesToType:'person',  label:'contact.parent', value:lineage, filter: 'lineage' },
-  { appliesToType:'!person', label:'Notes', value:contact.notes, width:12 },
   { appliesToType:'!person', appliesIf:function() { return contact.parent && lineage[0]; }, label:'contact.parent', value:lineage, filter:'lineage' },
 ];
 
