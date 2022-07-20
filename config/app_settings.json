@@ -356,8 +356,7 @@
       "health_care_worker",
       "treatment_support_officer",
       "case_manager",
-      "district_admin",
-      "psychosocial_team_member"
+      "district_admin"
     ],
     "can_view_contacts": [
       "national_admin",
