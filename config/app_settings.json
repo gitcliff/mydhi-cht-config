@@ -287,8 +287,7 @@
       "health_care_worker",
       "treatment_support_officer",
       "case_manager",
-      "clinical_admin",
-      "psychosocial_team_member"
+      "clinical_admin"
     ],
     "can_view_tasks": [
       "district_admin",
