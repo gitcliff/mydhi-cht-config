@@ -2,7 +2,7 @@
     "title": "Task Reminder",
     "icon": "assessment",
     "context": {
-          "person": true,
+          "person": false,
           "place": false,
           "expression": "contact.type === 'person'"
       }

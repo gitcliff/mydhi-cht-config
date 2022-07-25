@@ -98,27 +98,6 @@
           <text id="/data/person/name:label">
             <value>Name</value>
           </text>
-          <text id="/data/person/role/chw:label">
-            <value>CHW</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>CHW Supervisor</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>Facility Manager</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>Nurse</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>Other</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>Patient</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>Role</value>
-          </text>
           <text id="/data/person/stat/common:label">
             <value>Common-Law</value>
           </text>
@@ -283,27 +262,6 @@
           <text id="/data/person/name:label">
             <value>-</value>
           </text>
-          <text id="/data/person/role/chw:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role/chw_supervisor:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role/manager:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role/nurse:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role/other:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role/patient:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/role:label">
-            <value>-</value>
-          </text>
           <text id="/data/person/stat/common:label">
             <value>-</value>
           </text>
@@ -349,7 +307,7 @@
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-07-19_10-16">
+        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-07-25_00-05">
           <inputs>
             <meta>
               <location>
@@ -375,7 +333,6 @@
             <telephone/>
             <type1/>
             <cell/>
-            <role/>
             <date_of_birth/>
             <digital/>
             <at/>
@@ -414,26 +371,25 @@
       <bind nodeset="/data/inputs/user/name" type="string"/>
       <bind nodeset="/data/init/person_name" type="string" calculate="../../person/name"/>
       <bind nodeset="/data/init/person_place_name" type="string" calculate="../name"/>
-      <bind nodeset="/data/init/person_parent" type="string" readonly="true()" calculate=" /data/person/parent "/>
+      <bind nodeset="/data/init/person_parent" type="string" calculate=" /data/person/parent " readonly="true()"/>
       <bind nodeset="/data/init/type" type="string"/>
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/note_place" readonly="true()" type="string"/>
       <bind nodeset="/data/init/change_parent" type="select1" required="true()"/>
-      <bind nodeset="/data/init/edited_place_type" type="select1" relevant="selected( /data/init/change_parent , 'true')" required="true()"/>
-      <bind nodeset="/data/init/id_district_hospital" type="db:district_hospital" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'district_hospital')" required="true()"/>
-      <bind nodeset="/data/init/id_health_center" type="db:health_center" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'health_center')" required="true()"/>
-      <bind nodeset="/data/init/id_clinic" type="db:clinic" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'clinic')" required="true()"/>
+      <bind nodeset="/data/init/edited_place_type" type="select1" required="true()" relevant="selected( /data/init/change_parent , 'true')"/>
+      <bind nodeset="/data/init/id_district_hospital" type="db:district_hospital" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'district_hospital')"/>
+      <bind nodeset="/data/init/id_health_center" type="db:health_center" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'health_center')"/>
+      <bind nodeset="/data/init/id_clinic" type="db:clinic" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'clinic')"/>
       <bind nodeset="/data/person/parent" type="string" calculate="coalesce(coalesce(coalesce( /data/init/id_district_hospital ,  /data/init/id_health_center ),  /data/init/id_clinic ), /data/person/parent )"/>
       <bind nodeset="/data/person/_id" type="string" readonly="true()"/>
       <bind nodeset="/data/person/type" type="string" readonly="true()"/>
       <bind nodeset="/data/person/name" type="string" required="true()"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
-      <bind nodeset="/data/person/telephone" type="tel" constraint="true()" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')"/>
+      <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')" constraint="true()"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/role" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
       <bind nodeset="/data/person/digital" type="int"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
@@ -540,33 +496,6 @@
         <item>
           <label ref="jr:itext('/data/person/cell/no:label')"/>
           <value>no</value>
-        </item>
-      </select1>
-      <select1 ref="/data/person/role">
-        <label ref="jr:itext('/data/person/role:label')"/>
-        <item>
-          <label ref="jr:itext('/data/person/role/chw:label')"/>
-          <value>chw</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/person/role/chw_supervisor:label')"/>
-          <value>chw_supervisor</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/person/role/nurse:label')"/>
-          <value>nurse</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/person/role/manager:label')"/>
-          <value>manager</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/person/role/patient:label')"/>
-          <value>patient</value>
-        </item>
-        <item>
-          <label ref="jr:itext('/data/person/role/other:label')"/>
-          <value>other</value>
         </item>
       </select1>
       <input ref="/data/person/date_of_birth">

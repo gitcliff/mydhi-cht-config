@@ -3,15 +3,8 @@
   <h:head>
     <h:title>New Person</h:title>
     <model>
-      <itext>
-        <translation lang="en">
-          <text id="/data/person/role:hint">
-            <value>Select the role that best suits this person</value>
-          </text>
-        </translation>
-      </itext>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-07-19_20-20">
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-07-25_10-04">
           <inputs>
             <meta>
               <location>
@@ -36,7 +29,6 @@
             <telephone/>
             <type1/>
             <cell/>
-            <role/>
             <date_of_birth/>
             <digital/>
             <at/>
@@ -64,7 +56,7 @@
       <bind nodeset="/data/inputs/user/contact_id" type="string"/>
       <bind nodeset="/data/inputs/user/facility_id" type="string"/>
       <bind nodeset="/data/inputs/user/name" type="string"/>
-      <bind nodeset="/data/init/parent_id" type="string" calculate=" /data/person/parent " readonly="true()"/>
+      <bind nodeset="/data/init/parent_id" type="string" readonly="true()" calculate=" /data/person/parent "/>
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/type" type="string"/>
       <bind nodeset="/data/init/type_selector" type="select1" calculate="../type"/>
@@ -74,11 +66,10 @@
       <bind nodeset="/data/person/name" type="string" required="true()"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
-      <bind nodeset="/data/person/telephone" type="tel" constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678"/>
+      <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/role" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" constraint=". &lt;= today()"/>
       <bind nodeset="/data/person/digital" type="int"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
@@ -166,34 +157,6 @@
         <item>
           <label>No</label>
           <value>no</value>
-        </item>
-      </select1>
-      <select1 ref="/data/person/role">
-        <label>Role</label>
-        <hint ref="jr:itext('/data/person/role:hint')"/>
-        <item>
-          <label>CHW</label>
-          <value>chw</value>
-        </item>
-        <item>
-          <label>CHW Supervisor</label>
-          <value>chw_supervisor</value>
-        </item>
-        <item>
-          <label>Nurse</label>
-          <value>nurse</value>
-        </item>
-        <item>
-          <label>Facility Manager</label>
-          <value>manager</value>
-        </item>
-        <item>
-          <label>Patient</label>
-          <value>patient</value>
-        </item>
-        <item>
-          <label>Other</label>
-          <value>other</value>
         </item>
       </select1>
       <input ref="/data/person/date_of_birth">
