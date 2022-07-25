@@ -97,7 +97,18 @@ module.exports = [
     appliesIf: function(c, r){
       return r.fields.appoint.type_appoint === 'clinical' || r.fields.appoint.type_appoint === 'social' || r.fields.appoint.type_appoint === 'case';
     },
-    actions: [{ form: 'viral', }],
+    actions: [{ form: 'viral', 
+    modifyContent: function (content, contact, report) {
+      content.my_field_viral = getField(report, 'appoint.type_appoint');
+      content['inputs'] = {
+
+         viral_field_notes: getField(report, 'appoint.notes'),
+         viral_field_date: getField(report, 'appoint.date_appoint'),
+        };
+
+      }
+  
+    }],
     events: [{
       start: 2,
       days: 1,

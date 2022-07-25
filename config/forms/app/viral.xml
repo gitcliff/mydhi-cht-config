@@ -4,7 +4,7 @@
     <h:title>Appointment Follow-up</h:title>
     <model>
       <instance>
-        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-13_19-08">
+        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-25_15-09">
           <inputs>
             <meta>
               <location>
@@ -16,6 +16,9 @@
             </meta>
             <source/>
             <source_id/>
+            <my_field_viral/>
+            <viral_field_notes/>
+            <viral_field_date/>
             <contact>
               <_id/>
               <patient_id/>
@@ -48,6 +51,9 @@
       <bind nodeset="/viral/inputs" relevant="./source = 'user'"/>
       <bind nodeset="/viral/inputs/source" type="string"/>
       <bind nodeset="/viral/inputs/source_id" type="string"/>
+      <bind nodeset="/viral/inputs/my_field_viral" type="string"/>
+      <bind nodeset="/viral/inputs/viral_field_notes" type="string"/>
+      <bind nodeset="/viral/inputs/viral_field_date" type="string"/>
       <bind nodeset="/viral/inputs/contact/_id" type="db:person"/>
       <bind nodeset="/viral/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/viral/inputs/contact/name" type="string"/>
@@ -57,17 +63,17 @@
       <bind nodeset="/viral/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/viral/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/viral/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/viral/appoint/type1" type="select1"/>
-      <bind nodeset="/viral/appoint/due" type="string"/>
-      <bind nodeset="/viral/appoint/date1" type="date"/>
-      <bind nodeset="/viral/appoint/date2" type="date" calculate="today()"/>
+      <bind nodeset="/viral/appoint/type1" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/due" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/date1" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/date2" type="date" calculate="today()" readonly="true()"/>
       <bind nodeset="/viral/appoint/has" type="select1"/>
       <bind nodeset="/viral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
   <h:body class="pages">
     <group appearance="field-list" ref="/viral/inputs">
-      <label>Appointment Follow-up</label>
+      <label></label>
       <group ref="/viral/inputs/contact">
         <label></label>
         <input appearance="db-object" ref="/viral/inputs/contact/_id">
@@ -101,26 +107,14 @@
     </group>
     <group appearance="field-list" ref="/viral/appoint">
       <label></label>
-      <select1 ref="/viral/appoint/type1">
-        <label>Appointment Type</label>
-        <item>
-          <label>Clinical Appointment</label>
-          <value>clinical</value>
-        </item>
-        <item>
-          <label>Social Worker Appointment</label>
-          <value>social</value>
-        </item>
-        <item>
-          <label>Case Manager Appointment</label>
-          <value>case</value>
-        </item>
-      </select1>
+      <input ref="/viral/appoint/type1">
+        <label>Appointment Type : <output value=" /viral/inputs/my_field_viral "/> appointment</label>
+      </input>
       <input ref="/viral/appoint/due">
-        <label>Any notes about this Appointment?</label>
+        <label>Any notes about this Appointment?: <output value=" /viral/inputs/viral_field_notes "/></label>
       </input>
       <input ref="/viral/appoint/date1">
-        <label>Date of Appointment:</label>
+        <label>Date of Appointment: <output value=" /viral/inputs/viral_field_date "/></label>
       </input>
       <input ref="/viral/appoint/date2">
         <label>Today's Date</label>
