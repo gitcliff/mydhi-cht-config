@@ -125,6 +125,12 @@ function getMostRecentReport(reports, form) {
   return result;
 }
 
+const getField = (report, fieldPath) => ['fields', ...(fieldPath || '').split('.')]
+  .reduce((prev, fieldName) => {
+    if (prev === undefined) { return undefined; }
+    return prev[fieldName];
+  }, report);
+
 function isFormFromArraySubmittedInWindow(reports, formsArray, startTime, endTime) {
   if(typeof formsArray === 'string') { 
     formsArray = [ formsArray ];
@@ -322,4 +328,6 @@ module.exports = {
   receivedVaccine,
   isBcgReported,
   countDoses,
+  getField
+
 };

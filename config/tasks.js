@@ -13,6 +13,8 @@ const {
   isHomeBirth,
   immunizationMonths,
   immunizationForms,
+  getField
+
 } = require('./nools-extras');
 
 module.exports = [
@@ -117,7 +119,18 @@ module.exports = [
     appliesIf: function(c, r){
       return r.fields.appoint.type_appoint === 'internal' || r.fields.appoint.type_appoint === 'external';
     },
-    actions: [{ form: 'referral', }],
+    actions: [{ form: 'referral', 
+    modifyContent: function (content, contact, report) {
+      content.my_field_referral = getField(report, 'appoint.type_appoint');
+      content['inputs'] = {
+
+         my_field_notes: getField(report, 'appoint.notes'),
+         my_field_date: getField(report, 'appoint.date_appoint'),
+        };
+
+      }
+  
+   }],
     events: [{
       start: 2,
       days: 1,
