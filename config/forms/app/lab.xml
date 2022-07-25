@@ -4,7 +4,7 @@
     <h:title>CD4 Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-18_11-47">
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-25_15-59">
           <inputs>
             <meta>
               <location>
@@ -16,6 +16,8 @@
             </meta>
             <source/>
             <source_id/>
+            <my_field_lab/>
+            <lab_field_date/>
             <contact>
               <_id/>
               <patient_id/>
@@ -49,6 +51,8 @@
       <bind nodeset="/lab/inputs" relevant="./source = 'user'"/>
       <bind nodeset="/lab/inputs/source" type="string"/>
       <bind nodeset="/lab/inputs/source_id" type="string"/>
+      <bind nodeset="/lab/inputs/my_field_lab" type="string"/>
+      <bind nodeset="/lab/inputs/lab_field_date" type="string"/>
       <bind nodeset="/lab/inputs/contact/_id" type="db:person"/>
       <bind nodeset="/lab/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/lab/inputs/contact/name" type="string"/>
@@ -58,8 +62,8 @@
       <bind nodeset="/lab/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/lab/appoint/test" type="select1"/>
-      <bind nodeset="/lab/appoint/appoint1" type="date"/>
+      <bind nodeset="/lab/appoint/test" readonly="true()" type="string"/>
+      <bind nodeset="/lab/appoint/appoint1" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
       <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
       <bind nodeset="/lab/appoint/this" type="select1" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'"/>
@@ -103,15 +107,11 @@
     </group>
     <group appearance="field-list" ref="/lab/appoint">
       <label></label>
-      <select1 ref="/lab/appoint/test">
-        <label>Lab test:</label>
-        <item>
-          <label>CD4 count</label>
-          <value>cd</value>
-        </item>
-      </select1>
+      <input ref="/lab/appoint/test">
+        <label>Lab test: <output value=" /lab/inputs/my_field_lab "/></label>
+      </input>
       <input ref="/lab/appoint/appoint1">
-        <label>Date of Appointment</label>
+        <label>Date of Appointment: <output value=" /lab/inputs/lab_field_date "/></label>
       </input>
       <select1 ref="/lab/appoint/result">
         <label>Is the result of the lab test available?</label>

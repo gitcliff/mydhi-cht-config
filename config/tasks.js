@@ -73,7 +73,16 @@ module.exports = [
     appliesIf: function(c, r){
       return r.fields.appoint.lab_test === 'count';
     },
-    actions: [{ form: 'lab', }],
+    actions: [{ form: 'lab', 
+
+    modifyContent: function (content, contact, report) {
+      content.my_field_lab = getField(report, 'appoint.type_appoint');
+      content['inputs'] = {
+         lab_field_date: getField(report, 'appoint.date_appoint'),
+        };
+
+      }
+    }],
     events: [{
       start: 1,
       days: 1,
@@ -161,14 +170,15 @@ module.exports = [
     icon: 'assessment',
     appliesTo: 'reports',
     appliesToType: ['lab'],
-    appliesIf: function(c, r){
-      return r.fields.appoint.this === 'snooze1';
+    appliesIf: function(r){
+      // return r.fields.appoint.this === 'snooze1';
+      return getField(r, 'appoint.this');
     },
     actions: [{ form: 'appointment', }],
     events: [{
-      start: 4,
+      start: 1,
       days: 1,
-      end: 10,
+      end: 1,
     }],
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is appointment received in time window
