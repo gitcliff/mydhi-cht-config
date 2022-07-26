@@ -48,9 +48,16 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['appointment'],
     appliesIf: function(c, r){
-      return r.fields.appoint.lab_test === 'load';
+      return r.fields.appoint.lab_test === 'viral load';
     },
-    actions: [{ form: 'load', }],
+    actions: [{ form: 'load', 
+    modifyContent: function (content, contact, report) {
+      content.my_field_load = getField(report, 'appoint.lab_test');
+      content['inputs'] = {
+         load_field_date: getField(report, 'appoint.date_appoint'),
+        };
+      }
+   }],
     events: [{
       start: 1,
       days: 1,
@@ -59,11 +66,9 @@ module.exports = [
     resolvedIf: function(c){
       return c.reports.some(function(r){
         return r.form === 'load' && r.fields.load.result3 === 'okay' && r.form === 'load' && r.fields.load.result === 'yes' 
-        || r.form === 'load' && r.fields.load.result === 'un';
-        
+        || r.form === 'load' && r.fields.load.result === 'un'; 
     });
-  }
-  },
+  }},
   {
     name: 'cd4-lab-test-task',
     title: 'CD4 Lab Test Results Task',
@@ -71,7 +76,7 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['appointment'],
     appliesIf: function(c, r){
-      return r.fields.appoint.lab_test === 'count';
+      return r.fields.appoint.lab_test === 'cd4 count';
     },
     actions: [{ form: 'lab', 
 
@@ -80,7 +85,6 @@ module.exports = [
       content['inputs'] = {
          lab_field_date: getField(report, 'appoint.date_appoint'),
         };
-
       }
     }],
     events: [{
@@ -95,7 +99,6 @@ module.exports = [
           r.form === 'lab' && r.fields.appoint.this === 'snooze1';
       });
     }
-
   },
   {
     name: 'appointment-follow-up-task',
@@ -114,9 +117,7 @@ module.exports = [
          viral_field_notes: getField(report, 'appoint.notes'),
          viral_field_date: getField(report, 'appoint.date_appoint'),
         };
-
       }
-  
     }],
     events: [{
       start: 2,
@@ -147,9 +148,7 @@ module.exports = [
          my_field_notes: getField(report, 'appoint.notes'),
          my_field_date: getField(report, 'appoint.date_appoint'),
         };
-
       }
-  
    }],
     events: [{
       start: 2,
@@ -161,7 +160,6 @@ module.exports = [
         return r.form === 'referral' && r.fields.reminder.patient === 'comp';
     });
     }
-
   },
 
   {
