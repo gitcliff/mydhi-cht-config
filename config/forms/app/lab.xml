@@ -4,7 +4,7 @@
     <h:title>CD4 Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-25_15-59">
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-25_20-47">
           <inputs>
             <meta>
               <location>
@@ -34,6 +34,7 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <appoint_this/>
           <appoint>
             <test/>
             <appoint1/>
@@ -62,6 +63,7 @@
       <bind nodeset="/lab/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/lab/appoint_this" type="string" calculate="../appoint/this"/>
       <bind nodeset="/lab/appoint/test" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/appoint1" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
