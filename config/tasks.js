@@ -76,7 +76,7 @@ module.exports = [
     actions: [{ form: 'lab', 
 
     modifyContent: function (content, contact, report) {
-      content.my_field_lab = getField(report, 'appoint.type_appoint');
+      content.my_field_lab = getField(report, 'appoint.lab_test');
       content['inputs'] = {
          lab_field_date: getField(report, 'appoint.date_appoint'),
         };
@@ -171,8 +171,7 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['lab'],
     appliesIf: function(r){
-      // return r.fields.appoint.this === 'snooze1';
-      return getField(r, 'appoint.this');
+      return getField(r, 'appoint_this') === 'snooze1';
     },
     actions: [{ form: 'appointment', }],
     events: [{
