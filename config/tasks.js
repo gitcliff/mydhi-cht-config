@@ -3,6 +3,7 @@ const {
   DAYS_IN_PNC,
   MS_IN_DAY,
   isFormFromArraySubmittedInWindow,
+   isFormArraySubmittedInWindow,
   isCoveredByUseCase,
   getNewestPregnancyTimestamp,
   getNewestDeliveryTimestamp,
@@ -13,6 +14,7 @@ const {
   isHomeBirth,
   immunizationMonths,
   immunizationForms,
+  addDays,
   getField
 
 } = require('./nools-extras');
@@ -107,7 +109,8 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['appointment'],
     appliesIf: function(c, r){
-      return r.fields.appoint.type_appoint === 'clinical' || r.fields.appoint.type_appoint === 'social' || r.fields.appoint.type_appoint === 'case';
+      return r.fields.appoint.type_appoint === 'clinical appointment' || r.fields.appoint.type_appoint === 'social worker appointment' 
+      || r.fields.appoint.type_appoint === 'case manager appointment ';
     },
     actions: [{ form: 'viral', 
     modifyContent: function (content, contact, report) {
@@ -120,7 +123,7 @@ module.exports = [
       }
     }],
     events: [{
-      start: 2,
+      start: 1,
       days: 1,
       end: 1,
     }],
@@ -138,7 +141,7 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['appointment'],
     appliesIf: function(c, r){
-      return r.fields.appoint.type_appoint === 'internal' || r.fields.appoint.type_appoint === 'external';
+      return r.fields.appoint.type_appoint === 'internal referral' || r.fields.appoint.type_appoint === 'external referral';
     },
     actions: [{ form: 'referral', 
     modifyContent: function (content, contact, report) {
@@ -151,7 +154,7 @@ module.exports = [
       }
    }],
     events: [{
-      start: 2,
+      start: 1,
       days: 1,
       end: 1,
     }],
@@ -161,30 +164,6 @@ module.exports = [
     });
     }
   },
-
-  {
-    name: 'new-appointment-task-cd4a',
-    title: 'New Appointment CD4',
-    icon: 'assessment',
-    appliesTo: 'reports',
-    appliesToType: ['lab'],
-    appliesIf: function(r){
-      return getField(r, 'appoint_this') === 'snooze1';
-    },
-    actions: [{ form: 'appointment', }],
-    events: [{
-      start: 1,
-      days: 1,
-      end: 1,
-    }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is appointment received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());              
-    },
-  },
-
   {
     name: 'new-appointment-task-cd4b',
     title: 'New Appointment CD4',
@@ -192,19 +171,18 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['lab'],
     appliesIf: function(c, r){
-      return r.fields.appoint.result === 'un';
+      return r.fields.appoint.result === 'un' || r.fields.appoint.this === 'snooze1';
     },
-    actions: [{ form: 'appointment', }],
+    actions: [{ form: 'appointment1', }],
     events: [{
-      start: 4,
+      start: 1,
       days: 1,
-      end: 10,
+      end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is appointment received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());              
+    resolvedIf: function (contact, report, event, dueDate) {
+      const startTime = Math.max(addDays(dueDate, -event.start).getTime(), contact.contact.reported_date);
+      const endTime = addDays(dueDate, event.end).getTime();
+      return isFormArraySubmittedInWindow(contact.reports, ['appointment1'], startTime, endTime);
     },
   },
 
@@ -215,47 +193,20 @@ module.exports = [
     appliesTo: 'reports',
     appliesToType: ['load'],
     appliesIf: function(c, r){
-      return r.fields.load.result === 'un';
+      return r.fields.load.result === 'un' || r.fields.load.result3 === 'okay';
     },
-    actions: [{ form: 'appointment', }],
+    actions: [{ form: 'appointment1', }],
     events: [{
       start: 1,
       days: 1,
       end: 1,
     }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is appointment received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());              
+    resolvedIf: function (contact, report, event, dueDate) {
+      const startTime = Math.max(addDays(dueDate, -event.start).getTime(), contact.contact.reported_date);
+      const endTime = addDays(dueDate, event.end).getTime();
+      return isFormArraySubmittedInWindow(contact.reports, ['appointment1'], startTime, endTime);
     },
   },
-
-  {
-    name: 'new-appointment-task-viral2',
-    title: 'New Appointment Viral Load',
-    icon: 'assessment',
-    appliesTo: 'reports',
-    appliesToType: ['load'],
-    appliesIf: function(c, r){
-      return r.fields.load.result3 === 'okay';
-    },
-    actions: [{ form: 'appointment', }],
-    events: [{
-      start: 1,
-      days: 1,
-      end: 1,
-    }],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is appointment received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'appointment',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());              
-    },
-  },
-
-
-
   // {
   //   name: 'care-assessment-task',
   //   title: 'Level of care assessment task',

@@ -4,7 +4,7 @@
     <h:title>CD4 Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-25_20-47">
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-26_21-16">
           <inputs>
             <meta>
               <location>
@@ -42,6 +42,7 @@
             <count/>
             <this/>
             <load/>
+            <lab_result_yes tag="hidden"/>
           </appoint>
           <meta tag="hidden">
             <instanceID/>
@@ -63,13 +64,14 @@
       <bind nodeset="/lab/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/lab/appoint_this" type="string" calculate="../appoint/this"/>
+      <bind nodeset="/lab/appoint_this" type="string" calculate="../appoint/lab_result_yes"/>
       <bind nodeset="/lab/appoint/test" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/appoint1" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
       <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
       <bind nodeset="/lab/appoint/this" type="select1" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'"/>
       <bind nodeset="/lab/appoint/load" type="select1" relevant=" /lab/appoint/result  = 'yes' and  /lab/appoint/test  = 'viral'"/>
+      <bind nodeset="/lab/appoint/lab_result_yes" type="string" relevant="selected( /lab/appoint/result , 'yes')"/>
       <bind nodeset="/lab/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -168,6 +170,9 @@
           <value>suppressed1</value>
         </item>
       </select1>
+      <input ref="/lab/appoint/lab_result_yes">
+        <label></label>
+      </input>
     </group>
   </h:body>
 </h:html>
