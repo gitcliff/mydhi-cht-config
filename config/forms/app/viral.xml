@@ -4,7 +4,7 @@
     <h:title>Appointment Follow-up</h:title>
     <model>
       <instance>
-        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-25_15-09">
+        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-27_15-21">
           <inputs>
             <meta>
               <location>
@@ -39,7 +39,6 @@
             <type1/>
             <due/>
             <date1/>
-            <date2/>
             <has/>
           </appoint>
           <meta tag="hidden">
@@ -66,7 +65,6 @@
       <bind nodeset="/viral/appoint/type1" readonly="true()" type="string"/>
       <bind nodeset="/viral/appoint/due" readonly="true()" type="string"/>
       <bind nodeset="/viral/appoint/date1" readonly="true()" type="string"/>
-      <bind nodeset="/viral/appoint/date2" type="date" calculate="today()" readonly="true()"/>
       <bind nodeset="/viral/appoint/has" type="select1"/>
       <bind nodeset="/viral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
@@ -108,16 +106,13 @@
     <group appearance="field-list" ref="/viral/appoint">
       <label></label>
       <input ref="/viral/appoint/type1">
-        <label>Appointment Type : <output value=" /viral/inputs/my_field_viral "/> appointment</label>
+        <label>Appointment Type : <output value=" /viral/inputs/my_field_viral "/></label>
       </input>
       <input ref="/viral/appoint/due">
         <label>Any notes about this Appointment?: <output value=" /viral/inputs/viral_field_notes "/></label>
       </input>
       <input ref="/viral/appoint/date1">
         <label>Date of Appointment: <output value=" /viral/inputs/viral_field_date "/></label>
-      </input>
-      <input ref="/viral/appoint/date2">
-        <label>Today's Date</label>
       </input>
       <select1 ref="/viral/appoint/has">
         <label>Patient has upcoming appointment</label>

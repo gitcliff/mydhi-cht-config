@@ -4,7 +4,7 @@
     <h:title>Referral Follow-up</h:title>
     <model>
       <instance>
-        <referral id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-25_13-09">
+        <referral id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-27_15-10">
           <inputs>
             <meta>
               <location>
@@ -39,7 +39,6 @@
             <type/>
             <note1/>
             <when/>
-            <date1/>
             <patient/>
           </reminder>
           <meta tag="hidden">
@@ -66,7 +65,6 @@
       <bind nodeset="/referral/reminder/type" readonly="true()" type="string"/>
       <bind nodeset="/referral/reminder/note1" readonly="true()" type="string"/>
       <bind nodeset="/referral/reminder/when" readonly="true()" type="string"/>
-      <bind nodeset="/referral/reminder/date1" type="date" readonly="true()" calculate="today()"/>
       <bind nodeset="/referral/reminder/patient" type="select1"/>
       <bind nodeset="/referral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
@@ -115,9 +113,6 @@
       </input>
       <input ref="/referral/reminder/when">
         <label>Date of Appointment: <output value=" /referral/inputs/my_field_date "/></label>
-      </input>
-      <input ref="/referral/reminder/date1">
-        <label>Today's Date</label>
       </input>
       <select1 ref="/referral/reminder/patient">
         <label>Patient was referred for a visit</label>
