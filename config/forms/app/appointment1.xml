@@ -4,7 +4,7 @@
     <h:title>Schedule Appointment</h:title>
     <model>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-07-26_16-56">
+        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-07-27_09-28">
           <inputs>
             <meta>
               <location>
@@ -43,70 +43,70 @@
           <meta tag="hidden">
             <instanceID/>
           </meta>
-        </appointment>
+        </appointment1>
       </instance>
       <instance id="contact-summary"/>
-      <bind nodeset="/appointment/inputs" relevant="./source = 'user'"/>
-      <bind nodeset="/appointment/inputs/source" type="string"/>
-      <bind nodeset="/appointment/inputs/source_id" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/_id" type="db:person"/>
-      <bind nodeset="/appointment/inputs/contact/patient_id" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/name" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/date_of_birth" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/sex" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/parent/contact/phone" type="string"/>
-      <bind nodeset="/appointment/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/appointment/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/appointment/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/appointment/appoint/enter" type="date" calculate="today()" readonly="true()"/>
-      <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
-      <bind nodeset="/appointment/appoint/notes" type="string"/>
-      <bind nodeset="/appointment/appoint/lab_test" type="select1" relevant=" /appointment/appoint/type_appoint  = 'lab test appointment'"/>
-      <bind nodeset="/appointment/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
-      <bind nodeset="/appointment/appoint/date_appoint" type="date"/>
-      <bind nodeset="/appointment/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/appointment1/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/appointment1/inputs/source" type="string"/>
+      <bind nodeset="/appointment1/inputs/source_id" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/appointment1/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/name" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/sex" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/appointment1/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/appointment1/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/appointment1/appoint/enter" type="date" readonly="true()" calculate="today()"/>
+      <bind nodeset="/appointment1/appoint/type_appoint" type="select1"/>
+      <bind nodeset="/appointment1/appoint/notes" type="string"/>
+      <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'lab test appointment'"/>
+      <bind nodeset="/appointment1/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
+      <bind nodeset="/appointment1/appoint/date_appoint" type="date"/>
+      <bind nodeset="/appointment1/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
   <h:body class="pages">
-    <group appearance="field-list" ref="/appointment/inputs">
+    <group appearance="field-list" ref="/appointment1/inputs">
       <label>Schedule Appointment</label>
-      <group ref="/appointment/inputs/contact">
+      <group ref="/appointment1/inputs/contact">
         <label></label>
-        <input appearance="db-object" ref="/appointment/inputs/contact/_id">
+        <input appearance="db-object" ref="/appointment1/inputs/contact/_id">
           <label>What is the patient's name?</label>
         </input>
-        <input appearance="hidden" ref="/appointment/inputs/contact/patient_id">
+        <input appearance="hidden" ref="/appointment1/inputs/contact/patient_id">
           <label></label>
         </input>
-        <input appearance="hidden" ref="/appointment/inputs/contact/name">
+        <input appearance="hidden" ref="/appointment1/inputs/contact/name">
           <label></label>
         </input>
-        <input appearance="hidden" ref="/appointment/inputs/contact/date_of_birth">
+        <input appearance="hidden" ref="/appointment1/inputs/contact/date_of_birth">
           <label></label>
         </input>
-        <input appearance="hidden" ref="/appointment/inputs/contact/sex">
+        <input appearance="hidden" ref="/appointment1/inputs/contact/sex">
           <label></label>
         </input>
-        <group ref="/appointment/inputs/contact/parent">
+        <group ref="/appointment1/inputs/contact/parent">
           <label></label>
-          <group ref="/appointment/inputs/contact/parent/contact">
+          <group ref="/appointment1/inputs/contact/parent/contact">
             <label></label>
-            <input appearance="hidden" ref="/appointment/inputs/contact/parent/contact/phone">
+            <input appearance="hidden" ref="/appointment1/inputs/contact/parent/contact/phone">
               <label></label>
             </input>
-            <input appearance="hidden" ref="/appointment/inputs/contact/parent/contact/name">
+            <input appearance="hidden" ref="/appointment1/inputs/contact/parent/contact/name">
               <label></label>
             </input>
           </group>
         </group>
       </group>
     </group>
-    <group appearance="field-list" ref="/appointment/appoint">
+    <group appearance="field-list" ref="/appointment1/appoint">
       <label></label>
-      <input ref="/appointment/appoint/enter">
+      <input ref="/appointment1/appoint/enter">
         <label>Date Entered</label>
       </input>
-      <select1 ref="/appointment/appoint/type_appoint">
+      <select1 ref="/appointment1/appoint/type_appoint">
         <label>Appointment Type</label>
         <item>
           <label>Clinical Appointment</label>
@@ -133,10 +133,10 @@
           <value>external referral</value>
         </item>
       </select1>
-      <input ref="/appointment/appoint/notes">
+      <input ref="/appointment1/appoint/notes">
         <label>Any notes about this Appointment?</label>
       </input>
-      <select1 ref="/appointment/appoint/lab_test">
+      <select1 ref="/appointment1/appoint/lab_test">
         <label>Lab test:</label>
         <item>
           <label>CD4 count</label>
@@ -151,10 +151,10 @@
           <value>other</value>
         </item>
       </select1>
-      <input ref="/appointment/appoint/lab_test_other">
+      <input ref="/appointment1/appoint/lab_test_other">
         <label>Specify other.</label>
       </input>
-      <input ref="/appointment/appoint/date_appoint">
+      <input ref="/appointment1/appoint/date_appoint">
         <label>Date of Appointment</label>
       </input>
     </group>

@@ -4,7 +4,7 @@
     <h:title>Viral Load Lab Test Result</h:title>
     <model>
       <instance>
-        <load id="load" prefix="J1!load!" delimiter="#" version="2022-07-13_22-40">
+        <load id="load" prefix="J1!load!" delimiter="#" version="2022-07-26_12-07">
           <inputs>
             <meta>
               <location>
@@ -16,6 +16,8 @@
             </meta>
             <source/>
             <source_id/>
+            <my_field_load/>
+            <load_field_date/>
             <contact>
               <_id/>
               <patient_id/>
@@ -48,6 +50,8 @@
       <bind nodeset="/load/inputs" relevant="./source = 'user'"/>
       <bind nodeset="/load/inputs/source" type="string"/>
       <bind nodeset="/load/inputs/source_id" type="string"/>
+      <bind nodeset="/load/inputs/my_field_load" type="string"/>
+      <bind nodeset="/load/inputs/load_field_date" type="string"/>
       <bind nodeset="/load/inputs/contact/_id" type="db:person"/>
       <bind nodeset="/load/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/load/inputs/contact/name" type="string"/>
@@ -57,11 +61,11 @@
       <bind nodeset="/load/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/load/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/load/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/load/load/test" type="select1"/>
-      <bind nodeset="/load/load/date1" type="date"/>
+      <bind nodeset="/load/load/test" readonly="true()" type="string"/>
+      <bind nodeset="/load/load/date1" readonly="true()" type="string"/>
       <bind nodeset="/load/load/result" type="select1"/>
-      <bind nodeset="/load/load/result2" type="select1"/>
-      <bind nodeset="/load/load/result3" type="select1"/>
+      <bind nodeset="/load/load/result2" type="select1" relevant=" /load/load/result  = 'yes'"/>
+      <bind nodeset="/load/load/result3" type="select1" relevant=" /load/load/result2  = 'unstable' or  /load/load/result2  = 'stable' or  /load/load/result2  = 'inconclusive'"/>
       <bind nodeset="/load/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -101,15 +105,11 @@
     </group>
     <group appearance="field-list" ref="/load/load">
       <label></label>
-      <select1 ref="/load/load/test">
-        <label>Lab test:</label>
-        <item>
-          <label>Viral Load</label>
-          <value>viral</value>
-        </item>
-      </select1>
+      <input ref="/load/load/test">
+        <label>Lab test: <output value=" /load/inputs/my_field_load "/></label>
+      </input>
       <input ref="/load/load/date1">
-        <label>Date of Appointment:</label>
+        <label>Date of Appointment: <output value=" /load/inputs/load_field_date "/></label>
       </input>
       <select1 ref="/load/load/result">
         <label>Is the result of the Viral Load lab test available?</label>

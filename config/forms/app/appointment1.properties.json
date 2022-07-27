@@ -1,0 +1,9 @@
+{
+    "title": "Schedule Appointment ",
+    "icon": "assessment",
+    "context": {
+          "person": false,
+          "place": false,
+          "expression": "contact.type === 'person'"
+      }
+  }
