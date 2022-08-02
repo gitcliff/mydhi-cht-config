@@ -4,7 +4,7 @@
     <h:title>New Person</h:title>
     <model>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-07-25_10-04">
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-08-02_13-59">
           <inputs>
             <meta>
               <location>
@@ -24,13 +24,14 @@
             <parent/>
             <type>person</type>
             <name/>
+            <name1/>
             <aka/>
             <docket/>
+            <address/>
             <telephone/>
             <type1/>
             <cell/>
             <date_of_birth/>
-            <digital/>
             <at/>
             <genda/>
             <stat/>
@@ -64,13 +65,14 @@
       <bind nodeset="/data/person/parent" type="string"/>
       <bind nodeset="/data/person/type" type="string"/>
       <bind nodeset="/data/person/name" type="string" required="true()"/>
+      <bind nodeset="/data/person/name1" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/address" type="string"/>
       <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
       <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" constraint=". &lt;= today()"/>
-      <bind nodeset="/data/person/digital" type="int"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/stat" type="select1"/>
@@ -126,13 +128,19 @@
     <group appearance="field-list" ref="/data/person">
       <label></label>
       <input ref="/data/person/name">
-        <label>Name</label>
+        <label>First Name</label>
+      </input>
+      <input ref="/data/person/name1">
+        <label>Last Name</label>
       </input>
       <input ref="/data/person/aka">
-        <label>Also Known As:</label>
+        <label>Also Known as:</label>
       </input>
       <input ref="/data/person/docket">
         <label>Docket Number</label>
+      </input>
+      <input ref="/data/person/address">
+        <label>Current Address</label>
       </input>
       <input ref="/data/person/telephone">
         <label>Cell number</label>
@@ -161,9 +169,6 @@
       </select1>
       <input ref="/data/person/date_of_birth">
         <label>Date of Birth</label>
-      </input>
-      <input ref="/data/person/digital">
-        <label>Age in years at today's Enrollment in the digital device:</label>
       </input>
       <select1 ref="/data/person/at">
         <label>Sex at birth</label>

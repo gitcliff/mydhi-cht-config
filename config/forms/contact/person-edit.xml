@@ -50,8 +50,11 @@
           <text id="/data/inputs/user/name:label">
             <value>Name of the logged in user</value>
           </text>
+          <text id="/data/person/address:label">
+            <value>Current Address</value>
+          </text>
           <text id="/data/person/aka:label">
-            <value>Also Known As:</value>
+            <value>Also Known as:</value>
           </text>
           <text id="/data/person/at/female:label">
             <value>Female</value>
@@ -80,9 +83,6 @@
           <text id="/data/person/date_of_birth:label">
             <value>Date of Birth</value>
           </text>
-          <text id="/data/person/digital:label">
-            <value>Age in years at today's Enrollment in the digital device:</value>
-          </text>
           <text id="/data/person/docket:label">
             <value>Docket Number</value>
           </text>
@@ -95,8 +95,11 @@
           <text id="/data/person/genda:label">
             <value>Gender Identity</value>
           </text>
+          <text id="/data/person/name1:label">
+            <value>Last Name</value>
+          </text>
           <text id="/data/person/name:label">
-            <value>Name</value>
+            <value>First Name</value>
           </text>
           <text id="/data/person/stat/common:label">
             <value>Common-Law</value>
@@ -202,6 +205,9 @@
           <text id="/data/person/_id:label">
             <value>-</value>
           </text>
+          <text id="/data/person/address:label">
+            <value>-</value>
+          </text>
           <text id="/data/person/aka:label">
             <value>-</value>
           </text>
@@ -232,9 +238,6 @@
           <text id="/data/person/date_of_birth:label">
             <value>-</value>
           </text>
-          <text id="/data/person/digital:label">
-            <value>-</value>
-          </text>
           <text id="/data/person/docket:label">
             <value>-</value>
           </text>
@@ -257,6 +260,9 @@
             <value>-</value>
           </text>
           <text id="/data/person/meta:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/name1:label">
             <value>-</value>
           </text>
           <text id="/data/person/name:label">
@@ -307,7 +313,7 @@
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-07-25_00-05">
+        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-08-02_04-00">
           <inputs>
             <meta>
               <location>
@@ -328,13 +334,14 @@
             <_id/>
             <type>person</type>
             <name/>
+            <name1/>
             <aka/>
             <docket/>
+            <address/>
             <telephone/>
             <type1/>
             <cell/>
             <date_of_birth/>
-            <digital/>
             <at/>
             <genda/>
             <stat/>
@@ -384,13 +391,14 @@
       <bind nodeset="/data/person/_id" type="string" readonly="true()"/>
       <bind nodeset="/data/person/type" type="string" readonly="true()"/>
       <bind nodeset="/data/person/name" type="string" required="true()"/>
+      <bind nodeset="/data/person/name1" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
-      <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')" constraint="true()"/>
+      <bind nodeset="/data/person/address" type="string"/>
+      <bind nodeset="/data/person/telephone" type="tel" constraint="true()" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
-      <bind nodeset="/data/person/digital" type="int"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/stat" type="select1"/>
@@ -467,11 +475,17 @@
       <input ref="/data/person/name">
         <label ref="jr:itext('/data/person/name:label')"/>
       </input>
+      <input ref="/data/person/name1">
+        <label ref="jr:itext('/data/person/name1:label')"/>
+      </input>
       <input ref="/data/person/aka">
         <label ref="jr:itext('/data/person/aka:label')"/>
       </input>
       <input ref="/data/person/docket">
         <label ref="jr:itext('/data/person/docket:label')"/>
+      </input>
+      <input ref="/data/person/address">
+        <label ref="jr:itext('/data/person/address:label')"/>
       </input>
       <input ref="/data/person/telephone">
         <label ref="jr:itext('/data/person/telephone:label')"/>
@@ -500,9 +514,6 @@
       </select1>
       <input ref="/data/person/date_of_birth">
         <label ref="jr:itext('/data/person/date_of_birth:label')"/>
-      </input>
-      <input ref="/data/person/digital">
-        <label ref="jr:itext('/data/person/digital:label')"/>
       </input>
       <select1 ref="/data/person/at">
         <label ref="jr:itext('/data/person/at:label')"/>
