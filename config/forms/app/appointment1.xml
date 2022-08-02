@@ -4,7 +4,7 @@
     <h:title>Schedule Appointment</h:title>
     <model>
       <instance>
-        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-07-27_09-28">
+        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-08-02_11-04">
           <inputs>
             <meta>
               <location>
@@ -33,11 +33,11 @@
           <patient_id/>
           <patient_name/>
           <appoint>
-            <enter/>
             <type_appoint/>
             <notes/>
             <lab_test/>
             <lab_test_other/>
+            <date_appoint1/>
             <date_appoint/>
           </appoint>
           <meta tag="hidden">
@@ -58,11 +58,11 @@
       <bind nodeset="/appointment1/inputs/contact/parent/contact/name" type="string"/>
       <bind nodeset="/appointment1/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/appointment1/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/appointment1/appoint/enter" type="date" readonly="true()" calculate="today()"/>
       <bind nodeset="/appointment1/appoint/type_appoint" type="select1"/>
       <bind nodeset="/appointment1/appoint/notes" type="string"/>
       <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'lab test appointment'"/>
       <bind nodeset="/appointment1/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
+      <bind nodeset="/appointment1/appoint/date_appoint1" type="date"/>
       <bind nodeset="/appointment1/appoint/date_appoint" type="date"/>
       <bind nodeset="/appointment1/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
@@ -103,9 +103,6 @@
     </group>
     <group appearance="field-list" ref="/appointment1/appoint">
       <label></label>
-      <input ref="/appointment1/appoint/enter">
-        <label>Date Entered</label>
-      </input>
       <select1 ref="/appointment1/appoint/type_appoint">
         <label>Appointment Type</label>
         <item>
@@ -121,8 +118,8 @@
           <value>case manager appointment</value>
         </item>
         <item>
-          <label>Lab Test Appointment</label>
-          <value>lab test appointment</value>
+          <label>Blood Draw Appointment</label>
+          <value>blodd draw appointment</value>
         </item>
         <item>
           <label>Internal Referral</label>
@@ -153,6 +150,9 @@
       </select1>
       <input ref="/appointment1/appoint/lab_test_other">
         <label>Specify other.</label>
+      </input>
+      <input ref="/appointment1/appoint/date_appoint1">
+        <label>Date of Expected Blood Draw</label>
       </input>
       <input ref="/appointment1/appoint/date_appoint">
         <label>Date of Appointment</label>
