@@ -4,7 +4,7 @@
     <h:title>Schedule Appointment</h:title>
     <model>
       <instance>
-        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-08-02_11-04">
+        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-08-03_15-01">
           <inputs>
             <meta>
               <location>
@@ -60,7 +60,7 @@
       <bind nodeset="/appointment1/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/appointment1/appoint/type_appoint" type="select1"/>
       <bind nodeset="/appointment1/appoint/notes" type="string"/>
-      <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'lab test appointment'"/>
+      <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'"/>
       <bind nodeset="/appointment1/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
       <bind nodeset="/appointment1/appoint/date_appoint1" type="date"/>
       <bind nodeset="/appointment1/appoint/date_appoint" type="date"/>
@@ -119,7 +119,7 @@
         </item>
         <item>
           <label>Blood Draw Appointment</label>
-          <value>blodd draw appointment</value>
+          <value>blood draw appointment</value>
         </item>
         <item>
           <label>Internal Referral</label>
