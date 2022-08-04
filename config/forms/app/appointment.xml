@@ -3,8 +3,16 @@
   <h:head>
     <h:title>Schedule Appointment</h:title>
     <model>
+      <itext>
+        <translation lang="en">
+          <text id="/appointment/appoint/welcome:label">
+            <value>Any notes about this Appointment?</value>
+            <value form="image">jr://images/image.png</value>
+          </text>
+        </translation>
+      </itext>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-03_15-02">
+        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-04_12-00">
           <inputs>
             <meta>
               <location>
@@ -34,7 +42,7 @@
           <patient_name/>
           <appoint>
             <type_appoint/>
-            <notes/>
+            <welcome/>
             <lab_test/>
             <lab_test_other/>
             <date_appoint1/>
@@ -59,7 +67,7 @@
       <bind nodeset="/appointment/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/appointment/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
-      <bind nodeset="/appointment/appoint/notes" type="string"/>
+      <bind nodeset="/appointment/appoint/welcome" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" type="select1" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'"/>
       <bind nodeset="/appointment/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
       <bind nodeset="/appointment/appoint/date_appoint1" type="date"/>
@@ -130,8 +138,8 @@
           <value>external referral</value>
         </item>
       </select1>
-      <input ref="/appointment/appoint/notes">
-        <label>Any notes about this Appointment?</label>
+      <input appearance="h1 blue" ref="/appointment/appoint/welcome">
+        <label ref="jr:itext('/appointment/appoint/welcome:label')"/>
       </input>
       <select1 ref="/appointment/appoint/lab_test">
         <label>Blood Draw:</label>
