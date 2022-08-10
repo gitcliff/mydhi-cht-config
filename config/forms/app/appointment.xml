@@ -12,7 +12,7 @@
         </translation>
       </itext>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-04_12-00">
+        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-10_11-27">
           <inputs>
             <meta>
               <location>
@@ -128,6 +128,14 @@
         <item>
           <label>Blood Draw Appointment</label>
           <value>blood draw appointment</value>
+        </item>
+        <item>
+          <label>Psychologist Appointment</label>
+          <value>psychologist appointment</value>
+        </item>
+        <item>
+          <label>Adherence Counselor Appointment</label>
+          <value>adherence counselor appointment</value>
         </item>
         <item>
           <label>Internal Referral</label>
