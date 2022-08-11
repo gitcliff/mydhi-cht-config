@@ -5,14 +5,14 @@
     <model>
       <itext>
         <translation lang="en">
-          <text id="/appointment/appoint/welcome:label">
-            <value>Any notes about this Appointment?</value>
+          <text id="/appointment/appoint/image1:label">
+            <value>Image</value>
             <value form="image">jr://images/image.png</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-10_11-27">
+        <appointment id="appointment" prefix="J1!appointment!" delimiter="#" version="2022-08-11_11-07">
           <inputs>
             <meta>
               <location>
@@ -45,8 +45,9 @@
             <welcome/>
             <lab_test/>
             <lab_test_other/>
-            <date_appoint1/>
             <date_appoint/>
+            <image1/>
+            <date_appoint1/>
           </appoint>
           <meta tag="hidden">
             <instanceID/>
@@ -67,11 +68,12 @@
       <bind nodeset="/appointment/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
       <bind nodeset="/appointment/patient_name" type="string" calculate="../inputs/contact/name"/>
       <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
-      <bind nodeset="/appointment/appoint/welcome" readonly="true()" type="string"/>
+      <bind nodeset="/appointment/appoint/welcome" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" type="select1" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'"/>
       <bind nodeset="/appointment/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
-      <bind nodeset="/appointment/appoint/date_appoint1" type="date"/>
       <bind nodeset="/appointment/appoint/date_appoint" type="date"/>
+      <bind nodeset="/appointment/appoint/image1" readonly="true()" type="string" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'"/>
+      <bind nodeset="/appointment/appoint/date_appoint1" type="date"/>
       <bind nodeset="/appointment/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
   </h:head>
@@ -147,7 +149,7 @@
         </item>
       </select1>
       <input appearance="h1 blue" ref="/appointment/appoint/welcome">
-        <label ref="jr:itext('/appointment/appoint/welcome:label')"/>
+        <label>Any notes about this Appointment?</label>
       </input>
       <select1 ref="/appointment/appoint/lab_test">
         <label>Blood Draw:</label>
@@ -167,11 +169,14 @@
       <input ref="/appointment/appoint/lab_test_other">
         <label>Specify other.</label>
       </input>
-      <input ref="/appointment/appoint/date_appoint1">
-        <label>Date of Expected Blood Draw</label>
-      </input>
       <input ref="/appointment/appoint/date_appoint">
         <label>Date of Appointment</label>
+      </input>
+      <input ref="/appointment/appoint/image1">
+        <label ref="jr:itext('/appointment/appoint/image1:label')"/>
+      </input>
+      <input ref="/appointment/appoint/date_appoint1">
+        <label>Date of Expected Blood Draw</label>
       </input>
     </group>
   </h:body>
