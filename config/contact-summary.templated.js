@@ -52,7 +52,7 @@ var context = {
 var fields = [
   { appliesToType:'person',  label:'patient_id', value:contact.patient_id, width: 4 },
   { appliesToType:'person',  label:'contact.age', value:contact.date_of_birth, width: 4, filter: 'age' },
-  { appliesToType:'person',  label:'Cell number', value:contact.telephone, width: 4, filter: 'phone' },
+  { appliesToType:'person',  label:'Phone', value:contact.phone, width: 4, filter: 'phone' },
   { appliesToType:'person',  label:'contact.parent', value:lineage, filter: 'lineage' },
   { appliesToType:'!person', appliesIf:function() { return contact.parent && lineage[0]; }, label:'contact.parent', value:lineage, filter:'lineage' },
 ];
