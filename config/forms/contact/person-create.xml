@@ -4,7 +4,7 @@
     <h:title>New Person</h:title>
     <model>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-08-02_13-59">
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-15_23-49">
           <inputs>
             <meta>
               <location>
@@ -28,7 +28,7 @@
             <aka/>
             <docket/>
             <address/>
-            <telephone/>
+            <phone/>
             <type1/>
             <cell/>
             <date_of_birth/>
@@ -69,10 +69,10 @@
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
       <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/telephone" type="tel" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
+      <bind nodeset="/data/person/phone" type="tel" constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" constraint=". &lt;= today()"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/stat" type="select1"/>
@@ -142,7 +142,7 @@
       <input ref="/data/person/address">
         <label>Current Address</label>
       </input>
-      <input ref="/data/person/telephone">
+      <input ref="/data/person/phone">
         <label>Cell number</label>
       </input>
       <select1 ref="/data/person/type1">

@@ -101,6 +101,12 @@
           <text id="/data/person/name:label">
             <value>First Name</value>
           </text>
+          <text id="/data/person/phone:jr:constraintMsg">
+            <value>-</value>
+          </text>
+          <text id="/data/person/phone:label">
+            <value>Cell number</value>
+          </text>
           <text id="/data/person/stat/common:label">
             <value>Common-Law</value>
           </text>
@@ -121,12 +127,6 @@
           </text>
           <text id="/data/person/stat:label">
             <value>Marital Status</value>
-          </text>
-          <text id="/data/person/telephone:jr:constraintMsg">
-            <value>-</value>
-          </text>
-          <text id="/data/person/telephone:label">
-            <value>Cell number</value>
           </text>
           <text id="/data/person/type1/banger:label">
             <value>Banger Phone</value>
@@ -268,6 +268,12 @@
           <text id="/data/person/name:label">
             <value>-</value>
           </text>
+          <text id="/data/person/phone:jr:constraintMsg">
+            <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
+          </text>
+          <text id="/data/person/phone:label">
+            <value>-</value>
+          </text>
           <text id="/data/person/stat/common:label">
             <value>-</value>
           </text>
@@ -289,12 +295,6 @@
           <text id="/data/person/stat:label">
             <value>-</value>
           </text>
-          <text id="/data/person/telephone:jr:constraintMsg">
-            <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
-          </text>
-          <text id="/data/person/telephone:label">
-            <value>-</value>
-          </text>
           <text id="/data/person/type1/banger:label">
             <value>-</value>
           </text>
@@ -313,7 +313,7 @@
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-08-02_04-00">
+        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-09-15_13-51">
           <inputs>
             <meta>
               <location>
@@ -338,7 +338,7 @@
             <aka/>
             <docket/>
             <address/>
-            <telephone/>
+            <phone/>
             <type1/>
             <cell/>
             <date_of_birth/>
@@ -395,10 +395,10 @@
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
       <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/telephone" type="tel" constraint="true()" jr:constraintMsg="jr:itext('/data/person/telephone:jr:constraintMsg')"/>
+      <bind nodeset="/data/person/phone" type="tel" jr:constraintMsg="jr:itext('/data/person/phone:jr:constraintMsg')" constraint="true()"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/stat" type="select1"/>
@@ -487,8 +487,8 @@
       <input ref="/data/person/address">
         <label ref="jr:itext('/data/person/address:label')"/>
       </input>
-      <input ref="/data/person/telephone">
-        <label ref="jr:itext('/data/person/telephone:label')"/>
+      <input ref="/data/person/phone">
+        <label ref="jr:itext('/data/person/phone:label')"/>
       </input>
       <select1 ref="/data/person/type1">
         <label ref="jr:itext('/data/person/type1:label')"/>
