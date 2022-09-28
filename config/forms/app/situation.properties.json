@@ -1,0 +1,9 @@
+{
+    "title": "How the patient is feeling",
+    "icon": "assessment",
+    "context": {
+          "person": true,
+          "place": false,
+          "expression": "contact.type === 'person'"
+      }
+  }
