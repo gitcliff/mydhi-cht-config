@@ -4134,10 +4134,10 @@
     "update_scheduled_reports": false,
     "multi_report_alerts": false,
     "update_sent_forms": false,
-    "generate_patient_id_on_people": true,
     "death_reporting": true,
     "resolve_pending": false,
-    "mark_for_outbound": true
+    "mark_for_outbound": true,
+    "generate_shortcode_on_contacts": true
   },
   "outbound": {
     "patient triggers enroll workflow in Textit": {
@@ -4168,6 +4168,17 @@
     "date_field": "fields.date_of_death"
   },
   "forms": {
+    "VB": {
+      "meta": {
+        "code": "VB"
+      },
+      "fields": {
+        "situation": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
     "DR": {
       "meta": {
         "code": "DR",
