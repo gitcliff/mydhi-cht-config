@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>How the patient is feeling</h:title>
+    <model>
+      <itext>
+        <translation lang="en">
+          <text id="/situation/inputs/contact/_id:label">
+            <value>What is the patient's name?</value>
+          </text>
+          <text id="/situation/patient_id:label">
+            <value>Patient ID</value>
+          </text>
+          <text id="/situation/patient_name:label">
+            <value>Patient Name</value>
+          </text>
+          <text id="/situation/situation/bad:label">
+            <value>The patient is feeling very bad</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <situation id="situation" prefix="J1!situation!" delimiter="#" version="2022-09-28_20-24">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <situation>
+            <bad/>
+          </situation>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </situation>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/situation/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/situation/inputs/source" type="string"/>
+      <bind nodeset="/situation/inputs/source_id" type="string"/>
+      <bind nodeset="/situation/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/situation/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/situation/inputs/contact/name" type="string"/>
+      <bind nodeset="/situation/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/situation/inputs/contact/sex" type="string"/>
+      <bind nodeset="/situation/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/situation/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/situation/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/situation/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/situation/situation/bad" readonly="true()" type="string"/>
+      <bind nodeset="/situation/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/situation/inputs">
+      <group ref="/situation/inputs/contact">
+        <input appearance="db-object" ref="/situation/inputs/contact/_id">
+          <label ref="jr:itext('/situation/inputs/contact/_id:label')"/>
+        </input>
+        <input appearance="hidden" ref="/situation/inputs/contact/patient_id"/>
+        <input appearance="hidden" ref="/situation/inputs/contact/name"/>
+        <input appearance="hidden" ref="/situation/inputs/contact/date_of_birth"/>
+        <input appearance="hidden" ref="/situation/inputs/contact/sex"/>
+        <group ref="/situation/inputs/contact/parent">
+          <group ref="/situation/inputs/contact/parent/contact">
+            <input appearance="hidden" ref="/situation/inputs/contact/parent/contact/phone"/>
+            <input appearance="hidden" ref="/situation/inputs/contact/parent/contact/name"/>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/situation/situation">
+      <input ref="/situation/situation/bad">
+        <label ref="jr:itext('/situation/situation/bad:label')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>
