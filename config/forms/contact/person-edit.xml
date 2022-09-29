@@ -68,15 +68,6 @@
           <text id="/data/person/at:label">
             <value>Sex at birth</value>
           </text>
-          <text id="/data/person/cell/no:label">
-            <value>No</value>
-          </text>
-          <text id="/data/person/cell/yes:label">
-            <value>Yes</value>
-          </text>
-          <text id="/data/person/cell:label">
-            <value>Is it okay to leave a message on your cell phone?</value>
-          </text>
           <text id="/data/person/date_of_birth:jr:constraintMsg">
             <value>Date of birth cannot be in the future</value>
           </text>
@@ -100,6 +91,15 @@
           </text>
           <text id="/data/person/name:label">
             <value>First Name</value>
+          </text>
+          <text id="/data/person/network1/digicel:label">
+            <value>Digicel</value>
+          </text>
+          <text id="/data/person/network1/flow:label">
+            <value>Flow</value>
+          </text>
+          <text id="/data/person/network1:label">
+            <value>Which network do you use?</value>
           </text>
           <text id="/data/person/phone:jr:constraintMsg">
             <value>-</value>
@@ -127,6 +127,9 @@
           </text>
           <text id="/data/person/stat:label">
             <value>Marital Status</value>
+          </text>
+          <text id="/data/person/tsis:label">
+            <value>TSIS number</value>
           </text>
           <text id="/data/person/type1/banger:label">
             <value>Banger Phone</value>
@@ -223,15 +226,6 @@
           <text id="/data/person/at:label">
             <value>-</value>
           </text>
-          <text id="/data/person/cell/no:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/cell/yes:label">
-            <value>-</value>
-          </text>
-          <text id="/data/person/cell:label">
-            <value>-</value>
-          </text>
           <text id="/data/person/date_of_birth:jr:constraintMsg">
             <value>-</value>
           </text>
@@ -268,6 +262,15 @@
           <text id="/data/person/name:label">
             <value>-</value>
           </text>
+          <text id="/data/person/network1/digicel:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/network1/flow:label">
+            <value>-</value>
+          </text>
+          <text id="/data/person/network1:label">
+            <value>-</value>
+          </text>
           <text id="/data/person/phone:jr:constraintMsg">
             <value>Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678</value>
           </text>
@@ -295,6 +298,9 @@
           <text id="/data/person/stat:label">
             <value>-</value>
           </text>
+          <text id="/data/person/tsis:label">
+            <value>-</value>
+          </text>
           <text id="/data/person/type1/banger:label">
             <value>-</value>
           </text>
@@ -313,7 +319,7 @@
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-09-15_13-51">
+        <data id="contact:person:edit" prefix="J1!contact:person:edit!" delimiter="#" version="2022-09-29_01-30">
           <inputs>
             <meta>
               <location>
@@ -337,10 +343,11 @@
             <name1/>
             <aka/>
             <docket/>
+            <tsis/>
             <address/>
             <phone/>
             <type1/>
-            <cell/>
+            <network1/>
             <date_of_birth/>
             <at/>
             <genda/>
@@ -383,22 +390,23 @@
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/note_place" readonly="true()" type="string"/>
       <bind nodeset="/data/init/change_parent" type="select1" required="true()"/>
-      <bind nodeset="/data/init/edited_place_type" type="select1" required="true()" relevant="selected( /data/init/change_parent , 'true')"/>
-      <bind nodeset="/data/init/id_district_hospital" type="db:district_hospital" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'district_hospital')"/>
-      <bind nodeset="/data/init/id_health_center" type="db:health_center" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'health_center')"/>
-      <bind nodeset="/data/init/id_clinic" type="db:clinic" required="true()" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'clinic')"/>
+      <bind nodeset="/data/init/edited_place_type" type="select1" relevant="selected( /data/init/change_parent , 'true')" required="true()"/>
+      <bind nodeset="/data/init/id_district_hospital" type="db:district_hospital" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'district_hospital')" required="true()"/>
+      <bind nodeset="/data/init/id_health_center" type="db:health_center" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'health_center')" required="true()"/>
+      <bind nodeset="/data/init/id_clinic" type="db:clinic" relevant="selected( /data/init/change_parent , 'true') and selected( /data/init/edited_place_type , 'clinic')" required="true()"/>
       <bind nodeset="/data/person/parent" type="string" calculate="coalesce(coalesce(coalesce( /data/init/id_district_hospital ,  /data/init/id_health_center ),  /data/init/id_clinic ), /data/person/parent )"/>
       <bind nodeset="/data/person/_id" type="string" readonly="true()"/>
       <bind nodeset="/data/person/type" type="string" readonly="true()"/>
       <bind nodeset="/data/person/name" type="string" required="true()"/>
       <bind nodeset="/data/person/name1" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/docket" type="int" required="true()"/>
+      <bind nodeset="/data/person/tsis" type="int"/>
       <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/phone" type="tel" jr:constraintMsg="jr:itext('/data/person/phone:jr:constraintMsg')" constraint="true()"/>
+      <bind nodeset="/data/person/phone" type="tel" constraint="true()" required="true()" jr:constraintMsg="jr:itext('/data/person/phone:jr:constraintMsg')"/>
       <bind nodeset="/data/person/type1" type="select1"/>
-      <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')" constraint=". &lt;= today()"/>
+      <bind nodeset="/data/person/network1" type="select1"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="jr:itext('/data/person/date_of_birth:jr:constraintMsg')"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/stat" type="select1"/>
@@ -484,6 +492,9 @@
       <input ref="/data/person/docket">
         <label ref="jr:itext('/data/person/docket:label')"/>
       </input>
+      <input ref="/data/person/tsis">
+        <label ref="jr:itext('/data/person/tsis:label')"/>
+      </input>
       <input ref="/data/person/address">
         <label ref="jr:itext('/data/person/address:label')"/>
       </input>
@@ -501,15 +512,15 @@
           <value>smart</value>
         </item>
       </select1>
-      <select1 ref="/data/person/cell">
-        <label ref="jr:itext('/data/person/cell:label')"/>
+      <select1 ref="/data/person/network1">
+        <label ref="jr:itext('/data/person/network1:label')"/>
         <item>
-          <label ref="jr:itext('/data/person/cell/yes:label')"/>
-          <value>yes</value>
+          <label ref="jr:itext('/data/person/network1/digicel:label')"/>
+          <value>digicel</value>
         </item>
         <item>
-          <label ref="jr:itext('/data/person/cell/no:label')"/>
-          <value>no</value>
+          <label ref="jr:itext('/data/person/network1/flow:label')"/>
+          <value>flow</value>
         </item>
       </select1>
       <input ref="/data/person/date_of_birth">

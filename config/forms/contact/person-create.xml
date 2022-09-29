@@ -3,8 +3,15 @@
   <h:head>
     <h:title>New Person</h:title>
     <model>
+      <itext>
+        <translation lang="en">
+          <text id="/data/person/phone:hint">
+            <value>Must be in the format +1 (876) xxx-xxx</value>
+          </text>
+        </translation>
+      </itext>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-15_23-49">
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-29_11-31">
           <inputs>
             <meta>
               <location>
@@ -27,14 +34,14 @@
             <name1/>
             <aka/>
             <docket/>
+            <tsis/>
             <address/>
             <phone/>
             <type1/>
-            <cell/>
+            <network1/>
             <date_of_birth/>
             <at/>
             <genda/>
-            <stat/>
             <meta tag="hidden">
               <created_by/>
               <created_by_person_uuid/>
@@ -57,7 +64,7 @@
       <bind nodeset="/data/inputs/user/contact_id" type="string"/>
       <bind nodeset="/data/inputs/user/facility_id" type="string"/>
       <bind nodeset="/data/inputs/user/name" type="string"/>
-      <bind nodeset="/data/init/parent_id" type="string" readonly="true()" calculate=" /data/person/parent "/>
+      <bind nodeset="/data/init/parent_id" type="string" calculate=" /data/person/parent " readonly="true()"/>
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/type" type="string"/>
       <bind nodeset="/data/init/type_selector" type="select1" calculate="../type"/>
@@ -67,15 +74,15 @@
       <bind nodeset="/data/person/name" type="string" required="true()"/>
       <bind nodeset="/data/person/name1" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/docket" type="int" required="true()"/>
+      <bind nodeset="/data/person/tsis" type="int"/>
       <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/phone" type="tel" constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678"/>
+      <bind nodeset="/data/person/phone" type="tel" required="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
       <bind nodeset="/data/person/type1" type="select1"/>
-      <bind nodeset="/data/person/cell" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future"/>
+      <bind nodeset="/data/person/network1" type="select1"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" constraint=". &lt;= today()"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
-      <bind nodeset="/data/person/stat" type="select1"/>
       <bind nodeset="/data/person/meta/created_by" type="string" calculate="../../../inputs/user/name"/>
       <bind nodeset="/data/person/meta/created_by_person_uuid" type="string" calculate="../../../inputs/user/contact_id"/>
       <bind nodeset="/data/person/meta/created_by_place_uuid" type="string" calculate="../../../inputs/user/facility_id"/>
@@ -139,11 +146,15 @@
       <input ref="/data/person/docket">
         <label>Docket Number</label>
       </input>
+      <input ref="/data/person/tsis">
+        <label>TSIS number</label>
+      </input>
       <input ref="/data/person/address">
         <label>Current Address</label>
       </input>
       <input ref="/data/person/phone">
         <label>Cell number</label>
+        <hint ref="jr:itext('/data/person/phone:hint')"/>
       </input>
       <select1 ref="/data/person/type1">
         <label>Type of phone</label>
@@ -156,15 +167,15 @@
           <value>smart</value>
         </item>
       </select1>
-      <select1 ref="/data/person/cell">
-        <label>Is it okay to leave a message on your cell phone?</label>
+      <select1 ref="/data/person/network1">
+        <label>Which network do you use?</label>
         <item>
-          <label>Yes</label>
-          <value>yes</value>
+          <label>Digicel</label>
+          <value>digicel</value>
         </item>
         <item>
-          <label>No</label>
-          <value>no</value>
+          <label>Flow</label>
+          <value>flow</value>
         </item>
       </select1>
       <input ref="/data/person/date_of_birth">
@@ -194,33 +205,6 @@
         <item>
           <label>Female</label>
           <value>gender_female</value>
-        </item>
-      </select1>
-      <select1 ref="/data/person/stat">
-        <label>Marital Status</label>
-        <item>
-          <label>Single</label>
-          <value>single</value>
-        </item>
-        <item>
-          <label>Married</label>
-          <value>married</value>
-        </item>
-        <item>
-          <label>Separated</label>
-          <value>separated</value>
-        </item>
-        <item>
-          <label>Divorced</label>
-          <value>divorced</value>
-        </item>
-        <item>
-          <label>Widowed</label>
-          <value>widowed</value>
-        </item>
-        <item>
-          <label>Common-Law</label>
-          <value>common</value>
         </item>
       </select1>
       <group appearance="multiline" ref="/data/person/meta">
