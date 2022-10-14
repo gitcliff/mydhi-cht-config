@@ -6,12 +6,12 @@
       <itext>
         <translation lang="en">
           <text id="/data/person/phone:hint">
-            <value>Must be in the format +1 (876) xxx-xxx</value>
+            <value>Must be in the format +1 (876) xxx-xxxx</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-29_11-31">
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-29_16-59">
           <inputs>
             <meta>
               <location>
@@ -77,10 +77,10 @@
       <bind nodeset="/data/person/docket" type="int" required="true()"/>
       <bind nodeset="/data/person/tsis" type="int"/>
       <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/phone" type="tel" required="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" constraint="true()"/>
+      <bind nodeset="/data/person/phone" type="tel" required="true()" constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/network1" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" constraint=". &lt;= today()"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind nodeset="/data/person/meta/created_by" type="string" calculate="../../../inputs/user/name"/>

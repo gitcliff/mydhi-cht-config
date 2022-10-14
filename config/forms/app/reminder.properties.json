@@ -1,5 +1,5 @@
 {
-    "title": "Set a Task Reminder",
+    "title": "Task Reminder",
     "icon": "assessment",
     "context": {
           "person": false,
