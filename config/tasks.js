@@ -21,6 +21,56 @@ const {
 
 module.exports = [
   {
+    name: 'reminder-follow-up-task',
+    title: 'Task Reminder Task',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['create'],
+    actions: [{ form: 'reminder', 
+    modifyContent: function (content, contact, report) {
+      content.my_field_title = getField(report, 'create.title');
+      content['inputs'] = {
+
+         my_field_note: getField(report, 'create.notes'),
+         my_field_when: getField(report, 'create.reminder'),
+        };
+      }
+   }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is a reminder received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'reminder',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
+    name: 'very_bad',
+    title: 'Patient is feeling bad',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['lab'],
+    appliesIf: function(c, r){
+      return r.fields.appoint.this === 'snooze2';
+    },
+    actions: [{ form: 'situation', }],
+    events: [{
+      start: 1,
+      days: 1,
+      end: 1,
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is cd4 lab appointment received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'situation',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
     name: 'schedule-cd4-task2',
     title: 'Schedule CD4 Task',
     icon: 'assessment',
