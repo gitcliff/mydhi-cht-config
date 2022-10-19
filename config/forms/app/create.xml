@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Create a task</h:title>
     <model>
       <instance>
-        <create id="create" prefix="J1!create!" delimiter="#" version="2022-08-02_15-12">
+        <create delimiter="#" id="create" prefix="J1!create!" version="2022-10-19_09-51">
           <inputs>
             <meta>
               <location>
@@ -34,8 +34,8 @@
           <patient_name/>
           <create>
             <title/>
-            <reminder/>
             <notes/>
+            <reminder/>
           </create>
           <meta tag="hidden">
             <instanceID/>
@@ -53,12 +53,12 @@
       <bind nodeset="/create/inputs/contact/sex" type="string"/>
       <bind nodeset="/create/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/create/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/create/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/create/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/create/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/create/patient_name" type="string"/>
       <bind nodeset="/create/create/title" type="string"/>
-      <bind nodeset="/create/create/reminder" type="date"/>
       <bind nodeset="/create/create/notes" type="string"/>
-      <bind nodeset="/create/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/create/create/reminder" type="date"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/create/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
@@ -98,13 +98,13 @@
     <group appearance="field-list" ref="/create/create">
       <label></label>
       <input ref="/create/create/title">
-        <label>What is the title of the task?</label>
-      </input>
-      <input ref="/create/create/reminder">
-        <label>When should a reminder appear in the task tab?</label>
+        <label>Task Name</label>
       </input>
       <input ref="/create/create/notes">
         <label>Notes about this task:</label>
+      </input>
+      <input ref="/create/create/reminder">
+        <label>When should a reminder appear in your tasks?</label>
       </input>
     </group>
   </h:body>
