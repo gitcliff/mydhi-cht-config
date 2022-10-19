@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Task Reminder</h:title>
+    <h:title>Task  Follow-up</h:title>
     <model>
       <instance>
-        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-10-17_18-51">
+        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-10-19_09-12">
           <inputs>
             <meta>
               <location>
@@ -40,8 +40,10 @@
             <format/>
             <when/>
             <notes/>
+            <member/>
             <dt/>
             <tm/>
+            <follow_up/>
           </reminder>
           <meta tag="hidden">
             <instanceID/>
@@ -68,8 +70,10 @@
       <bind calculate="format-date( /reminder/inputs/my_field_when ,'%d/%b/%Y')" nodeset="/reminder/reminder/format" type="string"/>
       <bind nodeset="/reminder/reminder/when" readonly="true()" type="string"/>
       <bind nodeset="/reminder/reminder/notes" readonly="true()" type="string"/>
+      <bind nodeset="/reminder/reminder/member" type="string"/>
       <bind calculate="today()" nodeset="/reminder/reminder/dt" readonly="true()" type="date"/>
       <bind nodeset="/reminder/reminder/tm" type="select1"/>
+      <bind nodeset="/reminder/reminder/follow_up" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/reminder/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -118,6 +122,9 @@
       <input ref="/reminder/reminder/notes">
         <label>Notes about this task: <output value=" /reminder/inputs/my_field_note "/></label>
       </input>
+      <input appearance="select-contact type-person" ref="/reminder/reminder/member">
+        <label>Would you like to assign this task to another Psychosocial Team Member?</label>
+      </input>
       <input ref="/reminder/reminder/dt">
         <label>Date Task Appears</label>
       </input>
@@ -128,6 +135,9 @@
           <value>comp</value>
         </item>
       </select1>
+      <input ref="/reminder/reminder/follow_up">
+        <label>Follow-up Notes</label>
+      </input>
     </group>
   </h:body>
 </h:html>
