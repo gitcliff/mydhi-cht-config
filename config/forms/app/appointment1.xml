@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Schedule Appointment</h:title>
     <model>
       <itext>
         <translation lang="en">
           <text id="/appointment1/appoint/image1:label">
-            <value>Image</value>
             <value form="image">jr://images/image.png</value>
+            <value>Image</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-08-11_08-45">
+        <appointment1 delimiter="#" id="appointment" prefix="J1!appointment!" version="2022-10-19_11-28">
           <inputs>
             <meta>
               <location>
@@ -65,16 +65,16 @@
       <bind nodeset="/appointment1/inputs/contact/sex" type="string"/>
       <bind nodeset="/appointment1/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/appointment1/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/appointment1/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/appointment1/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/appointment1/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/appointment1/patient_name" type="string"/>
       <bind nodeset="/appointment1/appoint/type_appoint" type="select1"/>
       <bind nodeset="/appointment1/appoint/welcome" type="string"/>
-      <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'"/>
-      <bind nodeset="/appointment1/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
+      <bind nodeset="/appointment1/appoint/lab_test" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="select1"/>
+      <bind nodeset="/appointment1/appoint/lab_test_other" relevant="selected(../lab_test, 'other')" type="string"/>
       <bind nodeset="/appointment1/appoint/date_appoint" type="date"/>
-      <bind nodeset="/appointment1/appoint/image1" readonly="true()" type="string" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'"/>
-      <bind nodeset="/appointment1/appoint/date_appoint1" type="date"/>
-      <bind nodeset="/appointment1/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/appointment1/appoint/image1" readonly="true()" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="string"/>
+      <bind nodeset="/appointment1/appoint/date_appoint1" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="date"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/appointment1/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
@@ -132,20 +132,20 @@
           <value>blood draw appointment</value>
         </item>
         <item>
-          <label>Internal Referral</label>
-          <value>internal referral</value>
-        </item>
-        <item>
-          <label>External Referral</label>
-          <value>external referral</value>
-        </item>
-        <item>
           <label>Psychologist Appointment</label>
           <value>psychologist appointment</value>
         </item>
         <item>
           <label>Adherence Counselor Appointment</label>
           <value>adherence counselor appointment</value>
+        </item>
+        <item>
+          <label>Internal Referral</label>
+          <value>internal referral</value>
+        </item>
+        <item>
+          <label>External Referral</label>
+          <value>external referral</value>
         </item>
       </select1>
       <input appearance="h1 blue" ref="/appointment1/appoint/welcome">
