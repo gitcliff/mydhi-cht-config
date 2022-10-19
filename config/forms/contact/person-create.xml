@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>New Person</h:title>
     <model>
       <itext>
         <translation lang="en">
           <text id="/data/person/phone:hint">
-            <value>Must be in the format +1 (876) xxx-xxxx</value>
+            <value>Must be in the format +1 (876) xxx-xxx</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2022-09-29_16-59">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2022-10-19_10-31">
           <inputs>
             <meta>
               <location>
@@ -36,6 +36,7 @@
             <docket/>
             <tsis/>
             <address/>
+            <address1/>
             <phone/>
             <type1/>
             <network1/>
@@ -64,29 +65,30 @@
       <bind nodeset="/data/inputs/user/contact_id" type="string"/>
       <bind nodeset="/data/inputs/user/facility_id" type="string"/>
       <bind nodeset="/data/inputs/user/name" type="string"/>
-      <bind nodeset="/data/init/parent_id" type="string" calculate=" /data/person/parent " readonly="true()"/>
+      <bind calculate=" /data/person/parent " nodeset="/data/init/parent_id" readonly="true()" type="string"/>
       <bind nodeset="/data/init/name" type="string"/>
       <bind nodeset="/data/init/type" type="string"/>
-      <bind nodeset="/data/init/type_selector" type="select1" calculate="../type"/>
-      <bind nodeset="/data/init/type_label" type="string" calculate="jr:choice-name( /data/init/type_selector ,' /data/init/type_selector ')"/>
+      <bind calculate="../type" nodeset="/data/init/type_selector" type="select1"/>
+      <bind calculate="jr:choice-name( /data/init/type_selector ,' /data/init/type_selector ')" nodeset="/data/init/type_label" type="string"/>
       <bind nodeset="/data/person/parent" type="string"/>
       <bind nodeset="/data/person/type" type="string"/>
-      <bind nodeset="/data/person/name" type="string" required="true()"/>
-      <bind nodeset="/data/person/name1" type="string"/>
+      <bind nodeset="/data/person/name" required="true()" type="string"/>
+      <bind nodeset="/data/person/name1" required="true()" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" type="int" required="true()"/>
+      <bind nodeset="/data/person/docket" required="true()" type="int"/>
       <bind nodeset="/data/person/tsis" type="int"/>
-      <bind nodeset="/data/person/address" type="string"/>
-      <bind nodeset="/data/person/phone" type="tel" required="true()" constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678"/>
+      <bind nodeset="/data/person/address" required="true()" type="string"/>
+      <bind nodeset="/data/person/address1" type="string"/>
+      <bind constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" nodeset="/data/person/phone" required="true()" type="tel"/>
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/network1" type="select1"/>
-      <bind nodeset="/data/person/date_of_birth" type="date" constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future"/>
+      <bind constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future" nodeset="/data/person/date_of_birth" required="true()" type="date"/>
       <bind nodeset="/data/person/at" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
-      <bind nodeset="/data/person/meta/created_by" type="string" calculate="../../../inputs/user/name"/>
-      <bind nodeset="/data/person/meta/created_by_person_uuid" type="string" calculate="../../../inputs/user/contact_id"/>
-      <bind nodeset="/data/person/meta/created_by_place_uuid" type="string" calculate="../../../inputs/user/facility_id"/>
-      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="../../../inputs/user/name" nodeset="/data/person/meta/created_by" type="string"/>
+      <bind calculate="../../../inputs/user/contact_id" nodeset="/data/person/meta/created_by_person_uuid" type="string"/>
+      <bind calculate="../../../inputs/user/facility_id" nodeset="/data/person/meta/created_by_place_uuid" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body>
@@ -152,12 +154,15 @@
       <input ref="/data/person/address">
         <label>Current Address</label>
       </input>
+      <input ref="/data/person/address1">
+        <label>Previous Address</label>
+      </input>
       <input ref="/data/person/phone">
-        <label>Cell number</label>
+        <label>Current Cell number</label>
         <hint ref="jr:itext('/data/person/phone:hint')"/>
       </input>
       <select1 ref="/data/person/type1">
-        <label>Type of phone</label>
+        <label>Type of current phone</label>
         <item>
           <label>Banger Phone</label>
           <value>banger</value>
@@ -168,7 +173,7 @@
         </item>
       </select1>
       <select1 ref="/data/person/network1">
-        <label>Which network do you use?</label>
+        <label>Which network do you currently use?</label>
         <item>
           <label>Digicel</label>
           <value>digicel</value>
@@ -176,6 +181,10 @@
         <item>
           <label>Flow</label>
           <value>flow</value>
+        </item>
+        <item>
+          <label>Both</label>
+          <value>both</value>
         </item>
       </select1>
       <input ref="/data/person/date_of_birth">
