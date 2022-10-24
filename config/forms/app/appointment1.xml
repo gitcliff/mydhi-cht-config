@@ -12,7 +12,7 @@
         </translation>
       </itext>
       <instance>
-        <appointment1 delimiter="#" id="appointment" prefix="J1!appointment!" version="2022-10-19_11-28">
+        <appointment1 delimiter="#" id="appointment1" prefix="J1!appointment1!" version="2022-10-24_11-03">
           <inputs>
             <meta>
               <location>
@@ -71,9 +71,9 @@
       <bind nodeset="/appointment1/appoint/welcome" type="string"/>
       <bind nodeset="/appointment1/appoint/lab_test" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="select1"/>
       <bind nodeset="/appointment1/appoint/lab_test_other" relevant="selected(../lab_test, 'other')" type="string"/>
-      <bind nodeset="/appointment1/appoint/date_appoint" type="date"/>
+      <bind nodeset="/appointment1/appoint/date_appoint" relevant=" /appointment1/appoint/type_appoint  != 'blood draw appointment'" type="date"/>
       <bind nodeset="/appointment1/appoint/image1" readonly="true()" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="string"/>
-      <bind nodeset="/appointment1/appoint/date_appoint1" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'" type="date"/>
+      <bind nodeset="/appointment1/appoint/date_appoint1" type="date"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/appointment1/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -132,20 +132,20 @@
           <value>blood draw appointment</value>
         </item>
         <item>
-          <label>Psychologist Appointment</label>
-          <value>psychologist appointment</value>
-        </item>
-        <item>
-          <label>Adherence Counselor Appointment</label>
-          <value>adherence counselor appointment</value>
-        </item>
-        <item>
           <label>Internal Referral</label>
           <value>internal referral</value>
         </item>
         <item>
           <label>External Referral</label>
           <value>external referral</value>
+        </item>
+        <item>
+          <label>Psychologist Appointment</label>
+          <value>psychologist appointment</value>
+        </item>
+        <item>
+          <label>Adherence Counselor Appointment</label>
+          <value>adherence counselor appointment</value>
         </item>
       </select1>
       <input appearance="h1 blue" ref="/appointment1/appoint/welcome">
