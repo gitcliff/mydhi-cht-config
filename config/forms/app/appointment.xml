@@ -12,7 +12,7 @@
         </translation>
       </itext>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2022-10-19_11-28">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2022-10-24_14-02">
           <inputs>
             <meta>
               <location>
@@ -71,7 +71,7 @@
       <bind nodeset="/appointment/appoint/welcome" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="select1"/>
       <bind nodeset="/appointment/appoint/lab_test_other" relevant="selected(../lab_test, 'other')" type="string"/>
-      <bind nodeset="/appointment/appoint/date_appoint" type="date"/>
+      <bind nodeset="/appointment/appoint/date_appoint" relevant=" /appointment/appoint/type_appoint  != 'blood draw appointment'" type="date"/>
       <bind nodeset="/appointment/appoint/image1" readonly="true()" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="string"/>
       <bind nodeset="/appointment/appoint/date_appoint1" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="date"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/appointment/meta/instanceID" readonly="true()" type="string"/>
