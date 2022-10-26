@@ -4,7 +4,7 @@
     <h:title>Task  Follow-up</h:title>
     <model>
       <instance>
-        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-10-25_12-39">
+        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-10-26_19-27">
           <inputs>
             <meta>
               <location>
@@ -35,6 +35,8 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <titt_task/>
+          <titt_note/>
           <reminder>
             <title/>
             <format/>
@@ -65,6 +67,8 @@
       <bind nodeset="/reminder/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/reminder/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/reminder/patient_name" type="string"/>
+      <bind calculate="../inputs/my_field_title" nodeset="/reminder/titt_task" type="string"/>
+      <bind calculate="../inputs/my_field_note" nodeset="/reminder/titt_note" type="string"/>
       <bind nodeset="/reminder/reminder/title" readonly="true()" type="string"/>
       <bind calculate="format-date( /reminder/inputs/my_field_when ,'%d/%b/%Y')" nodeset="/reminder/reminder/format" type="string"/>
       <bind nodeset="/reminder/reminder/when" readonly="true()" type="string"/>
@@ -112,13 +116,13 @@
     <group appearance="field-list" ref="/reminder/reminder">
       <label></label>
       <input ref="/reminder/reminder/title">
-        <label>**What is the title of the task?**: <output value=" /reminder/inputs/my_field_title "/></label>
+        <label>**What is the title of the task?**: <output value=" /reminder/titt_task "/></label>
       </input>
       <input ref="/reminder/reminder/when">
         <label>**When should a reminder for this task appear?** <output value=" /reminder/reminder/format "/></label>
       </input>
       <input ref="/reminder/reminder/notes">
-        <label>**Notes about this task:** <output value=" /reminder/inputs/my_field_note "/></label>
+        <label>**Notes about this task:** <output value=" /reminder/titt_note "/></label>
       </input>
       <input ref="/reminder/reminder/dt">
         <label>Date Task Appears</label>
