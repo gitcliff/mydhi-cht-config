@@ -4125,7 +4125,7 @@
   },
   "_version": "2.9.0-alpha.4373",
   "transitions": {
-    "default_responses": true,
+    "default_responses": false,
     "update_clinics": true,
     "accept_patient_reports": true,
     "conditional_alerts": true,
