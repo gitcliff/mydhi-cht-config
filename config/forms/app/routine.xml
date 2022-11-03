@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Start Routine Visit</h:title>
+    <h:title>Routine Visit</h:title>
     <model>
       <instance>
-        <routine id="routine" prefix="J1!routine!" delimiter="#" version="2022-08-02_17-50">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2022-11-03_09-23">
           <inputs>
             <meta>
               <location>
@@ -58,8 +58,8 @@
       <bind nodeset="/routine/inputs/contact/sex" type="string"/>
       <bind nodeset="/routine/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/routine/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/routine/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/routine/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/routine/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/routine/patient_name" type="string"/>
       <bind nodeset="/routine/routine/client" type="string"/>
       <bind nodeset="/routine/routine/reminder" type="date"/>
       <bind nodeset="/routine/routine/notes" type="string"/>
@@ -68,7 +68,7 @@
       <bind nodeset="/routine/routine/client_status" type="select1"/>
       <bind nodeset="/routine/routine/recent" type="select1"/>
       <bind nodeset="/routine/routine/visit_notes" type="string"/>
-      <bind nodeset="/routine/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/routine/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
