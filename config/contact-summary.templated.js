@@ -30,6 +30,7 @@ const {
   countReportsSubmittedInWindow,
   getMostRecentReport,
   getTreatmentEnrollmentDate,
+  getField,
   pregnancyForms,
   antenatalForms,
   postnatalForms,
@@ -62,6 +63,27 @@ var fields = [
 ];
 
 var cards = [
+  {
+    label:'Patient_info',
+    appliesToType:'report',
+    appliesIf: function(r){
+      return r.form === 'contact:person:create' && contact.type === 'person';
+    },
+    fields: [
+      {
+        label: 'contact.profile.edd',
+        value: function(report) { return report.name; },
+        width: 6
+      },
+
+    ],
+    modifyContext: function(ctx, report) {
+      let fst_name = getField(report, 'name');
+      ctx.fstname = fst_name;
+
+
+    },
+  },
   {
     label: 'task.risk.status',
     appliesToType: 'report',
