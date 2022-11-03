@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Level of care Assessment</h:title>
     <model>
       <instance>
-        <care id="care" prefix="J1!care!" delimiter="#" version="1">
+        <care delimiter="#" id="care" prefix="J1!care!" version="1">
           <inputs>
             <meta>
               <location>
@@ -61,15 +61,15 @@
       <bind nodeset="/care/inputs" relevant="./source = 'user'"/>
       <bind nodeset="/care/inputs/source" type="string"/>
       <bind nodeset="/care/inputs/source_id" type="string"/>
-      <bind nodeset="/care/inputs/contact/_id" type="db:person" required="true()"/>
+      <bind nodeset="/care/inputs/contact/_id" required="true()" type="db:person"/>
       <bind nodeset="/care/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/care/inputs/contact/name" type="string"/>
       <bind nodeset="/care/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/care/inputs/contact/sex" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/care/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/care/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/care/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/care/patient_name" type="string"/>
       <bind nodeset="/care/care/medical" type="select1"/>
       <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
@@ -84,11 +84,11 @@
       <bind nodeset="/care/care/practical" type="select1"/>
       <bind nodeset="/care/care/activities" type="select1"/>
       <bind nodeset="/care/care/dental" type="select1"/>
-      <bind nodeset="/care/care/score" type="string" calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
+      <bind calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
  if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 3, 0) + if(selected( /care/care/knowledge , 'none'), 4, 0) + 
  if(selected( /care/care/adherence , 'always'), 1, 0) + if(selected( /care/care/adherence , 'usually'), 2, 0) + if(selected( /care/care/adherence , 'rarely'), 3, 0) + if(selected( /care/care/adherence , 'never'), 4, 0) + 
  if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 3, 0) + if(selected( /care/care/mental , 'serious'), 4, 0) + 
- if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'tr'), 4, 0) + 
+ if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'transportation_none'), 4, 0) + 
  
  if(selected( /care/care/financial , 'financial_stable'), 1, 0) + if(selected( /care/care/financial , 'financial_adequate'), 2, 0) + if(selected( /care/care/financial , 'financial_inadequate'), 3, 0) + if(selected( /care/care/financial , 'financial_none'), 4, 0) + 
  if(selected( /care/care/legal , 'none'), 1, 0) + if(selected( /care/care/legal , 'needs_help'), 2, 0) + if(selected( /care/care/legal , 'some_asst'), 3, 0) + if(selected( /care/care/legal , 'full_asst'), 4, 0) + 
@@ -96,14 +96,14 @@
  if(selected( /care/care/activities , 'activities_regular'), 1, 0) + if(selected( /care/care/activities , 'activities_needs'), 2, 0) + if(selected( /care/care/activities , 'activities_resists'), 3, 0) + if(selected( /care/care/activities , 'activities_isolated'), 4, 0) + 
  if(selected( /care/care/dental , 'dental_none'), 1, 0) + if(selected( /care/care/dental , 'dental_minor'), 2, 0) + if(selected( /care/care/dental , 'dental_moderate'), 3, 0) + if(selected( /care/care/dental , 'dental_major'), 4, 0) + 
  
- if(selected( /care/care/support , 'reliable'), 1, 0) + if(selected( /care/care/support , 'only'), 2, 0) + if(selected( /care/care/support , 'su'), 3, 0) + 
- if(selected( /care/care/communication , 'co'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'xx'), 4, 0) + 
+ if(selected( /care/care/support , 'reliable'), 1, 0) + if(selected( /care/care/support , 'only'), 2, 0) + if(selected( /care/care/support , 'support_none'), 3, 0) + 
+ if(selected( /care/care/communication , 'communication_good'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'communication_good'), 4, 0) + 
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
- if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)"/>
-      <bind nodeset="/care/care/category" type="string" calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))"/>
+ if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)" nodeset="/care/care/score" type="string"/>
+      <bind calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))" nodeset="/care/care/category" type="string"/>
       <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
       <bind nodeset="/care/care/category_note" readonly="true()" type="string"/>
-      <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/care/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
@@ -234,7 +234,7 @@
         </item>
         <item>
           <label>None</label>
-          <value>tr</value>
+          <value>transportation_none</value>
         </item>
       </select1>
       <select1 ref="/care/care/support">
@@ -249,14 +249,14 @@
         </item>
         <item>
           <label>None</label>
-          <value>su</value>
+          <value>support_none</value>
         </item>
       </select1>
       <select1 ref="/care/care/communication">
         <label>Communication skills</label>
         <item>
           <label>Good</label>
-          <value>co</value>
+          <value>communication_good</value>
         </item>
         <item>
           <label>Temporary</label>
@@ -268,7 +268,7 @@
         </item>
         <item>
           <label>None</label>
-          <value>xx</value>
+          <value>communication_none</value>
         </item>
       </select1>
       <select1 ref="/care/care/employment">
