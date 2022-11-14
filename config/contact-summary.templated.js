@@ -30,7 +30,6 @@ const {
   countReportsSubmittedInWindow,
   getMostRecentReport,
   getTreatmentEnrollmentDate,
-  getField,
   pregnancyForms,
   antenatalForms,
   postnatalForms,
@@ -40,6 +39,10 @@ const {
 
 /* eslint-disable no-global-assign */
 var context = {
+  fstname: contact.name,
+  lstname: contact.name1,
+  patient_date_of_birth: contact.date_of_birth,
+  address: contact.address,
   use_cases: {
     anc: isCoveredByUseCaseInLineage(lineage, 'anc'),
     pnc: isCoveredByUseCaseInLineage(lineage, 'pnc'),
@@ -63,37 +66,6 @@ var fields = [
 ];
 
 var cards = [
-  {
-    label:'Patient_info',
-    appliesToType:'report',
-    appliesIf: function(){
-      //return r.form === 'contact:person:create';
-      return contact.type === 'person';
-
-    },
-    fields: [
-      {
-        label: 'CLIFF',
-        value: function(report) { return report.name; },
-        width: 6
-      },
-
-    ],
-    modifyContext: function(ctx, report) {
-      let fst_name = getField(report, 'patient_name');
-      let dob = getField(report, 'patient_date_of_birth');
-      //let dob = getField(report, 'patient_id');
-
-      let addres = getField(report, 'patient_address');
-      let lst_name = getField(report, 'patient_name1');
-
-      ctx.fstname = fst_name;
-      ctx.lstname = lst_name;
-      ctx.address = addres;
-      ctx.patient_date_of_birth = dob;
-
-    }
-  },
   {
     label: 'task.risk.status',
     appliesToType: 'report',
