@@ -11,7 +11,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2022-10-19_10-31">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2022-11-29_08-16">
           <inputs>
             <meta>
               <location>
@@ -73,10 +73,10 @@
       <bind nodeset="/data/person/parent" type="string"/>
       <bind nodeset="/data/person/type" type="string"/>
       <bind nodeset="/data/person/name" required="true()" type="string"/>
-      <bind nodeset="/data/person/name1" required="true()" type="string"/>
+      <bind nodeset="/data/person/name1" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" required="true()" type="int"/>
-      <bind nodeset="/data/person/tsis" type="int"/>
+      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/tsis" required="true()" type="int"/>
       <bind nodeset="/data/person/address" required="true()" type="string"/>
       <bind nodeset="/data/person/address1" type="string"/>
       <bind constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" nodeset="/data/person/phone" required="true()" type="tel"/>
