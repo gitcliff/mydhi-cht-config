@@ -1,6 +1,6 @@
 {
     "title": "Level of care assessment form",
-    "icon": "assessment",
+    "icon": "clinical",
     "context": {
           "person": true,
           "place": false,

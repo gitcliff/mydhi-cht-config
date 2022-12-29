@@ -1,6 +1,6 @@
 {
     "title": "Call Log",
-    "icon": "assessment",
+    "icon": "call-log",
     "context": {
           "person": true,
           "place": false,

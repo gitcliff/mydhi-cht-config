@@ -1,6 +1,6 @@
 {
     "title": "SRQ",
-    "icon": "assessment",
+    "icon": "clinical",
     "context": {
           "person": true,
           "place": false,
