@@ -4127,6 +4127,7 @@
   "transitions": {
     "default_responses": false,
     "update_clinics": true,
+    "muting": true,
     "accept_patient_reports": true,
     "conditional_alerts": true,
     "update_sent_by": false,
@@ -4138,6 +4139,33 @@
     "resolve_pending": false,
     "mark_for_outbound": true,
     "generate_shortcode_on_contacts": true
+  },
+  "muting": {
+    "mute_forms": [
+      "mute"    ],
+    "unmute_forms": [
+      "unmute"    ],
+    "validations": {
+      "join_responses": true,
+      "list": []
+    },
+    "messages": [
+      {
+        "translation_key": "",
+        "event_type": "mute",
+        "recipient": "reporting_unit"
+      },
+      {
+        "translation_key": "",
+        "event_type": "unmute",
+        "recipient": "reporting_unit"
+      },
+      {
+        "translation_key": "",
+        "event_type": "already_muted",
+        "recipient": "reporting_unit"
+      } 
+    ]
   },
   "outbound": {
     "patient triggers enroll workflow in Textit": {
