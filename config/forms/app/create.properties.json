@@ -1,6 +1,6 @@
 {
     "title": "Create a task",
-    "icon": "assessment",
+    "icon": "create-task",
     "context": {
           "person": true,
           "place": false,

@@ -26,5 +26,10 @@
    "icon-death-general": "icon-death-general.png",
    "super":"super.png",
    "hiv":"icon-hiv@2x.png",
-   "assessment":"assessment@2x.png"
+   "assessment":"assessment@2x.png",
+   "call-log":"medical_advice.png",
+   "create-task":"create-task.png",
+   "clinical":"clinical.png",
+   "appointment":"appointment.svg"
+
 }
