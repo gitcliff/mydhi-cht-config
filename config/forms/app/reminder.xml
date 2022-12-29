@@ -4,7 +4,7 @@
     <h:title>Task  Follow-up</h:title>
     <model>
       <instance>
-        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-11-03_17-54">
+        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-12-29_19-43">
           <inputs>
             <meta>
               <location>
@@ -42,7 +42,6 @@
             <format/>
             <when/>
             <notes/>
-            <dt/>
             <tm/>
             <follow_up/>
           </reminder>
@@ -73,7 +72,6 @@
       <bind calculate="format-date( /reminder/inputs/my_field_when ,'%d/%b/%Y')" nodeset="/reminder/reminder/format" type="string"/>
       <bind nodeset="/reminder/reminder/when" readonly="true()" type="string"/>
       <bind nodeset="/reminder/reminder/notes" readonly="true()" type="string"/>
-      <bind nodeset="/reminder/reminder/dt" readonly="true()" type="string"/>
       <bind nodeset="/reminder/reminder/tm" type="select1"/>
       <bind nodeset="/reminder/reminder/follow_up" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/reminder/meta/instanceID" readonly="true()" type="string"/>
@@ -116,16 +114,13 @@
     <group appearance="field-list" ref="/reminder/reminder">
       <label></label>
       <input ref="/reminder/reminder/title">
-        <label>**What is the title of the task?**: <output value=" /reminder/titt_task "/></label>
+        <label>**Task title**: <output value=" /reminder/titt_task "/></label>
       </input>
       <input ref="/reminder/reminder/when">
-        <label>**When should a reminder for this task appear?** <output value=" /reminder/reminder/format "/></label>
+        <label>**Date task due?** <output value=" /reminder/reminder/format "/></label>
       </input>
       <input ref="/reminder/reminder/notes">
         <label>**Notes about this task:** <output value=" /reminder/titt_note "/></label>
-      </input>
-      <input ref="/reminder/reminder/dt">
-        <label>**Date Task Appears:** <output value=" /reminder/reminder/format "/></label>
       </input>
       <select1 ref="/reminder/reminder/tm">
         <label>It's time to follow-up the task above. This task is:</label>
