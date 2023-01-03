@@ -55,17 +55,17 @@ var context = {
 
 var fields = [
   { appliesToType:'person',  label:'patient_id', value:contact.patient_id, width: 3 },
+  { appliesToType:'person',  label:'TSIS', value:contact.tsis, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'First name', value:contact.name, width: 3, filter: '' },
   { appliesToType:'person',  label:'Last name', value:contact.name1, width: 3, filter: '' },
   { appliesToType:'person',  label:'Date of birth', value:contact.date_of_birth, width: 3, filter: '' },
-  { appliesToType:'person',  label:'Current address', value:contact.address, width: 3, filter: '' },
   { appliesToType:'person',  label:'contact.age', value:contact.date_of_birth, width: 3, filter: 'age' },
-  { appliesToType:'person',  label:'Phone', value:contact.phone, width: 3, filter: 'phone' },
-  { appliesToType:'person',  label:'TSIS', value:contact.tsis, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'Gender Identity', value:contact.genda, width: 3, filter: 'phone' },
+  { appliesToType:'person',  label:'Phone', value:contact.phone, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'Also Know As', value:contact.aka, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'Sex at birth', value:contact.at, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'contact.parent', value:lineage, filter: 'lineage' },
+  { appliesToType:'person',  label:'Current address', value:contact.address, width: 3, filter: '' },
   { appliesToType:'!person', appliesIf:function() { return contact.parent && lineage[0]; }, label:'contact.parent', value:lineage, filter:'lineage' },
 ];
 
