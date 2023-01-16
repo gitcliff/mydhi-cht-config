@@ -1,6 +1,6 @@
 {
     "title": "Schedule Appointment ",
-    "icon": "clinical",
+    "icon": "schedule",
     "context": {
           "person": true,
           "place": false,

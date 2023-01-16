@@ -30,6 +30,7 @@
    "call-log":"medical_advice.png",
    "create-task":"create-task.png",
    "clinical":"clinical.png",
-   "appointment":"appointment.svg"
+   "appointment":"appointment.svg",
+   "schedule":"schedule.png"
 
 }
