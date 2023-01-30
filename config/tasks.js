@@ -21,6 +21,39 @@ const {
 
 module.exports = [
   {
+    name: 'appointment-reminder-task',
+    title: 'Appointment Reminder Task',
+    icon: 'assessment',
+    appliesTo: 'reports',
+    appliesToType: ['appointment'],
+    actions: [{ form: 'appointment_reminder', 
+    modifyContent: function (content, contact, report) {
+      content.field_app_type = getField(report, 'appoint.type_appoint');
+      content['inputs'] = {
+
+        field_blood_draw_type: getField(report, 'appoint.lab_test'),
+        field_date_of_appointment: getField(report, 'appoint.date_appoint'),
+        field_notes: getField(report, 'appoint.welcome'),
+        // field_date_task_appears: getField(report, 'appoint.reminder'),
+
+        };
+      }
+   }],
+    events: [{
+      start: 7,
+      end: 1,
+      dueDate: function (event, contact, r) {
+        return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
+      }
+    }],
+    resolvedIf: function(c, r, event, dueDate) {
+      // Resolved if there is a reminder received in time window
+      return isFormFromArraySubmittedInWindow(c.reports, 'reminder',
+                 Utils.addDate(dueDate, -event.start).getTime(),
+                 Utils.addDate(dueDate,  event.end+1).getTime());
+    },
+  },
+  {
     name: 'reminder-follow-up-task',
     title: 'Task Reminder Task',
     icon: 'assessment',

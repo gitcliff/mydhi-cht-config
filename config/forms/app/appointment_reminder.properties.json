@@ -2,7 +2,7 @@
     "title": "Appointment Reminder",
     "icon": "schedule",
     "context": {
-          "person": true,
+          "person": false,
           "place": false,
           "expression": "contact.type === 'person'"
       }
