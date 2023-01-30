@@ -4,7 +4,7 @@
     <h:title>Appointment Reminder</h:title>
     <model>
       <instance>
-        <appointment_reminder id="appointment_reminder" prefix="J1!appointment_reminder!" delimiter="#" version="2023-01-30_15-20">
+        <appointment_reminder id="appointment_reminder" prefix="J1!appointment_reminder!" delimiter="#" version="2023-01-30_16-29">
           <inputs>
             <meta>
               <location>
@@ -84,7 +84,7 @@
       <bind nodeset="/appointment_reminder/appointment_reminder/appointment_date" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/notes_app" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/date_task" readonly="true()" type="string"/>
-      <bind nodeset="/appointment_reminder/appointment_reminder/upcoming" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/upcoming" readonly="true()" type="string" jr:constraintMsg="Noted, delete task from my inbox" constraint="true()"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/follow-up" type="string"/>
       <bind nodeset="/appointment_reminder/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
     </model>
