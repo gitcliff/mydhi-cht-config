@@ -37,9 +37,11 @@ module.exports = [
       }
    }],
     events: [{
-      start: 21,
-      days: 1,
+      start: 15,
       end: 1,
+      dueDate: function (event, contact, r) {
+        return Utils.addDate(new Date(getField(r, 'create.reminder')), 0);
+      }
     }],
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is a reminder received in time window
