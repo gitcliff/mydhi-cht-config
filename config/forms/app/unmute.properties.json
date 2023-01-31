@@ -1,6 +1,6 @@
 {
     "title": "Disposition - Un-archive client",
-    "icon": "assessment",
+    "icon": "body",
     "context": {
           "person": true,
           "place": false,

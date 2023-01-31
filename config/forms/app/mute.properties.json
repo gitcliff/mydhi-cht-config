@@ -1,6 +1,6 @@
 {
     "title": "Disposition - Archive client",
-    "icon": "assessment",
+    "icon": "achive",
     "context": {
           "person": true,
           "place": false,
