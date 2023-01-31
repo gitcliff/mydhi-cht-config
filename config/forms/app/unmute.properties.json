@@ -1,5 +1,5 @@
 {
-    "title": "Un-archive a patient",
+    "title": "Disposition - Un-archive client",
     "icon": "assessment",
     "context": {
           "person": true,
