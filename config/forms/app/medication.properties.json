@@ -1,6 +1,6 @@
 {
     "title": "Form - Labs and Medications",
-    "icon": "assessment",
+    "icon": "tabs",
     "context": {
           "person": true,
           "place": false,
