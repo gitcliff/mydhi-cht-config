@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Level of care Assessment</h:title>
+    <model>
+      <instance>
+        <care id="care" prefix="J1!care!" delimiter="#" version="1">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <care>
+            <medical/>
+            <knowledge/>
+            <adherence/>
+            <mental/>
+            <transportation/>
+            <support/>
+            <communication/>
+            <employment/>
+            <living/>
+            <financial/>
+            <legal/>
+            <practical/>
+            <activities/>
+            <dental/>
+            <score/>
+            <category/>
+            <score_note/>
+            <category_note/>
+          </care>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </care>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/care/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/care/inputs/source" type="string"/>
+      <bind nodeset="/care/inputs/source_id" type="string"/>
+      <bind nodeset="/care/inputs/contact/_id" type="db:person" required="true()"/>
+      <bind nodeset="/care/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/care/inputs/contact/name" type="string"/>
+      <bind nodeset="/care/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/care/inputs/contact/sex" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/care/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/care/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/care/care/medical" type="select1"/>
+      <bind nodeset="/care/care/knowledge" type="select1"/>
+      <bind nodeset="/care/care/adherence" type="select1"/>
+      <bind nodeset="/care/care/mental" type="select1"/>
+      <bind nodeset="/care/care/transportation" type="select1"/>
+      <bind nodeset="/care/care/support" type="select1"/>
+      <bind nodeset="/care/care/communication" type="select1"/>
+      <bind nodeset="/care/care/employment" type="select1"/>
+      <bind nodeset="/care/care/living" type="select1"/>
+      <bind nodeset="/care/care/financial" type="select1"/>
+      <bind nodeset="/care/care/legal" type="select1"/>
+      <bind nodeset="/care/care/practical" type="select1"/>
+      <bind nodeset="/care/care/activities" type="select1"/>
+      <bind nodeset="/care/care/dental" type="select1"/>
+      <bind nodeset="/care/care/score" type="string" calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
+ if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 3, 0) + if(selected( /care/care/knowledge , 'none'), 4, 0) + 
+ if(selected( /care/care/adherence , 'always'), 1, 0) + if(selected( /care/care/adherence , 'usually'), 2, 0) + if(selected( /care/care/adherence , 'rarely'), 3, 0) + if(selected( /care/care/adherence , 'never'), 4, 0) + 
+ if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 3, 0) + if(selected( /care/care/mental , 'serious'), 4, 0) + 
+ if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'transportation_none'), 4, 0) + 
+ 
+ if(selected( /care/care/financial , 'financial_stable'), 1, 0) + if(selected( /care/care/financial , 'financial_adequate'), 2, 0) + if(selected( /care/care/financial , 'financial_inadequate'), 3, 0) + if(selected( /care/care/financial , 'financial_none'), 4, 0) + 
+ if(selected( /care/care/legal , 'none'), 1, 0) + if(selected( /care/care/legal , 'needs_help'), 2, 0) + if(selected( /care/care/legal , 'some_asst'), 3, 0) + if(selected( /care/care/legal , 'full_asst'), 4, 0) + 
+ if(selected( /care/care/practical , 'practical_inadequate'), 1, 0) + if(selected( /care/care/practical , 'practical_some_asst'), 2, 0) + if(selected( /care/care/practical , 'practical_limitted'), 3, 0) + if(selected( /care/care/practical , 'practical_unable'), 4, 0) + 
+ if(selected( /care/care/activities , 'activities_regular'), 1, 0) + if(selected( /care/care/activities , 'activities_needs'), 2, 0) + if(selected( /care/care/activities , 'activities_resists'), 3, 0) + if(selected( /care/care/activities , 'activities_isolated'), 4, 0) + 
+ if(selected( /care/care/dental , 'dental_none'), 1, 0) + if(selected( /care/care/dental , 'dental_minor'), 2, 0) + if(selected( /care/care/dental , 'dental_moderate'), 3, 0) + if(selected( /care/care/dental , 'dental_major'), 4, 0) + 
+ 
+ if(selected( /care/care/support , 'reliable'), 1, 0) + if(selected( /care/care/support , 'only'), 2, 0) + if(selected( /care/care/support , 'support_none'), 3, 0) + 
+ if(selected( /care/care/communication , 'communication_good'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'communication_good'), 4, 0) + 
+ if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
+ if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)"/>
+      <bind nodeset="/care/care/category" type="string" calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))"/>
+      <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/category_note" readonly="true()" type="string"/>
+      <bind nodeset="/care/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/care/inputs">
+      <label>Level of Care Assessment</label>
+      <group ref="/care/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/care/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/care/inputs/contact/parent">
+          <label></label>
+          <group ref="/care/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/care/care">
+      <label>Questionaire</label>
+      <select1 ref="/care/care/medical">
+        <label>Medical care</label>
+        <item>
+          <label>CD4&gt;500</label>
+          <value>zero</value>
+        </item>
+        <item>
+          <label>CD4 200-499</label>
+          <value>two</value>
+        </item>
+        <item>
+          <label>CD4 50-199</label>
+          <value>five</value>
+        </item>
+        <item>
+          <label>CD4&lt;50</label>
+          <value>fifty</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/knowledge">
+        <label>Knowledge of disease</label>
+        <item>
+          <label>Good</label>
+          <value>good</value>
+        </item>
+        <item>
+          <label>Somewhat</label>
+          <value>some_what</value>
+        </item>
+        <item>
+          <label>Little</label>
+          <value>little</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/adherence">
+        <label>Adherence</label>
+        <item>
+          <label>Always</label>
+          <value>always</value>
+        </item>
+        <item>
+          <label>Usually</label>
+          <value>usually</value>
+        </item>
+        <item>
+          <label>Rarely</label>
+          <value>rarely</value>
+        </item>
+        <item>
+          <label>Never</label>
+          <value>never</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/mental">
+        <label>Mental health / substance abuse</label>
+        <item>
+          <label>No history</label>
+          <value>no_history</value>
+        </item>
+        <item>
+          <label>Has access</label>
+          <value>has_access</value>
+        </item>
+        <item>
+          <label>Failed treatment</label>
+          <value>failed_treatment</value>
+        </item>
+        <item>
+          <label>Serious</label>
+          <value>serious</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/transportation">
+        <label>Transportation</label>
+        <item>
+          <label>Consistent</label>
+          <value>consistent</value>
+        </item>
+        <item>
+          <label>Questionable</label>
+          <value>questionable</value>
+        </item>
+        <item>
+          <label>Irregular</label>
+          <value>irregular</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>transportation_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/support">
+        <label>Support system</label>
+        <item>
+          <label>Reliable</label>
+          <value>reliable</value>
+        </item>
+        <item>
+          <label>Crisis only</label>
+          <value>only</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>support_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/communication">
+        <label>Communication skills</label>
+        <item>
+          <label>Good</label>
+          <value>communication_good</value>
+        </item>
+        <item>
+          <label>Temporary</label>
+          <value>temporary</value>
+        </item>
+        <item>
+          <label>Limitted</label>
+          <value>limitted</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>communication_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/employment">
+        <label>Employment</label>
+        <item>
+          <label>Employed</label>
+          <value>employed</value>
+        </item>
+        <item>
+          <label>Ltd Probs</label>
+          <value>ltd_probs</value>
+        </item>
+        <item>
+          <label>Unemployed</label>
+          <value>unemployed</value>
+        </item>
+        <item>
+          <label>Unable</label>
+          <value>unable</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/living">
+        <label>Living situation</label>
+        <item>
+          <label>Self-managed</label>
+          <value>self_managed</value>
+        </item>
+        <item>
+          <label>Adequate</label>
+          <value>adequate</value>
+        </item>
+        <item>
+          <label>Unsafe</label>
+          <value>unsafe</value>
+        </item>
+        <item>
+          <label>Homeless</label>
+          <value>homless</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/financial">
+        <label>Financial Resources</label>
+        <item>
+          <label>Stable</label>
+          <value>financial_stable</value>
+        </item>
+        <item>
+          <label>Adequate</label>
+          <value>financial_adequate</value>
+        </item>
+        <item>
+          <label>Inadequate</label>
+          <value>financial_inadequate</value>
+        </item>
+        <item>
+          <label>None</label>
+          <value>financial_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/legal">
+        <label>Legal Affiars</label>
+        <item>
+          <label>None</label>
+          <value>none</value>
+        </item>
+        <item>
+          <label>Needs Help</label>
+          <value>needs_help</value>
+        </item>
+        <item>
+          <label>Some Asst</label>
+          <value>some_asst</value>
+        </item>
+        <item>
+          <label>Full Asst</label>
+          <value>full_asst</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/practical">
+        <label>Practical Assistance</label>
+        <item>
+          <label>Inadequate</label>
+          <value>practical_inadequate</value>
+        </item>
+        <item>
+          <label>Some Asst</label>
+          <value>practical_some_asst</value>
+        </item>
+        <item>
+          <label>Limitted</label>
+          <value>practical_limitted</value>
+        </item>
+        <item>
+          <label>Unable</label>
+          <value>practical_unable</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/activities">
+        <label>Self-Sustaining Activities</label>
+        <item>
+          <label>Regular</label>
+          <value>activities_regular</value>
+        </item>
+        <item>
+          <label>Needs</label>
+          <value>activities_needs</value>
+        </item>
+        <item>
+          <label>Resists</label>
+          <value>activities_resists</value>
+        </item>
+        <item>
+          <label>Isolated</label>
+          <value>activities_isolated</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/dental">
+        <label>Dental</label>
+        <item>
+          <label>None</label>
+          <value>dental_none</value>
+        </item>
+        <item>
+          <label>Minor</label>
+          <value>dental_minor</value>
+        </item>
+        <item>
+          <label>Moderate</label>
+          <value>dental_moderate</value>
+        </item>
+        <item>
+          <label>Major</label>
+          <value>dental_major</value>
+        </item>
+      </select1>
+      <input ref="/care/care/score_note">
+        <label>Score is: <output value=" /care/care/score "/></label>
+      </input>
+      <input ref="/care/care/category_note">
+        <label>Risk Category is:<output value=" /care/care/category "/></label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

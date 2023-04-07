@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Patient Disposition Form v1</h:title>
     <model>
       <instance>
-        <disposition id="disposition" prefix="J1!disposition!" delimiter="#" version="2022-06-29_14-15">
+        <disposition delimiter="#" id="disposition" prefix="J1!disposition!" version="2022-06-29_14-15">
           <inputs>
             <meta>
               <location>
@@ -52,11 +52,11 @@
       <bind nodeset="/disposition/inputs/contact/sex" type="string"/>
       <bind nodeset="/disposition/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/disposition/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/disposition/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/disposition/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/disposition/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/disposition/patient_name" type="string"/>
       <bind nodeset="/disposition/disposition/patient_d" type="select1"/>
       <bind nodeset="/disposition/disposition/disposition_date" type="date"/>
-      <bind nodeset="/disposition/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/disposition/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

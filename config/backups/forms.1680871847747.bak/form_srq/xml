@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Form - SRQ</h:title>
+    <model>
+      <instance>
+        <srq id="srq" prefix="J1!srq!" delimiter="#" version="1">
+          <cd4>
+            <person/>
+            <date/>
+            <note_one/>
+            <medication/>
+            <average/>
+            <last/>
+            <reasons>0</reasons>
+            <reasons_other/>
+            <score/>
+            <label_score/>
+            <pills/>
+          </cd4>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </srq>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/srq/cd4/person" type="string"/>
+      <bind nodeset="/srq/cd4/date" type="date"/>
+      <bind nodeset="/srq/cd4/note_one" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/medication" type="select1"/>
+      <bind nodeset="/srq/cd4/average" type="select1"/>
+      <bind nodeset="/srq/cd4/last" type="select1"/>
+      <bind nodeset="/srq/cd4/reasons" type="select"/>
+      <bind nodeset="/srq/cd4/reasons_other" type="string" relevant="selected(../reasons, 'other')"/>
+      <bind nodeset="/srq/cd4/score" type="string" calculate="if(selected( /srq/cd4/medication , 'all_time'), 1, 0) + if(selected( /srq/cd4/medication , 'most_time'), 2, 0) + if(selected( /srq/cd4/medication , 'rarely'), 3, 0) + if(selected( /srq/cd4/medication , 'never'), 4, 0) + 
+ if(selected( /srq/cd4/average , 'every_day'), 1, 0) + if(selected( /srq/cd4/average , 'days'), 2, 0) + if(selected( /srq/cd4/average , 'week'), 3, 0) + if(selected( /srq/cd4/average , 'less'), 4, 0) + if(selected( /srq/cd4/average , 'average_never'), 5, 0) +
+ if(selected( /srq/cd4/last , 'took'), 1, 0) + if(selected( /srq/cd4/last , 'missed'), 2, 0) + if(selected( /srq/cd4/last , 'dose'), 3, 0) + if(selected( /srq/cd4/last , 'all'), 4, 0)"/>
+      <bind nodeset="/srq/cd4/label_score" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/pills" type="select1"/>
+      <bind nodeset="/srq/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/srq/cd4">
+      <label></label>
+      <input ref="/srq/cd4/person">
+        <label>Name of Person Completing Questionnaire</label>
+      </input>
+      <input ref="/srq/cd4/date">
+        <label>Date SRQ Completed</label>
+      </input>
+      <input ref="/srq/cd4/note_one">
+        <label>Circle the number that corresponds to the client's answer. The number assigned to the answers is also allotted
+score. The total score is the sum of the individual scores for Questions 1-3. Question 4 is not scored.</label>
+      </input>
+      <select1 ref="/srq/cd4/medication">
+        <label>How often do you feel that you have difficulty taking your HIV medication on time?</label>
+        <item>
+          <label>[1] All of the time</label>
+          <value>all_time</value>
+        </item>
+        <item>
+          <label>[2] Most of the time</label>
+          <value>most_time</value>
+        </item>
+        <item>
+          <label>[3] Rarely</label>
+          <value>rarely</value>
+        </item>
+        <item>
+          <label>[4] Never</label>
+          <value>never</value>
+        </item>
+      </select1>
+      <select1 ref="/srq/cd4/average">
+        <label>On average, how many days PER WEEK would you say that you missed at least one dose of your HIV
+medications or did not take it as prescribed?</label>
+        <item>
+          <label>[1] Every day</label>
+          <value>every_day</value>
+        </item>
+        <item>
+          <label>[2] 4 to 6 days/week</label>
+          <value>days</value>
+        </item>
+        <item>
+          <label>[3] Once a week</label>
+          <value>week</value>
+        </item>
+        <item>
+          <label>[4] Less than a week</label>
+          <value>less</value>
+        </item>
+        <item>
+          <label>[5] Never</label>
+          <value>average_never</value>
+        </item>
+      </select1>
+      <select1 ref="/srq/cd4/last">
+        <label>During the last 7 days, would you say you:</label>
+        <item>
+          <label>[1] Took none of your pills</label>
+          <value>took</value>
+        </item>
+        <item>
+          <label>[2] Missed more than one doses</label>
+          <value>missed</value>
+        </item>
+        <item>
+          <label>[3] Missed one dose</label>
+          <value>dose</value>
+        </item>
+        <item>
+          <label>[4] Took all of your pills every day</label>
+          <value>all</value>
+        </item>
+      </select1>
+      <select ref="/srq/cd4/reasons">
+        <label>What were the reasons for non-adherence? (For any reason indicated, please refer client to Social Worker. Do
+not score.)</label>
+        <item>
+          <label>Side effects</label>
+          <value>effects</value>
+        </item>
+        <item>
+          <label>Lack of food</label>
+          <value>food</value>
+        </item>
+        <item>
+          <label>Fare/transportation (to collect medication from the pharmacy</label>
+          <value>fare</value>
+        </item>
+        <item>
+          <label>Forgot</label>
+          <value>forgot</value>
+        </item>
+        <item>
+          <label>Work</label>
+          <value>work</value>
+        </item>
+        <item>
+          <label>Confidentiality (at home, work, etc.)</label>
+          <value>confidentiality</value>
+        </item>
+        <item>
+          <label>Travel (left home for a few days)</label>
+          <value>travel</value>
+        </item>
+        <item>
+          <label>Mental Health (stressed out, depression, etc.)</label>
+          <value>mental</value>
+        </item>
+        <item>
+          <label>Sick</label>
+          <value>sick</value>
+        </item>
+        <item>
+          <label>Homeless</label>
+          <value>homeless</value>
+        </item>
+        <item>
+          <label>Don't think it is necessary</label>
+          <value>think</value>
+        </item>
+        <item>
+          <label>Religion (faith, cured, etc.)</label>
+          <value>religion</value>
+        </item>
+        <item>
+          <label>Proper medication adherence was not explained</label>
+          <value>proper</value>
+        </item>
+        <item>
+          <label>Taking herbs, other medication, etc</label>
+          <value>herbs</value>
+        </item>
+        <item>
+          <label>Sharing of medication</label>
+          <value>medication</value>
+        </item>
+        <item>
+          <label>Stressed out</label>
+          <value>stressed</value>
+        </item>
+        <item>
+          <label>Tired of taking pills</label>
+          <value>pills</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select>
+      <input ref="/srq/cd4/reasons_other">
+        <label>Specify other.</label>
+      </input>
+      <input ref="/srq/cd4/label_score">
+        <label>Score: <output value=" /srq/cd4/score "/>/14 (For scores 10 and below, please refer to the Social Worker.) Was pill-count done? Circle Yes
+or No</label>
+      </input>
+      <select1 ref="/srq/cd4/pills">
+        <label>Was pill-count done?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>CD4 Lab Test Result</h:title>
     <model>
       <instance>
-        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-26_21-16">
+        <lab delimiter="#" id="lab" prefix="J1!lab!" version="2022-07-26_21-16">
           <inputs>
             <meta>
               <location>
@@ -62,17 +62,17 @@
       <bind nodeset="/lab/inputs/contact/sex" type="string"/>
       <bind nodeset="/lab/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/lab/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/lab/appoint_this" type="string" calculate="../appoint/lab_result_yes"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/lab/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/lab/patient_name" type="string"/>
+      <bind calculate="../appoint/lab_result_yes" nodeset="/lab/appoint_this" type="string"/>
       <bind nodeset="/lab/appoint/test" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/appoint1" readonly="true()" type="string"/>
       <bind nodeset="/lab/appoint/result" type="select1"/>
-      <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
-      <bind nodeset="/lab/appoint/this" type="select1" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'"/>
-      <bind nodeset="/lab/appoint/load" type="select1" relevant=" /lab/appoint/result  = 'yes' and  /lab/appoint/test  = 'viral'"/>
-      <bind nodeset="/lab/appoint/lab_result_yes" type="string" relevant="selected( /lab/appoint/result , 'yes')"/>
-      <bind nodeset="/lab/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/lab/appoint/count" relevant=" /lab/appoint/result  = 'yes'" type="select1"/>
+      <bind nodeset="/lab/appoint/this" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'" type="select1"/>
+      <bind nodeset="/lab/appoint/load" relevant=" /lab/appoint/result  = 'yes' and  /lab/appoint/test  = 'viral'" type="select1"/>
+      <bind nodeset="/lab/appoint/lab_result_yes" relevant="selected( /lab/appoint/result , 'yes')" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/lab/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

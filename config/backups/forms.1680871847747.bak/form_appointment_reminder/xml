@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Appointment Reminder</h:title>
+    <model>
+      <instance>
+        <appointment_reminder id="appointment_reminder" prefix="J1!appointment_reminder!" delimiter="#" version="2023-01-30_16-29">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <field_app_type/>
+            <field_blood_draw_type/>
+            <field_date_of_appointment/>
+            <field_notes/>
+            <field_date_task_appears/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <app_type/>
+          <blood_draw_type/>
+          <date_of_appointment/>
+          <notes/>
+          <date_task_appears/>
+          <appointment_reminder>
+            <type/>
+            <blood_draw/>
+            <appointment_date/>
+            <notes_app/>
+            <date_task/>
+            <upcoming/>
+            <follow-up/>
+          </appointment_reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </appointment_reminder>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/appointment_reminder/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/appointment_reminder/inputs/source" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/source_id" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/field_app_type" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/field_blood_draw_type" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/field_date_of_appointment" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/field_notes" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/field_date_task_appears" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/name" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/sex" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/appointment_reminder/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/appointment_reminder/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/appointment_reminder/app_type" type="string" calculate="../inputs/field_app_type"/>
+      <bind nodeset="/appointment_reminder/blood_draw_type" type="string" calculate="../inputs/field_blood_draw_type"/>
+      <bind nodeset="/appointment_reminder/date_of_appointment" type="string" calculate="../inputs/field_date_of_appointment"/>
+      <bind nodeset="/appointment_reminder/notes" type="string" calculate="../inputs/field_notes"/>
+      <bind nodeset="/appointment_reminder/date_task_appears" type="string" calculate="../inputs/field_date_task_appears"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/type" readonly="true()" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/blood_draw" readonly="true()" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/appointment_date" readonly="true()" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/notes_app" readonly="true()" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/date_task" readonly="true()" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/upcoming" readonly="true()" type="string" constraint="true()" jr:constraintMsg="Noted, delete task from my inbox"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/follow-up" type="string"/>
+      <bind nodeset="/appointment_reminder/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/appointment_reminder/inputs">
+      <label></label>
+      <group ref="/appointment_reminder/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/appointment_reminder/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/appointment_reminder/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment_reminder/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment_reminder/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment_reminder/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/appointment_reminder/inputs/contact/parent">
+          <label></label>
+          <group ref="/appointment_reminder/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/appointment_reminder/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/appointment_reminder/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/appointment_reminder/appointment_reminder">
+      <label></label>
+      <input ref="/appointment_reminder/appointment_reminder/type">
+        <label>**Appointment Type:** <output value=" /appointment_reminder/app_type "/></label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/blood_draw">
+        <label>**Blood draw type:** <output value=" /appointment_reminder/blood_draw_type "/></label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/appointment_date">
+        <label>**Date of Appointment:** <output value=" /appointment_reminder/date_of_appointment "/></label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/notes_app">
+        <label>**Notes about this appoitment:** <output value=" /appointment_reminder/notes "/></label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/date_task">
+        <label>**Date Task Appears :** <output value=" /appointment_reminder/date_task_appears "/></label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/upcoming">
+        <label>Client has an upcoming appointment. You may want to follow-up with the client to remind them.</label>
+      </input>
+      <input ref="/appointment_reminder/appointment_reminder/follow-up">
+        <label>Follow up notes</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

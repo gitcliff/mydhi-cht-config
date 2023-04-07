@@ -1,0 +1,52 @@
+
+  <model>
+    <instance>
+        <reminder xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="reminder" prefix="J1!reminder!" delimiter="#" version="2022-12-29_19-43">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_title/>
+            <my_field_note/>
+            <my_field_when/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <titt_task/>
+          <titt_note/>
+          <reminder>
+            <title/>
+            <format/>
+            <when/>
+            <notes/>
+            <tm/>
+            <follow_up/>
+          </reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </reminder>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

@@ -1,0 +1,49 @@
+
+  <model>
+    <instance>
+        <routine xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="routine" prefix="J1!routine!" delimiter="#" version="2022-11-03_09-23">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <routine>
+            <client/>
+            <reminder/>
+            <notes/>
+            <reviewed/>
+            <display_dates/>
+            <client_status/>
+            <recent/>
+            <visit_notes/>
+          </routine>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </routine>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

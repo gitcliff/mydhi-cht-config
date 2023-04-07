@@ -1,0 +1,50 @@
+
+  <model>
+    <instance>
+        <labs_medication xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" delimiter="#" id="labs_medication" prefix="J1!labs_medication!" version="2023-02-09_15-49">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <labs_medication>
+            <date_completed/>
+            <name_person/>
+            <most_recent/>
+            <results/>
+            <recent/>
+            <cd_results/>
+            <current_regime/>
+            <art_regime/>
+            <nots/>
+          </labs_medication>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </labs_medication>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

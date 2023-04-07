@@ -1,0 +1,59 @@
+
+  <model>
+    <instance>
+        <care xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="care" prefix="J1!care!" delimiter="#" version="1">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <care>
+            <medical/>
+            <knowledge/>
+            <adherence/>
+            <mental/>
+            <transportation/>
+            <support/>
+            <communication/>
+            <employment/>
+            <living/>
+            <financial/>
+            <legal/>
+            <practical/>
+            <activities/>
+            <dental/>
+            <score/>
+            <category/>
+            <score_note/>
+            <category_note/>
+          </care>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </care>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

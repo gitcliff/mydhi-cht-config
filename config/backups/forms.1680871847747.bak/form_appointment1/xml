@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Schedule Appointment</h:title>
+    <model>
+      <itext>
+        <translation lang="en">
+          <text id="/appointment1/appoint/image1:label">
+            <value>Image</value>
+            <value form="image">jr://images/image.png</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <appointment1 id="appointment1" prefix="J1!appointment1!" delimiter="#" version="2022-10-24_11-03">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <appoint>
+            <type_appoint/>
+            <welcome/>
+            <lab_test/>
+            <lab_test_other/>
+            <date_appoint/>
+            <image1/>
+            <date_appoint1/>
+          </appoint>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </appointment1>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/appointment1/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/appointment1/inputs/source" type="string"/>
+      <bind nodeset="/appointment1/inputs/source_id" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/appointment1/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/name" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/sex" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/appointment1/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/appointment1/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/appointment1/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/appointment1/appoint/type_appoint" type="select1"/>
+      <bind nodeset="/appointment1/appoint/welcome" type="string"/>
+      <bind nodeset="/appointment1/appoint/lab_test" type="select1" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'"/>
+      <bind nodeset="/appointment1/appoint/lab_test_other" type="string" relevant="selected(../lab_test, 'other')"/>
+      <bind nodeset="/appointment1/appoint/date_appoint" type="date" relevant=" /appointment1/appoint/type_appoint  != 'blood draw appointment'"/>
+      <bind nodeset="/appointment1/appoint/image1" readonly="true()" type="string" relevant=" /appointment1/appoint/type_appoint  = 'blood draw appointment'"/>
+      <bind nodeset="/appointment1/appoint/date_appoint1" type="date"/>
+      <bind nodeset="/appointment1/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/appointment1/inputs">
+      <label>Schedule Appointment</label>
+      <group ref="/appointment1/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/appointment1/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/appointment1/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment1/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment1/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment1/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/appointment1/inputs/contact/parent">
+          <label></label>
+          <group ref="/appointment1/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/appointment1/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/appointment1/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/appointment1/appoint">
+      <label></label>
+      <select1 ref="/appointment1/appoint/type_appoint">
+        <label>Appointment Type</label>
+        <item>
+          <label>Clinical Appointment</label>
+          <value>clinical appointment</value>
+        </item>
+        <item>
+          <label>Social Worker Appointment</label>
+          <value>social worker appointment</value>
+        </item>
+        <item>
+          <label>Case Manager Appointment</label>
+          <value>case manager appointment</value>
+        </item>
+        <item>
+          <label>Blood Draw Appointment</label>
+          <value>blood draw appointment</value>
+        </item>
+        <item>
+          <label>Internal Referral</label>
+          <value>internal referral</value>
+        </item>
+        <item>
+          <label>External Referral</label>
+          <value>external referral</value>
+        </item>
+        <item>
+          <label>Psychologist Appointment</label>
+          <value>psychologist appointment</value>
+        </item>
+        <item>
+          <label>Adherence Counselor Appointment</label>
+          <value>adherence counselor appointment</value>
+        </item>
+      </select1>
+      <input appearance="h1 blue" ref="/appointment1/appoint/welcome">
+        <label>Any notes about this Appointment?</label>
+      </input>
+      <select1 ref="/appointment1/appoint/lab_test">
+        <label>Blood Draw:</label>
+        <item>
+          <label>CD4 count</label>
+          <value>cd4 count</value>
+        </item>
+        <item>
+          <label>Viral Load</label>
+          <value>viral load</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select1>
+      <input ref="/appointment1/appoint/lab_test_other">
+        <label>Specify other.</label>
+      </input>
+      <input ref="/appointment1/appoint/date_appoint">
+        <label>Date of Appointment</label>
+      </input>
+      <input ref="/appointment1/appoint/image1">
+        <label ref="jr:itext('/appointment1/appoint/image1:label')"/>
+      </input>
+      <input ref="/appointment1/appoint/date_appoint1">
+        <label>Date of Expected Blood Draw</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

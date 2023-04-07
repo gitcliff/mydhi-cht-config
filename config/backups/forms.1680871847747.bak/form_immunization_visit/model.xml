@@ -1,0 +1,221 @@
+
+  <model>
+    <instance>
+        <immunization_visit xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="immunization_visit" prefix="J1!immunization_visit!" delimiter="#" version="2019-02-21_00-32">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <phone/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_age_in_years tag="hidden"/>
+          <patient_phone/>
+          <patient_uuid tag="hidden"/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <chw_sms/>
+          <visit_confirmed/>
+          <vaccines_received>
+            <received_bcg/>
+            <received_cholera_1/>
+            <received_cholera_2/>
+            <received_cholera_3/>
+            <received_hep_a_1/>
+            <received_hep_a_2/>
+            <received_hep_b/>
+            <received_hpv_1/>
+            <received_hpv_2/>
+            <received_hpv_3/>
+            <received_flu/>
+            <received_jap_enc/>
+            <received_meningococcal_1/>
+            <received_meningococcal_2/>
+            <received_meningococcal_3/>
+            <received_meningococcal_4/>
+            <received_mmr_1/>
+            <received_mmr_2/>
+            <received_mmrv_1/>
+            <received_mmrv_2/>
+            <received_polio_0/>
+            <received_polio_1/>
+            <received_polio_2/>
+            <received_polio_3/>
+            <received_ipv_1/>
+            <received_ipv_2/>
+            <received_ipv_3/>
+            <received_fipv_1/>
+            <received_fipv_2/>
+            <received_penta_1/>
+            <received_penta_2/>
+            <received_penta_3/>
+            <received_dpt_4/>
+            <received_dpt_5/>
+            <received_pneumococcal_1/>
+            <received_pneumococcal_2/>
+            <received_pneumococcal_3/>
+            <received_pneumococcal_4/>
+            <received_rotavirus_1/>
+            <received_rotavirus_2/>
+            <received_rotavirus_3/>
+            <received_typhoid_1/>
+            <received_typhoid_2/>
+            <received_vitamin_a/>
+            <received_yellow_fever/>
+          </vaccines_received>
+          <group_chw_info tag="hidden">
+            <chw_information/>
+            <call_button/>
+            <attended_imm>yes</attended_imm>
+          </group_chw_info>
+          <group_select_vaccines tag="hidden">
+            <g_vaccines/>
+          </group_select_vaccines>
+          <group_bcg tag="hidden">
+            <g_bcg/>
+          </group_bcg>
+          <group_cholera tag="hidden">
+            <g_cholera/>
+          </group_cholera>
+          <group_hep_a tag="hidden">
+            <g_hep_a/>
+          </group_hep_a>
+          <group_hep_b tag="hidden">
+            <g_hep_b/>
+          </group_hep_b>
+          <group_hpv tag="hidden">
+            <g_hpv/>
+          </group_hpv>
+          <group_flu tag="hidden">
+            <g_flu/>
+          </group_flu>
+          <group_jap_enc tag="hidden">
+            <g_jap_enc/>
+          </group_jap_enc>
+          <group_meningococcal tag="hidden">
+            <g_meningococcal/>
+          </group_meningococcal>
+          <group_mmr tag="hidden">
+            <g_mmr/>
+          </group_mmr>
+          <group_mmrv tag="hidden">
+            <g_mmrv/>
+          </group_mmrv>
+          <group_polio tag="hidden">
+            <g_polio/>
+          </group_polio>
+          <group_pentavalent tag="hidden">
+            <g_pentavalent/>
+          </group_pentavalent>
+          <group_dpt tag="hidden">
+            <g_dpt/>
+          </group_dpt>
+          <group_pneumococcal tag="hidden">
+            <g_pneumococcal/>
+          </group_pneumococcal>
+          <group_rotavirus tag="hidden">
+            <g_rotavirus/>
+          </group_rotavirus>
+          <group_typhoid tag="hidden">
+            <g_typhoid/>
+          </group_typhoid>
+          <group_vitamin_a tag="hidden">
+            <g_vitamin_a/>
+          </group_vitamin_a>
+          <group_yellow_fever tag="hidden">
+            <g_yellow_fever/>
+          </group_yellow_fever>
+          <group_note tag="hidden">
+            <default_chw_sms/>
+            <default_chw_sms_text/>
+            <default_chw_sms_note/>
+            <is_sms_edited>yes</is_sms_edited>
+            <g_chw_sms/>
+          </group_note>
+          <group_review tag="hidden">
+            <submit/>
+            <r_summary/>
+            <r_patient_id/>
+            <r_pregnancy_details/>
+            <r_visit/>
+            <r_visit_yes/>
+            <r_visit_no/>
+            <r_vaccines_given/>
+            <r_bcg/>
+            <r_cholera_1/>
+            <r_cholera_2/>
+            <r_cholera_3/>
+            <r_hep_a_1/>
+            <r_hep_a_2/>
+            <r_hep_b/>
+            <r_hpv_1/>
+            <r_hpv_2/>
+            <r_hpv_3/>
+            <r_flu/>
+            <r_jap_enc/>
+            <r_meningococcal_1/>
+            <r_meningococcal_2/>
+            <r_meningococcal_3/>
+            <r_meningococcal_4/>
+            <r_mmr_1/>
+            <r_mmr_2/>
+            <r_mmrv_1/>
+            <r_mmrv_2/>
+            <r_opv_0/>
+            <r_opv_1/>
+            <r_opv_2/>
+            <r_opv_3/>
+            <r_ipv_1/>
+            <r_ipv_2/>
+            <r_ipv_3/>
+            <r_fipv_1/>
+            <r_fipv_2/>
+            <r_penta_1/>
+            <r_penta_2/>
+            <r_penta_3/>
+            <r_dpt_4/>
+            <r_dpt_5/>
+            <r_pneumococcal_1/>
+            <r_pneumococcal_2/>
+            <r_pneumococcal_3/>
+            <r_pneumococcal_4/>
+            <r_rotavirus_1/>
+            <r_rotavirus_2/>
+            <r_rotavirus_3/>
+            <r_typhoid_1/>
+            <r_typhoid_2/>
+            <r_vitamin_a/>
+            <r_yellow_fever/>
+            <r_followup/>
+            <r_followup_note1/>
+            <r_followup_note2/>
+          </group_review>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </immunization_visit>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

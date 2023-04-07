@@ -1,0 +1,15 @@
+
+  <form autocomplete="off" novalidate="novalidate" class="or clearfix pages" dir="ltr" id="situation">
+<!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSL stylesheet created by Enketo LLC.--><section class="form-logo"> </section><h3 dir="auto" id="form-title">How the patient is feeling</h3><select id="form-languages" style="display:none;" data-default-lang="en"><option value="en">en</option> </select>
+  
+  
+    <section class="or-group-data or-branch pre-init or-appearance-field-list " name="/situation/inputs" data-relevant="./source = 'user'"><section class="or-group-data " name="/situation/inputs/contact"><label class="question non-select or-appearance-db-object "><span lang="en" class="question-label active" data-itext-id="/situation/inputs/contact/_id:label">What is the patient's name?</span><input type="text" name="/situation/inputs/contact/_id" data-type-xml="person"/></label><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/patient_id" data-type-xml="string"/></label><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/name" data-type-xml="string"/></label><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/date_of_birth" data-type-xml="string"/></label><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/sex" data-type-xml="string"/></label><section class="or-group-data " name="/situation/inputs/contact/parent"><section class="or-group-data " name="/situation/inputs/contact/parent/contact"><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/parent/contact/phone" data-type-xml="string"/></label><label class="question non-select or-appearance-hidden "><input type="text" name="/situation/inputs/contact/parent/contact/name" data-type-xml="string"/></label>
+            </section><!--end of group -->
+            </section><!--end of group -->
+            </section><!--end of group -->
+            </section><!--end of group -->
+    <section class="or-group-data or-appearance-field-list " name="/situation/situation"><label class="question note non-select "><span lang="en" class="question-label active" data-itext-id="/situation/situation/bad:label">The patient is feeling very bad</span><input type="text" name="/situation/situation/bad" data-type-xml="string" readonly="readonly"/></label>
+            </section><!--end of group -->
+  
+<fieldset id="or-calculated-items" style="display:none;"><label class="calculation non-select "><input type="hidden" name="/situation/patient_id" data-calculate="../inputs/contact/patient_id" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/situation/patient_name" data-calculate="../inputs/contact/name" data-type-xml="string"/></label><label class="calculation non-select "><input type="hidden" name="/situation/meta/instanceID" data-calculate="concat('uuid:', uuid())" data-type-xml="string"/></label></fieldset></form>
+

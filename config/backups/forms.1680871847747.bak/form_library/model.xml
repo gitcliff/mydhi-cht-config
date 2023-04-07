@@ -1,0 +1,16 @@
+
+  <model>
+    <instance>
+        <library xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="library" prefix="J1!library!" delimiter="#" version="1">
+          <library>
+            <str/>
+            <lib/>
+          </library>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </library>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

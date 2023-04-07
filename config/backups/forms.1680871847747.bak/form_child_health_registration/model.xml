@@ -1,0 +1,69 @@
+
+  <model>
+    <instance>
+        <child_health_registration xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="child_health_registration" prefix="J1!child_health_registration!" delimiter="#" version="2018-11-14_10-20">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth>0</date_of_birth>
+              <sex/>
+              <phone/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+                <parent>
+                  <parent>
+                    <use_cases/>
+                  </parent>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_uuid tag="hidden"/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <birth_date/>
+          <chw_sms/>
+          <geolocation tag="hidden"/>
+          <patient_age_in_years tag="hidden">0</patient_age_in_years>
+          <patient_contact_phone tag="hidden"/>
+          <group_note tag="hidden">
+            <default_chw_sms>default</default_chw_sms>
+            <default_chw_sms_text/>
+            <default_chw_sms_note/>
+            <is_sms_edited>yes</is_sms_edited>
+            <g_chw_sms/>
+          </group_note>
+          <group_summary tag="hidden">
+            <submit/>
+            <r_summary/>
+            <r_patient_id/>
+            <r_patient_info/>
+            <r_followup/>
+            <r_followup_note1/>
+            <r_followup_note2/>
+          </group_summary>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </child_health_registration>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

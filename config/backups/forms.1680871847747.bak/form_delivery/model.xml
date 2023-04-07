@@ -1,0 +1,88 @@
+
+  <model>
+    <instance>
+        <delivery xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="delivery" prefix="J1!delivery!" delimiter="#" version="2018-11-14_10-20">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth>0</date_of_birth>
+              <sex/>
+              <phone/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+                <parent>
+                  <parent>
+                    <use_cases/>
+                  </parent>
+                </parent>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_uuid tag="hidden"/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <birth_date/>
+          <delivery_code/>
+          <label_delivery_code/>
+          <pregnancy_outcome tag="hidden"/>
+          <label_pregnancy_outcome/>
+          <chw_sms/>
+          <geolocation tag="hidden"/>
+          <patient_age_in_years tag="hidden">0</patient_age_in_years>
+          <patient_contact_phone tag="hidden"/>
+          <group_chw_info tag="hidden">
+            <chw_information/>
+            <call_button/>
+            <still_pregnant>no</still_pregnant>
+          </group_chw_info>
+          <group_delivery_summary tag="hidden">
+            <g_pregnancy_outcome/>
+            <g_delivery_code/>
+            <g_birth_date/>
+            <display_birth_date/>
+            <display_delivery_outcome/>
+          </group_delivery_summary>
+          <group_note tag="hidden">
+            <default_chw_sms/>
+            <default_chw_sms_text/>
+            <default_chw_sms_note/>
+            <is_sms_edited>yes</is_sms_edited>
+            <g_chw_sms/>
+          </group_note>
+          <group_summary tag="hidden">
+            <submit/>
+            <r_summary/>
+            <r_patient_id/>
+            <r_delivery_location/>
+            <r_patient_info/>
+            <r_pregnancy_outcome/>
+            <r_birth_date/>
+            <r_followup/>
+            <r_followup_note1/>
+            <r_followup_note2/>
+          </group_summary>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </delivery>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

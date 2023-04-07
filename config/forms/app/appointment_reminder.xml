@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Appointment Reminder</h:title>
     <model>
       <instance>
-        <appointment_reminder id="appointment_reminder" prefix="J1!appointment_reminder!" delimiter="#" version="2023-01-30_16-29">
+        <appointment_reminder delimiter="#" id="appointment_reminder" prefix="J1!appointment_reminder!" version="2023-01-30_16-29">
           <inputs>
             <meta>
               <location>
@@ -72,21 +72,21 @@
       <bind nodeset="/appointment_reminder/inputs/contact/sex" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/appointment_reminder/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/appointment_reminder/patient_name" type="string" calculate="../inputs/contact/name"/>
-      <bind nodeset="/appointment_reminder/app_type" type="string" calculate="../inputs/field_app_type"/>
-      <bind nodeset="/appointment_reminder/blood_draw_type" type="string" calculate="../inputs/field_blood_draw_type"/>
-      <bind nodeset="/appointment_reminder/date_of_appointment" type="string" calculate="../inputs/field_date_of_appointment"/>
-      <bind nodeset="/appointment_reminder/notes" type="string" calculate="../inputs/field_notes"/>
-      <bind nodeset="/appointment_reminder/date_task_appears" type="string" calculate="../inputs/field_date_task_appears"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/appointment_reminder/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/appointment_reminder/patient_name" type="string"/>
+      <bind calculate="../inputs/field_app_type" nodeset="/appointment_reminder/app_type" type="string"/>
+      <bind calculate="../inputs/field_blood_draw_type" nodeset="/appointment_reminder/blood_draw_type" type="string"/>
+      <bind calculate="../inputs/field_date_of_appointment" nodeset="/appointment_reminder/date_of_appointment" type="string"/>
+      <bind calculate="../inputs/field_notes" nodeset="/appointment_reminder/notes" type="string"/>
+      <bind calculate="../inputs/field_date_task_appears" nodeset="/appointment_reminder/date_task_appears" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/type" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/blood_draw" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/appointment_date" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/notes_app" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/date_task" readonly="true()" type="string"/>
-      <bind nodeset="/appointment_reminder/appointment_reminder/upcoming" readonly="true()" type="string" jr:constraintMsg="Noted, delete task from my inbox" constraint="true()"/>
+      <bind constraint="true()" jr:constraintMsg="Noted, delete task from my inbox" nodeset="/appointment_reminder/appointment_reminder/upcoming" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/follow-up" type="string"/>
-      <bind nodeset="/appointment_reminder/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/appointment_reminder/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

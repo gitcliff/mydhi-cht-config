@@ -1,0 +1,48 @@
+
+  <model>
+    <instance>
+        <referral xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-27_15-10">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_referral/>
+            <my_field_notes/>
+            <my_field_date/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <reminder>
+            <type/>
+            <note1/>
+            <when/>
+            <patient/>
+          </reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </referral>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

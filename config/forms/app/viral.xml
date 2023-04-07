@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Appointment Follow-up</h:title>
     <model>
       <instance>
-        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-27_15-21">
+        <viral delimiter="#" id="viral" prefix="J1!viral!" version="2022-07-27_15-21">
           <inputs>
             <meta>
               <location>
@@ -60,13 +60,13 @@
       <bind nodeset="/viral/inputs/contact/sex" type="string"/>
       <bind nodeset="/viral/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/viral/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/viral/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/viral/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/viral/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/viral/patient_name" type="string"/>
       <bind nodeset="/viral/appoint/type1" readonly="true()" type="string"/>
       <bind nodeset="/viral/appoint/due" readonly="true()" type="string"/>
       <bind nodeset="/viral/appoint/date1" readonly="true()" type="string"/>
       <bind nodeset="/viral/appoint/has" type="select1"/>
-      <bind nodeset="/viral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/viral/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

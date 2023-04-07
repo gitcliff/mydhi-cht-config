@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Patient Disposition Form v1</h:title>
+    <model>
+      <instance>
+        <disposition id="disposition" prefix="J1!disposition!" delimiter="#" version="2022-06-29_14-15">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <disposition>
+            <patient_d/>
+            <disposition_date/>
+          </disposition>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </disposition>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/disposition/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/disposition/inputs/source" type="string"/>
+      <bind nodeset="/disposition/inputs/source_id" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/disposition/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/name" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/sex" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/disposition/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/disposition/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/disposition/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/disposition/disposition/patient_d" type="select1"/>
+      <bind nodeset="/disposition/disposition/disposition_date" type="date"/>
+      <bind nodeset="/disposition/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/disposition/inputs">
+      <label>Appointment Form</label>
+      <group ref="/disposition/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/disposition/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/disposition/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/disposition/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/disposition/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/disposition/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/disposition/inputs/contact/parent">
+          <label></label>
+          <group ref="/disposition/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/disposition/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/disposition/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/disposition/disposition">
+      <label></label>
+      <select1 ref="/disposition/disposition/patient_d">
+        <label>Patient Disposition:</label>
+        <item>
+          <label>Lost to Follow-up</label>
+          <value>lost</value>
+        </item>
+        <item>
+          <label>Died</label>
+          <value>died</value>
+        </item>
+        <item>
+          <label>Transferred Out</label>
+          <value>out</value>
+        </item>
+        <item>
+          <label>Migrated</label>
+          <value>migrated</value>
+        </item>
+        <item>
+          <label>Exit or withdraw from text intervention</label>
+          <value>exit</value>
+        </item>
+      </select1>
+      <input ref="/disposition/disposition/disposition_date">
+        <label>Date of Disposition</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

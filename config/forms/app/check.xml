@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Patient Needs a Lab Test</h:title>
     <model>
       <instance>
-        <check id="check" prefix="J1!check!" delimiter="#" version="2022-07-13_17-36">
+        <check delimiter="#" id="check" prefix="J1!check!" version="2022-07-13_17-36">
           <inputs>
             <meta>
               <location>
@@ -56,15 +56,15 @@
       <bind nodeset="/check/inputs/contact/sex" type="string"/>
       <bind nodeset="/check/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/check/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/check/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/check/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/check/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/check/patient_name" type="string"/>
       <bind nodeset="/check/check/note" type="select1"/>
-      <bind nodeset="/check/check/test" type="date" calculate="today()"/>
+      <bind calculate="today()" nodeset="/check/check/test" type="date"/>
       <bind nodeset="/check/check/result" type="select1"/>
       <bind nodeset="/check/check/load" type="select1"/>
       <bind nodeset="/check/check/should" type="select1"/>
       <bind nodeset="/check/check/load2" type="select1"/>
-      <bind nodeset="/check/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/check/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
