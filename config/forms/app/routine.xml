@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Routine Visit</h:title>
+    <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2022-11-03_09-23">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-04-07_17-23">
           <inputs>
             <meta>
               <location>
@@ -35,9 +35,7 @@
           <routine>
             <client/>
             <reminder/>
-            <notes/>
             <reviewed/>
-            <display_dates/>
             <client_status/>
             <recent/>
             <visit_notes/>
@@ -62,9 +60,7 @@
       <bind calculate="../inputs/contact/name" nodeset="/routine/patient_name" type="string"/>
       <bind nodeset="/routine/routine/client" type="string"/>
       <bind nodeset="/routine/routine/reminder" type="date"/>
-      <bind nodeset="/routine/routine/notes" type="string"/>
       <bind nodeset="/routine/routine/reviewed" type="select1"/>
-      <bind nodeset="/routine/routine/display_dates" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/client_status" type="select1"/>
       <bind nodeset="/routine/routine/recent" type="select1"/>
       <bind nodeset="/routine/routine/visit_notes" type="string"/>
@@ -113,9 +109,6 @@
       <input ref="/routine/routine/reminder">
         <label>Have you reviewed the most recent SMS Messages with client?</label>
       </input>
-      <input ref="/routine/routine/notes">
-        <label>Display any open Tasks</label>
-      </input>
       <select1 ref="/routine/routine/reviewed">
         <label>Have you reviewed the Tasks that are due for this client?</label>
         <item>
@@ -127,11 +120,6 @@
           <value>no</value>
         </item>
       </select1>
-      <input ref="/routine/routine/display_dates">
-        <label>Display dates
-Level of Care Assessment Form:
-SRQ:</label>
-      </input>
       <select1 ref="/routine/routine/client_status">
         <label>What is the client's current status?</label>
         <item>
