@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Library info</h:title>
     <model>
       <instance>
-        <library id="library" prefix="J1!library!" delimiter="#" version="1">
+        <library delimiter="#" id="library" prefix="J1!library!" version="1">
           <library>
             <str/>
             <lib/>
@@ -17,7 +17,7 @@
       <instance id="contact-summary"/>
       <bind nodeset="/library/library/str" readonly="true()" type="string"/>
       <bind nodeset="/library/library/lib" readonly="true()" type="string"/>
-      <bind nodeset="/library/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/library/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

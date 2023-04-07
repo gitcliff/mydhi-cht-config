@@ -1,0 +1,48 @@
+
+  <model>
+    <instance>
+        <on xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="on" prefix="J1!on!" delimiter="#" version="2018-11-14_10-23">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_uuid/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <chw_sms/>
+          <group_note>
+            <pregnancy_note/>
+            <send_note/>
+            <chw_note/>
+          </group_note>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </on>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

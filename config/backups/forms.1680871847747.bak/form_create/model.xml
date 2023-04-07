@@ -1,0 +1,44 @@
+
+  <model>
+    <instance>
+        <create xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="create" prefix="J1!create!" delimiter="#" version="2022-10-19_09-51">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <create>
+            <title/>
+            <notes/>
+            <reminder/>
+          </create>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </create>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

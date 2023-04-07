@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Viral Load Lab Test Result</h:title>
+    <model>
+      <instance>
+        <load id="load" prefix="J1!load!" delimiter="#" version="2022-07-26_12-07">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_load/>
+            <load_field_date/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <load>
+            <test/>
+            <date1/>
+            <result/>
+            <result2/>
+            <result3/>
+          </load>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </load>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/load/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/load/inputs/source" type="string"/>
+      <bind nodeset="/load/inputs/source_id" type="string"/>
+      <bind nodeset="/load/inputs/my_field_load" type="string"/>
+      <bind nodeset="/load/inputs/load_field_date" type="string"/>
+      <bind nodeset="/load/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/load/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/load/inputs/contact/name" type="string"/>
+      <bind nodeset="/load/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/load/inputs/contact/sex" type="string"/>
+      <bind nodeset="/load/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/load/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/load/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/load/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/load/load/test" readonly="true()" type="string"/>
+      <bind nodeset="/load/load/date1" readonly="true()" type="string"/>
+      <bind nodeset="/load/load/result" type="select1"/>
+      <bind nodeset="/load/load/result2" type="select1" relevant=" /load/load/result  = 'yes'"/>
+      <bind nodeset="/load/load/result3" type="select1" relevant=" /load/load/result2  = 'unstable' or  /load/load/result2  = 'stable' or  /load/load/result2  = 'inconclusive'"/>
+      <bind nodeset="/load/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/load/inputs">
+      <label>Viral Load Lab Test Result</label>
+      <group ref="/load/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/load/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/load/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/load/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/load/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/load/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/load/inputs/contact/parent">
+          <label></label>
+          <group ref="/load/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/load/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/load/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/load/load">
+      <label></label>
+      <input ref="/load/load/test">
+        <label>Lab test: <output value=" /load/inputs/my_field_load "/></label>
+      </input>
+      <input ref="/load/load/date1">
+        <label>Date of Appointment: <output value=" /load/inputs/load_field_date "/></label>
+      </input>
+      <select1 ref="/load/load/result">
+        <label>Is the result of the Viral Load lab test available?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+        <item>
+          <label>Unknown  (Lab test did not give a result after 14 days. Close this Task and set up new lab test appointment for patient to get a new lab draw)</label>
+          <value>un</value>
+        </item>
+      </select1>
+      <select1 ref="/load/load/result2">
+        <label>Viral Load result:</label>
+        <item>
+          <label>Stable or Suppressed (viral load is below 1,000 copies/ml)</label>
+          <value>stable</value>
+        </item>
+        <item>
+          <label>Unstable or Unsuppressed 
+(viral load is 1,000 or above 1,000 copies/ml)</label>
+          <value>unstable</value>
+        </item>
+        <item>
+          <label>Inconclusive (Viral Load Lab test did not work or had an error, so patient will need to repeat this lab test)</label>
+          <value>inconclusive</value>
+        </item>
+      </select1>
+      <select1 ref="/load/load/result3">
+        <label>This patient should be scheduled for a Viral Load Lab count based on their result and date of last lab appointment.</label>
+        <item>
+          <label>Okay, I will schedule a Viral Load lab appointment</label>
+          <value>okay</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
+          <value>keep</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

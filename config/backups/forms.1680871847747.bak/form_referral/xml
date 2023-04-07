@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Referral Follow-up</h:title>
+    <model>
+      <instance>
+        <referral id="referral" prefix="J1!referral!" delimiter="#" version="2022-07-27_15-10">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_referral/>
+            <my_field_notes/>
+            <my_field_date/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <reminder>
+            <type/>
+            <note1/>
+            <when/>
+            <patient/>
+          </reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </referral>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/referral/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/referral/inputs/source" type="string"/>
+      <bind nodeset="/referral/inputs/source_id" type="string"/>
+      <bind nodeset="/referral/inputs/my_field_referral" type="string"/>
+      <bind nodeset="/referral/inputs/my_field_notes" type="string"/>
+      <bind nodeset="/referral/inputs/my_field_date" type="string"/>
+      <bind nodeset="/referral/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/referral/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/referral/inputs/contact/name" type="string"/>
+      <bind nodeset="/referral/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/referral/inputs/contact/sex" type="string"/>
+      <bind nodeset="/referral/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/referral/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/referral/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/referral/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/referral/reminder/type" readonly="true()" type="string"/>
+      <bind nodeset="/referral/reminder/note1" readonly="true()" type="string"/>
+      <bind nodeset="/referral/reminder/when" readonly="true()" type="string"/>
+      <bind nodeset="/referral/reminder/patient" type="select1"/>
+      <bind nodeset="/referral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/referral/inputs">
+      <label></label>
+      <group ref="/referral/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/referral/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/referral/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/referral/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/referral/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/referral/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/referral/inputs/contact/parent">
+          <label></label>
+          <group ref="/referral/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/referral/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/referral/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/referral/reminder">
+      <label></label>
+      <input ref="/referral/reminder/type">
+        <label>Appointment Type : <output value=" /referral/inputs/my_field_referral "/> referral</label>
+      </input>
+      <input ref="/referral/reminder/note1">
+        <label>Any notes about this Appointment?: <output value=" /referral/inputs/my_field_notes "/></label>
+      </input>
+      <input ref="/referral/reminder/when">
+        <label>Date of Appointment: <output value=" /referral/inputs/my_field_date "/></label>
+      </input>
+      <select1 ref="/referral/reminder/patient">
+        <label>Patient was referred for a visit</label>
+        <item>
+          <label>Noted, I will follow-up with patient or care team as needed</label>
+          <value>comp</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
+          <value>snooze</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

@@ -1,0 +1,112 @@
+
+  <model>
+    <instance>
+        <postnatal_visit xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="postnatal_visit" prefix="J1!postnatal_visit!" delimiter="#" version="2018-11-14_10-19">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <phone/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_age_in_years tag="hidden"/>
+          <patient_phone/>
+          <patient_uuid tag="hidden"/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <danger_signs_mom/>
+          <danger_signs_baby/>
+          <chw_sms/>
+          <visit_confirmed/>
+          <group_chw_info tag="hidden">
+            <chw_information/>
+            <call_button/>
+            <attended_pnc>yes</attended_pnc>
+          </group_chw_info>
+          <group_who_assessed tag="hidden">
+            <g_who_assessed/>
+          </group_who_assessed>
+          <group_danger_signs_mom tag="hidden">
+            <g_danger_signs_mom/>
+            <danger_signs_mom_other/>
+          </group_danger_signs_mom>
+          <group_danger_signs_baby tag="hidden">
+            <g_danger_signs_baby/>
+            <danger_signs_baby_other/>
+          </group_danger_signs_baby>
+          <group_note tag="hidden">
+            <default_chw_sms/>
+            <default_chw_sms_text/>
+            <default_chw_sms_note/>
+            <is_sms_edited>yes</is_sms_edited>
+            <g_chw_sms/>
+          </group_note>
+          <group_review tag="hidden">
+            <submit/>
+            <r_summary/>
+            <r_patient_id/>
+            <r_postnatal_details/>
+            <r_visit/>
+            <r_visit_yes/>
+            <r_visit_no/>
+            <r_danger_signs/>
+            <r_mom_danger_signs/>
+            <r_mom_danger_sign1/>
+            <r_mom_danger_sign2/>
+            <r_mom_danger_sign3/>
+            <r_mom_danger_sign4/>
+            <r_mom_danger_sign5/>
+            <r_mom_danger_sign6/>
+            <r_mom_danger_sign7/>
+            <r_mom_danger_sign8/>
+            <r_mom_danger_sign9/>
+            <r_mom_danger_sign10/>
+            <r_mom_danger_sign11/>
+            <r_mom_danger_sign12/>
+            <r_mom_danger_sign13/>
+            <r_mom_danger_sign14/>
+            <r_baby_danger_signs/>
+            <r_baby_danger_sign1/>
+            <r_baby_danger_sign2/>
+            <r_baby_danger_sign3/>
+            <r_baby_danger_sign4/>
+            <r_baby_danger_sign5/>
+            <r_baby_danger_sign6/>
+            <r_baby_danger_sign7/>
+            <r_baby_danger_sign8/>
+            <r_baby_danger_sign9/>
+            <r_baby_danger_sign10/>
+            <r_baby_danger_sign11/>
+            <r_followup/>
+            <r_followup_note1/>
+            <r_followup_note2/>
+          </group_review>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </postnatal_visit>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

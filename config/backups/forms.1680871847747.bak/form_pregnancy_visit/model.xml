@@ -1,0 +1,88 @@
+
+  <model>
+    <instance>
+        <pregnancy_visit xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="pregnancy_visit" prefix="J1!pregnancy_visit!" delimiter="#" version="2018-11-14_10-29">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source>user</source>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <phone/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_age_in_years tag="hidden"/>
+          <patient_phone tag="hidden"/>
+          <patient_uuid tag="hidden"/>
+          <patient_id/>
+          <patient_name/>
+          <chw_name/>
+          <chw_phone/>
+          <danger_signs/>
+          <referral_follow_up_needed/>
+          <chw_sms/>
+          <visit_confirmed/>
+          <group_chw_info tag="hidden">
+            <chw_information/>
+            <call_button/>
+            <attended_anc>yes</attended_anc>
+          </group_chw_info>
+          <group_danger_signs tag="hidden">
+            <g_danger_signs/>
+          </group_danger_signs>
+          <group_note tag="hidden">
+            <default_chw_sms/>
+            <default_chw_sms_text/>
+            <default_chw_sms_note/>
+            <is_sms_edited>yes</is_sms_edited>
+            <g_chw_sms/>
+          </group_note>
+          <group_review tag="hidden">
+            <submit/>
+            <r_summary/>
+            <r_patient_id/>
+            <r_pregnancy_details/>
+            <r_visit/>
+            <r_visit_yes/>
+            <r_visit_no/>
+            <r_visit_unknown/>
+            <r_referral/>
+            <r_referral_note/>
+            <r_danger_sign1/>
+            <r_danger_sign2/>
+            <r_danger_sign3/>
+            <r_danger_sign4/>
+            <r_danger_sign5/>
+            <r_danger_sign6/>
+            <r_danger_sign7/>
+            <r_danger_sign8/>
+            <r_danger_sign9/>
+            <r_followup/>
+            <r_followup_note1/>
+            <r_followup_note2/>
+          </group_review>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </pregnancy_visit>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

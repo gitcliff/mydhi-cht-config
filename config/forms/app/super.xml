@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Supersert</h:title>
     <model>
       <instance>
-        <super id="super" prefix="J1!super!" delimiter="#" version="1">
+        <super delimiter="#" id="super" prefix="J1!super!" version="1">
           <library>
             <str/>
             <suoer/>
@@ -17,7 +17,7 @@
       <instance id="contact-summary"/>
       <bind nodeset="/super/library/str" readonly="true()" type="string"/>
       <bind nodeset="/super/library/suoer" readonly="true()" type="string"/>
-      <bind nodeset="/super/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/super/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

@@ -1,0 +1,25 @@
+
+  <model>
+    <instance>
+        <srq xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="srq" prefix="J1!srq!" delimiter="#" version="1">
+          <cd4>
+            <person/>
+            <date/>
+            <note_one/>
+            <medication/>
+            <average/>
+            <last/>
+            <reasons>0</reasons>
+            <reasons_other/>
+            <score/>
+            <label_score/>
+            <pills/>
+          </cd4>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </srq>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

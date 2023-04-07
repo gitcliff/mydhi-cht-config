@@ -1,0 +1,55 @@
+
+  <model>
+    <instance>
+        <data xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2023-02-02_10-38">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <user>
+              <contact_id/>
+              <facility_id/>
+              <name/>
+            </user>
+          </inputs>
+          <person>
+            <parent/>
+            <type>person</type>
+            <name/>
+            <name1/>
+            <aka/>
+            <docket/>
+            <tsis/>
+            <address/>
+            <address1/>
+            <phone/>
+            <type1/>
+            <network1/>
+            <date_of_birth/>
+            <at/>
+            <genda/>
+            <meta tag="hidden">
+              <created_by/>
+              <created_by_person_uuid/>
+              <created_by_place_uuid/>
+            </meta>
+          </person>
+          <init>
+            <parent_id/>
+            <name/>
+            <type/>
+            <type_selector/>
+            <type_label/>
+          </init>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </data>
+      </instance>
+  </model>
+

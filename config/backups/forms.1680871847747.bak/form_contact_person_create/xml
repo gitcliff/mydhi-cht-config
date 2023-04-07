@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>New Person</h:title>
+    <model>
+      <itext>
+        <translation lang="en">
+          <text id="/data/person/phone:hint">
+            <value>Must be in the format +1 (876) xxx-xxxx</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <data id="contact:person:create" prefix="J1!contact:person:create!" delimiter="#" version="2023-02-02_10-38">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <user>
+              <contact_id/>
+              <facility_id/>
+              <name/>
+            </user>
+          </inputs>
+          <person>
+            <parent/>
+            <type>person</type>
+            <name/>
+            <name1/>
+            <aka/>
+            <docket/>
+            <tsis/>
+            <address/>
+            <address1/>
+            <phone/>
+            <type1/>
+            <network1/>
+            <date_of_birth/>
+            <at/>
+            <genda/>
+            <meta tag="hidden">
+              <created_by/>
+              <created_by_person_uuid/>
+              <created_by_place_uuid/>
+            </meta>
+          </person>
+          <init>
+            <parent_id/>
+            <name/>
+            <type/>
+            <type_selector/>
+            <type_label/>
+          </init>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </data>
+      </instance>
+      <bind nodeset="/data/inputs" relevant="false()"/>
+      <bind nodeset="/data/inputs/user/contact_id" type="string"/>
+      <bind nodeset="/data/inputs/user/facility_id" type="string"/>
+      <bind nodeset="/data/inputs/user/name" type="string"/>
+      <bind nodeset="/data/init/parent_id" type="string" readonly="true()" calculate=" /data/person/parent "/>
+      <bind nodeset="/data/init/name" type="string"/>
+      <bind nodeset="/data/init/type" type="string"/>
+      <bind nodeset="/data/init/type_selector" type="select1" calculate="../type"/>
+      <bind nodeset="/data/init/type_label" type="string" calculate="jr:choice-name( /data/init/type_selector ,' /data/init/type_selector ')"/>
+      <bind nodeset="/data/person/parent" type="string"/>
+      <bind nodeset="/data/person/type" type="string"/>
+      <bind nodeset="/data/person/name" type="string" required="true()"/>
+      <bind nodeset="/data/person/name1" type="string"/>
+      <bind nodeset="/data/person/aka" type="string"/>
+      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/tsis" type="int" required="true()"/>
+      <bind nodeset="/data/person/address" type="string" required="true()"/>
+      <bind nodeset="/data/person/address1" type="string"/>
+      <bind nodeset="/data/person/phone" type="tel" required="true()" constraint="true()"/>
+      <bind nodeset="/data/person/type1" type="select1"/>
+      <bind nodeset="/data/person/network1" type="select1"/>
+      <bind nodeset="/data/person/date_of_birth" type="date" jr:constraintMsg="Date of birth cannot be in the future" required="true()" constraint=". &lt;= today()"/>
+      <bind nodeset="/data/person/at" type="select1"/>
+      <bind nodeset="/data/person/genda" type="select1"/>
+      <bind nodeset="/data/person/meta/created_by" type="string" calculate="../../../inputs/user/name"/>
+      <bind nodeset="/data/person/meta/created_by_person_uuid" type="string" calculate="../../../inputs/user/contact_id"/>
+      <bind nodeset="/data/person/meta/created_by_place_uuid" type="string" calculate="../../../inputs/user/facility_id"/>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group ref="/data/inputs">
+      <label></label>
+      <group appearance="hidden" ref="/data/inputs/user">
+        <label></label>
+        <input ref="/data/inputs/user/contact_id">
+          <label>Contact ID of the logged in user</label>
+        </input>
+        <input ref="/data/inputs/user/facility_id">
+          <label>Place ID of the logged in user</label>
+        </input>
+        <input ref="/data/inputs/user/name">
+          <label>Name of the logged in user</label>
+        </input>
+      </group>
+    </group>
+    <group appearance="hidden" ref="/data/init">
+      <label></label>
+      <input appearance="db-object" ref="/data/init/parent_id">
+        <label>Belongs To</label>
+      </input>
+      <input appearance="hidden" ref="/data/init/name">
+        <label></label>
+      </input>
+      <input appearance="hidden" ref="/data/init/type">
+        <label></label>
+      </input>
+      <select1 appearance="hidden" ref="/data/init/type_selector">
+        <label></label>
+        <item>
+          <label>District</label>
+          <value>district_hospital</value>
+        </item>
+        <item>
+          <label>Health Center</label>
+          <value>health_center</value>
+        </item>
+        <item>
+          <label>Area</label>
+          <value>clinic</value>
+        </item>
+      </select1>
+    </group>
+    <group appearance="field-list" ref="/data/person">
+      <label></label>
+      <input ref="/data/person/name">
+        <label>First Name</label>
+      </input>
+      <input ref="/data/person/name1">
+        <label>Last Name</label>
+      </input>
+      <input ref="/data/person/aka">
+        <label>Also Known as:</label>
+      </input>
+      <input ref="/data/person/docket">
+        <label>Docket Number</label>
+      </input>
+      <input ref="/data/person/tsis">
+        <label>TSIS number</label>
+      </input>
+      <input ref="/data/person/address">
+        <label>Current Address</label>
+      </input>
+      <input ref="/data/person/address1">
+        <label>Previous Address</label>
+      </input>
+      <input ref="/data/person/phone">
+        <label>Current Cell number</label>
+        <hint ref="jr:itext('/data/person/phone:hint')"/>
+      </input>
+      <select1 ref="/data/person/type1">
+        <label>Type of current phone</label>
+        <item>
+          <label>Banger Phone</label>
+          <value>banger</value>
+        </item>
+        <item>
+          <label>SmartPhone</label>
+          <value>smart</value>
+        </item>
+      </select1>
+      <select1 ref="/data/person/network1">
+        <label>Which network do you currently use?</label>
+        <item>
+          <label>Digicel</label>
+          <value>digicel</value>
+        </item>
+        <item>
+          <label>Flow</label>
+          <value>flow</value>
+        </item>
+        <item>
+          <label>Both</label>
+          <value>both</value>
+        </item>
+      </select1>
+      <input ref="/data/person/date_of_birth">
+        <label>Date of Birth</label>
+      </input>
+      <select1 ref="/data/person/at">
+        <label>Sex at birth</label>
+        <item>
+          <label>Male</label>
+          <value>male</value>
+        </item>
+        <item>
+          <label>Female</label>
+          <value>female</value>
+        </item>
+        <item>
+          <label>Intersex</label>
+          <value>inter</value>
+        </item>
+      </select1>
+      <select1 ref="/data/person/genda">
+        <label>Gender Identity</label>
+        <item>
+          <label>Male</label>
+          <value>gender_male</value>
+        </item>
+        <item>
+          <label>Female</label>
+          <value>gender_female</value>
+        </item>
+      </select1>
+      <group appearance="multiline" ref="/data/person/meta">
+        <label></label>
+      </group>
+    </group>
+  </h:body>
+</h:html>

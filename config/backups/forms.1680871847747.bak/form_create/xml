@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Create a task</h:title>
+    <model>
+      <instance>
+        <create id="create" prefix="J1!create!" delimiter="#" version="2022-10-19_09-51">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <create>
+            <title/>
+            <notes/>
+            <reminder/>
+          </create>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </create>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/create/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/create/inputs/source" type="string"/>
+      <bind nodeset="/create/inputs/source_id" type="string"/>
+      <bind nodeset="/create/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/create/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/create/inputs/contact/name" type="string"/>
+      <bind nodeset="/create/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/create/inputs/contact/sex" type="string"/>
+      <bind nodeset="/create/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/create/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/create/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/create/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/create/create/title" type="string"/>
+      <bind nodeset="/create/create/notes" type="string"/>
+      <bind nodeset="/create/create/reminder" type="date"/>
+      <bind nodeset="/create/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/create/inputs">
+      <label></label>
+      <group ref="/create/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/create/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/create/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/create/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/create/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/create/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/create/inputs/contact/parent">
+          <label></label>
+          <group ref="/create/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/create/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/create/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/create/create">
+      <label></label>
+      <input ref="/create/create/title">
+        <label>Task Name</label>
+      </input>
+      <input ref="/create/create/notes">
+        <label>Notes about this task:</label>
+      </input>
+      <input ref="/create/create/reminder">
+        <label>When should a reminder appear in your tasks?</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

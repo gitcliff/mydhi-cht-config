@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Labs and Medication</h:title>
+    <model>
+      <instance>
+        <labs_medication delimiter="#" id="labs_medication" prefix="J1!labs_medication!" version="2023-02-09_15-49">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <labs_medication>
+            <date_completed/>
+            <name_person/>
+            <most_recent/>
+            <results/>
+            <recent/>
+            <cd_results/>
+            <current_regime/>
+            <art_regime/>
+            <nots/>
+          </labs_medication>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </labs_medication>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/labs_medication/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/labs_medication/inputs/source" type="string"/>
+      <bind nodeset="/labs_medication/inputs/source_id" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/labs_medication/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/name" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/sex" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/labs_medication/inputs/contact/parent/contact/name" type="string"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/labs_medication/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/labs_medication/patient_name" type="string"/>
+      <bind nodeset="/labs_medication/labs_medication/date_completed" type="date"/>
+      <bind nodeset="/labs_medication/labs_medication/name_person" type="string"/>
+      <bind nodeset="/labs_medication/labs_medication/most_recent" type="date"/>
+      <bind nodeset="/labs_medication/labs_medication/results" type="string"/>
+      <bind nodeset="/labs_medication/labs_medication/recent" type="date"/>
+      <bind nodeset="/labs_medication/labs_medication/cd_results" type="string"/>
+      <bind nodeset="/labs_medication/labs_medication/current_regime" type="date"/>
+      <bind nodeset="/labs_medication/labs_medication/art_regime" type="string"/>
+      <bind nodeset="/labs_medication/labs_medication/nots" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/labs_medication/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/labs_medication/inputs">
+      <label></label>
+      <group ref="/labs_medication/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/labs_medication/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/labs_medication/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/labs_medication/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/labs_medication/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/labs_medication/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/labs_medication/inputs/contact/parent">
+          <label></label>
+          <group ref="/labs_medication/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/labs_medication/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/labs_medication/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/labs_medication/labs_medication">
+      <label></label>
+      <input ref="/labs_medication/labs_medication/date_completed">
+        <label>Date Completed</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/name_person">
+        <label>Name of Person Completing form</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/most_recent">
+        <label>Most recent VL Test date</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/results">
+        <label>Viral Load Results</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/recent">
+        <label>Most Recent CD4 Test Date</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/cd_results">
+        <label>CD4 Results</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/current_regime">
+        <label>Date Current Regime Started</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/art_regime">
+        <label>Current ART Regime</label>
+      </input>
+      <input ref="/labs_medication/labs_medication/nots">
+        <label>Notes</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
     <h:title>Schedule CD4 Lab Appointment</h:title>
     <model>
       <instance>
-        <count id="count" prefix="J1!count!" delimiter="#" version="2022-07-11_14-21">
+        <count delimiter="#" id="count" prefix="J1!count!" version="2022-07-11_14-21">
           <inputs>
             <meta>
               <location>
@@ -53,12 +53,12 @@
       <bind nodeset="/count/inputs/contact/sex" type="string"/>
       <bind nodeset="/count/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/count/inputs/contact/parent/contact/name" type="string"/>
-      <bind nodeset="/count/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
-      <bind nodeset="/count/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/count/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/count/patient_name" type="string"/>
       <bind nodeset="/count/appoint/count" type="select1"/>
-      <bind nodeset="/count/appoint/date" type="date" readonly="true()" calculate="today()"/>
+      <bind calculate="today()" nodeset="/count/appoint/date" readonly="true()" type="date"/>
       <bind nodeset="/count/appoint/duee" type="select1"/>
-      <bind nodeset="/count/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/count/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">

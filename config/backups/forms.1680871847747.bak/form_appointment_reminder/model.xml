@@ -1,0 +1,58 @@
+
+  <model>
+    <instance>
+        <appointment_reminder xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" id="appointment_reminder" prefix="J1!appointment_reminder!" delimiter="#" version="2023-01-30_16-29">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <field_app_type/>
+            <field_blood_draw_type/>
+            <field_date_of_appointment/>
+            <field_notes/>
+            <field_date_task_appears/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <app_type/>
+          <blood_draw_type/>
+          <date_of_appointment/>
+          <notes/>
+          <date_task_appears/>
+          <appointment_reminder>
+            <type/>
+            <blood_draw/>
+            <appointment_date/>
+            <notes_app/>
+            <date_task/>
+            <upcoming/>
+            <follow-up/>
+          </appointment_reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </appointment_reminder>
+      </instance>
+    <instance id="contact-summary"/>
+  </model>
+

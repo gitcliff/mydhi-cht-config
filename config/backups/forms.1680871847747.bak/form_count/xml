@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Schedule CD4 Lab Appointment</h:title>
+    <model>
+      <instance>
+        <count id="count" prefix="J1!count!" delimiter="#" version="2022-07-11_14-21">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <appoint>
+            <count/>
+            <date/>
+            <duee/>
+          </appoint>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </count>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/count/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/count/inputs/source" type="string"/>
+      <bind nodeset="/count/inputs/source_id" type="string"/>
+      <bind nodeset="/count/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/count/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/count/inputs/contact/name" type="string"/>
+      <bind nodeset="/count/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/count/inputs/contact/sex" type="string"/>
+      <bind nodeset="/count/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/count/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/count/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/count/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/count/appoint/count" type="select1"/>
+      <bind nodeset="/count/appoint/date" type="date" calculate="today()" readonly="true()"/>
+      <bind nodeset="/count/appoint/duee" type="select1"/>
+      <bind nodeset="/count/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/count/inputs">
+      <label>CD4 count lab test is due</label>
+      <group ref="/count/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/count/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/count/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/count/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/count/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/count/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/count/inputs/contact/parent">
+          <label></label>
+          <group ref="/count/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/count/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/count/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/count/appoint">
+      <label></label>
+      <select1 ref="/count/appoint/count">
+        <label>CD4 count result:</label>
+        <item>
+          <label>Unstable (CD4 count is below 350 cells/mm3)</label>
+          <value>unstable</value>
+        </item>
+        <item>
+          <label>Stable (CD4 count is 350 or above 350 cells/mm3)</label>
+          <value>stable</value>
+        </item>
+      </select1>
+      <input ref="/count/appoint/date">
+        <label>Date of CD4 Task</label>
+      </input>
+      <select1 ref="/count/appoint/duee">
+        <label>This patient is due for a CD4 count.</label>
+        <item>
+          <label>Okay, I will, schedule an appointment for a lab visit</label>
+          <value>due1</value>
+        </item>
+        <item>
+          <label>Snooze task for 2 days</label>
+          <value>due2</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>

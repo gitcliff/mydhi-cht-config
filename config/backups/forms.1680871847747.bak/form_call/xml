@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Call Log</h:title>
+    <model>
+      <instance>
+        <call id="call" prefix="J1!call!" delimiter="#" version="2022-11-09_23-20">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_fst/>
+            <my_field_lst/>
+            <my_field_dob/>
+            <my_field_address/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <name1/>
+              <address/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <patient_name1/>
+          <patient_address/>
+          <patient_date_of_birth/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <address_ctx/>
+          <call>
+            <first_name/>
+            <last_name/>
+            <dob/>
+            <address/>
+            <call1/>
+            <verify/>
+            <verify_date/>
+            <match/>
+            <if_no/>
+            <if_yes/>
+            <identity/>
+            <note_verified/>
+            <actions_done/>
+            <notes/>
+            <duration/>
+          </call>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </call>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/call/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/call/inputs/source" type="string"/>
+      <bind nodeset="/call/inputs/source_id" type="string"/>
+      <bind nodeset="/call/inputs/my_field_fst" type="string"/>
+      <bind nodeset="/call/inputs/my_field_lst" type="string"/>
+      <bind nodeset="/call/inputs/my_field_dob" type="string"/>
+      <bind nodeset="/call/inputs/my_field_address" type="string"/>
+      <bind nodeset="/call/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/call/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/call/inputs/contact/name" type="string"/>
+      <bind nodeset="/call/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/call/inputs/contact/sex" type="string"/>
+      <bind nodeset="/call/inputs/contact/name1" type="string"/>
+      <bind nodeset="/call/inputs/contact/address" type="string"/>
+      <bind nodeset="/call/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/call/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/call/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/call/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/call/patient_name1" type="string" calculate="../inputs/contact/name1"/>
+      <bind nodeset="/call/patient_address" type="string" calculate="../inputs/contact/address"/>
+      <bind nodeset="/call/patient_date_of_birth" type="string" calculate="../inputs/contact/date_of_birth"/>
+      <bind nodeset="/call/fast_name_ctx" type="string" calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)"/>
+      <bind nodeset="/call/last_name_ctx" type="string" calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)"/>
+      <bind nodeset="/call/date_of_birth_ctx" type="string" calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)"/>
+      <bind nodeset="/call/address_ctx" type="string" calculate="if(instance('contact-summary')/context/address != '', instance('contact-summary')/context/address, .)"/>
+      <bind nodeset="/call/call/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/last_name" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/dob" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/address" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/call1" type="date"/>
+      <bind nodeset="/call/call/verify" type="select1"/>
+      <bind nodeset="/call/call/verify_date" type="select1"/>
+      <bind nodeset="/call/call/match" type="select1"/>
+      <bind nodeset="/call/call/if_no" type="select1" relevant=" /call/call/match  = 'no'"/>
+      <bind nodeset="/call/call/if_yes" type="select1" relevant=" /call/call/match  = 'yes'"/>
+      <bind nodeset="/call/call/identity" type="select1"/>
+      <bind nodeset="/call/call/note_verified" readonly="true()" type="string" relevant=" /call/call/identity  = 'no'"/>
+      <bind nodeset="/call/call/actions_done" type="select" relevant=" /call/call/identity  = 'yes'"/>
+      <bind nodeset="/call/call/notes" type="string"/>
+      <bind nodeset="/call/call/duration" type="int"/>
+      <bind nodeset="/call/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/call/inputs">
+      <label></label>
+      <group ref="/call/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/call/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/sex">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/name1">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/address">
+          <label></label>
+        </input>
+        <group ref="/call/inputs/contact/parent">
+          <label></label>
+          <group ref="/call/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/call/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/call/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/call/call">
+      <label></label>
+      <input ref="/call/call/first_name">
+        <label>**First name:** <output value=" /call/fast_name_ctx "/></label>
+      </input>
+      <input ref="/call/call/last_name">
+        <label>**Last name:** <output value=" /call/last_name_ctx "/></label>
+      </input>
+      <input ref="/call/call/dob">
+        <label>**Date of birth:** <output value=" /call/date_of_birth_ctx "/></label>
+      </input>
+      <input ref="/call/call/address">
+        <label>**Current address:** <output value=" /call/address_ctx "/></label>
+      </input>
+      <input ref="/call/call/call1">
+        <label>Date of Call</label>
+      </input>
+      <select1 ref="/call/call/verify">
+        <label>Did the patient verify the correct last name?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/call/call/verify_date">
+        <label>Did the patient verify the correct date of birth?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/call/call/match">
+        <label>Did the current address shared by the patient match the address in the system?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/call/call/if_no">
+        <label>What was your previous address? Did the patient correctly verify previous address?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/call/call/if_yes">
+        <label>Did the patient move and do we need to update the address?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/call/call/identity">
+        <label>Was the patient's identity verified?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <input ref="/call/call/note_verified">
+        <label>Patient was not verified, please end the call.</label>
+      </input>
+      <select ref="/call/call/actions_done">
+        <label>What actions were done?</label>
+        <item>
+          <label>Appointment confirmation</label>
+          <value>appointment_confirmation</value>
+        </item>
+        <item>
+          <label>Added Lab appointment</label>
+          <value>added_lab_appointment</value>
+        </item>
+        <item>
+          <label>Answered questions about care</label>
+          <value>answered_questions_about_care</value>
+        </item>
+        <item>
+          <label>Telemedicine Visit</label>
+          <value>telemedicine_visit</value>
+        </item>
+      </select>
+      <input ref="/call/call/notes">
+        <label>Notes about this conversation</label>
+      </input>
+      <input ref="/call/call/duration">
+        <label>Duration of call</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Set a Task Reminder</h:title>
+    <model>
+      <instance>
+        <new id="new" prefix="J1!new!" delimiter="#" version="2022-07-25_16-36">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <appoint>
+            <enter/>
+            <tittle/>
+            <reminder/>
+            <notes/>
+          </appoint>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </new>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/new/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/new/inputs/source" type="string"/>
+      <bind nodeset="/new/inputs/source_id" type="string"/>
+      <bind nodeset="/new/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/new/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/new/inputs/contact/name" type="string"/>
+      <bind nodeset="/new/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/new/inputs/contact/sex" type="string"/>
+      <bind nodeset="/new/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/new/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/new/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/new/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/new/appoint/enter" type="date" calculate="today()" readonly="true()"/>
+      <bind nodeset="/new/appoint/tittle" type="string"/>
+      <bind nodeset="/new/appoint/reminder" type="date" required="true()"/>
+      <bind nodeset="/new/appoint/notes" type="string"/>
+      <bind nodeset="/new/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/new/inputs">
+      <label></label>
+      <group ref="/new/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/new/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/new/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/new/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/new/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/new/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/new/inputs/contact/parent">
+          <label></label>
+          <group ref="/new/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/new/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/new/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/new/appoint">
+      <label></label>
+      <input ref="/new/appoint/enter">
+        <label>Date Entered</label>
+      </input>
+      <input ref="/new/appoint/tittle">
+        <label>What is the title of the task?</label>
+      </input>
+      <input ref="/new/appoint/reminder">
+        <label>When should a reminder for this task appear?</label>
+      </input>
+      <input ref="/new/appoint/notes">
+        <label>Notes about this task:</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

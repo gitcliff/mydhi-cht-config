@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>CD4 Lab Test Result</h:title>
+    <model>
+      <instance>
+        <lab id="lab" prefix="J1!lab!" delimiter="#" version="2022-07-26_21-16">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_lab/>
+            <lab_field_date/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <appoint_this/>
+          <appoint>
+            <test/>
+            <appoint1/>
+            <result/>
+            <count/>
+            <this/>
+            <load/>
+            <lab_result_yes tag="hidden"/>
+          </appoint>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </lab>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/lab/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/lab/inputs/source" type="string"/>
+      <bind nodeset="/lab/inputs/source_id" type="string"/>
+      <bind nodeset="/lab/inputs/my_field_lab" type="string"/>
+      <bind nodeset="/lab/inputs/lab_field_date" type="string"/>
+      <bind nodeset="/lab/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/lab/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/lab/inputs/contact/name" type="string"/>
+      <bind nodeset="/lab/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/lab/inputs/contact/sex" type="string"/>
+      <bind nodeset="/lab/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/lab/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/lab/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/lab/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/lab/appoint_this" type="string" calculate="../appoint/lab_result_yes"/>
+      <bind nodeset="/lab/appoint/test" readonly="true()" type="string"/>
+      <bind nodeset="/lab/appoint/appoint1" readonly="true()" type="string"/>
+      <bind nodeset="/lab/appoint/result" type="select1"/>
+      <bind nodeset="/lab/appoint/count" type="select1" relevant=" /lab/appoint/result  = 'yes'"/>
+      <bind nodeset="/lab/appoint/this" type="select1" relevant=" /lab/appoint/count  = 'unstable' or  /lab/appoint/count  = 'stable' or  /lab/appoint/count  = 'inconclusive' or  /lab/appoint/count  = 'unknown'"/>
+      <bind nodeset="/lab/appoint/load" type="select1" relevant=" /lab/appoint/result  = 'yes' and  /lab/appoint/test  = 'viral'"/>
+      <bind nodeset="/lab/appoint/lab_result_yes" type="string" relevant="selected( /lab/appoint/result , 'yes')"/>
+      <bind nodeset="/lab/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/lab/inputs">
+      <label>CD4 Lab Test Result</label>
+      <group ref="/lab/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/lab/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/lab/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/lab/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/lab/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/lab/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/lab/inputs/contact/parent">
+          <label></label>
+          <group ref="/lab/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/lab/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/lab/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/lab/appoint">
+      <label></label>
+      <input ref="/lab/appoint/test">
+        <label>Lab test: <output value=" /lab/inputs/my_field_lab "/></label>
+      </input>
+      <input ref="/lab/appoint/appoint1">
+        <label>Date of Appointment: <output value=" /lab/inputs/lab_field_date "/></label>
+      </input>
+      <select1 ref="/lab/appoint/result">
+        <label>Is the result of the lab test available?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
+        </item>
+        <item>
+          <label>No</label>
+          <value>no</value>
+        </item>
+        <item>
+          <label>Unknown (Lab test did not give a result after 14 days. Close this Task and set up new lab test appointment for patient to get a new lab draw)</label>
+          <value>un</value>
+        </item>
+      </select1>
+      <select1 ref="/lab/appoint/count">
+        <label>CD4 count result:</label>
+        <item>
+          <label>Stable or Suppressed (CD4 count is 350 or above 350 cells/mm3)</label>
+          <value>stable</value>
+        </item>
+        <item>
+          <label>Unstable or Unsuppressed 
+(CD4 count is below 350 cells/mm3)</label>
+          <value>unstable</value>
+        </item>
+        <item>
+          <label>Inconclusive</label>
+          <value>inconclusive</value>
+        </item>
+      </select1>
+      <select1 ref="/lab/appoint/this">
+        <label>This patient should be scheduled for a CD4 Lab count based on their result and date of last lab appointment.</label>
+        <item>
+          <label>Okay, I will schedule a CD4 Lab Appointment</label>
+          <value>snooze1</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
+          <value>snooze2</value>
+        </item>
+      </select1>
+      <select1 ref="/lab/appoint/load">
+        <label>Viral Load:</label>
+        <item>
+          <label>Unsuppressed Viral Load (viral load is above 1,000 copies/ml)</label>
+          <value>unsuppressed1</value>
+        </item>
+        <item>
+          <label>Suppressed Viral Load      (viral load is below 1,000 copies/ml)</label>
+          <value>suppressed1</value>
+        </item>
+      </select1>
+      <input ref="/lab/appoint/lab_result_yes">
+        <label></label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

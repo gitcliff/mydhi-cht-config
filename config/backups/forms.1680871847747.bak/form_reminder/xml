@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Task  Follow-up</h:title>
+    <model>
+      <instance>
+        <reminder id="reminder" prefix="J1!reminder!" delimiter="#" version="2022-12-29_19-43">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_title/>
+            <my_field_note/>
+            <my_field_when/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <titt_task/>
+          <titt_note/>
+          <reminder>
+            <title/>
+            <format/>
+            <when/>
+            <notes/>
+            <tm/>
+            <follow_up/>
+          </reminder>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </reminder>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/reminder/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/reminder/inputs/source" type="string"/>
+      <bind nodeset="/reminder/inputs/source_id" type="string"/>
+      <bind nodeset="/reminder/inputs/my_field_title" type="string"/>
+      <bind nodeset="/reminder/inputs/my_field_note" type="string"/>
+      <bind nodeset="/reminder/inputs/my_field_when" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/reminder/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/name" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/sex" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/reminder/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/reminder/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/reminder/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/reminder/titt_task" type="string" calculate="../inputs/my_field_title"/>
+      <bind nodeset="/reminder/titt_note" type="string" calculate="../inputs/my_field_note"/>
+      <bind nodeset="/reminder/reminder/title" readonly="true()" type="string"/>
+      <bind nodeset="/reminder/reminder/format" type="string" calculate="format-date( /reminder/inputs/my_field_when ,'%d/%b/%Y')"/>
+      <bind nodeset="/reminder/reminder/when" readonly="true()" type="string"/>
+      <bind nodeset="/reminder/reminder/notes" readonly="true()" type="string"/>
+      <bind nodeset="/reminder/reminder/tm" type="select1"/>
+      <bind nodeset="/reminder/reminder/follow_up" type="string"/>
+      <bind nodeset="/reminder/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/reminder/inputs">
+      <label></label>
+      <group ref="/reminder/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/reminder/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/reminder/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/reminder/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/reminder/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/reminder/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/reminder/inputs/contact/parent">
+          <label></label>
+          <group ref="/reminder/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/reminder/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/reminder/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/reminder/reminder">
+      <label></label>
+      <input ref="/reminder/reminder/title">
+        <label>**Task title**: <output value=" /reminder/titt_task "/></label>
+      </input>
+      <input ref="/reminder/reminder/when">
+        <label>**Date task due?** <output value=" /reminder/reminder/format "/></label>
+      </input>
+      <input ref="/reminder/reminder/notes">
+        <label>**Notes about this task:** <output value=" /reminder/titt_note "/></label>
+      </input>
+      <select1 ref="/reminder/reminder/tm">
+        <label>It's time to follow-up the task above. This task is:</label>
+        <item>
+          <label>Completed, delete task from my inbox</label>
+          <value>comp</value>
+        </item>
+      </select1>
+      <input ref="/reminder/reminder/follow_up">
+        <label>Follow-up Notes</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

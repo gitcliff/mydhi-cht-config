@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms">
+  <h:head>
+    <h:title>Appointment Follow-up</h:title>
+    <model>
+      <instance>
+        <viral id="viral" prefix="J1!viral!" delimiter="#" version="2022-07-27_15-21">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <my_field_viral/>
+            <viral_field_notes/>
+            <viral_field_date/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <appoint>
+            <type1/>
+            <due/>
+            <date1/>
+            <has/>
+          </appoint>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </viral>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/viral/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/viral/inputs/source" type="string"/>
+      <bind nodeset="/viral/inputs/source_id" type="string"/>
+      <bind nodeset="/viral/inputs/my_field_viral" type="string"/>
+      <bind nodeset="/viral/inputs/viral_field_notes" type="string"/>
+      <bind nodeset="/viral/inputs/viral_field_date" type="string"/>
+      <bind nodeset="/viral/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/viral/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/viral/inputs/contact/name" type="string"/>
+      <bind nodeset="/viral/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/viral/inputs/contact/sex" type="string"/>
+      <bind nodeset="/viral/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/viral/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/viral/patient_id" type="string" calculate="../inputs/contact/patient_id"/>
+      <bind nodeset="/viral/patient_name" type="string" calculate="../inputs/contact/name"/>
+      <bind nodeset="/viral/appoint/type1" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/due" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/date1" readonly="true()" type="string"/>
+      <bind nodeset="/viral/appoint/has" type="select1"/>
+      <bind nodeset="/viral/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/viral/inputs">
+      <label></label>
+      <group ref="/viral/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/viral/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/viral/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/viral/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/viral/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/viral/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/viral/inputs/contact/parent">
+          <label></label>
+          <group ref="/viral/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/viral/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/viral/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/viral/appoint">
+      <label></label>
+      <input ref="/viral/appoint/type1">
+        <label>Appointment Type : <output value=" /viral/inputs/my_field_viral "/></label>
+      </input>
+      <input ref="/viral/appoint/due">
+        <label>Any notes about this Appointment?: <output value=" /viral/inputs/viral_field_notes "/></label>
+      </input>
+      <input ref="/viral/appoint/date1">
+        <label>Date of Appointment: <output value=" /viral/inputs/viral_field_date "/></label>
+      </input>
+      <select1 ref="/viral/appoint/has">
+        <label>Patient has upcoming appointment</label>
+        <item>
+          <label>Noted, I will follow-up with patient or care team as needed</label>
+          <value>noted</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
+          <value>keep</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>
