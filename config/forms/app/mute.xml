@@ -101,17 +101,32 @@
           <text id="/mute/inputs:label">
             <value>Patient</value>
           </text>
-          <text id="/mute/mute_request/reason/hospitalized:label">
-            <value>Hospitalized</value>
+          <text id="/mute/mute_request/reason/changed_clinic:label">
+            <value>Changed clinic</value>
           </text>
-          <text id="/mute/mute_request/reason/moved_permanently:label">
-            <value>Moved permanently</value>
+          <text id="/mute/mute_request/reason/death:label">
+            <value>Death</value>
           </text>
-          <text id="/mute/mute_request/reason/moved_temporarily:label">
-            <value>Moved temporarily</value>
+          <text id="/mute/mute_request/reason/hiv_negative:label">
+            <value>HIV Negative</value>
           </text>
-          <text id="/mute/mute_request/reason/other:label">
-            <value>Others (specify)</value>
+          <text id="/mute/mute_request/reason/in_private_care:label">
+            <value>In private care</value>
+          </text>
+          <text id="/mute/mute_request/reason/incarcerated:label">
+            <value>Incarcerated</value>
+          </text>
+          <text id="/mute/mute_request/reason/migrated:label">
+            <value>Migrated</value>
+          </text>
+          <text id="/mute/mute_request/reason/refused_care:label">
+            <value>Refused care</value>
+          </text>
+          <text id="/mute/mute_request/reason/returned_to_care:label">
+            <value>Returned to care</value>
+          </text>
+          <text id="/mute/mute_request/reason/unlocatable:label">
+            <value>Unlocatable</value>
           </text>
           <text id="/mute/mute_request/reason:label">
             <value>Reasons for mute request</value>
@@ -120,7 +135,7 @@
             <value>Specify other</value>
           </text>
           <text id="/mute/mute_request:label">
-            <value>Mute request</value>
+            <value>By filling out this form, you will "mute" this client from the HealthJam Digital Case Management System. This means they will be archived in the system and be inactive. You will not be able to edit their record unless you reactivate their status by completing the "Un-archive a client" form</value>
           </text>
         </translation>
         <translation lang="ny">
@@ -220,16 +235,31 @@
           <text id="/mute/inputs:label">
             <value>Patient</value>
           </text>
-          <text id="/mute/mute_request/reason/hospitalized:label">
+          <text id="/mute/mute_request/reason/changed_clinic:label">
             <value>-</value>
           </text>
-          <text id="/mute/mute_request/reason/moved_permanently:label">
+          <text id="/mute/mute_request/reason/death:label">
             <value>-</value>
           </text>
-          <text id="/mute/mute_request/reason/moved_temporarily:label">
+          <text id="/mute/mute_request/reason/hiv_negative:label">
             <value>-</value>
           </text>
-          <text id="/mute/mute_request/reason/other:label">
+          <text id="/mute/mute_request/reason/in_private_care:label">
+            <value>-</value>
+          </text>
+          <text id="/mute/mute_request/reason/incarcerated:label">
+            <value>-</value>
+          </text>
+          <text id="/mute/mute_request/reason/migrated:label">
+            <value>-</value>
+          </text>
+          <text id="/mute/mute_request/reason/refused_care:label">
+            <value>-</value>
+          </text>
+          <text id="/mute/mute_request/reason/returned_to_care:label">
+            <value>-</value>
+          </text>
+          <text id="/mute/mute_request/reason/unlocatable:label">
             <value>-</value>
           </text>
           <text id="/mute/mute_request/reason:label">
@@ -244,7 +274,7 @@
         </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2022-12-29 11:40:33">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-04-10 18:06:42">
           <inputs>
             <meta>
               <location>
@@ -382,20 +412,40 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       <select1 ref="/mute/mute_request/reason">
         <label ref="jr:itext('/mute/mute_request/reason:label')"/>
         <item>
-          <label ref="jr:itext('/mute/mute_request/reason/hospitalized:label')"/>
-          <value>hospitalized</value>
+          <label ref="jr:itext('/mute/mute_request/reason/refused_care:label')"/>
+          <value>refused_care</value>
         </item>
         <item>
-          <label ref="jr:itext('/mute/mute_request/reason/moved_temporarily:label')"/>
-          <value>moved_temporarily</value>
+          <label ref="jr:itext('/mute/mute_request/reason/unlocatable:label')"/>
+          <value>unlocatable</value>
         </item>
         <item>
-          <label ref="jr:itext('/mute/mute_request/reason/moved_permanently:label')"/>
-          <value>moved_permanently</value>
+          <label ref="jr:itext('/mute/mute_request/reason/migrated:label')"/>
+          <value>migrated</value>
         </item>
         <item>
-          <label ref="jr:itext('/mute/mute_request/reason/other:label')"/>
-          <value>other</value>
+          <label ref="jr:itext('/mute/mute_request/reason/in_private_care:label')"/>
+          <value>in_private_care</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/hiv_negative:label')"/>
+          <value>hiv_negative</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/returned_to_care:label')"/>
+          <value>returned_to_care</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/incarcerated:label')"/>
+          <value>incarcerated</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/changed_clinic:label')"/>
+          <value>changed_clinic</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/death:label')"/>
+          <value>death</value>
         </item>
       </select1>
       <input ref="/mute/mute_request/reason_other">
