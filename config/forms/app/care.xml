@@ -91,10 +91,10 @@
       <bind nodeset="/care/care/practical" type="select1"/>
       <bind nodeset="/care/care/activities" type="select1"/>
       <bind nodeset="/care/care/dental" type="select1"/>
-      <bind calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 3, 0) + if(selected( /care/care/medical , 'fifty'), 4, 0) + 
- if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 3, 0) + if(selected( /care/care/knowledge , 'none'), 4, 0) + 
+      <bind calculate="if(selected( /care/care/medical , 'zero'), 1, 0) + if(selected( /care/care/medical , 'two'), 2, 0) + if(selected( /care/care/medical , 'five'), 40, 0) + if(selected( /care/care/medical , 'fifty'), 40, 0) + 
+ if(selected( /care/care/knowledge , 'good'), 1, 0) + if(selected( /care/care/knowledge , 'some_what'), 2, 0) + if(selected( /care/care/knowledge , 'little'), 40, 0) + if(selected( /care/care/knowledge , 'none'), 40, 0) + 
  if(selected( /care/care/adherence , 'always'), 1, 0) + if(selected( /care/care/adherence , 'usually'), 2, 0) + if(selected( /care/care/adherence , 'rarely'), 3, 0) + if(selected( /care/care/adherence , 'never'), 4, 0) + 
- if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 3, 0) + if(selected( /care/care/mental , 'serious'), 4, 0) + 
+ if(selected( /care/care/mental , 'no_history'), 1, 0) + if(selected( /care/care/mental , 'has_access'), 2, 0) + if(selected( /care/care/mental , 'failed_treatment'), 40, 0) + if(selected( /care/care/mental , 'serious'), 40, 0) + 
  if(selected( /care/care/transportation , 'consistent'), 1, 0) + if(selected( /care/care/transportation , 'questionable'), 2, 0) + if(selected( /care/care/transportation , 'irregular'), 3, 0) + if(selected( /care/care/transportation , 'transportation_none'), 4, 0) + 
  
  if(selected( /care/care/financial , 'financial_stable'), 1, 0) + if(selected( /care/care/financial , 'financial_adequate'), 2, 0) + if(selected( /care/care/financial , 'financial_inadequate'), 3, 0) + if(selected( /care/care/financial , 'financial_none'), 4, 0) + 
