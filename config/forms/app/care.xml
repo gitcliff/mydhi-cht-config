@@ -38,6 +38,7 @@
             <adherence/>
             <mental/>
             <transportation/>
+            <party/>
             <support/>
             <communication/>
             <employment/>
@@ -49,8 +50,13 @@
             <dental/>
             <score/>
             <category/>
+            <findings/>
             <score_note/>
             <category_note/>
+            <note_1/>
+            <note_2/>
+            <note_3/>
+            <date_assesment/>
           </care>
           <meta tag="hidden">
             <instanceID/>
@@ -75,6 +81,7 @@
       <bind nodeset="/care/care/adherence" type="select1"/>
       <bind nodeset="/care/care/mental" type="select1"/>
       <bind nodeset="/care/care/transportation" type="select1"/>
+      <bind nodeset="/care/care/party" type="select1"/>
       <bind nodeset="/care/care/support" type="select1"/>
       <bind nodeset="/care/care/communication" type="select1"/>
       <bind nodeset="/care/care/employment" type="select1"/>
@@ -101,8 +108,13 @@
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
  if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)" nodeset="/care/care/score" type="string"/>
       <bind calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))" nodeset="/care/care/category" type="string"/>
+      <bind nodeset="/care/care/findings" type="string"/>
       <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
       <bind nodeset="/care/care/category_note" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/note_1" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/note_2" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/note_3" readonly="true()" type="string"/>
+      <bind calculate="today()" nodeset="/care/care/date_assesment" type="date"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/care/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -145,270 +157,304 @@
       <select1 ref="/care/care/medical">
         <label>Medical care</label>
         <item>
-          <label>CD4&gt;500</label>
+          <label>In Care - CD4 &gt;500; viral load &lt;100/undetectable; in care, medically stable, and adheres to appointments without CM oversight; chronic condition under control with medication and/or treatment</label>
           <value>zero</value>
         </item>
         <item>
-          <label>CD4 200-499</label>
+          <label>Occasional - CD4 200-499; viral load 100-9,999; lab values stable; in care, generally medically stable, and adheres to appointments with CM assistance &lt;30% of time; may have minor conditions requiring treatment</label>
           <value>two</value>
         </item>
         <item>
-          <label>CD4 50-199</label>
+          <label>Frequent - CD4 50-199; viral load 10,000-100,000; lab values stable/ improving; no new side effects/ current side effects being controlled; inconsistent appointments, medically unstable, and CM intervention needed 30-74% of time</label>
           <value>five</value>
         </item>
         <item>
-          <label>CD4&lt;50</label>
+          <label>Poor in care - CD4 &lt;50; viral load &gt;100,000; lab values deteriorating; physical side effects increasing; new health issues emerging; medically unstable or unknown (newly diagnosed); not in care or CM intervention need &gt;75% of appointments; pregnant female</label>
           <value>fifty</value>
         </item>
       </select1>
       <select1 ref="/care/care/knowledge">
         <label>Knowledge of disease</label>
         <item>
-          <label>Good</label>
+          <label>Good - Effectively demonstrates knowledge of HIV disease and treatment</label>
           <value>good</value>
         </item>
         <item>
-          <label>Somewhat</label>
+          <label>Somewhat - Can discuss knowledge and understanding of HIV; may have some misconceptions but listens when addressed</label>
           <value>some_what</value>
         </item>
         <item>
-          <label>Little</label>
+          <label>Little - Cannot fully communicate concerning HIV may have cultural or other barriers</label>
           <value>little</value>
         </item>
         <item>
-          <label>None</label>
+          <label>None - Cannot or will not communicate concerning HIV; barriers cannot be fully addressed</label>
           <value>none</value>
         </item>
       </select1>
       <select1 ref="/care/care/adherence">
         <label>Adherence</label>
         <item>
-          <label>Always</label>
+          <label>Always - Always adheres to treatment; clearly communicates importance; no side effects or side effects are not interrupting activities of daily living; obtains meds without assistance; willingly participates in care plan</label>
           <value>always</value>
         </item>
         <item>
-          <label>Usually</label>
+          <label>Usually - usually adheres to treatment; fair communication of importance; side effects are minimally impacting daily activities; participates in care plan</label>
           <value>usually</value>
         </item>
         <item>
-          <label>Rarely</label>
+          <label>Rarely - Sometimes adheres to treatment; reflects little understanding or willingness to comply; side effects moderately impacting daily activities; does not readily participate in plan but follows most directives</label>
           <value>rarely</value>
         </item>
         <item>
-          <label>Never</label>
+          <label>Never - Rarely adheres to treatment; cannot communicate understanding of compliance; numerous side effects severely impacting daily activities; cannot or will not participate in plan; compliance issues</label>
           <value>never</value>
         </item>
       </select1>
       <select1 ref="/care/care/mental">
         <label>Mental health / substance abuse</label>
         <item>
-          <label>No history</label>
+          <label>No history - No history of mental illness or violence/abuse; no family history</label>
           <value>no_history</value>
         </item>
         <item>
-          <label>Has access</label>
+          <label>Has access - History of illness or abuse but connected and compliant with treatment; may need some support or counseling but otherwise functional</label>
           <value>has_access</value>
         </item>
         <item>
-          <label>Failed treatment</label>
+          <label>Failed treatment - History of illness or abuse; needs high level of emotional support; connected with treatment but may have compliance issues; experiencing stress</label>
           <value>failed_treatment</value>
         </item>
         <item>
-          <label>Serious</label>
+          <label>Serious - History of illness or abuse; active problems and crisis; requires significant emotional support and therapy but not accessing it; high stress; not functional</label>
           <value>serious</value>
         </item>
       </select1>
       <select1 ref="/care/care/transportation">
         <label>Transportation</label>
         <item>
-          <label>Consistent</label>
+          <label>Consistent - Has own/other means of transportation consistently available</label>
           <value>consistent</value>
         </item>
         <item>
-          <label>Questionable</label>
+          <label>Questionable - Has general access to public/private transportation; must occasionally rely on others</label>
           <value>questionable</value>
         </item>
         <item>
-          <label>Irregular</label>
+          <label>Irregular - Has irregular access to public/private transportation</label>
           <value>irregular</value>
         </item>
         <item>
-          <label>None</label>
+          <label>None - Public/private transportation unavailable</label>
           <value>transportation_none</value>
+        </item>
+      </select1>
+      <select1 ref="/care/care/party">
+        <label>3rd Party Assistance</label>
+        <item>
+          <label>Enrolled - Has independently completed all necessary paperwork and received approval; no longer has need beyond possible annual reapplication</label>
+          <value>enrolled</value>
+        </item>
+        <item>
+          <label>Pending -Completed necessary forms with limited assistance from CM; forms submitted; approval pending</label>
+          <value>pending</value>
+        </item>
+        <item>
+          <label>Will Apply - Needs assistance from CM to complete forms; requires regular reminders; forms yet to be submitted or denied for reasons other than need</label>
+          <value>will_apply</value>
+        </item>
+        <item>
+          <label>Denied -Needs assistance from CM to complete forms; will not meet with CM to complete; forms late for submission; application denied</label>
+          <value>denied</value>
         </item>
       </select1>
       <select1 ref="/care/care/support">
         <label>Support system</label>
         <item>
-          <label>Reliable</label>
+          <label>Reliable - Has reliable friends/family to provide ongoing support</label>
           <value>reliable</value>
         </item>
         <item>
-          <label>Crisis only</label>
+          <label>Questionable - Often has help, but not always reliable; in jeopardy if/when HIV status is divulged</label>
           <value>only</value>
         </item>
         <item>
-          <label>None</label>
-          <value>support_none</value>
+          <label>Crisis only - Some support in a crisis only; resists group involvement</label>
+          <value>crisis_only</value>
         </item>
       </select1>
       <select1 ref="/care/care/communication">
         <label>Communication skills</label>
         <item>
-          <label>Good</label>
+          <label>Good - Can effectively communicate concerns with CM; no language, sensory, cultural, or other barriers to care</label>
           <value>communication_good</value>
         </item>
         <item>
-          <label>Temporary</label>
+          <label>Fair- Can generally communicate with CM; can read written materials and communicate understanding; no other barriers</label>
           <value>temporary</value>
         </item>
         <item>
-          <label>Limitted</label>
+          <label>Limited - Difficulty communicating with CM; cannot read written materials as provided; English not first language; interpreter needed at all appointments</label>
           <value>limitted</value>
         </item>
         <item>
-          <label>None</label>
+          <label>None - Extreme difficulty communicating with CM; interpreter necessary but unavailable; barrier to care but cannot be easily resolved</label>
           <value>communication_none</value>
         </item>
       </select1>
       <select1 ref="/care/care/employment">
         <label>Employment</label>
         <item>
-          <label>Employed</label>
+          <label>Employed - Stably employed, regularly meets expenses</label>
           <value>employed</value>
         </item>
         <item>
-          <label>Ltd Probs</label>
+          <label>Temporary - Under- or temporarily employed; able and wants to work; has some job seeking skills</label>
           <value>ltd_probs</value>
         </item>
         <item>
-          <label>Unemployed</label>
+          <label>Unemployed -Unemployed or job threatened by HIV disease; able and wants to work at suitable job</label>
           <value>unemployed</value>
         </item>
         <item>
-          <label>Unable</label>
+          <label>Unable - Unemployed or unable to work on regular basis; no job-seeking skills</label>
           <value>unable</value>
         </item>
       </select1>
       <select1 ref="/care/care/living">
         <label>Living situation</label>
         <item>
-          <label>Self-managed</label>
+          <label>Self-managed -Has safe, stable, and clean living situation and has self-managed options</label>
           <value>self_managed</value>
         </item>
         <item>
-          <label>Adequate</label>
+          <label>Adequate (Ltd Probs) -Has safe, stable, and clean living arrangement; externally controlled; payment up-to-date; limited self-managed options; known stressors may necessitate relocation</label>
           <value>adequate</value>
         </item>
         <item>
-          <label>Unsafe</label>
+          <label>Unsafe -Housing unsafe, unstable, or ill-kept; week-to-week occupancy; no personal control; payments behind, or in temporary shelter; no self-managed options</label>
           <value>unsafe</value>
         </item>
         <item>
-          <label>Homeless</label>
+          <label>Homeless -Facing imminent eviction or no place to live currently; NO self-managed options</label>
           <value>homless</value>
         </item>
       </select1>
       <select1 ref="/care/care/financial">
         <label>Financial Resources</label>
         <item>
-          <label>Stable</label>
+          <label>Stable -Stable income/benefits adequate to meet needs; completes all necessary/ applicable benefit documents</label>
           <value>financial_stable</value>
         </item>
         <item>
-          <label>Adequate</label>
+          <label>Adequate -Adequate income; needs some help completing benefit documents; medical state may jeopardize income</label>
           <value>financial_adequate</value>
         </item>
         <item>
-          <label>Inadequate</label>
+          <label>Inadequate -Inadequate current resources; has not applied for benefits or awaiting benefit determination</label>
           <value>financial_inadequate</value>
         </item>
         <item>
-          <label>None</label>
+          <label>None- No current resources; requires help to understand/complete benefit documents or benefits denied</label>
           <value>financial_none</value>
         </item>
       </select1>
       <select1 ref="/care/care/legal">
         <label>Legal Affiars</label>
         <item>
-          <label>None</label>
+          <label>None - All necessary legal documents completed</label>
           <value>none</value>
         </item>
         <item>
-          <label>Needs Help</label>
+          <label>Needs Help - Needs some help completing standard documents</label>
           <value>needs_help</value>
         </item>
         <item>
-          <label>Some Asst</label>
+          <label>Some Assistance -Requires assistance with many documents</label>
           <value>some_asst</value>
         </item>
         <item>
-          <label>Full Asst</label>
+          <label>Full Assistance - Requires help understanding and completing most documents</label>
           <value>full_asst</value>
         </item>
       </select1>
       <select1 ref="/care/care/practical">
         <label>Practical Assistance</label>
         <item>
-          <label>Inadequate</label>
+          <label>Independent -Able to independently provide for own needs and perform all activities of daily living (ADLs)</label>
           <value>practical_inadequate</value>
         </item>
         <item>
-          <label>Some Asst</label>
+          <label>Some Assistance  -Can provide for some ADLs and arrange for the rest; may have dependent children not living in household</label>
           <value>practical_some_asst</value>
         </item>
         <item>
-          <label>Limitted</label>
+          <label>Limited -Limited capacity for arranging ADLs on a regular basis; dependent children in household with another adult in parental role</label>
           <value>practical_limitted</value>
         </item>
         <item>
-          <label>Unable</label>
+          <label>Unable - Unable to arrange for food, clothing, and other ADLs; client is a dependent child or has sole responsibility for dependent(s) in household</label>
           <value>practical_unable</value>
         </item>
       </select1>
       <select1 ref="/care/care/activities">
         <label>Self-Sustaining Activities</label>
         <item>
-          <label>Regular</label>
+          <label>Regular -Regular involvement in spiritual, leisure, or other SSAs</label>
           <value>activities_regular</value>
         </item>
         <item>
-          <label>Needs</label>
+          <label>Needs -Needs education/exposure to SSAs</label>
           <value>activities_needs</value>
         </item>
         <item>
-          <label>Resists</label>
+          <label>Resists -Actively resists SSAs involvement</label>
           <value>activities_resists</value>
         </item>
         <item>
-          <label>Isolated</label>
+          <label>Isolated -Isolated from suitable SSAs</label>
           <value>activities_isolated</value>
         </item>
       </select1>
       <select1 ref="/care/care/dental">
         <label>Dental</label>
         <item>
-          <label>None</label>
+          <label>None - No dental needs beyond regular check-ups; has pay source</label>
           <value>dental_none</value>
         </item>
         <item>
-          <label>Minor</label>
+          <label>Minor -Minor dental needs; may need assistance from 3rd party payor</label>
           <value>dental_minor</value>
         </item>
         <item>
-          <label>Moderate</label>
+          <label>Moderate Significant dental needs affecting other health; needs pay source</label>
           <value>dental_moderate</value>
         </item>
         <item>
-          <label>Major</label>
+          <label>Major - Major dental needs; needs pay source or denied; noncompliant in correcting issues</label>
           <value>dental_major</value>
         </item>
       </select1>
+      <input ref="/care/care/findings">
+        <label>Significant Findings</label>
+      </input>
       <input ref="/care/care/score_note">
         <label>Score is: <output value=" /care/care/score "/></label>
       </input>
       <input ref="/care/care/category_note">
         <label>Risk Category is:<output value=" /care/care/category "/></label>
+      </input>
+      <input ref="/care/care/note_1">
+        <label>15 = Limited 	 	 Cases reviewed as needed, but at least annually</label>
+      </input>
+      <input ref="/care/care/note_2">
+        <label>16-40 = Supportive 	 Cases reviewed at least every 6 months</label>
+      </input>
+      <input ref="/care/care/note_3">
+        <label>40+ Comprehensive 	 Cases reviewed at least twice every month</label>
+      </input>
+      <input ref="/care/care/date_assesment">
+        <label>Date of Level of Care Assessment:</label>
       </input>
     </group>
   </h:body>
