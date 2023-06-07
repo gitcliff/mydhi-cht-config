@@ -70,7 +70,7 @@ module.exports = [
       }
    }],
     events: [{
-      start: 15,
+      start: 10,
       end: 1,
       dueDate: function (event, contact, r) {
         return Utils.addDate(new Date(getField(r, 'create.reminder')), 0);
