@@ -43,6 +43,8 @@ var context = {
   lstname: contact.name1,
   patient_date_of_birth: contact.date_of_birth,
   address: contact.address,
+  patient_aka: contact.aka,
+  patient_tsis: contact.tsis,
   use_cases: {
     anc: isCoveredByUseCaseInLineage(lineage, 'anc'),
     pnc: isCoveredByUseCaseInLineage(lineage, 'pnc'),

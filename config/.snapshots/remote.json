@@ -36,7 +36,7 @@
     "cht.openelis-global.org/medic": "ew0sYM2+fSP/UXktPQOITg=="
   },
   "form:call": {
-    "cht.openelis-global.org/medic": "67GLIV7Fey76hjBL+2ZXOA=="
+    "cht.openelis-global.org/medic": "p4/uLwlSt4tR4uKF5PD1tw=="
   },
   "form:care": {
     "cht.openelis-global.org/medic": "r21py5dPXDF7d/SvnBU4Vw=="
@@ -118,5 +118,29 @@
   },
   "form:viral": {
     "cht.openelis-global.org/medic": "kZE1ZgcqQ4/1A/f6AIYhQQ=="
+  },
+  "form:contact:clinic:create": {
+    "cht.openelis-global.org/medic": "vr0fnBaraF7UG8cRnpsFoA=="
+  },
+  "form:contact:clinic:edit": {
+    "cht.openelis-global.org/medic": "KA66iEbnngzgPuGdeofQlQ=="
+  },
+  "form:contact:district_hospital:create": {
+    "cht.openelis-global.org/medic": "5d9ve+8n9IQuOlPsgRimtw=="
+  },
+  "form:contact:district_hospital:edit": {
+    "cht.openelis-global.org/medic": "gG0CO3bGwRaRSCK6tv5fnA=="
+  },
+  "form:contact:health_center:create": {
+    "cht.openelis-global.org/medic": "A3akBDEHmm0jfFdGF93a4w=="
+  },
+  "form:contact:health_center:edit": {
+    "cht.openelis-global.org/medic": "ftlXiSH3+hKXi+SM/yxxXg=="
+  },
+  "form:contact:person:create": {
+    "cht.openelis-global.org/medic": "5ljpG1p4zlSQrsVO/BnoAg=="
+  },
+  "form:contact:person:edit": {
+    "cht.openelis-global.org/medic": "i6Y+sPVPNp3k3QNYU6iqZA=="
   }
 }
