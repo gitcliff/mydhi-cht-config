@@ -12,7 +12,7 @@
         </translation>
       </itext>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2022-10-24_14-02">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-06-21_21-29">
           <inputs>
             <meta>
               <location>
@@ -30,6 +30,10 @@
               <name/>
               <date_of_birth/>
               <sex/>
+              <name1/>
+              <aka/>
+              <tsis/>
+              <at/>
               <parent>
                 <contact>
                   <phone/>
@@ -40,7 +44,22 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_aka/>
+          <patient_tsis/>
+          <patient_at/>
+          <patient_date_of_birth/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <tsis_ctx/>
+          <at_ctx/>
+          <yr_date_of_birth_ctx/>
           <appoint>
+            <first_name/>
+            <last_name/>
+            <dob/>
             <type_appoint/>
             <welcome/>
             <lab_test/>
@@ -63,10 +82,29 @@
       <bind nodeset="/appointment/inputs/contact/name" type="string"/>
       <bind nodeset="/appointment/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/appointment/inputs/contact/sex" type="string"/>
+      <bind nodeset="/appointment/inputs/contact/name1" type="string"/>
+      <bind nodeset="/appointment/inputs/contact/aka" type="string"/>
+      <bind nodeset="/appointment/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/appointment/inputs/contact/at" type="string"/>
       <bind nodeset="/appointment/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/appointment/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/appointment/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/appointment/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/appointment/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/aka" nodeset="/appointment/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/appointment/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/at" nodeset="/appointment/patient_at" type="string"/>
+      <bind calculate="../inputs/contact/date_of_birth" nodeset="/appointment/patient_date_of_birth" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/appointment/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/appointment/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/appointment/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/appointment/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/appointment/tsis_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/appointment/at_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /appointment/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/appointment/yr_date_of_birth_ctx" type="string"/>
+      <bind nodeset="/appointment/appoint/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/appointment/appoint/last_name" readonly="true()" type="string"/>
+      <bind nodeset="/appointment/appoint/dob" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
       <bind nodeset="/appointment/appoint/welcome" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="select1"/>
@@ -97,6 +135,18 @@
         <input appearance="hidden" ref="/appointment/inputs/contact/sex">
           <label></label>
         </input>
+        <input appearance="hidden" ref="/appointment/inputs/contact/name1">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment/inputs/contact/aka">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment/inputs/contact/tsis">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/appointment/inputs/contact/at">
+          <label></label>
+        </input>
         <group ref="/appointment/inputs/contact/parent">
           <label></label>
           <group ref="/appointment/inputs/contact/parent/contact">
@@ -113,6 +163,14 @@
     </group>
     <group appearance="field-list" ref="/appointment/appoint">
       <label></label>
+      <input ref="/appointment/appoint/first_name">
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /appointment/fast_name_ctx "/> <output value=" /appointment/last_name_ctx "/>**&lt;/i&gt;</label>
+      </input>
+      <input ref="/appointment/appoint/last_name">
+        <label><output value=" /appointment/aka_ctx "/> | <output value=" /appointment/yr_date_of_birth_ctx "/> yr <output value=" /appointment/at_ctx "/></label></input>
+      <input ref="/appointment/appoint/dob">
+        <label><output value=" /appointment/tsis_ctx "/></label>
+      </input>
       <select1 ref="/appointment/appoint/type_appoint">
         <label>Appointment Type</label>
         <item>
