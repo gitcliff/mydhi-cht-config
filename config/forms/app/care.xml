@@ -22,17 +22,40 @@
               <name/>
               <date_of_birth/>
               <sex/>
+              <name1/>
+              <aka/>
+              <tsis/>
+              <at/>
               <parent>
                 <contact>
                   <phone/>
                   <name/>
+                  <name1/>
+                  <aka/>
+                  <tsis/>
+                  <at/>
                 </contact>
               </parent>
             </contact>
           </inputs>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_aka/>
+          <patient_tsis/>
+          <patient_at/>
+          <patient_date_of_birth/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <tsis_ctx/>
+          <at_ctx/>
+          <yr_date_of_birth_ctx/>
           <care>
+            <first_name/>
+            <last_name/>
+            <dob/>
             <medical/>
             <knowledge/>
             <adherence/>
@@ -72,10 +95,33 @@
       <bind nodeset="/care/inputs/contact/name" type="string"/>
       <bind nodeset="/care/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/care/inputs/contact/sex" type="string"/>
+      <bind nodeset="/care/inputs/contact/name1" type="string"/>
+      <bind nodeset="/care/inputs/contact/aka" type="string"/>
+      <bind nodeset="/care/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/care/inputs/contact/at" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/care/inputs/contact/parent/contact/name" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/name1" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/aka" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/tsis" type="string"/>
+      <bind nodeset="/care/inputs/contact/parent/contact/at" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/care/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/care/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/care/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/aka" nodeset="/care/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/care/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/at" nodeset="/care/patient_at" type="string"/>
+      <bind calculate="../inputs/contact/date_of_birth" nodeset="/care/patient_date_of_birth" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/care/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/care/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/care/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/care/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/care/tsis_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/care/at_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /care/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/care/yr_date_of_birth_ctx" type="string"/>
+      <bind nodeset="/care/care/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/last_name" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/dob" readonly="true()" type="string"/>
       <bind nodeset="/care/care/medical" type="select1"/>
       <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
@@ -138,6 +184,18 @@
         <input appearance="hidden" ref="/care/inputs/contact/sex">
           <label></label>
         </input>
+        <input appearance="hidden" ref="/care/inputs/contact/name1">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/aka">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/tsis">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care/inputs/contact/at">
+          <label></label>
+        </input>
         <group ref="/care/inputs/contact/parent">
           <label></label>
           <group ref="/care/inputs/contact/parent/contact">
@@ -148,12 +206,32 @@
             <input appearance="hidden" ref="/care/inputs/contact/parent/contact/name">
               <label></label>
             </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/name1">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/aka">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/tsis">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care/inputs/contact/parent/contact/at">
+              <label></label>
+            </input>
           </group>
         </group>
       </group>
     </group>
     <group appearance="field-list" ref="/care/care">
       <label>Questionaire</label>
+      <input ref="/care/care/first_name">
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /care/fast_name_ctx "/> <output value=" /care/last_name_ctx "/>**&lt;/i&gt;</label>
+      </input>
+      <input ref="/care/care/last_name">
+        <label><output value=" /care/aka_ctx "/> | <output value=" /care/yr_date_of_birth_ctx "/> yr <output value=" /care/at_ctx "/></label></input>
+      <input ref="/care/care/dob">
+        <label><output value=" /care/tsis_ctx "/></label>
+      </input>
       <select1 ref="/care/care/medical">
         <label>Medical care</label>
         <item>
