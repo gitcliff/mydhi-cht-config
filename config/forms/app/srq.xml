@@ -1,13 +1,43 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Form - SRQ</h:title>
+    <h:title>SRQ FORM</h:title>
     <model>
       <instance>
         <srq delimiter="#" id="srq" prefix="J1!srq!" version="1">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <person/>
+              <date/>
+              <treatment_inputs>
+                <client_name/>
+                <telephone/>
+                <docket>0</docket>
+                <vl_results/>
+                <cd4_results/>
+                <vl_date/>
+                <vl_cd4/>
+                <regime/>
+                <regime_date/>
+              </treatment_inputs>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
           <cd4>
-            <person/>
-            <date/>
             <note_one/>
             <medication/>
             <average/>
@@ -16,7 +46,6 @@
             <reasons_other/>
             <score/>
             <label_score/>
-            <pills/>
           </cd4>
           <meta tag="hidden">
             <instanceID/>
@@ -24,8 +53,25 @@
         </srq>
       </instance>
       <instance id="contact-summary"/>
-      <bind nodeset="/srq/cd4/person" type="string"/>
-      <bind nodeset="/srq/cd4/date" type="date"/>
+      <bind nodeset="/srq/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/srq/inputs/source" type="string"/>
+      <bind nodeset="/srq/inputs/source_id" type="string"/>
+      <bind nodeset="/srq/inputs/contact/_id" required="true()" type="db:person"/>
+      <bind nodeset="/srq/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/srq/inputs/contact/name" type="string"/>
+      <bind nodeset="/srq/inputs/contact/person" type="string"/>
+      <bind nodeset="/srq/inputs/contact/date" type="date"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/client_name" required="true()" type="string"/>
+      <bind constraint="true()" jr:constraintMsg="Please enter a valid local number, or use the standard international format, which includes a plus sign (+) and country code. For example: +254712345678" nodeset="/srq/inputs/contact/treatment_inputs/telephone" type="tel"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/docket" type="int"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/vl_results" type="string"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/cd4_results" type="string"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/vl_date" type="date"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/vl_cd4" type="date"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/regime" type="string"/>
+      <bind nodeset="/srq/inputs/contact/treatment_inputs/regime_date" type="date"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/srq/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/srq/patient_name" type="string"/>
       <bind nodeset="/srq/cd4/note_one" readonly="true()" type="string"/>
       <bind nodeset="/srq/cd4/medication" type="select1"/>
       <bind nodeset="/srq/cd4/average" type="select1"/>
@@ -36,19 +82,63 @@
  if(selected( /srq/cd4/average , 'every_day'), 1, 0) + if(selected( /srq/cd4/average , 'days'), 2, 0) + if(selected( /srq/cd4/average , 'week'), 3, 0) + if(selected( /srq/cd4/average , 'less'), 4, 0) + if(selected( /srq/cd4/average , 'average_never'), 5, 0) +
  if(selected( /srq/cd4/last , 'took'), 1, 0) + if(selected( /srq/cd4/last , 'missed'), 2, 0) + if(selected( /srq/cd4/last , 'dose'), 3, 0) + if(selected( /srq/cd4/last , 'all'), 4, 0)" nodeset="/srq/cd4/score" type="string"/>
       <bind nodeset="/srq/cd4/label_score" readonly="true()" type="string"/>
-      <bind nodeset="/srq/cd4/pills" type="select1"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/srq/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
   <h:body class="pages">
+    <group appearance="field-list" ref="/srq/inputs">
+      <label></label>
+      <group ref="/srq/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/srq/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/name">
+          <label></label>
+        </input>
+        <input ref="/srq/inputs/contact/person">
+          <label>Person Completing the Questionarie</label>
+        </input>
+        <input ref="/srq/inputs/contact/date">
+          <label>Date</label>
+        </input>
+        <group appearance="field-list" ref="/srq/inputs/contact/treatment_inputs">
+          <label>Adherence Questionarie</label>
+          <input ref="/srq/inputs/contact/treatment_inputs/client_name">
+            <label>Client Name:</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/telephone">
+            <label>Telephone number</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/docket">
+            <label>Docket number</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/vl_results">
+            <label>VL Results:</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/cd4_results">
+            <label>CD4 Results</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/vl_date">
+            <label>Most recent VL test date:</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/vl_cd4">
+            <label>Most recent CD4 test date:</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/regime">
+            <label>Current ART Regime:</label>
+          </input>
+          <input ref="/srq/inputs/contact/treatment_inputs/regime_date">
+            <label>Date Regime started:</label>
+          </input>
+        </group>
+      </group>
+    </group>
     <group appearance="field-list" ref="/srq/cd4">
       <label></label>
-      <input ref="/srq/cd4/person">
-        <label>Name of Person Completing Questionnaire</label>
-      </input>
-      <input ref="/srq/cd4/date">
-        <label>Date SRQ Completed</label>
-      </input>
       <input ref="/srq/cd4/note_one">
         <label>Circle the number that corresponds to the client's answer. The number assigned to the answers is also allotted
 score. The total score is the sum of the individual scores for Questions 1-3. Question 4 is not scored.</label>
@@ -198,17 +288,6 @@ not score.)</label>
         <label>Score: <output value=" /srq/cd4/score "/>/14 (For scores 10 and below, please refer to the Social Worker.) Was pill-count done? Circle Yes
 or No</label>
       </input>
-      <select1 ref="/srq/cd4/pills">
-        <label>Was pill-count done?</label>
-        <item>
-          <label>Yes</label>
-          <value>yes</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>no</value>
-        </item>
-      </select1>
     </group>
   </h:body>
 </h:html>
