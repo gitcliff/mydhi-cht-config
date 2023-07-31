@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-07-31_04-43">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-07-31_06-48">
           <inputs>
             <meta>
               <location>
@@ -231,11 +231,11 @@
         <label>Gender Identity</label>
         <item>
           <label>Male</label>
-          <value>M</value>
+          <value>Male</value>
         </item>
         <item>
           <label>Female</label>
-          <value>F</value>
+          <value>Female</value>
         </item>
       </select1>
       <group appearance="multiline" ref="/data/person/meta">
