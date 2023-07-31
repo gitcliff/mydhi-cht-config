@@ -4,7 +4,7 @@
     <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-04-07_17-23">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-07-31_13-56">
           <inputs>
             <meta>
               <location>
@@ -33,10 +33,11 @@
           <patient_id/>
           <patient_name/>
           <routine>
+            <in_person_date/>
+            <status/>
             <client/>
             <reminder/>
             <reviewed/>
-            <client_status/>
             <recent/>
             <visit_notes/>
           </routine>
@@ -58,10 +59,11 @@
       <bind nodeset="/routine/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/routine/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/routine/patient_name" type="string"/>
-      <bind nodeset="/routine/routine/client" type="string"/>
-      <bind nodeset="/routine/routine/reminder" type="date"/>
+      <bind nodeset="/routine/routine/in_person_date" type="date"/>
+      <bind nodeset="/routine/routine/status" type="select1"/>
+      <bind nodeset="/routine/routine/client" type="select1"/>
+      <bind nodeset="/routine/routine/reminder" type="select1"/>
       <bind nodeset="/routine/routine/reviewed" type="select1"/>
-      <bind nodeset="/routine/routine/client_status" type="select1"/>
       <bind nodeset="/routine/routine/recent" type="select1"/>
       <bind nodeset="/routine/routine/visit_notes" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/routine/meta/instanceID" readonly="true()" type="string"/>
@@ -103,14 +105,26 @@
     </group>
     <group appearance="field-list" ref="/routine/routine">
       <label></label>
-      <input ref="/routine/routine/client">
+      <input ref="/routine/routine/in_person_date">
+        <label>Date of In-Person Visit</label>
+      </input>
+      <select1 ref="/routine/routine/status">
+        <label>What's the client's current clinical status?</label>
+        <item>
+          <label>Suppressed</label>
+          <value>suppressed</value>
+        </item>
+        <item>
+          <label>Unsuppressed</label>
+          <value>unsuppressed</value>
+        </item>
+        <item>
+          <label>Unknown</label>
+          <value>unknown</value>
+        </item>
+      </select1>
+      <select1 ref="/routine/routine/client">
         <label>Have you reviewed the Client's Summary page and updated any information?</label>
-      </input>
-      <input ref="/routine/routine/reminder">
-        <label>Have you reviewed the most recent SMS Messages with client?</label>
-      </input>
-      <select1 ref="/routine/routine/reviewed">
-        <label>Have you reviewed the Tasks that are due for this client?</label>
         <item>
           <label>Yes</label>
           <value>yes</value>
@@ -120,23 +134,26 @@
           <value>no</value>
         </item>
       </select1>
-      <select1 ref="/routine/routine/client_status">
-        <label>What is the client's current status?</label>
+      <select1 ref="/routine/routine/reminder">
+        <label>Have you reviewed the most recent SMS Messages with the client?</label>
         <item>
-          <label>Stable</label>
-          <value>stable</value>
+          <label>Yes</label>
+          <value>yes</value>
         </item>
         <item>
-          <label>Unstable</label>
-          <value>unstable</value>
+          <label>No</label>
+          <value>no</value>
+        </item>
+      </select1>
+      <select1 ref="/routine/routine/reviewed">
+        <label>Have you reviewed the Tasks that are due for this client?</label>
+        <item>
+          <label>Yes</label>
+          <value>yes</value>
         </item>
         <item>
-          <label>New in care</label>
-          <value>new in care</value>
-        </item>
-        <item>
-          <label>Unknown</label>
-          <value>unknown</value>
+          <label>No</label>
+          <value>no</value>
         </item>
       </select1>
       <select1 ref="/routine/routine/recent">
