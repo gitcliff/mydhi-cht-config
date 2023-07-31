@@ -4,7 +4,7 @@
     <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-07-31_13-56">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-07-31_17-47">
           <inputs>
             <meta>
               <location>
@@ -20,8 +20,11 @@
               <_id/>
               <patient_id/>
               <name/>
+              <name1/>
               <date_of_birth/>
               <sex/>
+              <tsis/>
+              <genda/>
               <parent>
                 <contact>
                   <phone/>
@@ -32,7 +35,23 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_tsis/>
+          <patient_genda/>
+          <patient_date_of_birth/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <tsis_ctx/>
+          <yr_date_of_birth_ctx/>
+          <gender_ctx/>
           <routine>
+            <first_name/>
+            <nick/>
+            <age_n/>
+            <gender_n/>
+            <dob/>
             <in_person_date/>
             <status/>
             <client/>
@@ -53,12 +72,31 @@
       <bind nodeset="/routine/inputs/contact/_id" type="db:person"/>
       <bind nodeset="/routine/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/routine/inputs/contact/name" type="string"/>
+      <bind nodeset="/routine/inputs/contact/name1" type="string"/>
       <bind nodeset="/routine/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/routine/inputs/contact/sex" type="string"/>
+      <bind nodeset="/routine/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/routine/inputs/contact/genda" type="string"/>
       <bind nodeset="/routine/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/routine/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/routine/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/routine/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/routine/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/routine/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/genda" nodeset="/routine/patient_genda" type="string"/>
+      <bind calculate="../inputs/contact/date_of_birth" nodeset="/routine/patient_date_of_birth" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/routine/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/routine/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/routine/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/routine/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/routine/tsis_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /routine/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/routine/yr_date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/routine/gender_ctx" type="string"/>
+      <bind nodeset="/routine/routine/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/routine/routine/nick" readonly="true()" type="string"/>
+      <bind nodeset="/routine/routine/age_n" readonly="true()" type="string"/>
+      <bind nodeset="/routine/routine/gender_n" readonly="true()" type="string"/>
+      <bind nodeset="/routine/routine/dob" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/in_person_date" type="date"/>
       <bind nodeset="/routine/routine/status" type="select1"/>
       <bind nodeset="/routine/routine/client" type="select1"/>
@@ -83,10 +121,19 @@
         <input appearance="hidden" ref="/routine/inputs/contact/name">
           <label></label>
         </input>
+        <input appearance="hidden" ref="/routine/inputs/contact/name1">
+          <label></label>
+        </input>
         <input appearance="hidden" ref="/routine/inputs/contact/date_of_birth">
           <label></label>
         </input>
         <input appearance="hidden" ref="/routine/inputs/contact/sex">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/routine/inputs/contact/tsis">
+          <label></label>
+        </input>
+        <input ref="/routine/inputs/contact/genda">
           <label></label>
         </input>
         <group ref="/routine/inputs/contact/parent">
@@ -105,6 +152,21 @@
     </group>
     <group appearance="field-list" ref="/routine/routine">
       <label></label>
+      <input ref="/routine/routine/first_name">
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /routine/fast_name_ctx "/> <output value=" /routine/last_name_ctx "/>**&lt;/i&gt;</label>
+      </input>
+      <input ref="/routine/routine/nick">
+        <label>Nickname: **<output value=" /routine/aka_ctx "/>**</label>
+      </input>
+      <input ref="/routine/routine/age_n">
+        <label>Age: **<output value=" /routine/yr_date_of_birth_ctx "/> yr**</label>
+      </input>
+      <input ref="/routine/routine/gender_n">
+        <label>Gender Identity: **<output value=" /routine/gender_ctx "/>**</label>
+      </input>
+      <input ref="/routine/routine/dob">
+        <label>TSIS: **<output value=" /routine/tsis_ctx "/>**</label>
+      </input>
       <input ref="/routine/routine/in_person_date">
         <label>Date of In-Person Visit</label>
       </input>
