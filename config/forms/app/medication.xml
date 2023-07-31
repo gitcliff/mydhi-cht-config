@@ -4,7 +4,7 @@
     <h:title>Labs and Medication</h:title>
     <model>
       <instance>
-        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-02-10_16-16">
+        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-07-31_20-31">
           <inputs>
             <meta>
               <location>
@@ -22,6 +22,10 @@
               <name/>
               <date_of_birth/>
               <sex/>
+              <name1/>
+              <aka/>
+              <tsis/>
+              <genda/>
               <parent>
                 <contact>
                   <phone/>
@@ -32,7 +36,25 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_aka/>
+          <patient_tsis/>
+          <patient_genda/>
+          <patient_date_of_birth/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <tsis_ctx/>
+          <at_ctx/>
+          <yr_date_of_birth_ctx/>
+          <gender_ctx/>
           <medication>
+            <first_name/>
+            <nick/>
+            <age_n/>
+            <gender_n/>
+            <dob/>
             <date_completed/>
             <name_person/>
             <most_recent/>
@@ -57,10 +79,32 @@
       <bind nodeset="/medication/inputs/contact/name" type="string"/>
       <bind nodeset="/medication/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/medication/inputs/contact/sex" type="string"/>
+      <bind nodeset="/medication/inputs/contact/name1" type="string"/>
+      <bind nodeset="/medication/inputs/contact/aka" type="string"/>
+      <bind nodeset="/medication/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/medication/inputs/contact/genda" type="string"/>
       <bind nodeset="/medication/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/medication/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/medication/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/medication/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/medication/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/aka" nodeset="/medication/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/medication/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/genda" nodeset="/medication/patient_genda" type="string"/>
+      <bind calculate="../inputs/contact/date_of_birth" nodeset="/medication/patient_date_of_birth" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/medication/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/medication/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/medication/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/medication/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/medication/tsis_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/medication/at_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /medication/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/medication/yr_date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/medication/gender_ctx" type="string"/>
+      <bind nodeset="/medication/medication/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/medication/medication/nick" readonly="true()" type="string"/>
+      <bind nodeset="/medication/medication/age_n" readonly="true()" type="string"/>
+      <bind nodeset="/medication/medication/gender_n" readonly="true()" type="string"/>
+      <bind nodeset="/medication/medication/dob" readonly="true()" type="string"/>
       <bind nodeset="/medication/medication/date_completed" type="date"/>
       <bind nodeset="/medication/medication/name_person" type="string"/>
       <bind nodeset="/medication/medication/most_recent" type="date"/>
@@ -93,6 +137,18 @@
         <input appearance="hidden" ref="/medication/inputs/contact/sex">
           <label></label>
         </input>
+        <input appearance="hidden" ref="/medication/inputs/contact/name1">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/medication/inputs/contact/aka">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/medication/inputs/contact/tsis">
+          <label></label>
+        </input>
+        <input ref="/medication/inputs/contact/genda">
+          <label></label>
+        </input>
         <group ref="/medication/inputs/contact/parent">
           <label></label>
           <group ref="/medication/inputs/contact/parent/contact">
@@ -109,6 +165,21 @@
     </group>
     <group appearance="field-list" ref="/medication/medication">
       <label></label>
+      <input appearance="h1 yellow" ref="/medication/medication/first_name">
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /medication/fast_name_ctx "/> <output value=" /medication/last_name_ctx "/>**&lt;/i&gt;</label>
+      </input>
+      <input ref="/medication/medication/nick">
+        <label>Nickname: **<output value=" /medication/aka_ctx "/>**</label>
+      </input>
+      <input ref="/medication/medication/age_n">
+        <label>Age: **<output value=" /medication/yr_date_of_birth_ctx "/> yr**</label>
+      </input>
+      <input ref="/medication/medication/gender_n">
+        <label>Gender Identity: **<output value=" /medication/gender_ctx "/>**</label>
+      </input>
+      <input ref="/medication/medication/dob">
+        <label>TSIS: **<output value=" /medication/tsis_ctx "/>**</label>
+      </input>
       <input ref="/medication/medication/date_completed">
         <label>Date Completed</label>
       </input>
