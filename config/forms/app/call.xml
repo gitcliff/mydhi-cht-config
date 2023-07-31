@@ -4,7 +4,7 @@
     <h:title>Call Log</h:title>
     <model>
       <instance>
-        <call delimiter="#" id="call" prefix="J1!call!" version="2023-06-21_21-02">
+        <call delimiter="#" id="call" prefix="J1!call!" version="2023-07-31_10-51">
           <inputs>
             <meta>
               <location>
@@ -27,6 +27,7 @@
               <name/>
               <date_of_birth/>
               <sex/>
+              <curr_address/>
               <name1/>
               <aka/>
               <tsis/>
@@ -43,6 +44,7 @@
           <patient_name/>
           <patient_name1/>
           <patient_aka/>
+          <cur_address/>
           <patient_tsis/>
           <patient_at/>
           <patient_date_of_birth/>
@@ -57,11 +59,9 @@
             <first_name/>
             <last_name/>
             <dob/>
+            <currnt_address/>
+            <note_1/>
             <call1/>
-            <verify/>
-            <match/>
-            <if_no/>
-            <if_yes/>
             <identity/>
             <note_verified/>
             <actions_done/>
@@ -87,6 +87,7 @@
       <bind nodeset="/call/inputs/contact/name" type="string"/>
       <bind nodeset="/call/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/call/inputs/contact/sex" type="string"/>
+      <bind nodeset="/call/inputs/contact/curr_address" type="string"/>
       <bind nodeset="/call/inputs/contact/name1" type="string"/>
       <bind nodeset="/call/inputs/contact/aka" type="string"/>
       <bind nodeset="/call/inputs/contact/tsis" type="string"/>
@@ -97,6 +98,7 @@
       <bind calculate="../inputs/contact/name" nodeset="/call/patient_name" type="string"/>
       <bind calculate="../inputs/contact/name1" nodeset="/call/patient_name1" type="string"/>
       <bind calculate="../inputs/contact/aka" nodeset="/call/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/curr_address" nodeset="/call/cur_address" type="string"/>
       <bind calculate="../inputs/contact/tsis" nodeset="/call/patient_tsis" type="string"/>
       <bind calculate="../inputs/contact/at" nodeset="/call/patient_at" type="string"/>
       <bind calculate="../inputs/contact/date_of_birth" nodeset="/call/patient_date_of_birth" type="string"/>
@@ -110,11 +112,9 @@
       <bind nodeset="/call/call/first_name" readonly="true()" type="string"/>
       <bind nodeset="/call/call/last_name" readonly="true()" type="string"/>
       <bind nodeset="/call/call/dob" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/currnt_address" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/note_1" readonly="true()" type="string"/>
       <bind nodeset="/call/call/call1" type="date"/>
-      <bind nodeset="/call/call/verify" type="select1"/>
-      <bind nodeset="/call/call/match" type="select1"/>
-      <bind nodeset="/call/call/if_no" relevant=" /call/call/match  = 'no'" type="select1"/>
-      <bind nodeset="/call/call/if_yes" relevant=" /call/call/match  = 'yes'" type="select1"/>
       <bind nodeset="/call/call/identity" type="select1"/>
       <bind nodeset="/call/call/note_verified" readonly="true()" relevant=" /call/call/identity  = 'no'" type="string"/>
       <bind nodeset="/call/call/actions_done" relevant=" /call/call/identity  = 'yes'" type="select"/>
@@ -141,6 +141,9 @@
           <label></label>
         </input>
         <input appearance="hidden" ref="/call/inputs/contact/sex">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/curr_address">
           <label></label>
         </input>
         <input appearance="hidden" ref="/call/inputs/contact/name1">
@@ -175,57 +178,24 @@
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /call/fast_name_ctx "/> <output value=" /call/last_name_ctx "/>**&lt;/i&gt;</label>
       </input>
       <input ref="/call/call/last_name">
-        <label><output value=" /call/aka_ctx "/> | <output value=" /call/yr_date_of_birth_ctx "/> yr <output value=" /call/at_ctx "/></label></input>
+        <label><output value=" /call/aka_ctx "/> | <output value=" /call/yr_date_of_birth_ctx "/> yr <output value=" /call/at_ctx "/>&lt;I class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;</label>
+      </input>
       <input ref="/call/call/dob">
-        <label><output value=" /call/tsis_ctx "/></label>
+        <label><output value=" /call/tsis_ctx "/>&lt;I class=&quot;fa fa-user&quot;&gt;&lt;/i&gt;</label>
+      </input>
+      <input ref="/call/call/currnt_address">
+        <label><output value=" /call/cur_address "/></label>
+      </input>
+      <input ref="/call/call/note_1">
+        <label>Verify the Client's identity:
+ 1. Can you please remind me of your last name?
+ 2. Please tell me your DOB? 
+ 3. What is your current address?
+ 4. What clinic did you last visit?</label>
       </input>
       <input ref="/call/call/call1">
         <label>Date of Call</label>
       </input>
-      <select1 ref="/call/call/verify">
-        <label>Did the patient verify the correct last name?</label>
-        <item>
-          <label>Yes</label>
-          <value>yes</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>no</value>
-        </item>
-      </select1>
-      <select1 ref="/call/call/match">
-        <label>Did the current address shared by the patient match the address in the system?</label>
-        <item>
-          <label>Yes</label>
-          <value>yes</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>no</value>
-        </item>
-      </select1>
-      <select1 ref="/call/call/if_no">
-        <label>What was your previous address? Did the patient correctly verify previous address?</label>
-        <item>
-          <label>Yes</label>
-          <value>yes</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>no</value>
-        </item>
-      </select1>
-      <select1 ref="/call/call/if_yes">
-        <label>Did the patient move and do we need to update the address?</label>
-        <item>
-          <label>Yes</label>
-          <value>yes</value>
-        </item>
-        <item>
-          <label>No</label>
-          <value>no</value>
-        </item>
-      </select1>
       <select1 ref="/call/call/identity">
         <label>Was the patient's identity verified?</label>
         <item>
@@ -238,17 +208,13 @@
         </item>
       </select1>
       <input ref="/call/call/note_verified">
-        <label>Patient was not verified, please end the call.</label>
+        <label>Patient was not verified, STOP please end the call.</label>
       </input>
       <select ref="/call/call/actions_done">
         <label>What actions were done?</label>
         <item>
           <label>Appointment confirmation</label>
           <value>appointment_confirmation</value>
-        </item>
-        <item>
-          <label>Added Lab appointment</label>
-          <value>added_lab_appointment</value>
         </item>
         <item>
           <label>Answered questions about care</label>
