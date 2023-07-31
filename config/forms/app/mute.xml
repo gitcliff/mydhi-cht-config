@@ -5,23 +5,29 @@
     <model>
       <itext>
         <translation lang="en">
+          <text id="/mute/group_review/n_changed_clinic:label">
+            <value>Changed clinic</value>
+          </text>
+          <text id="/mute/group_review/n_death:label">
+            <value>Death</value>
+          </text>
           <text id="/mute/group_review/n_follow_up:label">
             <value>Follow up tasks will stop showing!</value>
           </text>
           <text id="/mute/group_review/n_follow_up_title:label">
             <value>Follow Up&lt;i class="fa fa-flag"&gt;&lt;/i&gt;</value>
           </text>
-          <text id="/mute/group_review/n_hospitalized:label">
-            <value>Hospitalized</value>
+          <text id="/mute/group_review/n_hiv_negative:label">
+            <value>HIV Negative</value>
           </text>
-          <text id="/mute/group_review/n_moved_permanently:label">
-            <value>Moved permanently</value>
+          <text id="/mute/group_review/n_in_private_care:label">
+            <value>In private care</value>
           </text>
-          <text id="/mute/group_review/n_moved_temporarily:label">
-            <value>Moved temporarily</value>
+          <text id="/mute/group_review/n_incarcerated:label">
+            <value>Incarcerated</value>
           </text>
-          <text id="/mute/group_review/n_other:label">
-            <value><output value=" /mute/mute_request/reason_other "/></value>
+          <text id="/mute/group_review/n_migrated:label">
+            <value>Migrated</value>
           </text>
           <text id="/mute/group_review/n_patient_details:label">
             <value>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/patient_name "/>&lt;/h4&gt;&lt;h5 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/group_review/c_age_string "/>&lt;/h5&gt;</value>
@@ -32,14 +38,17 @@
           <text id="/mute/group_review/n_reasons_title:label">
             <value>**_Reasons for mute request_**</value>
           </text>
+          <text id="/mute/group_review/n_refused_care:label">
+            <value>Refused care</value>
+          </text>
           <text id="/mute/group_review/n_special_instruction:label">
             <value>_Tasks for <output value=" /mute/patient_name "/> will stop showing until you submit unmute request._</value>
           </text>
-          <text id="/mute/group_review/n_special_instruction_title:label">
-            <value>Special instruction&lt;I class="fa fa-user"&gt;&lt;/i&gt;</value>
-          </text>
           <text id="/mute/group_review/n_submit:label">
             <value>_Be sure you submit to complete this action._</value>
+          </text>
+          <text id="/mute/group_review/n_unlocatable:label">
+            <value>Unlocatable</value>
           </text>
           <text id="/mute/group_review:label">
             <value>Results/Summary Page</value>
@@ -101,6 +110,12 @@
           <text id="/mute/inputs:label">
             <value>Patient</value>
           </text>
+          <text id="/mute/mute_request/disposition_date:label">
+            <value>Date of Disposition</value>
+          </text>
+          <text id="/mute/mute_request/notes_n:label">
+            <value>Notes</value>
+          </text>
           <text id="/mute/mute_request/reason/changed_clinic:label">
             <value>Changed clinic</value>
           </text>
@@ -122,159 +137,19 @@
           <text id="/mute/mute_request/reason/refused_care:label">
             <value>Refused care</value>
           </text>
-          <text id="/mute/mute_request/reason/returned_to_care:label">
-            <value>Returned to care</value>
-          </text>
           <text id="/mute/mute_request/reason/unlocatable:label">
             <value>Unlocatable</value>
           </text>
           <text id="/mute/mute_request/reason:label">
-            <value>Reasons for mute request</value>
-          </text>
-          <text id="/mute/mute_request/reason_other:label">
-            <value>Specify other</value>
+            <value>Client Disposition:</value>
           </text>
           <text id="/mute/mute_request:label">
             <value>By filling out this form, you will "mute" this client from the HealthJam Digital Case Management System. This means they will be archived in the system and be inactive. You will not be able to edit their record unless you reactivate their status by completing the "Un-archive a client" form</value>
           </text>
         </translation>
-        <translation lang="ny">
-          <text id="/mute/group_review/n_follow_up:label">
-            <value>_Mauthenga a <output value=" /mute/patient_name "/> asiya kuwoneka kufikira pempho loyimitsali litachotsedwa._</value>
-          </text>
-          <text id="/mute/group_review/n_follow_up_title:label">
-            <value>Kalondolondo&lt;i class="fa fa-flag"&gt;&lt;/i&gt;</value>
-          </text>
-          <text id="/mute/group_review/n_hospitalized:label">
-            <value>Agonekedwa m'chipatala</value>
-          </text>
-          <text id="/mute/group_review/n_moved_permanently:label">
-            <value>Anasamukiratu</value>
-          </text>
-          <text id="/mute/group_review/n_moved_temporarily:label">
-            <value>Wachokapo kwa nthawi yochepa</value>
-          </text>
-          <text id="/mute/group_review/n_other:label">
-            <value><output value=" /mute/mute_request/reason_other "/></value>
-          </text>
-          <text id="/mute/group_review/n_patient_details:label">
-            <value>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/patient_name "/>&lt;/h4&gt;&lt;h5 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/group_review/c_age_string "/> zaka&lt;/h5&gt;</value>
-          </text>
-          <text id="/mute/group_review/n_patient_details_title:label">
-            <value>Mbiri ya Munthuyo &lt;I class="fa fa-user"&gt;&lt;/i&gt;</value>
-          </text>
-          <text id="/mute/group_review/n_reasons_title:label">
-            <value>**_Zifukwa zomuyikira munthu pachete_**</value>
-          </text>
-          <text id="/mute/group_review/n_special_instruction:label">
-            <value>_Mauthenga a <output value=" /mute/patient_name "/> asiya kuwoneka kufikira pempho loyimitsali litachotsedwa._</value>
-          </text>
-          <text id="/mute/group_review/n_special_instruction_title:label">
-            <value>Malangizo a padera</value>
-          </text>
-          <text id="/mute/group_review/n_submit:label">
-            <value>_Wonetsetsani kuti mwatumiza tsambali kuti mumalize ntchito iyi._</value>
-          </text>
-          <text id="/mute/group_review:label">
-            <value>Zotsatira/ tsamba la zotsatira</value>
-          </text>
-          <text id="/mute/inputs/contact/_id:label">
-            <value>What is the patient's name?</value>
-          </text>
-          <text id="/mute/inputs/contact/date_of_birth:label">
-            <value>Date of Birth</value>
-          </text>
-          <text id="/mute/inputs/contact/name:label">
-            <value>Name</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/_id:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/_id:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/contact/_id:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/contact/name:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/contact/phone:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/contact:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/parent/_id:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent/parent:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent/parent:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/parent:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/inputs/contact/patient_id:label">
-            <value>Patient ID</value>
-          </text>
-          <text id="/mute/inputs/contact/sex:label">
-            <value>Sex</value>
-          </text>
-          <text id="/mute/inputs/contact:label">
-            <value>Contact</value>
-          </text>
-          <text id="/mute/inputs/source:label">
-            <value>Source</value>
-          </text>
-          <text id="/mute/inputs/source_id:label">
-            <value>Source ID</value>
-          </text>
-          <text id="/mute/inputs:label">
-            <value>Patient</value>
-          </text>
-          <text id="/mute/mute_request/reason/changed_clinic:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/death:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/hiv_negative:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/in_private_care:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/incarcerated:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/migrated:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/refused_care:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/returned_to_care:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason/unlocatable:label">
-            <value>-</value>
-          </text>
-          <text id="/mute/mute_request/reason:label">
-            <value>Zifukwa zoyimitsira</value>
-          </text>
-          <text id="/mute/mute_request/reason_other:label">
-            <value>Zina (fotokozani)</value>
-          </text>
-          <text id="/mute/mute_request:label">
-            <value>Pempho loyimitsa kuti pasabwerenso uthenga wokhudzana ndi munthuyi</value>
-          </text>
-        </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-04-10 18:06:42">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-07-26 19:34:51">
           <inputs>
             <meta>
               <location>
@@ -318,7 +193,8 @@
           <patient_name/>
           <mute_request>
             <reason/>
-            <reason_other/>
+            <disposition_date/>
+            <notes_n/>
           </mute_request>
           <group_review>
             <n_submit/>
@@ -327,10 +203,14 @@
             <c_age_string/>
             <n_patient_details/>
             <n_reasons_title/>
-            <n_hospitalized/>
-            <n_moved_temporarily/>
-            <n_moved_permanently/>
-            <n_other/>
+            <n_refused_care/>
+            <n_unlocatable/>
+            <n_migrated/>
+            <n_in_private_care/>
+            <n_hiv_negative/>
+            <n_incarcerated/>
+            <n_changed_clinic/>
+            <n_death/>
             <n_special_instruction_title/>
             <n_special_instruction/>
             <n_follow_up_title/>
@@ -365,7 +245,8 @@
       <bind calculate="../inputs/contact/_id" nodeset="/mute/patient_id" required="true()" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/mute/patient_name" type="string"/>
       <bind nodeset="/mute/mute_request/reason" required="true()" type="select1"/>
-      <bind nodeset="/mute/mute_request/reason_other" relevant="selected(../reason, 'other')" required="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/disposition_date" type="date"/>
+      <bind nodeset="/mute/mute_request/notes_n" type="string"/>
       <bind nodeset="/mute/group_review/n_submit" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_patient_details_title" readonly="true()" type="string"/>
       <bind calculate="../../patient_age_in_months mod 12" nodeset="/mute/group_review/c_patient_mod_mnths" type="string"/>
@@ -374,10 +255,14 @@ concat( /mute/patient_age_in_years , ' years ',  /mute/group_review/c_patient_mo
 concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review/c_age_string" type="string"/>
       <bind nodeset="/mute/group_review/n_patient_details" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_reasons_title" readonly="true()" type="string"/>
-      <bind nodeset="/mute/group_review/n_hospitalized" readonly="true()" relevant="selected(../../mute_request/reason, 'hospitalized')" type="string"/>
-      <bind nodeset="/mute/group_review/n_moved_temporarily" readonly="true()" relevant="selected(../../mute_request/reason, 'moved_temporarily')" type="string"/>
-      <bind nodeset="/mute/group_review/n_moved_permanently" readonly="true()" relevant="selected(../../mute_request/reason, 'moved_permanently')" type="string"/>
-      <bind nodeset="/mute/group_review/n_other" readonly="true()" relevant="selected(../../mute_request/reason, 'other')" type="string"/>
+      <bind nodeset="/mute/group_review/n_refused_care" readonly="true()" relevant="selected(../../mute_request/reason, 'refused_care')" type="string"/>
+      <bind nodeset="/mute/group_review/n_unlocatable" readonly="true()" relevant="selected(../../mute_request/reason, 'unlocatable')" type="string"/>
+      <bind nodeset="/mute/group_review/n_migrated" readonly="true()" relevant="selected(../../mute_request/reason, 'migrated')" type="string"/>
+      <bind nodeset="/mute/group_review/n_in_private_care" readonly="true()" relevant="selected(../../mute_request/reason, 'in_private_care')" type="string"/>
+      <bind nodeset="/mute/group_review/n_hiv_negative" readonly="true()" relevant="selected(../../mute_request/reason, 'hiv_negative')" type="string"/>
+      <bind nodeset="/mute/group_review/n_incarcerated" readonly="true()" relevant="selected(../../mute_request/reason, 'incarcerated')" type="string"/>
+      <bind nodeset="/mute/group_review/n_changed_clinic" readonly="true()" relevant="selected(../../mute_request/reason, 'changed_clinic')" type="string"/>
+      <bind nodeset="/mute/group_review/n_death" readonly="true()" relevant="selected(../../mute_request/reason, 'death')" type="string"/>
       <bind nodeset="/mute/group_review/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_special_instruction" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_follow_up_title" readonly="true()" type="string"/>
@@ -432,10 +317,6 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
           <value>hiv_negative</value>
         </item>
         <item>
-          <label ref="jr:itext('/mute/mute_request/reason/returned_to_care:label')"/>
-          <value>returned_to_care</value>
-        </item>
-        <item>
           <label ref="jr:itext('/mute/mute_request/reason/incarcerated:label')"/>
           <value>incarcerated</value>
         </item>
@@ -448,8 +329,11 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
           <value>death</value>
         </item>
       </select1>
-      <input ref="/mute/mute_request/reason_other">
-        <label ref="jr:itext('/mute/mute_request/reason_other:label')"/>
+      <input ref="/mute/mute_request/disposition_date">
+        <label ref="jr:itext('/mute/mute_request/disposition_date:label')"/>
+      </input>
+      <input ref="/mute/mute_request/notes_n">
+        <label ref="jr:itext('/mute/mute_request/notes_n:label')"/>
       </input>
     </group>
     <group appearance="field-list summary" ref="/mute/group_review">
@@ -466,21 +350,31 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       <input ref="/mute/group_review/n_reasons_title">
         <label ref="jr:itext('/mute/group_review/n_reasons_title:label')"/>
       </input>
-      <input appearance="li" ref="/mute/group_review/n_hospitalized">
-        <label ref="jr:itext('/mute/group_review/n_hospitalized:label')"/>
+      <input appearance="li" ref="/mute/group_review/n_refused_care">
+        <label ref="jr:itext('/mute/group_review/n_refused_care:label')"/>
       </input>
-      <input appearance="li" ref="/mute/group_review/n_moved_temporarily">
-        <label ref="jr:itext('/mute/group_review/n_moved_temporarily:label')"/>
+      <input appearance="li" ref="/mute/group_review/n_unlocatable">
+        <label ref="jr:itext('/mute/group_review/n_unlocatable:label')"/>
       </input>
-      <input appearance="li" ref="/mute/group_review/n_moved_permanently">
-        <label ref="jr:itext('/mute/group_review/n_moved_permanently:label')"/>
+      <input appearance="li" ref="/mute/group_review/n_migrated">
+        <label ref="jr:itext('/mute/group_review/n_migrated:label')"/>
       </input>
-      <input appearance="li" ref="/mute/group_review/n_other">
-        <label ref="jr:itext('/mute/group_review/n_other:label')"/>
+      <input ref="/mute/group_review/n_in_private_care">
+        <label ref="jr:itext('/mute/group_review/n_in_private_care:label')"/>
       </input>
-      <input appearance="h1 blue" ref="/mute/group_review/n_special_instruction_title">
-        <label ref="jr:itext('/mute/group_review/n_special_instruction_title:label')"/>
+      <input ref="/mute/group_review/n_hiv_negative">
+        <label ref="jr:itext('/mute/group_review/n_hiv_negative:label')"/>
       </input>
+      <input ref="/mute/group_review/n_incarcerated">
+        <label ref="jr:itext('/mute/group_review/n_incarcerated:label')"/>
+      </input>
+      <input ref="/mute/group_review/n_changed_clinic">
+        <label ref="jr:itext('/mute/group_review/n_changed_clinic:label')"/>
+      </input>
+      <input appearance="li" ref="/mute/group_review/n_death">
+        <label ref="jr:itext('/mute/group_review/n_death:label')"/>
+      </input>
+      <input appearance="h1 blue" ref="/mute/group_review/n_special_instruction_title"/>
       <input ref="/mute/group_review/n_special_instruction">
         <label ref="jr:itext('/mute/group_review/n_special_instruction:label')"/>
       </input>
