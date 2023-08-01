@@ -20,6 +20,11 @@
               <_id/>
               <patient_id/>
               <name/>
+              <date_of_birth/>
+              <name1/>
+              <aka/>
+              <tsis/>
+              <genda/>
               <person/>
               <date/>
               <treatment_inputs>
@@ -37,7 +42,24 @@
           </inputs>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_aka/>
+          <patient_tsis/>
+          <patient_genda/>
+          <patient_date_of_birth/>
+          <fast_name_ctx/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <tsis_ctx/>
+          <yr_date_of_birth_ctx/>
+          <gender_ctx/>
           <cd4>
+            <first_name/>
+            <nick/>
+            <age_n/>
+            <gender_n/>
+            <dob/>
             <note_one/>
             <medication/>
             <average/>
@@ -59,6 +81,11 @@
       <bind nodeset="/srq/inputs/contact/_id" required="true()" type="db:person"/>
       <bind nodeset="/srq/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/srq/inputs/contact/name" type="string"/>
+      <bind nodeset="/srq/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/srq/inputs/contact/name1" type="string"/>
+      <bind nodeset="/srq/inputs/contact/aka" type="string"/>
+      <bind nodeset="/srq/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/srq/inputs/contact/genda" type="string"/>
       <bind nodeset="/srq/inputs/contact/person" type="string"/>
       <bind nodeset="/srq/inputs/contact/date" type="date"/>
       <bind nodeset="/srq/inputs/contact/treatment_inputs/client_name" required="true()" type="string"/>
@@ -72,6 +99,23 @@
       <bind nodeset="/srq/inputs/contact/treatment_inputs/regime_date" type="date"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/srq/patient_id" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/srq/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/srq/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/aka" nodeset="/srq/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/srq/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/genda" nodeset="/srq/patient_genda" type="string"/>
+      <bind calculate="../inputs/contact/date_of_birth" nodeset="/srq/patient_date_of_birth" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/srq/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/srq/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/srq/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/srq/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/srq/tsis_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /srq/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/srq/yr_date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/srq/gender_ctx" type="string"/>
+      <bind nodeset="/srq/cd4/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/nick" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/age_n" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/gender_n" readonly="true()" type="string"/>
+      <bind nodeset="/srq/cd4/dob" readonly="true()" type="string"/>
       <bind nodeset="/srq/cd4/note_one" readonly="true()" type="string"/>
       <bind nodeset="/srq/cd4/medication" type="select1"/>
       <bind nodeset="/srq/cd4/average" type="select1"/>
@@ -97,6 +141,21 @@
           <label></label>
         </input>
         <input appearance="hidden" ref="/srq/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/name1">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/aka">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/srq/inputs/contact/tsis">
+          <label></label>
+        </input>
+        <input ref="/srq/inputs/contact/genda">
           <label></label>
         </input>
         <input ref="/srq/inputs/contact/person">
@@ -139,6 +198,21 @@
     </group>
     <group appearance="field-list" ref="/srq/cd4">
       <label></label>
+      <input appearance="h1 yellow" ref="/srq/cd4/first_name">
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /srq/fast_name_ctx "/> <output value=" /srq/last_name_ctx "/>**&lt;/i&gt;</label>
+      </input>
+      <input ref="/srq/cd4/nick">
+        <label>Nickname: **<output value=" /srq/aka_ctx "/>**</label>
+      </input>
+      <input ref="/srq/cd4/age_n">
+        <label>Age: **<output value=" /srq/yr_date_of_birth_ctx "/> yr**</label>
+      </input>
+      <input ref="/srq/cd4/gender_n">
+        <label>Gender Identity: **<output value=" /srq/gender_ctx "/>**</label>
+      </input>
+      <input ref="/srq/cd4/dob">
+        <label>TSIS: **<output value=" /srq/tsis_ctx "/>**</label>
+      </input>
       <input ref="/srq/cd4/note_one">
         <label>Circle the number that corresponds to the client's answer. The number assigned to the answers is also allotted
 score. The total score is the sum of the individual scores for Questions 1-3. Question 4 is not scored.</label>
