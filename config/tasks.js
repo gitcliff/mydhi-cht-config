@@ -55,7 +55,7 @@ module.exports = [
   },
   {
     name: 'reminder-follow-up-task',
-    title: 'Task Reminder Task',
+    title: 'Task Reminder',
     icon: 'assessment',
     appliesTo: 'reports',
     appliesToType: ['create'],

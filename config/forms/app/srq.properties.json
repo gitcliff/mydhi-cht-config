@@ -2,7 +2,7 @@
     "title": "Form - SRQ",
     "icon": "clinical",
     "context": {
-          "person": true,
+          "person": false,
           "place": false,
           "expression": "contact.type === 'person'"
       }

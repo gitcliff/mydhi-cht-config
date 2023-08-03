@@ -40,7 +40,7 @@ const {
 /* eslint-disable no-global-assign */
 var context = {
   fstname: contact.name,
-  lstname: contact.name1,
+  // lstname: contact.name1,
   patient_date_of_birth: contact.date_of_birth,
   patient_aka: contact.aka,
   patient_tsis: contact.tsis,
@@ -59,7 +59,7 @@ var context = {
 var fields = [
   // { appliesToType:'person',  label:'patient_id', value:contact.patient_id, width: 3 },
   { appliesToType:'person',  label:'Also Know As', value:contact.aka, width: 3, filter: 'phone' },
-  { appliesToType:'person',  label:'First name', value:contact.name, width: 3, filter: '' },
+  { appliesToType:'person',  label:'First name', value:contact.name_f, width: 3, filter: '' },
   { appliesToType:'person',  label:'Last name', value:contact.name1, width: 3, filter: '' },
   { appliesToType:'person',  label:'TSIS', value:contact.tsis, width: 3, filter: 'phone' },
   { appliesToType:'person',  label:'Docket Number', value:contact.docket, width: 3, filter: '' },
