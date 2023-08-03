@@ -61,6 +61,7 @@
             <age_n/>
             <gender_n/>
             <dob/>
+            <n_special_instruction_title/>
             <medical/>
             <knowledge/>
             <adherence/>
@@ -132,6 +133,7 @@
       <bind nodeset="/care/care/age_n" readonly="true()" type="string"/>
       <bind nodeset="/care/care/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/care/care/dob" readonly="true()" type="string"/>
+      <bind nodeset="/care/care/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/care/care/medical" type="select1"/>
       <bind nodeset="/care/care/knowledge" type="select1"/>
       <bind nodeset="/care/care/adherence" type="select1"/>
@@ -235,10 +237,10 @@
         </group>
       </group>
     </group>
-    <group appearance="field-list" ref="/care/care">
+    <group appearance="field-list summary" ref="/care/care">
       <label></label>
       <input ref="/care/care/first_name">
-        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /care/fast_name_ctx "/> <output value=" /care/last_name_ctx "/>**&lt;/i&gt;</label>
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /care/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
       <input ref="/care/care/nick">
         <label>Nickname: **<output value=" /care/aka_ctx "/>**</label>
@@ -251,6 +253,9 @@
       </input>
       <input ref="/care/care/dob">
         <label>TSIS: **<output value=" /care/tsis_ctx "/>**</label>
+      </input>
+      <input appearance="h1 yellow" ref="/care/care/n_special_instruction_title">
+        <label></label>
       </input>
       <select1 ref="/care/care/medical">
         <label>Medical care</label>

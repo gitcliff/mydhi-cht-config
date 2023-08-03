@@ -4,7 +4,7 @@
     <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-07-31_17-47">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-08-03_21-35">
           <inputs>
             <meta>
               <location>
@@ -52,6 +52,7 @@
             <age_n/>
             <gender_n/>
             <dob/>
+            <n_special_instruction_title/>
             <in_person_date/>
             <status/>
             <client/>
@@ -97,6 +98,7 @@
       <bind nodeset="/routine/routine/age_n" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/dob" readonly="true()" type="string"/>
+      <bind nodeset="/routine/routine/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/in_person_date" type="date"/>
       <bind nodeset="/routine/routine/status" type="select1"/>
       <bind nodeset="/routine/routine/client" type="select1"/>
@@ -150,10 +152,10 @@
         </group>
       </group>
     </group>
-    <group appearance="field-list" ref="/routine/routine">
+    <group appearance="field-list summary" ref="/routine/routine">
       <label></label>
       <input ref="/routine/routine/first_name">
-        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /routine/fast_name_ctx "/> <output value=" /routine/last_name_ctx "/>**&lt;/i&gt;</label>
+        <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /routine/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
       <input ref="/routine/routine/nick">
         <label>Nickname: **<output value=" /routine/aka_ctx "/>**</label>
@@ -166,6 +168,9 @@
       </input>
       <input ref="/routine/routine/dob">
         <label>TSIS: **<output value=" /routine/tsis_ctx "/>**</label>
+      </input>
+      <input appearance="h1 yellow" ref="/routine/routine/n_special_instruction_title">
+        <label></label>
       </input>
       <input ref="/routine/routine/in_person_date">
         <label>Date of In-Person Visit</label>
