@@ -3,16 +3,8 @@
   <h:head>
     <h:title>Schedule Appointment</h:title>
     <model>
-      <itext>
-        <translation lang="en">
-          <text id="/appointment/appoint/image1:label">
-            <value form="image">jr://images/image.png</value>
-            <value>Image</value>
-          </text>
-        </translation>
-      </itext>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-08-03_21-27">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-08-20_11-19">
           <inputs>
             <meta>
               <location>
@@ -66,12 +58,12 @@
             <gender_n/>
             <dob/>
             <n_special_instruction_title/>
+            <complete/>
             <type_appoint/>
             <welcome/>
             <lab_test/>
             <lab_test_other/>
             <date_appoint/>
-            <image1/>
             <date_appoint1/>
           </appoint>
           <meta tag="hidden">
@@ -117,13 +109,13 @@
       <bind nodeset="/appointment/appoint/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/dob" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/n_special_instruction_title" readonly="true()" type="string"/>
-      <bind nodeset="/appointment/appoint/type_appoint" type="select1"/>
+      <bind nodeset="/appointment/appoint/complete" required="true()" type="string"/>
+      <bind nodeset="/appointment/appoint/type_appoint" required="true()" type="select1"/>
       <bind nodeset="/appointment/appoint/welcome" type="string"/>
-      <bind nodeset="/appointment/appoint/lab_test" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="select1"/>
+      <bind nodeset="/appointment/appoint/lab_test" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" required="true()" type="select1"/>
       <bind nodeset="/appointment/appoint/lab_test_other" relevant="selected(../lab_test, 'other')" type="string"/>
-      <bind nodeset="/appointment/appoint/date_appoint" relevant=" /appointment/appoint/type_appoint  != 'blood draw appointment'" type="date"/>
-      <bind nodeset="/appointment/appoint/image1" readonly="true()" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="string"/>
-      <bind nodeset="/appointment/appoint/date_appoint1" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" type="date"/>
+      <bind nodeset="/appointment/appoint/date_appoint" relevant=" /appointment/appoint/type_appoint  != 'blood draw appointment'" required="true()" type="date"/>
+      <bind nodeset="/appointment/appoint/date_appoint1" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" required="true()" type="date"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/appointment/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -196,6 +188,9 @@
       <input appearance="h1 yellow" ref="/appointment/appoint/n_special_instruction_title">
         <label></label>
       </input>
+      <input ref="/appointment/appoint/complete">
+        <label>Name of Person Completing form</label>
+      </input>
       <select1 ref="/appointment/appoint/type_appoint">
         <label>Appointment Type</label>
         <item>
@@ -231,8 +226,8 @@
           <value>external referral</value>
         </item>
       </select1>
-      <input appearance="h1 blue" ref="/appointment/appoint/welcome">
-        <label>Any notes about this Appointment?</label>
+      <input ref="/appointment/appoint/welcome">
+        <label>Notes about this Appointment?</label>
       </input>
       <select1 ref="/appointment/appoint/lab_test">
         <label>Blood Draw:</label>
@@ -254,9 +249,6 @@
       </input>
       <input ref="/appointment/appoint/date_appoint">
         <label>Date of Appointment</label>
-      </input>
-      <input ref="/appointment/appoint/image1">
-        <label ref="jr:itext('/appointment/appoint/image1:label')"/>
       </input>
       <input ref="/appointment/appoint/date_appoint1">
         <label>Date of Expected Blood Draw</label>

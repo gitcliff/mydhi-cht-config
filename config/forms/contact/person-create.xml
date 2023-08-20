@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-08-02_06-21">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-08-09_03-53">
           <inputs>
             <meta>
               <location>
@@ -85,7 +85,7 @@
       <bind nodeset="/data/person/parent" type="string"/>
       <bind nodeset="/data/person/type" type="string"/>
       <bind nodeset="/data/person/date_reg" type="date"/>
-      <bind nodeset="/data/person/full_name" type="string"/>
+      <bind nodeset="/data/person/full_name" required="true()" type="string"/>
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
       <bind nodeset="/data/person/name1" type="string"/>
       <bind calculate="concat( /data/person/name_f , &quot; &quot; ,  /data/person/name1 )" nodeset="/data/person/name" type="string"/>
@@ -98,7 +98,7 @@
       <bind nodeset="/data/person/type1" type="select1"/>
       <bind nodeset="/data/person/network1" type="select1"/>
       <bind constraint=". &lt;= today()" jr:constraintMsg="Date of birth cannot be in the future" nodeset="/data/person/date_of_birth" required="true()" type="date"/>
-      <bind nodeset="/data/person/at" type="select1"/>
+      <bind nodeset="/data/person/at" required="true()" type="select1"/>
       <bind nodeset="/data/person/genda" type="select1"/>
       <bind calculate="../../../inputs/user/name" nodeset="/data/person/meta/created_by" type="string"/>
       <bind calculate="../../../inputs/user/contact_id" nodeset="/data/person/meta/created_by_person_uuid" type="string"/>
@@ -149,7 +149,7 @@
         </item>
       </select1>
     </group>
-    <group appearance="field-list" ref="/data/person">
+    <group appearance="field-list summary" ref="/data/person">
       <label></label>
       <input ref="/data/person/date_reg">
         <label>Date Registered into HealthJam Digital Case Management System</label>

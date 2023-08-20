@@ -5273,56 +5273,7 @@
       "public_form": false,
       "use_sentinel": true
     },
-    "CF": {
-      "meta": {
-        "code": "CF",
-        "icon": "follow-up",
-        "translation_key": "form.cf.title"
-      },
-      "fields": {
-        "patient_id": {
-          "labels": {
-            "short": {
-              "translation_key": "patient_id"
-            },
-            "tiny": {
-              "en": "ID"
-            }
-          },
-          "position": 0,
-          "flags": {
-            "input_digits_only": true
-          },
-          "length": [
-            5,
-            13
-          ],
-          "type": "string",
-          "required": true
-        },
-        "outcome": {
-          "labels": {
-            "short": {
-              "translation_key": "report.cf.outcome"
-            },
-            "tiny": {
-              "en": "outcome"
-            }
-          },
-          "position": 0,
-          "flags": {
-            "input_digits_only": true
-          },
-          "length": [
-            0,
-            1
-          ],
-          "type": "string",
-          "required": false
-        }
-      },
-      "use_sentinel": true
-    },
+    
     "CHILD": {
       "meta": {
         "code": "CHILD",

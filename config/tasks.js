@@ -642,116 +642,116 @@ module.exports = [
   },
 
   // followup tasks as per nutrition program schedule (OTP, SFP, or SC)
-  {
-    name: 'nutrition_followup',
-    icon: 'child',
-    title: 'task.nutrition_followup.title',
-    appliesTo: 'scheduled_tasks',
-    appliesToType: ['nutrition_screening'],
-    appliesIf: function(c, r) {
-      return (
-        isCoveredByUseCase(c.contact, 'gmp') &&
-        r.fields.treatment.program &&
-        (r.fields.treatment.program === 'OTP' || r.fields.treatment.program === 'SFP' || r.fields.treatment.program === 'SC')
-      );
+  // {
+  //   name: 'nutrition_followup',
+  //   icon: 'child',
+  //   title: 'task.nutrition_followup.title',
+  //   appliesTo: 'scheduled_tasks',
+  //   appliesToType: ['nutrition_screening'],
+  //   appliesIf: function(c, r) {
+  //     return (
+  //       isCoveredByUseCase(c.contact, 'gmp') &&
+  //       r.fields.treatment.program &&
+  //       (r.fields.treatment.program === 'OTP' || r.fields.treatment.program === 'SFP' || r.fields.treatment.program === 'SC')
+  //     );
 
-    },
-    actions: [{ form: 'nutrition_followup' }],
-    events: [
-      {
-        id: 'nutrition-followup-missing-visit',
-        days: 0,
-        start: 0,
-        end: 3,
-      }
-    ],
-    resolvedIf: function(c, r, e, dueDate, i) {
-      return (
-        r.scheduled_tasks[i].state === 'cleared' ||
-        isFormFromArraySubmittedInWindow(
-          c.reports,
-          ['nutrition_followup', 'CF'],
-          Utils.addDate(dueDate, 0).getTime(),
-          Utils.addDate(dueDate, e.end + 1).getTime()
-        )
-      );
-    }
-  },
+  //   },
+  //   actions: [{ form: 'nutrition_followup' }],
+  //   events: [
+  //     {
+  //       id: 'nutrition-followup-missing-visit',
+  //       days: 0,
+  //       start: 0,
+  //       end: 3,
+  //     }
+  //   ],
+  //   resolvedIf: function(c, r, e, dueDate, i) {
+  //     return (
+  //       r.scheduled_tasks[i].state === 'cleared' ||
+  //       isFormFromArraySubmittedInWindow(
+  //         c.reports,
+  //         ['nutrition_followup', 'CF'],
+  //         Utils.addDate(dueDate, 0).getTime(),
+  //         Utils.addDate(dueDate, e.end + 1).getTime()
+  //       )
+  //     );
+  //   }
+  // },
 
-  // create nutrition screening task if degree of severity is moderate or severe
-  {
-    name: 'nutrition_screening',
-    icon: 'child',
-    title: 'task.nutrition_screening.title',
-    appliesTo: 'reports',
-    appliesToType: ['G'],
-    appliesIf: function(c, r){
-      var severity = r.fields.severity.toString();
-      return severity === '3' || severity === '2';
-    },
-    actions: [{form: 'nutrition_screening'}],
-    events: [
-      {
-      id: 'nutrition_screening',
-      days: 2,
-      start: 2,
-      end: 0
-    }],
-    resolvedIf: function(c){
-      return c.reports.some(function(r){
-        return r.form === 'nutrition_screening';
-      });
-    }
-  },
+  // // create nutrition screening task if degree of severity is moderate or severe
+  // {
+  //   name: 'nutrition_screening',
+  //   icon: 'child',
+  //   title: 'task.nutrition_screening.title',
+  //   appliesTo: 'reports',
+  //   appliesToType: ['G'],
+  //   appliesIf: function(c, r){
+  //     var severity = r.fields.severity.toString();
+  //     return severity === '3' || severity === '2';
+  //   },
+  //   actions: [{form: 'nutrition_screening'}],
+  //   events: [
+  //     {
+  //     id: 'nutrition_screening',
+  //     days: 2,
+  //     start: 2,
+  //     end: 0
+  //   }],
+  //   resolvedIf: function(c){
+  //     return c.reports.some(function(r){
+  //       return r.form === 'nutrition_screening';
+  //     });
+  //   }
+  // },
 
-  // create nutrition screening task if degree of severity is severe (3)
-  {
-    name: 'nutrition_screening_missing.severe',
-    icon: 'child',
-    title: 'task.nutrition_screening_missing.title',
-    appliesTo: 'reports',
-    appliesToType: ['G'],
-    appliesIf: function(c, r){
-      return r.fields.severity.toString() === '3';
-    },
-    actions: [{form: 'nutrition_screening'}],
-    events: [
-      {
-      id: 'nutrition_screening',
-      days: 7,
-      start: 0,
-      end: 7
-    }],
-    resolvedIf: function(c){
-      return c.reports.some(function(r){
-        return r.form === 'nutrition_screening';
-      });
-    }
-  },
+  // // create nutrition screening task if degree of severity is severe (3)
+  // {
+  //   name: 'nutrition_screening_missing.severe',
+  //   icon: 'child',
+  //   title: 'task.nutrition_screening_missing.title',
+  //   appliesTo: 'reports',
+  //   appliesToType: ['G'],
+  //   appliesIf: function(c, r){
+  //     return r.fields.severity.toString() === '3';
+  //   },
+  //   actions: [{form: 'nutrition_screening'}],
+  //   events: [
+  //     {
+  //     id: 'nutrition_screening',
+  //     days: 7,
+  //     start: 0,
+  //     end: 7
+  //   }],
+  //   resolvedIf: function(c){
+  //     return c.reports.some(function(r){
+  //       return r.form === 'nutrition_screening';
+  //     });
+  //   }
+  // },
 
-  // create nutrition screening task if degree of severity is moderate
-  {
-    name: 'nutrition_screening_missing.moderate',
-    icon: 'child',
-    title: 'task.nutrition_screening_missing.title',
-    appliesTo: 'reports',
-    appliesToType: ['G'],
-    appliesIf: function(c, r){
-      return r.fields.severity.toString() === '2';
-    },
-    actions: [{form: 'nutrition_screening'}],
-    events: [{
-      id: 'nutrition_screening',
-      days: 21,
-      start: 0,
-      end: 7
-    }],
-    resolvedIf: function(c){
-      return c.reports.some(function(r){
-        return r.form === 'nutrition_screening';
-      });
-    }
-  },
+  // // create nutrition screening task if degree of severity is moderate
+  // {
+  //   name: 'nutrition_screening_missing.moderate',
+  //   icon: 'child',
+  //   title: 'task.nutrition_screening_missing.title',
+  //   appliesTo: 'reports',
+  //   appliesToType: ['G'],
+  //   appliesIf: function(c, r){
+  //     return r.fields.severity.toString() === '2';
+  //   },
+  //   actions: [{form: 'nutrition_screening'}],
+  //   events: [{
+  //     id: 'nutrition_screening',
+  //     days: 21,
+  //     start: 0,
+  //     end: 7
+  //   }],
+  //   resolvedIf: function(c){
+  //     return c.reports.some(function(r){
+  //       return r.form === 'nutrition_screening';
+  //     });
+  //   }
+  // },
 
   // Create death confirmation task
   {
@@ -781,26 +781,26 @@ module.exports = [
   },
 
   // Exit child from nutrition program
-  {
-    name: 'nutrition_exit',
-    icon: 'child',
-    title: 'task.nutrition_exit.title',
-    appliesTo: 'reports',
-    appliesToType: ['nutrition_followup'],
-    appliesIf: function(c, r){
-      return r.fields.measurements.exit === 'yes';
-    },
-    actions: [{form: 'nutrition_exit'}],
-    events: [{
-      id: 'nutrition-exit',
-      days: 2,
-      start: 2,
-      end: 7
-    }],
-    resolvedIf: function(c){
-      return c.reports.some(function(r){
-        return r.form === 'nutrition_exit';
-      });
-    }
-  },
+  // {
+  //   name: 'nutrition_exit',
+  //   icon: 'child',
+  //   title: 'task.nutrition_exit.title',
+  //   appliesTo: 'reports',
+  //   appliesToType: ['nutrition_followup'],
+  //   appliesIf: function(c, r){
+  //     return r.fields.measurements.exit === 'yes';
+  //   },
+  //   actions: [{form: 'nutrition_exit'}],
+  //   events: [{
+  //     id: 'nutrition-exit',
+  //     days: 2,
+  //     start: 2,
+  //     end: 7
+  //   }],
+  //   resolvedIf: function(c){
+  //     return c.reports.some(function(r){
+  //       return r.form === 'nutrition_exit';
+  //     });
+  //   }
+  // },
 ];
