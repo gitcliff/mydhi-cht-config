@@ -44,6 +44,9 @@
           <text id="/mute/group_review/n_special_instruction:label">
             <value>_Tasks for <output value=" /mute/patient_name "/> will stop showing until you submit unmute request._</value>
           </text>
+          <text id="/mute/group_review/n_special_instruction_title:label">
+            <value>Special instruction&lt;I class="fa fa-user"&gt;&lt;/i&gt;</value>
+          </text>
           <text id="/mute/group_review/n_submit:label">
             <value>_Be sure you submit to complete this action._</value>
           </text>
@@ -110,8 +113,23 @@
           <text id="/mute/inputs:label">
             <value>Patient</value>
           </text>
+          <text id="/mute/mute_request/age_n:label">
+            <value>Age: **<output value=" /mute/yr_date_of_birth_ctx "/> yr**</value>
+          </text>
           <text id="/mute/mute_request/disposition_date:label">
             <value>Date of Disposition</value>
+          </text>
+          <text id="/mute/mute_request/dob:label">
+            <value>TSIS: **<output value=" /mute/tsis_ctx "/>**</value>
+          </text>
+          <text id="/mute/mute_request/first_name:label">
+            <value>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /mute/fast_name_ctx "/>**&lt;/i&gt;</value>
+          </text>
+          <text id="/mute/mute_request/gender_n:label">
+            <value>Gender Identity: **<output value=" /mute/gender_ctx "/>**</value>
+          </text>
+          <text id="/mute/mute_request/nick:label">
+            <value>Nickname: **<output value=" /mute/aka_ctx "/>**</value>
           </text>
           <text id="/mute/mute_request/notes_n:label">
             <value>Notes</value>
@@ -149,7 +167,7 @@
         </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-07-26 19:34:51">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-08-21 12:13:13">
           <inputs>
             <meta>
               <location>
@@ -167,6 +185,11 @@
               <patient_id/>
               <date_of_birth>0</date_of_birth>
               <sex/>
+              <name1/>
+              <aka/>
+              <tsis/>
+              <at/>
+              <genda/>
               <parent>
                 <_id/>
                 <parent>
@@ -191,7 +214,26 @@
           <patient_uuid/>
           <patient_id/>
           <patient_name/>
+          <patient_name1/>
+          <patient_aka/>
+          <patient_tsis/>
+          <patient_genda/>
+          <patient_at/>
+          <last_name_ctx/>
+          <date_of_birth_ctx/>
+          <aka_ctx/>
+          <tsis_ctx/>
+          <fast_name_ctx/>
+          <at_ctx/>
+          <yr_date_of_birth_ctx/>
+          <gender_ctx/>
           <mute_request>
+            <first_name/>
+            <nick/>
+            <age_n/>
+            <gender_n/>
+            <dob/>
+            <n_special_instruction_title/>
             <reason/>
             <disposition_date/>
             <notes_n/>
@@ -230,6 +272,11 @@
       <bind nodeset="/mute/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/mute/inputs/contact/date_of_birth" type="string"/>
       <bind nodeset="/mute/inputs/contact/sex" type="string"/>
+      <bind nodeset="/mute/inputs/contact/name1" type="string"/>
+      <bind nodeset="/mute/inputs/contact/aka" type="string"/>
+      <bind nodeset="/mute/inputs/contact/tsis" type="string"/>
+      <bind nodeset="/mute/inputs/contact/at" type="string"/>
+      <bind nodeset="/mute/inputs/contact/genda" type="string"/>
       <bind nodeset="/mute/inputs/contact/parent/_id" type="string"/>
       <bind nodeset="/mute/inputs/contact/parent/parent/_id" type="string"/>
       <bind nodeset="/mute/inputs/contact/parent/parent/contact/_id" type="string"/>
@@ -244,6 +291,25 @@
       <bind calculate="../inputs/contact/_id" nodeset="/mute/patient_uuid" type="string"/>
       <bind calculate="../inputs/contact/_id" nodeset="/mute/patient_id" required="true()" type="string"/>
       <bind calculate="../inputs/contact/name" nodeset="/mute/patient_name" type="string"/>
+      <bind calculate="../inputs/contact/name1" nodeset="/mute/patient_name1" type="string"/>
+      <bind calculate="../inputs/contact/aka" nodeset="/mute/patient_aka" type="string"/>
+      <bind calculate="../inputs/contact/tsis" nodeset="/mute/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/genda" nodeset="/mute/patient_genda" type="string"/>
+      <bind calculate="../inputs/contact/at" nodeset="/mute/patient_at" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/lstname != '', instance('contact-summary')/context/lstname, .)" nodeset="/mute/last_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_date_of_birth != '', instance('contact-summary')/context/patient_date_of_birth, .)" nodeset="/mute/date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_aka != '', instance('contact-summary')/context/patient_aka, .)" nodeset="/mute/aka_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_tsis != '', instance('contact-summary')/context/patient_tsis, .)" nodeset="/mute/tsis_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/fstname != '', instance('contact-summary')/context/fstname, .)" nodeset="/mute/fast_name_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/mute/at_ctx" type="string"/>
+      <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /mute/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/mute/yr_date_of_birth_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/mute/gender_ctx" type="string"/>
+      <bind nodeset="/mute/mute_request/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/nick" readonly="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/age_n" readonly="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/gender_n" readonly="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/dob" readonly="true()" type="string"/>
+      <bind nodeset="/mute/mute_request/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/reason" required="true()" type="select1"/>
       <bind nodeset="/mute/mute_request/disposition_date" type="date"/>
       <bind nodeset="/mute/mute_request/notes_n" type="string"/>
@@ -278,6 +344,11 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
         <input appearance="db-object" ref="/mute/inputs/contact/_id">
           <label ref="jr:itext('/mute/inputs/contact/_id:label')"/>
         </input>
+        <input appearance="hidden" ref="/mute/inputs/contact/name1"/>
+        <input appearance="hidden" ref="/mute/inputs/contact/aka"/>
+        <input appearance="hidden" ref="/mute/inputs/contact/tsis"/>
+        <input appearance="hidden" ref="/mute/inputs/contact/at"/>
+        <input appearance="hidden" ref="/mute/inputs/contact/genda"/>
         <group ref="/mute/inputs/contact/parent">
           <label ref="jr:itext('/mute/inputs/contact/parent:label')"/>
           <group ref="/mute/inputs/contact/parent/parent">
@@ -292,8 +363,24 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
         </group>
       </group>
     </group>
-    <group appearance="field-list" ref="/mute/mute_request">
+    <group appearance="field-list summary" ref="/mute/mute_request">
       <label ref="jr:itext('/mute/mute_request:label')"/>
+      <input ref="/mute/mute_request/first_name">
+        <label ref="jr:itext('/mute/mute_request/first_name:label')"/>
+      </input>
+      <input ref="/mute/mute_request/nick">
+        <label ref="jr:itext('/mute/mute_request/nick:label')"/>
+      </input>
+      <input ref="/mute/mute_request/age_n">
+        <label ref="jr:itext('/mute/mute_request/age_n:label')"/>
+      </input>
+      <input ref="/mute/mute_request/gender_n">
+        <label ref="jr:itext('/mute/mute_request/gender_n:label')"/>
+      </input>
+      <input ref="/mute/mute_request/dob">
+        <label ref="jr:itext('/mute/mute_request/dob:label')"/>
+      </input>
+      <input appearance="h1 yellow" ref="/mute/mute_request/n_special_instruction_title"/>
       <select1 ref="/mute/mute_request/reason">
         <label ref="jr:itext('/mute/mute_request/reason:label')"/>
         <item>
@@ -374,7 +461,9 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       <input appearance="li" ref="/mute/group_review/n_death">
         <label ref="jr:itext('/mute/group_review/n_death:label')"/>
       </input>
-      <input appearance="h1 blue" ref="/mute/group_review/n_special_instruction_title"/>
+      <input appearance="h1 blue" ref="/mute/group_review/n_special_instruction_title">
+        <label ref="jr:itext('/mute/group_review/n_special_instruction_title:label')"/>
+      </input>
       <input ref="/mute/group_review/n_special_instruction">
         <label ref="jr:itext('/mute/group_review/n_special_instruction:label')"/>
       </input>
