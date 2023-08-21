@@ -4,7 +4,7 @@
     <h:title>Appointment Reminder</h:title>
     <model>
       <instance>
-        <appointment_reminder delimiter="#" id="appointment_reminder" prefix="J1!appointment_reminder!" version="2023-01-30_16-29">
+        <appointment_reminder delimiter="#" id="appointment_reminder" prefix="J1!appointment_reminder!" version="2023-08-20_15-29">
           <inputs>
             <meta>
               <location>
@@ -21,6 +21,7 @@
             <field_date_of_appointment/>
             <field_notes/>
             <field_date_task_appears/>
+            <person_comp/>
             <contact>
               <_id/>
               <patient_id/>
@@ -42,12 +43,13 @@
           <date_of_appointment/>
           <notes/>
           <date_task_appears/>
+          <person_compl/>
           <appointment_reminder>
+            <person_complete/>
             <type/>
             <blood_draw/>
             <appointment_date/>
             <notes_app/>
-            <date_task/>
             <upcoming/>
             <follow-up/>
           </appointment_reminder>
@@ -65,6 +67,7 @@
       <bind nodeset="/appointment_reminder/inputs/field_date_of_appointment" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/field_notes" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/field_date_task_appears" type="string"/>
+      <bind nodeset="/appointment_reminder/inputs/person_comp" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/contact/_id" type="db:person"/>
       <bind nodeset="/appointment_reminder/inputs/contact/patient_id" type="string"/>
       <bind nodeset="/appointment_reminder/inputs/contact/name" type="string"/>
@@ -79,11 +82,12 @@
       <bind calculate="../inputs/field_date_of_appointment" nodeset="/appointment_reminder/date_of_appointment" type="string"/>
       <bind calculate="../inputs/field_notes" nodeset="/appointment_reminder/notes" type="string"/>
       <bind calculate="../inputs/field_date_task_appears" nodeset="/appointment_reminder/date_task_appears" type="string"/>
+      <bind calculate="../inputs/person_comp" nodeset="/appointment_reminder/person_compl" type="string"/>
+      <bind nodeset="/appointment_reminder/appointment_reminder/person_complete" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/type" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/blood_draw" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/appointment_date" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/notes_app" readonly="true()" type="string"/>
-      <bind nodeset="/appointment_reminder/appointment_reminder/date_task" readonly="true()" type="string"/>
       <bind constraint="true()" jr:constraintMsg="Noted, delete task from my inbox" nodeset="/appointment_reminder/appointment_reminder/upcoming" readonly="true()" type="string"/>
       <bind nodeset="/appointment_reminder/appointment_reminder/follow-up" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/appointment_reminder/meta/instanceID" readonly="true()" type="string"/>
@@ -125,6 +129,9 @@
     </group>
     <group appearance="field-list" ref="/appointment_reminder/appointment_reminder">
       <label></label>
+      <input ref="/appointment_reminder/appointment_reminder/person_complete">
+        <label>**Person who completed this form** <output value=" /appointment_reminder/person_compl "/></label>
+      </input>
       <input ref="/appointment_reminder/appointment_reminder/type">
         <label>**Appointment Type:** <output value=" /appointment_reminder/app_type "/></label>
       </input>
@@ -137,11 +144,10 @@
       <input ref="/appointment_reminder/appointment_reminder/notes_app">
         <label>**Notes about this appoitment:** <output value=" /appointment_reminder/notes "/></label>
       </input>
-      <input ref="/appointment_reminder/appointment_reminder/date_task">
-        <label>**Date Task Appears :** <output value=" /appointment_reminder/date_task_appears "/></label>
-      </input>
       <input ref="/appointment_reminder/appointment_reminder/upcoming">
-        <label>Client has an upcoming appointment. You may want to follow-up with the client to remind them.</label>
+        <label>**Reminder! Client has an appointment soon.**
+ **.** Noted, I will follow-up as needed. Delete this Task 
+ **.** Keep this reminder in my Task List</label>
       </input>
       <input ref="/appointment_reminder/appointment_reminder/follow-up">
         <label>Follow up notes</label>
