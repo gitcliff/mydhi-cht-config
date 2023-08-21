@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Form - Test - Level of Care Assessment</h:title>
+    <model>
+      <instance>
+        <care_test delimiter="#" id="care_test" prefix="J1!care_test!" version="2023-08-21_11-06">
+          <inputs>
+            <meta>
+              <location>
+                <lat/>
+                <long/>
+                <error/>
+                <message/>
+              </location>
+            </meta>
+            <source/>
+            <source_id/>
+            <field_app_type/>
+            <field_blood_draw_type/>
+            <field_date_of_appointment/>
+            <field_notes/>
+            <field_date_task_appears/>
+            <person_comp/>
+            <contact>
+              <_id/>
+              <patient_id/>
+              <name/>
+              <date_of_birth/>
+              <sex/>
+              <parent>
+                <contact>
+                  <phone/>
+                  <name/>
+                </contact>
+              </parent>
+            </contact>
+          </inputs>
+          <patient_id/>
+          <patient_name/>
+          <app_type/>
+          <blood_draw_type/>
+          <date_of_appointment/>
+          <notes/>
+          <date_task_appears/>
+          <person_compl/>
+          <photo_test>
+            <photo_name/>
+            <date_care/>
+            <photo/>
+            <score/>
+            <photo_refer/>
+          </photo_test>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </care_test>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/care_test/inputs" relevant="./source = 'user'"/>
+      <bind nodeset="/care_test/inputs/source" type="string"/>
+      <bind nodeset="/care_test/inputs/source_id" type="string"/>
+      <bind nodeset="/care_test/inputs/field_app_type" type="string"/>
+      <bind nodeset="/care_test/inputs/field_blood_draw_type" type="string"/>
+      <bind nodeset="/care_test/inputs/field_date_of_appointment" type="string"/>
+      <bind nodeset="/care_test/inputs/field_notes" type="string"/>
+      <bind nodeset="/care_test/inputs/field_date_task_appears" type="string"/>
+      <bind nodeset="/care_test/inputs/person_comp" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/_id" type="db:person"/>
+      <bind nodeset="/care_test/inputs/contact/patient_id" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/name" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/date_of_birth" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/sex" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/parent/contact/phone" type="string"/>
+      <bind nodeset="/care_test/inputs/contact/parent/contact/name" type="string"/>
+      <bind calculate="../inputs/contact/patient_id" nodeset="/care_test/patient_id" type="string"/>
+      <bind calculate="../inputs/contact/name" nodeset="/care_test/patient_name" type="string"/>
+      <bind calculate="../inputs/field_app_type" nodeset="/care_test/app_type" type="string"/>
+      <bind calculate="../inputs/field_blood_draw_type" nodeset="/care_test/blood_draw_type" type="string"/>
+      <bind calculate="../inputs/field_date_of_appointment" nodeset="/care_test/date_of_appointment" type="string"/>
+      <bind calculate="../inputs/field_notes" nodeset="/care_test/notes" type="string"/>
+      <bind calculate="../inputs/field_date_task_appears" nodeset="/care_test/date_task_appears" type="string"/>
+      <bind calculate="../inputs/person_comp" nodeset="/care_test/person_compl" type="string"/>
+      <bind nodeset="/care_test/photo_test/photo_name" type="string"/>
+      <bind nodeset="/care_test/photo_test/date_care" type="date"/>
+      <bind nodeset="/care_test/photo_test/photo" type="binary"/>
+      <bind nodeset="/care_test/photo_test/score" readonly="true()" type="string"/>
+      <bind nodeset="/care_test/photo_test/photo_refer" type="select1"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/care_test/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/care_test/inputs">
+      <label></label>
+      <group ref="/care_test/inputs/contact">
+        <label></label>
+        <input appearance="db-object" ref="/care_test/inputs/contact/_id">
+          <label>What is the patient's name?</label>
+        </input>
+        <input appearance="hidden" ref="/care_test/inputs/contact/patient_id">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care_test/inputs/contact/name">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care_test/inputs/contact/date_of_birth">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/care_test/inputs/contact/sex">
+          <label></label>
+        </input>
+        <group ref="/care_test/inputs/contact/parent">
+          <label></label>
+          <group ref="/care_test/inputs/contact/parent/contact">
+            <label></label>
+            <input appearance="hidden" ref="/care_test/inputs/contact/parent/contact/phone">
+              <label></label>
+            </input>
+            <input appearance="hidden" ref="/care_test/inputs/contact/parent/contact/name">
+              <label></label>
+            </input>
+          </group>
+        </group>
+      </group>
+    </group>
+    <group appearance="field-list" ref="/care_test/photo_test">
+      <label></label>
+      <input ref="/care_test/photo_test/photo_name">
+        <label>Name of Person Completing form:</label>
+      </input>
+      <input ref="/care_test/photo_test/date_care">
+        <label>Date of Level of Care Assessment</label>
+      </input>
+      <upload appearance="annotate" mediatype="image/*" ref="/care_test/photo_test/photo">
+        <label>Take a Photo of the Completed form:</label>
+      </upload>
+      <input ref="/care_test/photo_test/score">
+        <label>Level of Care Assessment Score:</label>
+      </input>
+      <select1 ref="/care_test/photo_test/photo_refer">
+        <label>Refer to:</label>
+        <item>
+          <label>Limited - cases reviewed as needed, but at least annually</label>
+          <value>limited</value>
+        </item>
+        <item>
+          <label>Supportive - cases reviewed at least every 6 months</label>
+          <value>supportive</value>
+        </item>
+        <item>
+          <label>Comprehensive - Cases reviewed at least twice every month</label>
+          <value>comprehensive</value>
+        </item>
+      </select1>
+    </group>
+  </h:body>
+</h:html>
