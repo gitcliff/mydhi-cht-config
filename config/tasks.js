@@ -41,8 +41,8 @@ module.exports = [
         field_blood_draw_type: getField(report, 'appoint.lab_test'),
         field_date_of_appointment: getField(report, 'appoint.date_appoint'),
         field_notes: getField(report, 'appoint.welcome'),
-        person_comp: getField(report, 'appoint.complete')
-        // field_date_task_appears: getField(report, 'appoint.reminder'),
+        person_comp: getField(report, 'appoint.complete'),
+        field_date_task_appears: getField(report, 'appoint.reminder'),
 
         };
       }
@@ -51,6 +51,7 @@ module.exports = [
       start: 1,
       end: 1,
       dueDate: function (event, contact, r) {
+
         return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
       }
     }],
@@ -73,24 +74,26 @@ module.exports = [
       
     },
     actions: [{ form: 'blood_draw_appointment_reminder', 
-    // modifyContent: function (content, contact, report) {
-    //   content.field_app_type = getField(report, 'appoint.type_appoint');
-    //   content['inputs'] = {
+  
+    modifyContent: function (content, contact, report) {
+      content.field_app_type = getField(report, 'appoint.type_appoint');
 
-    //     field_blood_draw_type: getField(report, 'appoint.lab_test'),
-    //     field_date_of_appointment: getField(report, 'appoint.date_appoint'),
-    //     field_notes: getField(report, 'appoint.welcome'),
-    //     person_comp: getField(report, 'appoint.complete')
-    //     // field_date_task_appears: getField(report, 'appoint.reminder'),
+      content['inputs'] = {
 
-    //     };
-    //   }
+        field_blood_draw_type: getField(report, 'appoint.lab_test'),
+        field_date_of_appointment: getField(report, 'appoint.date_appoint'),
+        field_notes: getField(report, 'appoint.welcome'),
+        person_comp: getField(report, 'appoint.complete')
+
+        };
+      }
    }],
     events: [{
       start: 1,
       end: 1,
       dueDate: function (event, contact, r) {
-        return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
+      
+        return Utils.addDate(new Date(getField(r, 'appoint.date_appoint1')), 0);
       }
     }],
     resolvedIf: function(c, r, event, dueDate) {
