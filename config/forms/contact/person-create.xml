@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-08-09_03-53">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-08-30_10-48">
           <inputs>
             <meta>
               <location>
@@ -87,8 +87,8 @@
       <bind nodeset="/data/person/date_reg" type="date"/>
       <bind nodeset="/data/person/full_name" required="true()" type="string"/>
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
-      <bind nodeset="/data/person/name1" type="string"/>
-      <bind calculate="concat( /data/person/name_f , &quot; &quot; ,  /data/person/name1 )" nodeset="/data/person/name" type="string"/>
+      <bind nodeset="/data/person/name1" required="true()" type="string"/>
+      <bind calculate="full_name" nodeset="/data/person/name" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
       <bind nodeset="/data/person/tsis" required="true()" type="int"/>
