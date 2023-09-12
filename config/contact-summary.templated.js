@@ -28,16 +28,22 @@ const {
   // countDosesReceived,
   // countDosesPossible,
   // countReportsSubmittedInWindow,
-  // getMostRecentReport,
+    getMostRecentReport,
   getTreatmentEnrollmentDate,
   // pregnancyForms,
   // antenatalForms,
   // postnatalForms,
   // immunizationForms,
+  // getField
 } = require('./contact-summary-extras');
 
 
 /* eslint-disable no-global-assign */
+//contact, reports, lineage are globally available for contact-summary
+// const thisContact = contact;
+// const thisLineage = lineage;
+ const allReports = reports;
+// var careReport = getMostRecentReport(allReports, 'care');
 var context = {
   fstname: contact.name,
   // lstname: contact.name1,
@@ -79,7 +85,8 @@ var cards = [
     label: 'task.risk.status',
     appliesToType: 'report',
     appliesIf: function(r){
-      return r.form === 'care' && contact.type === 'person';
+      return r.form === 'care' && contact.type === 'person' 
+      && r === getMostRecentReport(allReports, 'care');
     },
     fields: [
       {
@@ -92,6 +99,7 @@ var cards = [
       },
     ] 
   },
+ 
 //   {
 //     label: 'contact.profile.pregnancy',
 //     appliesToType: 'report',
