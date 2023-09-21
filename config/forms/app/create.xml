@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Create a task</h:title>
+    <h:title>Task</h:title>
     <model>
       <instance>
-        <create delimiter="#" id="create" prefix="J1!create!" version="2023-08-03_21-54">
+        <create delimiter="#" id="create" prefix="J1!create!" version="2023-09-21_09-31">
           <inputs>
             <meta>
               <location>
@@ -53,9 +53,7 @@
           <gender_ctx/>
           <create>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <title/>
@@ -100,9 +98,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /create/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/create/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/create/gender_ctx" type="string"/>
       <bind nodeset="/create/create/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/create/create/nick" readonly="true()" type="string"/>
       <bind nodeset="/create/create/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/create/create/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/create/create/dob" readonly="true()" type="string"/>
       <bind nodeset="/create/create/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/create/create/title" type="string"/>
@@ -162,14 +158,8 @@
       <input ref="/create/create/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /create/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/create/create/nick">
-        <label>Nickname: **<output value=" /create/aka_ctx "/>**</label>
-      </input>
       <input ref="/create/create/age_n">
         <label>Age: **<output value=" /create/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/create/create/gender_n">
-        <label>Gender Identity: **<output value=" /create/gender_ctx "/>**</label>
       </input>
       <input ref="/create/create/dob">
         <label>TSIS: **<output value=" /create/tsis_ctx "/>**</label>

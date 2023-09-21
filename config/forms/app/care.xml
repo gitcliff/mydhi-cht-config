@@ -57,9 +57,7 @@
           <gender_ctx/>
           <care>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <medical/>
@@ -129,9 +127,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /care/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/care/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/care/gender_ctx" type="string"/>
       <bind nodeset="/care/care/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/care/care/nick" readonly="true()" type="string"/>
       <bind nodeset="/care/care/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/care/care/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/care/care/dob" readonly="true()" type="string"/>
       <bind nodeset="/care/care/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/care/care/medical" type="select1"/>
@@ -242,14 +238,8 @@
       <input ref="/care/care/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /care/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/care/care/nick">
-        <label>Nickname: **<output value=" /care/aka_ctx "/>**</label>
-      </input>
       <input ref="/care/care/age_n">
         <label>Age: **<output value=" /care/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/care/care/gender_n">
-        <label>Gender Identity: **<output value=" /care/gender_ctx "/>**</label>
       </input>
       <input ref="/care/care/dob">
         <label>TSIS: **<output value=" /care/tsis_ctx "/>**</label>

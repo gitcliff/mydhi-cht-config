@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <h:head>
-    <h:title>Schedule Appointment</h:title>
+    <h:title>Appointment</h:title>
     <model>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-08-20_11-19">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-09-21_09-35">
           <inputs>
             <meta>
               <location>
@@ -53,9 +53,7 @@
           <gender_ctx/>
           <appoint>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <complete/>
@@ -104,9 +102,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /appointment/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/appointment/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/appointment/gender_ctx" type="string"/>
       <bind nodeset="/appointment/appoint/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/appointment/appoint/nick" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/appointment/appoint/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/dob" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/complete" required="true()" type="string"/>
@@ -173,14 +169,8 @@
       <input ref="/appointment/appoint/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /appointment/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/appointment/appoint/nick">
-        <label>Nickname: **<output value=" /appointment/aka_ctx "/>**</label>
-      </input>
       <input ref="/appointment/appoint/age_n">
         <label>Age: **<output value=" /appointment/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/appointment/appoint/gender_n">
-        <label>Gender Identity: **<output value=" /appointment/gender_ctx "/>**</label>
       </input>
       <input ref="/appointment/appoint/dob">
         <label>TSIS: **<output value=" /appointment/tsis_ctx "/>**</label>
