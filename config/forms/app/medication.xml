@@ -4,7 +4,7 @@
     <h:title>Labs and Medication</h:title>
     <model>
       <instance>
-        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-08-03_20-58">
+        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-09-21_09-34">
           <inputs>
             <meta>
               <location>
@@ -51,9 +51,7 @@
           <gender_ctx/>
           <medication>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <date_completed/>
@@ -102,9 +100,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /medication/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/medication/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/medication/gender_ctx" type="string"/>
       <bind nodeset="/medication/medication/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/medication/medication/nick" readonly="true()" type="string"/>
       <bind nodeset="/medication/medication/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/medication/medication/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/medication/medication/dob" readonly="true()" type="string"/>
       <bind nodeset="/medication/medication/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/medication/medication/date_completed" type="date"/>
@@ -170,14 +166,8 @@
       <input ref="/medication/medication/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /medication/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/medication/medication/nick">
-        <label>Nickname: **<output value=" /medication/aka_ctx "/>**</label>
-      </input>
       <input ref="/medication/medication/age_n">
         <label>Age: **<output value=" /medication/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/medication/medication/gender_n">
-        <label>Gender Identity: **<output value=" /medication/gender_ctx "/>**</label>
       </input>
       <input ref="/medication/medication/dob">
         <label>TSIS: **<output value=" /medication/tsis_ctx "/>**</label>

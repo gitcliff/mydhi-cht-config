@@ -4,7 +4,7 @@
     <h:title>Call Log</h:title>
     <model>
       <instance>
-        <call delimiter="#" id="call" prefix="J1!call!" version="2023-08-03_20-19">
+        <call delimiter="#" id="call" prefix="J1!call!" version="2023-09-21_09-30">
           <inputs>
             <meta>
               <location>
@@ -60,9 +60,7 @@
           <gender_ctx/>
           <call>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <note_1/>
@@ -118,9 +116,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /call/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/call/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/call/gender_ctx" type="string"/>
       <bind nodeset="/call/call/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/call/call/nick" readonly="true()" type="string"/>
       <bind nodeset="/call/call/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/call/call/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/call/call/dob" readonly="true()" type="string"/>
       <bind nodeset="/call/call/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/call/call/note_1" readonly="true()" type="string"/>
@@ -190,14 +186,8 @@
       <input ref="/call/call/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /call/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/call/call/nick">
-        <label>Nickname: **<output value=" /call/aka_ctx "/>**</label>
-      </input>
       <input ref="/call/call/age_n">
         <label>Age: **<output value=" /call/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/call/call/gender_n">
-        <label>Gender Identity: **<output value=" /call/gender_ctx "/>**</label>
       </input>
       <input ref="/call/call/dob">
         <label>TSIS: **<output value=" /call/tsis_ctx "/>**</label>

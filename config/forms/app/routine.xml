@@ -4,7 +4,7 @@
     <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-08-03_21-35">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-09-21_09-33">
           <inputs>
             <meta>
               <location>
@@ -48,9 +48,7 @@
           <gender_ctx/>
           <routine>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <in_person_date/>
@@ -94,9 +92,7 @@
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /routine/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/routine/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/routine/gender_ctx" type="string"/>
       <bind nodeset="/routine/routine/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/routine/routine/nick" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/routine/routine/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/dob" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/routine/routine/in_person_date" type="date"/>
@@ -157,14 +153,8 @@
       <input ref="/routine/routine/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /routine/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
-      <input ref="/routine/routine/nick">
-        <label>Nickname: **<output value=" /routine/aka_ctx "/>**</label>
-      </input>
       <input ref="/routine/routine/age_n">
         <label>Age: **<output value=" /routine/yr_date_of_birth_ctx "/> yr**</label>
-      </input>
-      <input ref="/routine/routine/gender_n">
-        <label>Gender Identity: **<output value=" /routine/gender_ctx "/>**</label>
       </input>
       <input ref="/routine/routine/dob">
         <label>TSIS: **<output value=" /routine/tsis_ctx "/>**</label>
