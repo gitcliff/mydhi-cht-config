@@ -4,7 +4,7 @@
     <h:title>Blood draw Appointment Reminder</h:title>
     <model>
       <instance>
-        <blood_draw_appointment_reminder delimiter="#" id="blood_draw_appointment_reminder" prefix="J1!blood_draw_appointment_reminder!" version="2023-08-20_16-32">
+        <blood_draw_appointment_reminder delimiter="#" id="blood_draw_appointment_reminder" prefix="J1!blood_draw_appointment_reminder!" version="2023-09-21_08-56">
           <inputs>
             <meta>
               <location>
@@ -86,7 +86,7 @@
       <bind nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/blood_draw" readonly="true()" type="string"/>
       <bind nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/draw_appointment_date" readonly="true()" type="string"/>
       <bind nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/notes_app" readonly="true()" type="string"/>
-      <bind constraint="true()" jr:constraintMsg="Noted, delete task from my inbox" nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/upcoming" readonly="true()" type="string"/>
+      <bind constraint="true()" jr:constraintMsg="Noted, delete task from my inbox" nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/upcoming" type="select1"/>
       <bind nodeset="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/follow-up" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/blood_draw_appointment_reminder/meta/instanceID" readonly="true()" type="string"/>
     </model>
@@ -137,13 +137,19 @@
         <label>**Date of Blood Draw:** <output value=" /blood_draw_appointment_reminder/date_of_appointment "/></label>
       </input>
       <input ref="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/notes_app">
-        <label>**Notes about this appoitment:** <output value=" /blood_draw_appointment_reminder/notes "/></label>
+        <label>**Notes about this appointment:** <output value=" /blood_draw_appointment_reminder/notes "/></label>
       </input>
-      <input ref="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/upcoming">
-        <label>**Reminder! Client has an appointment soon.**
- **.** Noted, I will follow-up as needed. Delete this Task 
- **.** Keep this reminder in my Task List</label>
-      </input>
+      <select1 ref="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/upcoming">
+        <label>Reminder! Client has an appointment soon.</label>
+        <item>
+          <label>Noted, I will follow-up as needed. Delete this Task</label>
+          <value>noted</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
+          <value>keep</value>
+        </item>
+      </select1>
       <input ref="/blood_draw_appointment_reminder/blood_draw_appointment_reminder/follow-up">
         <label>Follow up notes</label>
       </input>
