@@ -48,7 +48,7 @@ module.exports = [
       }
    }],
     events: [{
-      start: 1,
+      start: 14,
       end: 1,
       dueDate: function (event, contact, r) {
 
@@ -89,7 +89,7 @@ module.exports = [
       }
    }],
     events: [{
-      start: 1,
+      start: 14,
       end: 1,
       dueDate: function (event, contact, r) {
       

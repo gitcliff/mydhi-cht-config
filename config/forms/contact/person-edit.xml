@@ -83,9 +83,6 @@
           <text id="/data/person/docket:label">
             <value>Docket Number</value>
           </text>
-          <text id="/data/person/full_name:label">
-            <value>Full Name</value>
-          </text>
           <text id="/data/person/genda/female:label">
             <value>Female</value>
           </text>
@@ -97,6 +94,9 @@
           </text>
           <text id="/data/person/name1:label">
             <value>Last Name</value>
+          </text>
+          <text id="/data/person/name:label">
+            <value>Full Name</value>
           </text>
           <text id="/data/person/name_f:label">
             <value>First Name</value>
@@ -158,7 +158,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:edit" prefix="J1!contact:person:edit!" version="2023-08-30_12-46">
+        <data delimiter="#" id="contact:person:edit" prefix="J1!contact:person:edit!" version="2023-09-15_04-34">
           <inputs>
             <meta>
               <location>
@@ -179,10 +179,10 @@
             <_id/>
             <type>person</type>
             <date_reg/>
-            <full_name/>
+            <name/>
             <name_f/>
             <name1/>
-            <name/>
+            <full_name/>
             <aka/>
             <docket/>
             <tsis/>
@@ -241,10 +241,10 @@
       <bind nodeset="/data/person/_id" readonly="true()" type="string"/>
       <bind nodeset="/data/person/type" readonly="true()" type="string"/>
       <bind nodeset="/data/person/date_reg" type="date"/>
-      <bind nodeset="/data/person/full_name" required="true()" type="string"/>
+      <bind nodeset="/data/person/name" required="true()" type="string"/>
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
       <bind nodeset="/data/person/name1" required="true()" type="string"/>
-      <bind calculate="full_name" nodeset="/data/person/name" type="string"/>
+      <bind calculate="full_name" nodeset="/data/person/full_name" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
       <bind nodeset="/data/person/tsis" required="true()" type="int"/>
@@ -330,8 +330,8 @@
       <input ref="/data/person/date_reg">
         <label ref="jr:itext('/data/person/date_reg:label')"/>
       </input>
-      <input ref="/data/person/full_name">
-        <label ref="jr:itext('/data/person/full_name:label')"/>
+      <input ref="/data/person/name">
+        <label ref="jr:itext('/data/person/name:label')"/>
       </input>
       <input ref="/data/person/name_f">
         <label ref="jr:itext('/data/person/name_f:label')"/>
