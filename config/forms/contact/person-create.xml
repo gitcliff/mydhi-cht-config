@@ -5,11 +5,11 @@
     <model>
       <itext>
         <translation lang="en">
-          <text id="/data/person/full_name:hint">
-            <value>This name will be the main name used in the Digital Case Management System</value>
-          </text>
           <text id="/data/person/name1:hint">
             <value>Must match the client's surname in TSIS</value>
+          </text>
+          <text id="/data/person/name:hint">
+            <value>This name will be the main name used in the Digital Case Management System</value>
           </text>
           <text id="/data/person/name_f:hint">
             <value>Must match the client's first name in TSIS</value>
@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-08-30_10-48">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-09-15_04-09">
           <inputs>
             <meta>
               <location>
@@ -40,10 +40,10 @@
             <parent/>
             <type>person</type>
             <date_reg/>
-            <full_name/>
+            <name/>
             <name_f/>
             <name1/>
-            <name/>
+            <full_name/>
             <aka/>
             <docket/>
             <tsis/>
@@ -85,10 +85,10 @@
       <bind nodeset="/data/person/parent" type="string"/>
       <bind nodeset="/data/person/type" type="string"/>
       <bind nodeset="/data/person/date_reg" type="date"/>
-      <bind nodeset="/data/person/full_name" required="true()" type="string"/>
+      <bind nodeset="/data/person/name" required="true()" type="string"/>
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
       <bind nodeset="/data/person/name1" required="true()" type="string"/>
-      <bind calculate="full_name" nodeset="/data/person/name" type="string"/>
+      <bind calculate="full_name" nodeset="/data/person/full_name" type="string"/>
       <bind nodeset="/data/person/aka" type="string"/>
       <bind nodeset="/data/person/docket" type="int"/>
       <bind nodeset="/data/person/tsis" required="true()" type="int"/>
@@ -154,9 +154,9 @@
       <input ref="/data/person/date_reg">
         <label>Date Registered into HealthJam Digital Case Management System</label>
       </input>
-      <input ref="/data/person/full_name">
+      <input ref="/data/person/name">
         <label>Full Name</label>
-        <hint ref="jr:itext('/data/person/full_name:hint')"/>
+        <hint ref="jr:itext('/data/person/name:hint')"/>
       </input>
       <input ref="/data/person/name_f">
         <label>First Name</label>
