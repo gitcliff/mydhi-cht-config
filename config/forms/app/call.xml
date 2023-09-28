@@ -4,7 +4,7 @@
     <h:title>Call Log</h:title>
     <model>
       <instance>
-        <call delimiter="#" id="call" prefix="J1!call!" version="2023-09-21_09-30">
+        <call delimiter="#" id="call" prefix="J1!call!" version="2023-09-28_11-59">
           <inputs>
             <meta>
               <location>
@@ -68,6 +68,7 @@
             <identity/>
             <note_verified/>
             <actions_done/>
+            <actions_done_other/>
             <notes/>
             <duration/>
           </call>
@@ -124,6 +125,7 @@
       <bind nodeset="/call/call/identity" type="select1"/>
       <bind nodeset="/call/call/note_verified" readonly="true()" relevant=" /call/call/identity  = 'no'" type="string"/>
       <bind nodeset="/call/call/actions_done" relevant=" /call/call/identity  = 'yes'" type="select"/>
+      <bind nodeset="/call/call/actions_done_other" relevant="selected(../actions_done, 'other')" type="string"/>
       <bind nodeset="/call/call/notes" type="string"/>
       <bind nodeset="/call/call/duration" type="int"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/call/meta/instanceID" readonly="true()" type="string"/>
@@ -203,7 +205,7 @@
  4. What clinic did you last visit?</label>
       </input>
       <input ref="/call/call/call1">
-        <label>Date of Call</label>
+        <label>Date of Call the call</label>
       </input>
       <select1 ref="/call/call/identity">
         <label>Was the patient's identity verified?</label>
@@ -233,12 +235,19 @@
           <label>Telemedicine Visit</label>
           <value>telemedicine_visit</value>
         </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
       </select>
+      <input ref="/call/call/actions_done_other">
+        <label>Specify other.</label>
+      </input>
       <input ref="/call/call/notes">
         <label>Notes about this conversation</label>
       </input>
       <input ref="/call/call/duration">
-        <label>Duration of call</label>
+        <label>Duration of call in minutes</label>
       </input>
     </group>
   </h:body>

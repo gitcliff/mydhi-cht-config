@@ -29,6 +29,9 @@
           <text id="/mute/group_review/n_migrated:label">
             <value>Migrated</value>
           </text>
+          <text id="/mute/group_review/n_opt:label">
+            <value>Opt Out of HealthJam</value>
+          </text>
           <text id="/mute/group_review/n_patient_details:label">
             <value>&lt;h4 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/patient_name "/>&lt;/h4&gt;&lt;h5 style=&quot;text-align:center;&quot;&gt;<output value=" /mute/group_review/c_age_string "/>&lt;/h5&gt;</value>
           </text>
@@ -125,11 +128,8 @@
           <text id="/mute/mute_request/first_name:label">
             <value>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /mute/fast_name_ctx "/>**&lt;/i&gt;</value>
           </text>
-          <text id="/mute/mute_request/gender_n:label">
-            <value>Gender Identity: **<output value=" /mute/gender_ctx "/>**</value>
-          </text>
-          <text id="/mute/mute_request/nick:label">
-            <value>Nickname: **<output value=" /mute/aka_ctx "/>**</value>
+          <text id="/mute/mute_request/label_note:label">
+            <value>**By filling out this form, you will "mute" this client from the HealthJam Digital Case Management System. This means they will be archived in the system and be inactive. You will not be able to edit their record unless you reactivate their status by completing the "Un-archive a client" form**</value>
           </text>
           <text id="/mute/mute_request/notes_n:label">
             <value>Notes</value>
@@ -152,6 +152,9 @@
           <text id="/mute/mute_request/reason/migrated:label">
             <value>Migrated</value>
           </text>
+          <text id="/mute/mute_request/reason/opt:label">
+            <value>Opt Out of HealthJam</value>
+          </text>
           <text id="/mute/mute_request/reason/refused_care:label">
             <value>Refused care</value>
           </text>
@@ -161,13 +164,13 @@
           <text id="/mute/mute_request/reason:label">
             <value>Client Disposition:</value>
           </text>
-          <text id="/mute/mute_request:label">
-            <value>By filling out this form, you will "mute" this client from the HealthJam Digital Case Management System. This means they will be archived in the system and be inactive. You will not be able to edit their record unless you reactivate their status by completing the "Un-archive a client" form</value>
+          <text id="/mute/mute_request/reason_for_opting:label">
+            <value>Reason for opting out:</value>
           </text>
         </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-08-21 12:13:13">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-09-28 11:45:14">
           <inputs>
             <meta>
               <location>
@@ -228,13 +231,13 @@
           <yr_date_of_birth_ctx/>
           <gender_ctx/>
           <mute_request>
+            <label_note/>
             <first_name/>
-            <nick/>
             <age_n/>
-            <gender_n/>
             <dob/>
             <n_special_instruction_title/>
             <reason/>
+            <reason_for_opting/>
             <disposition_date/>
             <notes_n/>
           </mute_request>
@@ -253,6 +256,7 @@
             <n_incarcerated/>
             <n_changed_clinic/>
             <n_death/>
+            <n_opt/>
             <n_special_instruction_title/>
             <n_special_instruction/>
             <n_follow_up_title/>
@@ -304,13 +308,13 @@
       <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/mute/at_ctx" type="string"/>
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /mute/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/mute/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/mute/gender_ctx" type="string"/>
+      <bind nodeset="/mute/mute_request/label_note" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/first_name" readonly="true()" type="string"/>
-      <bind nodeset="/mute/mute_request/nick" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/age_n" readonly="true()" type="string"/>
-      <bind nodeset="/mute/mute_request/gender_n" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/dob" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/reason" required="true()" type="select1"/>
+      <bind nodeset="/mute/mute_request/reason_for_opting" relevant=" /mute/mute_request/reason  = 'opt'" type="string"/>
       <bind nodeset="/mute/mute_request/disposition_date" type="date"/>
       <bind nodeset="/mute/mute_request/notes_n" type="string"/>
       <bind nodeset="/mute/group_review/n_submit" readonly="true()" type="string"/>
@@ -329,6 +333,7 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       <bind nodeset="/mute/group_review/n_incarcerated" readonly="true()" relevant="selected(../../mute_request/reason, 'incarcerated')" type="string"/>
       <bind nodeset="/mute/group_review/n_changed_clinic" readonly="true()" relevant="selected(../../mute_request/reason, 'changed_clinic')" type="string"/>
       <bind nodeset="/mute/group_review/n_death" readonly="true()" relevant="selected(../../mute_request/reason, 'death')" type="string"/>
+      <bind nodeset="/mute/group_review/n_opt" readonly="true()" relevant="selected(../../mute_request/reason, 'opt')" type="string"/>
       <bind nodeset="/mute/group_review/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_special_instruction" readonly="true()" type="string"/>
       <bind nodeset="/mute/group_review/n_follow_up_title" readonly="true()" type="string"/>
@@ -364,18 +369,14 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       </group>
     </group>
     <group appearance="field-list summary" ref="/mute/mute_request">
-      <label ref="jr:itext('/mute/mute_request:label')"/>
+      <input ref="/mute/mute_request/label_note">
+        <label ref="jr:itext('/mute/mute_request/label_note:label')"/>
+      </input>
       <input ref="/mute/mute_request/first_name">
         <label ref="jr:itext('/mute/mute_request/first_name:label')"/>
       </input>
-      <input ref="/mute/mute_request/nick">
-        <label ref="jr:itext('/mute/mute_request/nick:label')"/>
-      </input>
       <input ref="/mute/mute_request/age_n">
         <label ref="jr:itext('/mute/mute_request/age_n:label')"/>
-      </input>
-      <input ref="/mute/mute_request/gender_n">
-        <label ref="jr:itext('/mute/mute_request/gender_n:label')"/>
       </input>
       <input ref="/mute/mute_request/dob">
         <label ref="jr:itext('/mute/mute_request/dob:label')"/>
@@ -415,7 +416,14 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
           <label ref="jr:itext('/mute/mute_request/reason/death:label')"/>
           <value>death</value>
         </item>
+        <item>
+          <label ref="jr:itext('/mute/mute_request/reason/opt:label')"/>
+          <value>opt</value>
+        </item>
       </select1>
+      <input ref="/mute/mute_request/reason_for_opting">
+        <label ref="jr:itext('/mute/mute_request/reason_for_opting:label')"/>
+      </input>
       <input ref="/mute/mute_request/disposition_date">
         <label ref="jr:itext('/mute/mute_request/disposition_date:label')"/>
       </input>
@@ -460,6 +468,9 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       </input>
       <input appearance="li" ref="/mute/group_review/n_death">
         <label ref="jr:itext('/mute/group_review/n_death:label')"/>
+      </input>
+      <input ref="/mute/group_review/n_opt">
+        <label ref="jr:itext('/mute/group_review/n_opt:label')"/>
       </input>
       <input appearance="h1 blue" ref="/mute/group_review/n_special_instruction_title">
         <label ref="jr:itext('/mute/group_review/n_special_instruction_title:label')"/>
