@@ -4,7 +4,7 @@
     <h:title>Task  Follow-up</h:title>
     <model>
       <instance>
-        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2022-12-29_19-43">
+        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2023-09-28_09-20">
           <inputs>
             <meta>
               <location>
@@ -125,7 +125,11 @@
       <select1 ref="/reminder/reminder/tm">
         <label>It's time to follow-up the task above. This task is:</label>
         <item>
-          <label>Completed, delete task from my inbox</label>
+          <label>Noted, I will follow-up as needed. Delete this Task</label>
+          <value>comp</value>
+        </item>
+        <item>
+          <label>Keep this reminder in my Task List</label>
           <value>comp</value>
         </item>
       </select1>

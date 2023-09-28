@@ -4,7 +4,7 @@
     <h:title>Labs and Medication</h:title>
     <model>
       <instance>
-        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-09-21_09-34">
+        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-09-28_12-15">
           <inputs>
             <meta>
               <location>
@@ -182,7 +182,7 @@
         <label>Name of Person Completing form</label>
       </input>
       <input ref="/medication/medication/most_recent">
-        <label>Most recent VL Test date</label>
+        <label>Most recent Viral Load test date</label>
       </input>
       <input ref="/medication/medication/results">
         <label>Viral Load Results</label>
