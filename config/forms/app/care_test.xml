@@ -4,7 +4,7 @@
     <h:title>Form - Test - Level of Care Assessment</h:title>
     <model>
       <instance>
-        <care_test delimiter="#" id="care_test" prefix="J1!care_test!" version="2023-08-21_11-06">
+        <care_test delimiter="#" id="care_test" prefix="J1!care_test!" version="2023-10-12_16-21">
           <inputs>
             <meta>
               <location>
@@ -47,9 +47,9 @@
           <photo_test>
             <photo_name/>
             <date_care/>
-            <photo/>
             <score/>
             <photo_refer/>
+            <findings/>
           </photo_test>
           <meta tag="hidden">
             <instanceID/>
@@ -83,9 +83,9 @@
       <bind calculate="../inputs/person_comp" nodeset="/care_test/person_compl" type="string"/>
       <bind nodeset="/care_test/photo_test/photo_name" type="string"/>
       <bind nodeset="/care_test/photo_test/date_care" type="date"/>
-      <bind nodeset="/care_test/photo_test/photo" type="binary"/>
-      <bind nodeset="/care_test/photo_test/score" readonly="true()" type="string"/>
+      <bind nodeset="/care_test/photo_test/score" type="int"/>
       <bind nodeset="/care_test/photo_test/photo_refer" type="select1"/>
+      <bind nodeset="/care_test/photo_test/findings" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/care_test/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -131,9 +131,6 @@
       <input ref="/care_test/photo_test/date_care">
         <label>Date of Level of Care Assessment</label>
       </input>
-      <upload appearance="annotate" mediatype="image/*" ref="/care_test/photo_test/photo">
-        <label>Take a Photo of the Completed form:</label>
-      </upload>
       <input ref="/care_test/photo_test/score">
         <label>Level of Care Assessment Score:</label>
       </input>
@@ -152,6 +149,9 @@
           <value>comprehensive</value>
         </item>
       </select1>
+      <input ref="/care_test/photo_test/findings">
+        <label>Significant Findings</label>
+      </input>
     </group>
   </h:body>
 </h:html>
