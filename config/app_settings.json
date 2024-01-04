@@ -4209,6 +4209,26 @@
           "expr": "['tel:' + doc.from]"
         }
       }
+    },
+    "testing cht to text-it communication flow": {
+      "relevant_to": "doc.type === 'data_record' && doc.sms_message && doc.sms_message.message === 'testing cht to text-it communication flow'",
+      "destination": {
+        "base_url": "https://textit.in",
+        "auth": {
+          "type": "header",
+          "name": "Authorization",
+          "value_key": "rapidpro.app"
+        },
+        "path": "/api/v2/flow_starts.json"
+      },
+      "mapping": {
+        "flow": {
+          "expr": "'c8b55f87-1fbf-4dc7-8c20-caf334479851'"
+        },
+        "urns": {
+          "expr": "['tel:' + doc.from]"
+        }
+      }
     }
   },
   "death_reporting": {
