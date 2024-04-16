@@ -29,7 +29,7 @@ module.exports = [
     appliesIf: function(c, r){
       return r.fields.appoint.type_appoint === 'clinical appointment' || r.fields.appoint.type_appoint === 'internal referral' ||
       r.fields.appoint.type_appoint === 'external referral' || r.fields.appoint.type_appoint === 'adherence counselor appointment' ||
-      r.fields.appoint.type_appoint === 'psychologist appointment' ||
+      r.fields.appoint.type_appoint === 'psychologist appointment' ||  r.fields.appoint.type_appoint === 'pharmacy' ||
       r.fields.appoint.type_appoint === 'social worker appointment' 
       || r.fields.appoint.type_appoint === 'case manager appointment ';
     },
@@ -48,13 +48,24 @@ module.exports = [
       }
    }],
     events: [{
-      start: 14,
+      id:'appointment-seven',
+      start: 7,
       end: 1,
       dueDate: function (event, contact, r) {
 
         return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
       }
-    }],
+    },
+    {
+      id: 'appointment-three',
+      start: 3,
+      end: 1,
+      dueDate: function (event, contact, r) {
+
+        return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
+      }
+    }
+  ],
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is a reminder received in time window
       return isFormFromArraySubmittedInWindow(c.reports, 'reminder',
@@ -89,13 +100,24 @@ module.exports = [
       }
    }],
     events: [{
-      start: 14,
+      id:'appointment-seven',
+      start: 7,
       end: 1,
       dueDate: function (event, contact, r) {
       
         return Utils.addDate(new Date(getField(r, 'appoint.date_appoint1')), 0);
       }
-    }],
+    },
+    {
+      id:'appointment-three',
+      start: 3,
+      end: 1,
+      dueDate: function (event, contact, r) {
+      
+        return Utils.addDate(new Date(getField(r, 'appoint.date_appoint1')), 0);
+      }
+    }
+  ],
     resolvedIf: function(c, r, event, dueDate) {
       // Resolved if there is a reminder received in time window
       return isFormFromArraySubmittedInWindow(c.reports, 'reminder',
@@ -103,6 +125,7 @@ module.exports = [
                  Utils.addDate(dueDate,  event.end+1).getTime());
     },
   },
+  
   {
     name: 'reminder-follow-up-task',
     title: 'Task Reminder',
