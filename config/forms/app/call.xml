@@ -4,7 +4,7 @@
     <h:title>Call Log</h:title>
     <model>
       <instance>
-        <call delimiter="#" id="call" prefix="J1!call!" version="2023-09-28_11-59">
+        <call delimiter="#" id="call" prefix="J1!call!" version="2024-04-16_16-39">
           <inputs>
             <meta>
               <location>
@@ -33,6 +33,8 @@
               <tsis/>
               <at/>
               <genda/>
+              <docket/>
+              <phone/>
               <parent>
                 <contact>
                   <phone/>
@@ -47,6 +49,8 @@
           <patient_aka/>
           <cur_address/>
           <patient_tsis/>
+          <patient_phone/>
+          <patient_docket/>
           <patient_at/>
           <patient_genda/>
           <patient_date_of_birth/>
@@ -58,10 +62,17 @@
           <at_ctx/>
           <yr_date_of_birth_ctx/>
           <gender_ctx/>
+          <address_ctx/>
+          <docket_ctx/>
+          <phone_ctx/>
           <call>
             <first_name/>
+            <birth_date/>
             <age_n/>
+            <docket/>
             <dob/>
+            <fon_number/>
+            <current_address/>
             <n_special_instruction_title/>
             <note_1/>
             <call1/>
@@ -97,6 +108,8 @@
       <bind nodeset="/call/inputs/contact/tsis" type="string"/>
       <bind nodeset="/call/inputs/contact/at" type="string"/>
       <bind nodeset="/call/inputs/contact/genda" type="string"/>
+      <bind nodeset="/call/inputs/contact/docket" type="string"/>
+      <bind nodeset="/call/inputs/contact/phone" type="string"/>
       <bind nodeset="/call/inputs/contact/parent/contact/phone" type="string"/>
       <bind nodeset="/call/inputs/contact/parent/contact/name" type="string"/>
       <bind calculate="../inputs/contact/patient_id" nodeset="/call/patient_id" type="string"/>
@@ -105,6 +118,8 @@
       <bind calculate="../inputs/contact/aka" nodeset="/call/patient_aka" type="string"/>
       <bind calculate="../inputs/contact/curr_address" nodeset="/call/cur_address" type="string"/>
       <bind calculate="../inputs/contact/tsis" nodeset="/call/patient_tsis" type="string"/>
+      <bind calculate="../inputs/contact/phone" nodeset="/call/patient_phone" type="string"/>
+      <bind calculate="../inputs/contact/docket" nodeset="/call/patient_docket" type="string"/>
       <bind calculate="../inputs/contact/at" nodeset="/call/patient_at" type="string"/>
       <bind calculate="../inputs/contact/genda" nodeset="/call/patient_genda" type="string"/>
       <bind calculate="../inputs/contact/date_of_birth" nodeset="/call/patient_date_of_birth" type="string"/>
@@ -116,9 +131,16 @@
       <bind calculate="if(instance('contact-summary')/context/patient_at != '', instance('contact-summary')/context/patient_at, .)" nodeset="/call/at_ctx" type="string"/>
       <bind calculate="int(int(format-date(today(), &quot;%Y&quot;) - format-date( /call/date_of_birth_ctx , &quot;%Y&quot;)) )" nodeset="/call/yr_date_of_birth_ctx" type="string"/>
       <bind calculate="if(instance('contact-summary')/context/patient_genda != '', instance('contact-summary')/context/patient_genda, .)" nodeset="/call/gender_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/cur_address != '', instance('contact-summary')/context/cur_address, .)" nodeset="/call/address_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_docket != '', instance('contact-summary')/context/patient_docket, .)" nodeset="/call/docket_ctx" type="string"/>
+      <bind calculate="if(instance('contact-summary')/context/patient_phone != '', instance('contact-summary')/context/patient_phone, .)" nodeset="/call/phone_ctx" type="string"/>
       <bind nodeset="/call/call/first_name" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/birth_date" readonly="true()" type="string"/>
       <bind nodeset="/call/call/age_n" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/docket" readonly="true()" type="string"/>
       <bind nodeset="/call/call/dob" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/fon_number" readonly="true()" type="string"/>
+      <bind nodeset="/call/call/current_address" readonly="true()" type="string"/>
       <bind nodeset="/call/call/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/call/call/note_1" readonly="true()" type="string"/>
       <bind nodeset="/call/call/call1" type="date"/>
@@ -169,6 +191,12 @@
         <input ref="/call/inputs/contact/genda">
           <label></label>
         </input>
+        <input appearance="hidden" ref="/call/inputs/contact/docket">
+          <label></label>
+        </input>
+        <input appearance="hidden" ref="/call/inputs/contact/phone">
+          <label></label>
+        </input>
         <group ref="/call/inputs/contact/parent">
           <label></label>
           <group ref="/call/inputs/contact/parent/contact">
@@ -188,11 +216,23 @@
       <input ref="/call/call/first_name">
         <label>&lt;i style=&quot;background-color: yellow;&quot;&gt;**<output value=" /call/fast_name_ctx "/>**&lt;/i&gt;</label>
       </input>
+      <input ref="/call/call/birth_date">
+        <label>Date of Birth: **<output value=" /call/date_of_birth_ctx "/>**</label>
+      </input>
       <input ref="/call/call/age_n">
-        <label>Age: **<output value=" /call/yr_date_of_birth_ctx "/> yr**</label>
+        <label>Current Age: **<output value=" /call/yr_date_of_birth_ctx "/> yr**</label>
+      </input>
+      <input ref="/call/call/docket">
+        <label>Docket Number: **<output value=" /call/docket_ctx "/>**</label>
       </input>
       <input ref="/call/call/dob">
         <label>TSIS: **<output value=" /call/tsis_ctx "/>**</label>
+      </input>
+      <input ref="/call/call/fon_number">
+        <label>Phone Number: **<output value=" /call/phone_ctx "/>**</label>
+      </input>
+      <input ref="/call/call/current_address">
+        <label>Current Address: **<output value=" /call/address_ctx "/>**</label>
       </input>
       <input appearance="h1 yellow" ref="/call/call/n_special_instruction_title">
         <label></label>
@@ -205,7 +245,7 @@
  4. What clinic did you last visit?</label>
       </input>
       <input ref="/call/call/call1">
-        <label>Date of Call the call</label>
+        <label>Date of Call</label>
       </input>
       <select1 ref="/call/call/identity">
         <label>Was the patient's identity verified?</label>
