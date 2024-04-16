@@ -52,6 +52,9 @@ var context = {
   patient_tsis: contact.tsis,
   patient_at: contact.at,
   patient_genda: contact.genda,
+  patient_docket: contact.docket,
+  patient_phone: contact.phone,
+  cur_address: contact.address,
   use_cases: {
     anc: isCoveredByUseCaseInLineage(lineage, 'anc'),
     pnc: isCoveredByUseCaseInLineage(lineage, 'pnc'),
