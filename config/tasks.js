@@ -48,6 +48,7 @@ module.exports = [
       }
    }],
     events: [{
+      id:'appointment-seven',
       start: 7,
       end: 1,
       dueDate: function (event, contact, r) {
@@ -56,6 +57,7 @@ module.exports = [
       }
     },
     {
+      id: 'appointment-three',
       start: 3,
       end: 1,
       dueDate: function (event, contact, r) {
@@ -98,6 +100,7 @@ module.exports = [
       }
    }],
     events: [{
+      id:'appointment-seven',
       start: 7,
       end: 1,
       dueDate: function (event, contact, r) {
@@ -106,6 +109,7 @@ module.exports = [
       }
     },
     {
+      id:'appointment-three',
       start: 3,
       end: 1,
       dueDate: function (event, contact, r) {
