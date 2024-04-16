@@ -4,7 +4,7 @@
     <h:title>Appointment</h:title>
     <model>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2023-09-21_09-35">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2024-04-16_11-32">
           <inputs>
             <meta>
               <location>
@@ -58,6 +58,7 @@
             <n_special_instruction_title/>
             <complete/>
             <type_appoint/>
+            <type_appoint_other/>
             <welcome/>
             <lab_test/>
             <lab_test_other/>
@@ -107,6 +108,7 @@
       <bind nodeset="/appointment/appoint/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/appointment/appoint/complete" required="true()" type="string"/>
       <bind nodeset="/appointment/appoint/type_appoint" required="true()" type="select1"/>
+      <bind nodeset="/appointment/appoint/type_appoint_other" relevant="selected(../type_appoint, 'other')" type="string"/>
       <bind nodeset="/appointment/appoint/welcome" type="string"/>
       <bind nodeset="/appointment/appoint/lab_test" relevant=" /appointment/appoint/type_appoint  = 'blood draw appointment'" required="true()" type="select1"/>
       <bind nodeset="/appointment/appoint/lab_test_other" relevant="selected(../lab_test, 'other')" type="string"/>
@@ -215,9 +217,20 @@
           <label>External Referral</label>
           <value>external referral</value>
         </item>
+        <item>
+          <label>Pharmacy Pick-up Appointmen</label>
+          <value>pharmacy</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
       </select1>
+      <input ref="/appointment/appoint/type_appoint_other">
+        <label>Specify other.</label>
+      </input>
       <input ref="/appointment/appoint/welcome">
-        <label>Notes about this Appointment?</label>
+        <label>Notes about this Appointment</label>
       </input>
       <select1 ref="/appointment/appoint/lab_test">
         <label>Blood Draw:</label>
