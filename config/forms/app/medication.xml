@@ -4,7 +4,7 @@
     <h:title>Labs and Medication</h:title>
     <model>
       <instance>
-        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2023-09-28_12-15">
+        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2024-07-08_21-22">
           <inputs>
             <meta>
               <location>
@@ -36,24 +36,24 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <patient_name1/>
-          <patient_aka/>
-          <patient_tsis/>
-          <patient_genda/>
-          <patient_date_of_birth/>
-          <fast_name_ctx/>
-          <last_name_ctx/>
-          <date_of_birth_ctx/>
-          <aka_ctx/>
-          <tsis_ctx/>
-          <at_ctx/>
-          <yr_date_of_birth_ctx/>
-          <gender_ctx/>
+          <patient_name1 tag="hidden"/>
+          <patient_aka tag="hidden"/>
+          <patient_tsis tag="hidden"/>
+          <patient_genda tag="hidden"/>
+          <patient_date_of_birth tag="hidden"/>
+          <fast_name_ctx tag="hidden"/>
+          <last_name_ctx tag="hidden"/>
+          <date_of_birth_ctx tag="hidden"/>
+          <aka_ctx tag="hidden"/>
+          <tsis_ctx tag="hidden"/>
+          <at_ctx tag="hidden"/>
+          <yr_date_of_birth_ctx tag="hidden"/>
+          <gender_ctx tag="hidden"/>
           <medication>
-            <first_name/>
-            <age_n/>
-            <dob/>
-            <n_special_instruction_title/>
+            <first_name tag="hidden"/>
+            <age_n tag="hidden"/>
+            <dob tag="hidden"/>
+            <n_special_instruction_title tag="hidden"/>
             <date_completed/>
             <name_person/>
             <most_recent/>
