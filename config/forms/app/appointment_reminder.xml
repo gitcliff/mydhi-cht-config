@@ -4,7 +4,7 @@
     <h:title>Appointment Reminder</h:title>
     <model>
       <instance>
-        <appointment_reminder delimiter="#" id="appointment_reminder" prefix="J1!appointment_reminder!" version="2023-08-23_22-29">
+        <appointment_reminder delimiter="#" id="appointment_reminder" prefix="J1!appointment_reminder!" version="2024-07-08_22-18">
           <inputs>
             <meta>
               <location>
@@ -38,17 +38,17 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <app_type/>
-          <blood_draw_type/>
-          <date_of_appointment/>
-          <notes/>
-          <date_task_appears/>
-          <person_compl/>
+          <app_type tag="hidden"/>
+          <blood_draw_type tag="hidden"/>
+          <date_of_appointment tag="hidden"/>
+          <notes tag="hidden"/>
+          <date_task_appears tag="hidden"/>
+          <person_compl tag="hidden"/>
           <appointment_reminder>
-            <person_complete/>
-            <type/>
-            <appointment_date/>
-            <notes_app/>
+            <person_complete tag="hidden"/>
+            <type tag="hidden"/>
+            <appointment_date tag="hidden"/>
+            <notes_app tag="hidden"/>
             <upcoming/>
             <follow-up/>
           </appointment_reminder>
