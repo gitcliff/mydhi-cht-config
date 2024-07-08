@@ -4,7 +4,7 @@
     <h:title>Form - Test - Level of Care Assessment</h:title>
     <model>
       <instance>
-        <care_test delimiter="#" id="care_test" prefix="J1!care_test!" version="2024-07-08_21-39">
+        <care_test delimiter="#" id="care_test" prefix="J1!care_test!" version="2024-07-08_21-46">
           <inputs>
             <meta>
               <location>
@@ -43,7 +43,7 @@
           <date_of_appointment tag="hidden"/>
           <notes tag="hidden"/>
           <date_task_appears tag="hidden"/>
-          <person_compl/>
+          <person_compl tag="hidden"/>
           <photo_test>
             <photo_name/>
             <date_care/>
