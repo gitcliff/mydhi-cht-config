@@ -4,7 +4,7 @@
     <h:title>Call Log</h:title>
     <model>
       <instance>
-        <call delimiter="#" id="call" prefix="J1!call!" version="2024-04-16_16-39">
+        <call delimiter="#" id="call" prefix="J1!call!" version="2024-07-08_22-28">
           <inputs>
             <meta>
               <location>
@@ -45,39 +45,39 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <patient_name1/>
-          <patient_aka/>
-          <cur_address/>
-          <patient_tsis/>
-          <patient_phone/>
-          <patient_docket/>
-          <patient_at/>
-          <patient_genda/>
-          <patient_date_of_birth/>
-          <fast_name_ctx/>
-          <last_name_ctx/>
-          <date_of_birth_ctx/>
-          <aka_ctx/>
-          <tsis_ctx/>
-          <at_ctx/>
-          <yr_date_of_birth_ctx/>
-          <gender_ctx/>
-          <address_ctx/>
-          <docket_ctx/>
-          <phone_ctx/>
+          <patient_name1 tag="hidden"/>
+          <patient_aka tag="hidden"/>
+          <cur_address tag="hidden"/>
+          <patient_tsis tag="hidden"/>
+          <patient_phone tag="hidden"/>
+          <patient_docket tag="hidden"/>
+          <patient_at tag="hidden"/>
+          <patient_genda tag="hidden"/>
+          <patient_date_of_birth tag="hidden"/>
+          <fast_name_ctx tag="hidden"/>
+          <last_name_ctx tag="hidden"/>
+          <date_of_birth_ctx tag="hidden"/>
+          <aka_ctx tag="hidden"/>
+          <tsis_ctx tag="hidden"/>
+          <at_ctx tag="hidden"/>
+          <yr_date_of_birth_ctx tag="hidden"/>
+          <gender_ctx tag="hidden"/>
+          <address_ctx tag="hidden"/>
+          <docket_ctx tag="hidden"/>
+          <phone_ctx tag="hidden"/>
           <call>
-            <first_name/>
-            <birth_date/>
-            <age_n/>
-            <docket/>
-            <dob/>
-            <fon_number/>
-            <current_address/>
-            <n_special_instruction_title/>
-            <note_1/>
+            <first_name tag="hidden"/>
+            <birth_date tag="hidden"/>
+            <age_n tag="hidden"/>
+            <docket tag="hidden"/>
+            <dob tag="hidden"/>
+            <fon_number tag="hidden"/>
+            <current_address tag="hidden"/>
+            <n_special_instruction_title tag="hidden"/>
+            <note_1 tag="hidden"/>
             <call1/>
             <identity/>
-            <note_verified/>
+            <note_verified tag="hidden"/>
             <actions_done/>
             <actions_done_other/>
             <notes/>
