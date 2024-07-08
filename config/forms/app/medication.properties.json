@@ -1,9 +1,19 @@
 {
-    "title": "Form - Labs and Medications",
-    "icon": "tabs",
-    "context": {
-          "person": true,
-          "place": false,
-          "expression": "contact.type === 'person'"
-      }
+  "hidden_fields": [
+    "aka_ctx",
+    "tsis_ctx",
+    "at_ctx",
+    "yr_date_of_birth_ctx",
+    "patient_date_of_birth",
+    "patient_genda",
+    "patient_tsis"
+  ],
+  "title": "Form - Labs and Medications",
+  "icon": "tabs",
+
+  "context": {
+    "person": true,
+    "place": false,
+    "expression": "contact.type === 'person'"
   }
+}
