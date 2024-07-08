@@ -41,24 +41,24 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <patient_name1/>
-          <patient_aka/>
-          <patient_tsis/>
-          <patient_at/>
-          <patient_genda/>
-          <patient_date_of_birth/>
-          <fast_name_ctx/>
-          <last_name_ctx/>
-          <date_of_birth_ctx/>
-          <aka_ctx/>
-          <tsis_ctx/>
-          <at_ctx/>
-          <yr_date_of_birth_ctx/>
-          <gender_ctx/>
+          <patient_name1 tag="hidden"/>
+          <patient_aka tag="hidden"/>
+          <patient_tsis tag="hidden"/>
+          <patient_at tag="hidden"/>
+          <patient_genda tag="hidden"/>
+          <patient_date_of_birth tag="hidden"/>
+          <fast_name_ctx tag="hidden"/>
+          <last_name_ctx tag="hidden"/>
+          <date_of_birth_ctx tag="hidden"/>
+          <aka_ctx tag="hidden"/>
+          <tsis_ctx tag="hidden"/>
+          <at_ctx tag="hidden"/>
+          <yr_date_of_birth_ctx tag="hidden"/>
+          <gender_ctx tag="hidden"/>
           <care>
-            <first_name/>
-            <age_n/>
-            <dob/>
+            <first_name tag="hidden"/>
+            <age_n tag="hidden"/>
+            <dob tag="hidden"/>
             <n_special_instruction_title/>
             <person_completing/>
             <date_care_form/>
