@@ -4,7 +4,7 @@
     <h:title>Task  Follow-up</h:title>
     <model>
       <instance>
-        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2023-09-28_09-20">
+        <reminder delimiter="#" id="reminder" prefix="J1!reminder!" version="2024-07-08_19-11">
           <inputs>
             <meta>
               <location>
@@ -35,13 +35,13 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <titt_task/>
-          <titt_note/>
+          <titt_task tag="hidden"/>
+          <titt_note tag="hidden"/>
           <reminder>
-            <title/>
+            <title tag="hidden"/>
             <format/>
-            <when/>
-            <notes/>
+            <when tag="hidden"/>
+            <notes tag="hidden"/>
             <tm/>
             <follow_up/>
           </reminder>
