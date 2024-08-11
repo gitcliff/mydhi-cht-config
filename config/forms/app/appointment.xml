@@ -4,7 +4,7 @@
     <h:title>Appointment</h:title>
     <model>
       <instance>
-        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2024-07-08_21-56">
+        <appointment delimiter="#" id="appointment" prefix="J1!appointment!" version="2024-08-11_17-12">
           <inputs>
             <meta>
               <location>
@@ -218,7 +218,7 @@
           <value>external referral</value>
         </item>
         <item>
-          <label>Pharmacy Pick-up Appointmen</label>
+          <label>Pharmacy Pick-up Appointment</label>
           <value>pharmacy</value>
         </item>
         <item>

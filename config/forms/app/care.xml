@@ -541,10 +541,10 @@
         </item>
       </select1>
       <input ref="/care/care/score_note">
-        <label>**Score is:** <output value=" /care/care/score "/></label>
+        <label>**Score is:** **<output value=" /care/care/score "/>**</label>
       </input>
       <input ref="/care/care/category_note">
-        <label>**Risk Category is:** <output value=" /care/care/category "/></label>
+        <label>**Risk Category is:** **<output value=" /care/care/category "/>**</label>
       </input>
       <input ref="/care/care/note_1">
         <label>15 = Limited 	 	 Cases reviewed as needed, but at least annually</label>

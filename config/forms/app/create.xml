@@ -4,7 +4,7 @@
     <h:title>Task</h:title>
     <model>
       <instance>
-        <create delimiter="#" id="create" prefix="J1!create!" version="2024-07-08_21-52">
+        <create delimiter="#" id="create" prefix="J1!create!" version="2024-08-11_18-21">
           <inputs>
             <meta>
               <location>
@@ -57,8 +57,9 @@
             <dob tag="hidden"/>
             <n_special_instruction_title tag="hidden"/>
             <title/>
-            <notes/>
+            <create_date/>
             <reminder/>
+            <notes/>
           </create>
           <meta tag="hidden">
             <instanceID/>
@@ -102,8 +103,9 @@
       <bind nodeset="/create/create/dob" readonly="true()" type="string"/>
       <bind nodeset="/create/create/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/create/create/title" type="string"/>
-      <bind nodeset="/create/create/notes" type="string"/>
+      <bind calculate="today()" nodeset="/create/create/create_date" type="date"/>
       <bind nodeset="/create/create/reminder" type="date"/>
+      <bind nodeset="/create/create/notes" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/create/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>
@@ -168,13 +170,16 @@
         <label></label>
       </input>
       <input ref="/create/create/title">
-        <label>Task Name</label>
+        <label>Task of the Person Creating Name</label>
+      </input>
+      <input ref="/create/create/create_date">
+        <label>Date Task Added</label>
+      </input>
+      <input ref="/create/create/reminder">
+        <label>When should a reminder appear in tasks?</label>
       </input>
       <input ref="/create/create/notes">
         <label>Notes about this task:</label>
-      </input>
-      <input ref="/create/create/reminder">
-        <label>When should a reminder appear in your tasks?</label>
       </input>
     </group>
   </h:body>

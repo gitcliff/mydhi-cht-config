@@ -170,7 +170,7 @@
         </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2023-09-28 11:45:14">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2024-07-08 20:25:31">
           <inputs>
             <meta>
               <location>
@@ -217,50 +217,50 @@
           <patient_uuid/>
           <patient_id/>
           <patient_name/>
-          <patient_name1/>
-          <patient_aka/>
-          <patient_tsis/>
-          <patient_genda/>
-          <patient_at/>
-          <last_name_ctx/>
-          <date_of_birth_ctx/>
-          <aka_ctx/>
-          <tsis_ctx/>
-          <fast_name_ctx/>
-          <at_ctx/>
-          <yr_date_of_birth_ctx/>
-          <gender_ctx/>
+          <patient_name1 tag="hidden"/>
+          <patient_aka tag="hidden"/>
+          <patient_tsis tag="hidden"/>
+          <patient_genda tag="hidden"/>
+          <patient_at tag="hidden"/>
+          <last_name_ctx tag="hidden"/>
+          <date_of_birth_ctx tag="hidden"/>
+          <aka_ctx tag="hidden"/>
+          <tsis_ctx tag="hidden"/>
+          <fast_name_ctx tag="hidden"/>
+          <at_ctx tag="hidden"/>
+          <yr_date_of_birth_ctx tag="hidden"/>
+          <gender_ctx tag="hidden"/>
           <mute_request>
-            <label_note/>
-            <first_name/>
-            <age_n/>
-            <dob/>
-            <n_special_instruction_title/>
+            <label_note tag="hidden"/>
+            <first_name tag="hidden"/>
+            <age_n tag="hidden"/>
+            <dob tag="hidden"/>
+            <n_special_instruction_title tag="hidden"/>
             <reason/>
             <reason_for_opting/>
             <disposition_date/>
             <notes_n/>
           </mute_request>
           <group_review>
-            <n_submit/>
-            <n_patient_details_title/>
-            <c_patient_mod_mnths/>
-            <c_age_string/>
-            <n_patient_details/>
-            <n_reasons_title/>
-            <n_refused_care/>
-            <n_unlocatable/>
-            <n_migrated/>
-            <n_in_private_care/>
-            <n_hiv_negative/>
-            <n_incarcerated/>
-            <n_changed_clinic/>
-            <n_death/>
-            <n_opt/>
-            <n_special_instruction_title/>
-            <n_special_instruction/>
-            <n_follow_up_title/>
-            <n_follow_up/>
+            <n_submit tag="hidden"/>
+            <n_patient_details_title tag="hidden"/>
+            <c_patient_mod_mnths tag="hidden"/>
+            <c_age_string tag="hidden"/>
+            <n_patient_details tag="hidden"/>
+            <n_reasons_title tag="hidden"/>
+            <n_refused_care tag="hidden"/>
+            <n_unlocatable tag="hidden"/>
+            <n_migrated tag="hidden"/>
+            <n_in_private_care tag="hidden"/>
+            <n_hiv_negative tag="hidden"/>
+            <n_incarcerated tag="hidden"/>
+            <n_changed_clinic tag="hidden"/>
+            <n_death tag="hidden"/>
+            <n_opt tag="hidden"/>
+            <n_special_instruction_title tag="hidden"/>
+            <n_special_instruction tag="hidden"/>
+            <n_follow_up_title tag="hidden"/>
+            <n_follow_up tag="hidden"/>
           </group_review>
           <meta tag="hidden">
             <instanceID/>
