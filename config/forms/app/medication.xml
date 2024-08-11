@@ -4,7 +4,7 @@
     <h:title>Labs and Medication</h:title>
     <model>
       <instance>
-        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2024-07-08_21-22">
+        <medication delimiter="#" id="medication" prefix="J1!medication!" version="2024-08-11_18-01">
           <inputs>
             <meta>
               <location>
@@ -61,7 +61,9 @@
             <recent/>
             <cd_results/>
             <current_regime/>
-            <art_regime/>
+            <current_art/>
+            <current_prophylaxis/>
+            <current_prophylaxis_other/>
             <nots/>
           </medication>
           <meta tag="hidden">
@@ -110,7 +112,9 @@
       <bind nodeset="/medication/medication/recent" type="date"/>
       <bind nodeset="/medication/medication/cd_results" type="string"/>
       <bind nodeset="/medication/medication/current_regime" type="date"/>
-      <bind nodeset="/medication/medication/art_regime" type="string"/>
+      <bind nodeset="/medication/medication/current_art" type="select"/>
+      <bind nodeset="/medication/medication/current_prophylaxis" type="select"/>
+      <bind nodeset="/medication/medication/current_prophylaxis_other" relevant="selected(../current_prophylaxis, 'other')" type="string"/>
       <bind nodeset="/medication/medication/nots" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/medication/meta/instanceID" readonly="true()" type="string"/>
     </model>
@@ -196,8 +200,58 @@
       <input ref="/medication/medication/current_regime">
         <label>Date Current Regime Started</label>
       </input>
-      <input ref="/medication/medication/art_regime">
+      <select ref="/medication/medication/current_art">
         <label>Current ART Regime</label>
+        <item>
+          <label>TLD - Tenofovir/Lamivudine/Dolutegravir (1st line)</label>
+          <value>tenof1</value>
+        </item>
+        <item>
+          <label>Abacvir/lamuvidine/Dolutegravir (1st line)</label>
+          <value>tenof2</value>
+        </item>
+        <item>
+          <label>Zidovudine/Lamivudine +Atazanavir/Ritonavir (2nd line)</label>
+          <value>tenof3</value>
+        </item>
+        <item>
+          <label>Abacavir/Lamivudine + Atazanavir/Ritonavir</label>
+          <value>tenof4</value>
+        </item>
+        <item>
+          <label>Tenofovir/Lamivudine +Lopinavir/Ritonavir</label>
+          <value>tenof5</value>
+        </item>
+        <item>
+          <label>Tenofovir/Lamivudine + Raltegravir (3rd line)</label>
+          <value>tenof6</value>
+        </item>
+        <item>
+          <label>Tenofovir/Lamivudine/Dolutegravir+Darunavir/Ritonovir (3rd line)</label>
+          <value>tenof7</value>
+        </item>
+        <item>
+          <label>Zidovudine/Lamivudine/Dolutegravir+Darunavir/Ritonavir (3rd line)</label>
+          <value>tenof8</value>
+        </item>
+      </select>
+      <select ref="/medication/medication/current_prophylaxis">
+        <label>Current Prophylaxis</label>
+        <item>
+          <label>Bactrim</label>
+          <value>bactrim</value>
+        </item>
+        <item>
+          <label>Azithromycin</label>
+          <value>azithromycin</value>
+        </item>
+        <item>
+          <label>Other</label>
+          <value>other</value>
+        </item>
+      </select>
+      <input ref="/medication/medication/current_prophylaxis_other">
+        <label>Specify other.</label>
       </input>
       <input ref="/medication/medication/nots">
         <label>Notes</label>
