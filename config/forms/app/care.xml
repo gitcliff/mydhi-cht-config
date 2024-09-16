@@ -84,8 +84,6 @@
             <note_1/>
             <note_2/>
             <note_3/>
-            <date_assesment/>
-            <refer_to/>
             <findings/>
           </care>
           <meta tag="hidden">
@@ -166,14 +164,12 @@
  if(selected( /care/care/communication , 'communication_good'), 1, 0) + if(selected( /care/care/communication , 'temporary'), 2, 0) + if(selected( /care/care/communication , 'limitted'), 3, 0) + if(selected( /care/care/communication , 'communication_good'), 4, 0) + 
  if(selected( /care/care/employment , 'employed'), 1, 0) + if(selected( /care/care/employment , 'ltd_probs'), 2, 0) + if(selected( /care/care/employment , 'unemployed'), 3, 0) + if(selected( /care/care/employment , 'unable'), 4, 0) + 
  if(selected( /care/care/living , 'self_managed'), 1, 0) + if(selected( /care/care/living , 'adequate'), 2, 0) + if(selected( /care/care/living , 'unsafe'), 3, 0) + if(selected( /care/care/living , 'homless'), 4, 0)" nodeset="/care/care/score" type="string"/>
-      <bind calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limitted', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))" nodeset="/care/care/category" type="string"/>
+      <bind calculate="if(( /care/care/score  &gt;= 1 and  /care/care/score  &lt;= 15), 'Limited', if(( /care/care/score  &gt;= 16 and  /care/care/score  &lt; 40 ), 'Supportive', if(( /care/care/score  &gt;= 40), 'Comprehensive','')))" nodeset="/care/care/category" type="string"/>
       <bind nodeset="/care/care/score_note" readonly="true()" type="string"/>
       <bind nodeset="/care/care/category_note" readonly="true()" type="string"/>
       <bind nodeset="/care/care/note_1" readonly="true()" type="string"/>
       <bind nodeset="/care/care/note_2" readonly="true()" type="string"/>
       <bind nodeset="/care/care/note_3" readonly="true()" type="string"/>
-      <bind calculate="today()" nodeset="/care/care/date_assesment" type="date"/>
-      <bind nodeset="/care/care/refer_to" type="select1"/>
       <bind nodeset="/care/care/findings" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/care/meta/instanceID" readonly="true()" type="string"/>
     </model>
@@ -555,24 +551,6 @@
       <input ref="/care/care/note_3">
         <label>40+ Comprehensive 	 Cases reviewed at least twice every month</label>
       </input>
-      <input ref="/care/care/date_assesment">
-        <label>Date of Level of Care Assessment:</label>
-      </input>
-      <select1 ref="/care/care/refer_to">
-        <label>Refer to</label>
-        <item>
-          <label>Limited - cases reviewed as needed, but at least annually</label>
-          <value>refer_limitted</value>
-        </item>
-        <item>
-          <label>Supportive - cases reviewed at least every 6 months</label>
-          <value>refer_suppportive</value>
-        </item>
-        <item>
-          <label>Comprehensive - Cases reviewed at least twice every month</label>
-          <value>refer_comprehensive</value>
-        </item>
-      </select1>
       <input ref="/care/care/findings">
         <label>Significant Findings</label>
       </input>
