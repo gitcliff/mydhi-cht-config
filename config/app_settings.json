@@ -3039,7 +3039,6 @@
     "registration": true,
     "update_scheduled_reports": false,
     "multi_report_alerts": false,
-    "update_sent_forms": false,
     "death_reporting": true,
     "resolve_pending": false,
     "mark_for_outbound": true,
@@ -3078,7 +3077,7 @@
     "patient triggers enroll workflow in Textit": {
       "relevant_to": "doc.type === 'person' && doc.tsis",
       "destination": {
-        "base_url": "https://textit.in",
+        "base_url": "https://textit.com",
         "auth": {
           "type": "header",
           "name": "Authorization",
@@ -3088,7 +3087,7 @@
       },
       "mapping": {
         "flow": {
-          "expr": "'e16b6f2f-168b-4690-a52d-a27f54f88fc6'"
+          "expr": "'550567d6-6662-4c0e-9ea3-138798eba8ef'"
         },
         "urns": {
           "expr": "['tel:' + doc.phone]"
