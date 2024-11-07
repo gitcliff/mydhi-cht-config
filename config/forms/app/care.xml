@@ -59,7 +59,7 @@
             <first_name tag="hidden"/>
             <age_n tag="hidden"/>
             <dob tag="hidden"/>
-            <n_special_instruction_title/>
+            <n_special_instruction_title tag="hidden"/>
             <person_completing/>
             <date_care_form/>
             <medical/>
@@ -79,11 +79,11 @@
             <dental/>
             <score/>
             <category/>
-            <score_note/>
-            <category_note/>
-            <note_1/>
-            <note_2/>
-            <note_3/>
+            <score_note tag="hidden"/>
+            <category_note tag="hidden"/>
+            <note_1 tag="hidden"/>
+            <note_2 tag="hidden"/>
+            <note_3 tag="hidden"/>
             <findings/>
           </care>
           <meta tag="hidden">

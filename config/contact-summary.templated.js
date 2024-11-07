@@ -63,7 +63,7 @@ var fields = [
 
 var cards = [
   {
-    label: 'task.risk.status',
+    label: 'Risk Category (digital)',
     appliesToType: 'report',
     appliesIf: function(r){
       return r.form === 'care' && contact.type === 'person' 
@@ -72,7 +72,7 @@ var cards = [
     fields: [
       {
         // label: 'task.risk.category',
-        label: 'Category(digital)',
+        label: 'Risk Category',
 
         value: function(r) {
           var risk = r.fields.care.category;
@@ -167,7 +167,7 @@ var cards = [
 
 
   {
-    label: 'Category(summary)',
+    label: 'Risk Category(summary)',
     appliesToType: 'report',
     appliesIf: function(r){
       return r.form === 'care_test' && contact.type === 'person' 
@@ -177,10 +177,10 @@ var cards = [
       {
         label: 'task.risk.category',
         value: function(r) {
-          var risk = r.fields.photo_test.category;
+          var risk = r.fields.photo_test.photo_refer;
           return risk;
         },
-        width: 5
+        width: 6
       },
       // {
       //   label: 'task.risk.category',
@@ -202,7 +202,7 @@ var cards = [
 
           return risk;
         },
-        width: 5
+        width: 3
       },
       //   // value: function(r) {
       //   //   if (r.form === 'care') {
@@ -240,12 +240,12 @@ var cards = [
       //   width: 3
       // },
       {
-        label: 'task.risk.date1',
+        label: 'task.risk.date',
         value: function(r) {
-          var risk = r.fields.photo_test.date_care_form;
+          var risk = r.fields.photo_test.date_care;
           return risk;
         },
-        width: 5
+        width: 3
       },
       // {
       //   label: 'task.risk.date',

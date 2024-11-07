@@ -4,7 +4,7 @@
     <h:title>Form - In-person Visit</h:title>
     <model>
       <instance>
-        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2023-09-21_09-33">
+        <routine delimiter="#" id="routine" prefix="J1!routine!" version="2024-10-29_20-45">
           <inputs>
             <meta>
               <location>
@@ -35,22 +35,22 @@
           </inputs>
           <patient_id/>
           <patient_name/>
-          <patient_name1/>
-          <patient_tsis/>
-          <patient_genda/>
-          <patient_date_of_birth/>
-          <date_of_birth_ctx/>
-          <aka_ctx/>
-          <fast_name_ctx/>
-          <last_name_ctx/>
-          <tsis_ctx/>
-          <yr_date_of_birth_ctx/>
-          <gender_ctx/>
+          <patient_name1 tag="hidden"/>
+          <patient_tsis tag="hidden"/>
+          <patient_genda tag="hidden"/>
+          <patient_date_of_birth tag="hidden"/>
+          <date_of_birth_ctx tag="hidden"/>
+          <aka_ctx tag="hidden"/>
+          <fast_name_ctx tag="hidden"/>
+          <last_name_ctx tag="hidden"/>
+          <tsis_ctx tag="hidden"/>
+          <yr_date_of_birth_ctx tag="hidden"/>
+          <gender_ctx tag="hidden"/>
           <routine>
-            <first_name/>
-            <age_n/>
-            <dob/>
-            <n_special_instruction_title/>
+            <first_name tag="hidden"/>
+            <age_n tag="hidden"/>
+            <dob tag="hidden"/>
+            <n_special_instruction_title tag="hidden"/>
             <in_person_date/>
             <status/>
             <client/>
@@ -192,7 +192,7 @@
         </item>
       </select1>
       <select1 ref="/routine/routine/reminder">
-        <label>Have you reviewed the most recent SMS Messages with the client?</label>
+        <label>Have you reviewed the most recent SMS Messages with the client?bbbbbb</label>
         <item>
           <label>Yes</label>
           <value>yes</value>
