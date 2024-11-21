@@ -4,7 +4,7 @@
     <h:title>Task</h:title>
     <model>
       <instance>
-        <create delimiter="#" id="create" prefix="J1!create!" version="2024-08-11_18-21">
+        <create delimiter="#" id="create" prefix="J1!create!" version="2024-11-21_11-43">
           <inputs>
             <meta>
               <location>
@@ -102,10 +102,10 @@
       <bind nodeset="/create/create/age_n" readonly="true()" type="string"/>
       <bind nodeset="/create/create/dob" readonly="true()" type="string"/>
       <bind nodeset="/create/create/n_special_instruction_title" readonly="true()" type="string"/>
-      <bind nodeset="/create/create/title" type="string"/>
-      <bind calculate="today()" nodeset="/create/create/create_date" type="date"/>
-      <bind nodeset="/create/create/reminder" type="date"/>
-      <bind nodeset="/create/create/notes" type="string"/>
+      <bind nodeset="/create/create/title" required="true()" type="string"/>
+      <bind calculate="today()" nodeset="/create/create/create_date" required="true()" type="date"/>
+      <bind nodeset="/create/create/reminder" required="true()" type="date"/>
+      <bind nodeset="/create/create/notes" required="true()" type="string"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/create/meta/instanceID" readonly="true()" type="string"/>
     </model>
   </h:head>

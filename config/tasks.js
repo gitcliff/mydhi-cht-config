@@ -50,7 +50,7 @@ module.exports = [
     events: [{
       id:'appointment-seven',
       start: 7,
-      end: 1,
+      end: 0,
       dueDate: function (event, contact, r) {
 
         return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
@@ -59,18 +59,21 @@ module.exports = [
     {
       id: 'appointment-three',
       start: 3,
-      end: 1,
+      end: 0,
       dueDate: function (event, contact, r) {
 
         return Utils.addDate(new Date(getField(r, 'appoint.date_appoint')), 0);
       }
     }
   ],
-    resolvedIf: function(c, r, event, dueDate) {
-      // Resolved if there is a reminder received in time window
-      return isFormFromArraySubmittedInWindow(c.reports, 'reminder',
-                 Utils.addDate(dueDate, -event.start).getTime(),
-                 Utils.addDate(dueDate,  event.end+1).getTime());
+    resolvedIf: function(c) {
+      // Find the matching reminder report
+      const reminderReport = c.reports.find(report => {
+        return report.form === 'appointment_reminder';
+      });
+
+      // Clear task only if 'soon_noted' was selected
+      return reminderReport && reminderReport.fields.appointment_reminder.upcoming === 'soon_noted';
     },
   },
 
