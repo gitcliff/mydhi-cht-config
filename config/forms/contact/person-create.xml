@@ -9,7 +9,7 @@
             <value>Must match the client's surname in TSIS</value>
           </text>
           <text id="/data/person/name:hint">
-            <value>This name will be the main name used in the Digital Case Management System</value>
+            <value>This name will display in HealthJam</value>
           </text>
           <text id="/data/person/name_f:hint">
             <value>Must match the client's first name in TSIS</value>
@@ -20,7 +20,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2023-09-15_04-09">
+        <data delimiter="#" id="contact:person:create" prefix="J1!contact:person:create!" version="2024-11-21_09-19">
           <inputs>
             <meta>
               <location>
@@ -44,7 +44,6 @@
             <name_f/>
             <name1/>
             <full_name/>
-            <aka/>
             <docket/>
             <tsis/>
             <address/>
@@ -89,8 +88,7 @@
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
       <bind nodeset="/data/person/name1" required="true()" type="string"/>
       <bind calculate="full_name" nodeset="/data/person/full_name" type="string"/>
-      <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/docket" required="true()" type="int"/>
       <bind nodeset="/data/person/tsis" required="true()" type="int"/>
       <bind nodeset="/data/person/address" required="true()" type="string"/>
       <bind nodeset="/data/person/address1" type="string"/>
@@ -155,7 +153,7 @@
         <label>Date Registered into HealthJam Digital Case Management System</label>
       </input>
       <input ref="/data/person/name">
-        <label>Full Name</label>
+        <label>Preferred Name</label>
         <hint ref="jr:itext('/data/person/name:hint')"/>
       </input>
       <input ref="/data/person/name_f">
@@ -165,9 +163,6 @@
       <input ref="/data/person/name1">
         <label>Last Name</label>
         <hint ref="jr:itext('/data/person/name1:hint')"/>
-      </input>
-      <input ref="/data/person/aka">
-        <label>Also Known as:</label>
       </input>
       <input ref="/data/person/docket">
         <label>Docket Number</label>
@@ -182,11 +177,11 @@
         <label>Previous Address</label>
       </input>
       <input ref="/data/person/phone">
-        <label>Current Cell number</label>
+        <label>Cell number</label>
         <hint ref="jr:itext('/data/person/phone:hint')"/>
       </input>
       <select1 ref="/data/person/type1">
-        <label>Type of current phone</label>
+        <label>Phone Type</label>
         <item>
           <label>Banger Phone</label>
           <value>banger</value>

@@ -56,9 +56,6 @@
           <text id="/data/person/address:label">
             <value>Current Address</value>
           </text>
-          <text id="/data/person/aka:label">
-            <value>Also Known as:</value>
-          </text>
           <text id="/data/person/at/female:label">
             <value>Female</value>
           </text>
@@ -92,11 +89,20 @@
           <text id="/data/person/genda:label">
             <value>Gender Identity</value>
           </text>
+          <text id="/data/person/name1:hint">
+            <value>Must match the client's surname in TSIS</value>
+          </text>
           <text id="/data/person/name1:label">
             <value>Last Name</value>
           </text>
+          <text id="/data/person/name:hint">
+            <value>This name will display in HealthJam</value>
+          </text>
           <text id="/data/person/name:label">
-            <value>Full Name</value>
+            <value>Preferred Name</value>
+          </text>
+          <text id="/data/person/name_f:hint">
+            <value>Must match the client's first name in TSIS</value>
           </text>
           <text id="/data/person/name_f:label">
             <value>First Name</value>
@@ -117,7 +123,7 @@
             <value>Must be in the format +1 (876) xxx-xxxx</value>
           </text>
           <text id="/data/person/phone:label">
-            <value>Current Cell number</value>
+            <value>Cell number</value>
           </text>
           <text id="/data/person/stat/common:label">
             <value>Common-Law</value>
@@ -150,7 +156,7 @@
             <value>SmartPhone</value>
           </text>
           <text id="/data/person/type1:label">
-            <value>Type of current phone</value>
+            <value>Phone Type</value>
           </text>
           <text id="/data/person:label">
             <value>Edit Person</value>
@@ -158,7 +164,7 @@
         </translation>
       </itext>
       <instance>
-        <data delimiter="#" id="contact:person:edit" prefix="J1!contact:person:edit!" version="2023-09-15_04-34">
+        <data delimiter="#" id="contact:person:edit" prefix="J1!contact:person:edit!" version="2024-11-21_09-31">
           <inputs>
             <meta>
               <location>
@@ -183,7 +189,6 @@
             <name_f/>
             <name1/>
             <full_name/>
-            <aka/>
             <docket/>
             <tsis/>
             <address/>
@@ -245,8 +250,7 @@
       <bind nodeset="/data/person/name_f" required="true()" type="string"/>
       <bind nodeset="/data/person/name1" required="true()" type="string"/>
       <bind calculate="full_name" nodeset="/data/person/full_name" type="string"/>
-      <bind nodeset="/data/person/aka" type="string"/>
-      <bind nodeset="/data/person/docket" type="int"/>
+      <bind nodeset="/data/person/docket" required="true()" type="int"/>
       <bind nodeset="/data/person/tsis" required="true()" type="int"/>
       <bind nodeset="/data/person/address" required="true()" type="string"/>
       <bind nodeset="/data/person/address1" type="string"/>
@@ -332,15 +336,15 @@
       </input>
       <input ref="/data/person/name">
         <label ref="jr:itext('/data/person/name:label')"/>
+        <hint ref="jr:itext('/data/person/name:hint')"/>
       </input>
       <input ref="/data/person/name_f">
         <label ref="jr:itext('/data/person/name_f:label')"/>
+        <hint ref="jr:itext('/data/person/name_f:hint')"/>
       </input>
       <input ref="/data/person/name1">
         <label ref="jr:itext('/data/person/name1:label')"/>
-      </input>
-      <input ref="/data/person/aka">
-        <label ref="jr:itext('/data/person/aka:label')"/>
+        <hint ref="jr:itext('/data/person/name1:hint')"/>
       </input>
       <input ref="/data/person/docket">
         <label ref="jr:itext('/data/person/docket:label')"/>
