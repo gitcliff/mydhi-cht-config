@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Enrollment Tracker</h:title>
+    <model>
+      <instance>
+        <enrolment_tracker delimiter="#" id="enrolment_tracker" prefix="J1!enrolment_tracker!" version="1">
+          <enrolment_tracker>
+            <str/>
+            <suoer/>
+          </enrolment_tracker>
+          <meta tag="hidden">
+            <instanceID/>
+          </meta>
+        </enrolment_tracker>
+      </instance>
+      <instance id="contact-summary"/>
+      <bind nodeset="/enrolment_tracker/enrolment_tracker/str" readonly="true()" type="string"/>
+      <bind nodeset="/enrolment_tracker/enrolment_tracker/suoer" readonly="true()" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/enrolment_tracker/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body class="pages">
+    <group appearance="field-list" ref="/enrolment_tracker/enrolment_tracker">
+      <label></label>
+      <input ref="/enrolment_tracker/enrolment_tracker/str">
+        <label>Click the button below</label>
+      </input>
+      <input ref="/enrolment_tracker/enrolment_tracker/suoer">
+        <label>[Enrollment Tracker](https://itechcarib2-my.sharepoint.com/:x:/g/personal/healthjam_ctech-caribbean_org/EcermwIbOstIntrA_szAmqABTAu_-gVuz4RrMJtARYDQuw?e=dPN5x9)</label>
+      </input>
+    </group>
+  </h:body>
+</h:html>

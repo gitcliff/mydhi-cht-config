@@ -3,7 +3,6 @@
     "icon": "hiv",
     "context": {
           "person": false,
-          "place": true,
-          "expression": "contact.type === 'district_hospital' || contact.type === 'health_centre' || contact.type === 'clinic' ||contact.type === 'person'"
+          "place": true
       }
   }
