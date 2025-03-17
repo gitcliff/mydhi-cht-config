@@ -3069,13 +3069,17 @@
         "auth": {
           "type": "header",
           "name": "Authorization",
-          "value_key": "rapidpro.app"
+          "value_key": "rapidpro.api"
+        },
+        "headers": {
+          "User-Agent": "CHT/4.17.0",
+          "Content-Type": "application/json"
         },
         "path": "/api/v2/flow_starts.json"
       },
       "mapping": {
         "flow": {
-          "expr": "'e16b6f2f-168b-4690-a52d-a27f54f88fc6'"
+          "expr": "'550567d6-6662-4c0e-9ea3-138798eba8ef'"
         },
         "urns": {
           "expr": "['tel:' + doc.phone]"
@@ -3089,7 +3093,11 @@
         "auth": {
           "type": "header",
           "name": "Authorization",
-          "value_key": "rapidpro.app"
+          "value_key": "rapidpro.api"
+        },
+        "headers": {
+          "User-Agent": "CHT/4.17.0",
+          "Content-Type": "application/json"
         },
         "path": "/api/v2/flow_starts.json"
       },
@@ -3109,7 +3117,11 @@
         "auth": {
           "type": "header",
           "name": "Authorization",
-          "value_key": "rapidpro.app"
+          "value_key": "rapidpro.api"
+        },
+        "headers": {
+          "User-Agent": "CHT/4.17.0",
+          "Content-Type": "application/json"
         },
         "path": "/api/v2/flow_starts.json"
       },
