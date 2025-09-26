@@ -134,6 +134,12 @@
           <text id="/mute/mute_request/notes_n:label">
             <value>Notes</value>
           </text>
+          <text id="/mute/mute_request/patient_number:hint">
+            <value>Must be in the format +1 (876) xxx-xxxx</value>
+          </text>
+          <text id="/mute/mute_request/patient_number:label">
+            <value>Patient phone number</value>
+          </text>
           <text id="/mute/mute_request/reason/changed_clinic:label">
             <value>Changed clinic</value>
           </text>
@@ -170,7 +176,7 @@
         </translation>
       </itext>
       <instance>
-        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2024-07-08 20:25:31">
+        <mute delimiter="#" id="mute" prefix="J1!mute!" version="2025-09-25 23:35:06">
           <inputs>
             <meta>
               <location>
@@ -238,6 +244,7 @@
             <n_special_instruction_title tag="hidden"/>
             <reason/>
             <reason_for_opting/>
+            <patient_number/>
             <disposition_date/>
             <notes_n/>
           </mute_request>
@@ -315,6 +322,7 @@
       <bind nodeset="/mute/mute_request/n_special_instruction_title" readonly="true()" type="string"/>
       <bind nodeset="/mute/mute_request/reason" required="true()" type="select1"/>
       <bind nodeset="/mute/mute_request/reason_for_opting" relevant=" /mute/mute_request/reason  = 'opt'" type="string"/>
+      <bind constraint="true()" nodeset="/mute/mute_request/patient_number" required="true()" type="tel"/>
       <bind nodeset="/mute/mute_request/disposition_date" type="date"/>
       <bind nodeset="/mute/mute_request/notes_n" type="string"/>
       <bind nodeset="/mute/group_review/n_submit" readonly="true()" type="string"/>
@@ -423,6 +431,10 @@ concat( /mute/patient_age_in_years , ' years old'))" nodeset="/mute/group_review
       </select1>
       <input ref="/mute/mute_request/reason_for_opting">
         <label ref="jr:itext('/mute/mute_request/reason_for_opting:label')"/>
+      </input>
+      <input ref="/mute/mute_request/patient_number">
+        <label ref="jr:itext('/mute/mute_request/patient_number:label')"/>
+        <hint ref="jr:itext('/mute/mute_request/patient_number:hint')"/>
       </input>
       <input ref="/mute/mute_request/disposition_date">
         <label ref="jr:itext('/mute/mute_request/disposition_date:label')"/>
